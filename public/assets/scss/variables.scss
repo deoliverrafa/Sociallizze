@@ -20,3 +20,16 @@ $fontPrincipal: 'Poppins', sans-serif;
 @mixin font-size($min-size) {
     font-size: clamp($min-size, .5vw + 2vw, $min-size + .25rem);
 }
+
+@mixin hover($background, $color) {
+    &:hover {
+        background: $background;
+        color: $color;
+    }
+}
+
+@mixin hover-font($color) {
+    &:hover {
+        color: $color;
+    }
+}
