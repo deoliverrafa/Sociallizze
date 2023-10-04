@@ -1,1 +1,1 @@
-const close = document.querySelectorAll('.close');
+const close = document.querySelectorAll('.icon');
