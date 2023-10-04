@@ -15,4 +15,8 @@
     cursor: pointer;
 
     @include font-size(1.5rem);
+
+    margin: 0 10px;
+
+    @include hover-font($colorPrimary);
 }

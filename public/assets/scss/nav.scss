@@ -7,3 +7,23 @@ header.header {
 
     padding: 5px;
 }
+
+.nav-bar {
+    background: $colorWhite;
+    box-shadow: -3px 0px 10px 0px rgba(37, 36, 35, 1);
+
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    height: 100vh;
+    width: auto;
+}
+
+.container:nth-child(1) {
+    border-bottom: 2px solid $colorPrimary;
+
+    @include display-flex(row, space-between, center);
+
+    padding: 5px;
+}
