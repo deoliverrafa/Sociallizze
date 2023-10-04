@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Oleo+Script&family=Poppins&display=swap');
+
+$colorPrimary: #469CF7;
+$colorDarkPrimary: #0E2A56;
+$colorSecondary: #E7C213;
+$colorDanger: #E05135;
+$colorBlack: #252324;
+$colorWhite: #FFFFFF;
+$fontLogo: 'Oleo Script', cursive;
+$fontPrincipal: 'Poppins', sans-serif;
+
+@mixin display-flex($direction, $content, $align) {
+    display: flex;
+    flex-direction: $direction;
+    flex-wrap: nowrap;
+    justify-content: $content;
+    align-items: $align;
+}
+
+@mixin font-size($min-size) {
+    font-size: clamp($min-size, .5vw + 2vw, $min-size + .25rem);
+}
