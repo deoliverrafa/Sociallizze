@@ -1,0 +1,8 @@
+@keyframes smoothSideBar {
+    0% {
+        transform: translateX(-5rem);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
