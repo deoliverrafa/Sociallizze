@@ -10,10 +10,10 @@ let context = new Context(new MongoDB(userSchema));
 
 // Usuário default para Teste de Crud,
 const defaultUserCadastrar = {
-    nome: "Rafael",
+    nome: "Carlos",
     age: 18,
-    phoneNumber: "63985003205",
-    password: "batatinhaquente123"
+    phoneNumber: "639276-6926",
+    password: "AlecrimDouradoQueNasceuNoCampoSemSerSemeado"
 }
 
 
@@ -32,14 +32,20 @@ describe('Suíte de Testes de Usuários', function () {
     it('Não Deverá cadastrar um usuário no banco de dados Pois está faltando Atributos', async () => {
         const itemIncompleto = {
             name: "Rafael",
-            idade: 18,
-            email: "deoliverrafa@gmail.com",
-            phoneNumber: "63985003205"
+            age: 18,
+            phoneNumber: "63985003205",
         }
-
         const result = await context.create(itemIncompleto)
-        console.log(result)
+        
+        console.log(result)  
     })
+
+    // it('Deverá cadastrar um usuário no banco de dados', async () => {
+    //     const expected = defaultUserCadastrar;
+    //     const result = await context.create(defaultUserCadastrar);
+
+    //     assert.deepStrictEqual(result, expected)
+    // })
 
     // it('Deverá ler usuários do banco de dados', async () => {
 

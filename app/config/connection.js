@@ -7,6 +7,9 @@ const connectionParams = {
     useUnifiedTopology: true
 }
 
+// Aqui fazemos a connection com o banco de dados
+// através do mongoose que é um framework que trabalha com
+// banco de dados NoSQL
 class getConnection {
     async connect () {
         Mongoose.connect(uri);

@@ -32,7 +32,6 @@ class MongoDB extends Icrud {
 
     async create(item) {
         const novoUsuario = new this._usuario(item)
-        ;
         return await novoUsuario.save();
     }
 
