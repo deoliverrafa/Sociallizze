@@ -1,22 +1,22 @@
 class dataBaseStrategy{
-    constructor(database){
-        this.database = database;
+    constructor(userSchema){
+        this._userSchema = userSchema;
     }
 
-    create(user = {}){
-    return this.database.create(user);
+    create(item){
+    return this.userSchema.create(item);
     }
 
     update(user = {}){
-    return this.database.update(user)
+    return this.userSchema.update(user)
     }
 
     read(user = {}){
-    return this.database.read(user)
+    return this.userSchema.read(user)
     }
 
     delete(user = {}){
-    return this.database.delete(user)
+    return this.userSchema.delete(user)
     }
 }
 
