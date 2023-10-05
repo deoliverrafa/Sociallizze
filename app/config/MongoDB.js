@@ -45,7 +45,10 @@ class MongoDB extends Icrud {
     }
 
     async delete(id) {
-        return await this._usuario.findByIdAndRemove(id);
+        const result = await this._usuario.findByIdAndRemove(id);
+        if (result == null) return "Usuário não encontrado Tente Novamente!!!"
+        console.log("Usuário deletado Com Sucesso!!!")
+        return result;
     }
 }
 module.exports = MongoDB
