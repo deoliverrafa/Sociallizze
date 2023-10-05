@@ -9,7 +9,7 @@ const connection = new getConnection()
 
 
 
-router.post('/login', async (req, res) => {
+router.post('/cadastrar', async (req, res) => {
   try {
     connection.connect();    
     const novoUsuario = await context.create(req.body);
@@ -19,7 +19,7 @@ router.post('/login', async (req, res) => {
   }
 });
 
-router.get('/read', async (req,res) => {
+router.get('/login', async (req,res) => {
     try {
         connection.connect();
         const result = await context.read()
