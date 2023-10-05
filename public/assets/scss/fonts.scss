@@ -21,3 +21,12 @@
 
     @include hover-font($colorPrimary);
 }
+
+.title {
+    font-family: $fontPrincipal;
+    @include font-size(2rem);
+
+    &.title-primary {
+        @include font-color($colorPrimary);
+    }
+}

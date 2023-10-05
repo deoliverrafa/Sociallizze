@@ -5,6 +5,7 @@ $colorDarkPrimary: #0E2A56;
 $colorSecondary: #E7C213;
 $colorDanger: #E05135;
 $colorBlack: #252324;
+$colorGray: #4F4F4F;
 $colorWhite: #FFFFFF;
 $fontLogo: 'Oleo Script', cursive;
 $fontPrincipal: 'Poppins', sans-serif;
@@ -15,6 +16,10 @@ $fontPrincipal: 'Poppins', sans-serif;
     flex-wrap: nowrap;
     justify-content: $content;
     align-items: $align;
+}
+
+@mixin font-color($color) {
+    color: $color;
 }
 
 @mixin font-size($min-size) {

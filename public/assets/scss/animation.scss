@@ -1,8 +1,17 @@
 @keyframes smoothSideBar {
     0% {
-        transform: translateX(-5rem);
+        transform: translateX(-18rem);
     }
     100% {
         transform: translateX(0);
+    }
+}
+
+@keyframes closeSideBar {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-18rem);
     }
 }

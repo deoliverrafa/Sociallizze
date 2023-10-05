@@ -10,11 +10,11 @@ header.header {
 }
 
 .left-bar {
-    animation: smoothLeftBar 1s forwards;
+    animation: smoothLeftBar 1s ease-in-out;
     transition: .5s;
 
     background: $colorWhite;
-    box-shadow: 3px 0px 10px 0px rgba(37, 36, 35, 1);
+    box-shadow: 3px 0px 10px 0px $colorGray;
 
     @include display-flex(column, space-between, center);
 
@@ -27,10 +27,37 @@ header.header {
     z-index: 2;
 }
 
-.container:nth-child(1) {
-    border-bottom: 2px solid $colorPrimary;
-
-    @include display-flex(row, space-between, center);
+.container:nth-child(-n + 4) {
+    border-bottom: 2px solid $colorBlack;
 
     padding: 5px;
+}
+
+.container:nth-child(1) {
+    @include display-flex(row, center, center);
+}
+
+.container:nth-child(n + 2) {
+    @include display-flex(column, stretch, stretch);
+    .item {
+        border: 2px solid $colorPrimary;
+        box-shadow: 3px 3px 10px 0px rgba(37, 35, 36, 1);
+        cursor: pointer;
+
+        @include display-flex(row, stretch, center);
+
+        @include font-size(.875rem);
+        font-family: $fontPrincipal;
+        text-decoration: none;
+
+        padding: 10px;
+
+        @include hover($colorBlack, $colorBlack);
+
+        .icon {
+            @include font-size(1rem);
+
+            @include hover-font($colorBlack);
+        }
+    }
 }
