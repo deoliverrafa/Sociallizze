@@ -53,7 +53,7 @@ describe('Suíte de Testes de Usuários', function () {
         try {
             const expected = defaultUserCadastrar
             const [result] = await context.read()
-            const actual = JSON.parse(result)
+            
             console.log(actual)
         } catch (error) {
             console.log("Erro: ", error)
