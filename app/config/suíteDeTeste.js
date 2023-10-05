@@ -1,5 +1,4 @@
 // Início das instâncias para trabalho com o nosso banco de dados
-
 const assert = require('assert');
 const MongoDB = require('./MongoDB')
 const Context = require('./contextStrategy/contextStrategy')
@@ -19,7 +18,6 @@ const defaultUserCadastrar = {
 
 
 // Suíte de testes realizada com o MOCHA
-
 describe('Suíte de Testes de Usuários', function () {
 
     it.only("Status da Conexão", async () => {
@@ -49,15 +47,39 @@ describe('Suíte de Testes de Usuários', function () {
         assert.deepStrictEqual(result, expected)
     })
 
-    it.only('Deverá ler usuários do banco de dados', async () => {
+    it('Deverá ler usuários do banco de dados', async () => {
         try {
             const expected = defaultUserCadastrar
-            const [result] = await context.read()
-            
-            console.log(actual)
+
+            const [result] = await context.read({ name: "Rafael" })
+
+            console.log(result)
         } catch (error) {
             console.log("Erro: ", error)
         }
+    })
 
+    it("Deverá deletar um usuário do Banco de dados", async () => {
+        try {
+            const id = "651f044ae4dc2da61586cc29"
+            const result = await context.delete({ _id: id })
+            assert.deepStrictEqual(result._id, id);
+        } catch (error) {
+            console.log("Deu ruim man: ", error)
+        }
+    })
+
+    it.only("Deverá atualizar um usuário já existente no Banco de dados", async () => {
+        try {
+
+            const _id = {_id: "651f0477fe15cd6219a8ac13"}
+            const expected = { name: "Júlia" }
+
+            const result = await context.update(_id, expected)
+
+            assert.deepStrictEqual(result.name, expected.name)
+        } catch (error) {
+            console.log("Deu ruim man:", error)
+        }
     })
 })
