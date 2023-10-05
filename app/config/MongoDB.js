@@ -34,9 +34,10 @@ class MongoDB extends Icrud {
         const novoUsuario = new this._usuario(item)
         return await novoUsuario.save();
     }
-
+    
     async read(item) {
-        return await this._usuario.find(item);
+        const result = await this._usuario.find(item);
+        return result;
     }
 
     async update(id, item) {

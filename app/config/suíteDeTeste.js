@@ -10,10 +10,11 @@ let context = new Context(new MongoDB(userSchema));
 
 // Usuário default para Teste de Crud,
 const defaultUserCadastrar = {
-    nome: "Carlos",
+    name: "Rafael",
     age: 18,
-    phoneNumber: "639276-6926",
-    password: "AlecrimDouradoQueNasceuNoCampoSemSerSemeado"
+    phoneNumber: "63985003025",
+    password: "MaisTardeFalharDoQueNãoTentar",
+    email: "deoliverrafa@gmail.com"
 }
 
 
@@ -21,7 +22,7 @@ const defaultUserCadastrar = {
 
 describe('Suíte de Testes de Usuários', function () {
 
-    it("Status da Conexão", async () => {
+    it.only("Status da Conexão", async () => {
         const result = await connection.connect()
         // status conexão 1 Conectando
         // status conexão 2 Conectado
@@ -36,18 +37,27 @@ describe('Suíte de Testes de Usuários', function () {
             phoneNumber: "63985003205",
         }
         const result = await context.create(itemIncompleto)
-        
-        console.log(result)  
+
+        console.log(result)
     })
 
-    // it('Deverá cadastrar um usuário no banco de dados', async () => {
-    //     const expected = defaultUserCadastrar;
-    //     const result = await context.create(defaultUserCadastrar);
+    it('Deverá cadastrar um usuário no banco de dados', async () => {
+        const expected = defaultUserCadastrar;
+        const { name, age, email, password, phoneNumber } = await context.create(defaultUserCadastrar);
+        const result = { name, age, email, password, phoneNumber }
 
-    //     assert.deepStrictEqual(result, expected)
-    // })
+        assert.deepStrictEqual(result, expected)
+    })
 
-    // it('Deverá ler usuários do banco de dados', async () => {
+    it.only('Deverá ler usuários do banco de dados', async () => {
+        try {
+            const expected = defaultUserCadastrar
+            const [result] = await context.read()
+            const actual = JSON.parse(result)
+            console.log(actual)
+        } catch (error) {
+            console.log("Erro: ", error)
+        }
 
-    // })
+    })
 })

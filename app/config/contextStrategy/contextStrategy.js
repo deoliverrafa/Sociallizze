@@ -12,7 +12,7 @@ class ContextStrategy extends Icrud {
         return this.strategy.create(item)
     }
     read(item, skip, limit) {
-        return this.strategy.read(item, skip, limit)
+        return this.strategy.read(item)
     }
     update(filter, item) {
         return this.strategy.update(filter, item)
