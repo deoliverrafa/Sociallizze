@@ -1,10 +1,14 @@
+// Início das instâncias para trabalho com o nosso banco de dados
+
 const assert = require('assert');
-const dataBaseStrategy = require('./dataBaseStrategy')
-const connection = require('./connection.js')
+const MongoDB = require('./MongoDB')
+const Context = require('./contextStrategy/contextStrategy')
+const getConnection = require('./connection.js')
 const userSchema = require('../schemas/userSchemas.js')
+const connection = new getConnection();
+let context = new Context(new MongoDB(userSchema));
 
-const db = new dataBaseStrategy(userSchema)
-
+// Usuário default para Teste de Crud,
 const defaultUserCadastrar = {
     nome: "Rafael",
     age: 18,
@@ -12,12 +16,32 @@ const defaultUserCadastrar = {
     password: "batatinhaquente123"
 }
 
-describe('Suíte de Testes de Usuários', () => {
-    it('Deverá conectar no bacndo de dados', async () => {
-        console.log(connection)
+
+// Suíte de testes realizada com o MOCHA
+
+describe('Suíte de Testes de Usuários', function () {
+
+    it("Status da Conexão", async () => {
+        const result = await connection.connect()
+        // status conexão 1 Conectando
+        // status conexão 2 Conectado
+        // status conexão 3 Desconectado
+        assert.deepStrictEqual(result.readyState, 2)
     })
 
-    it('Deverá cadastrar um usuário no bacnod de dados', async () => {
-        const result = await db.create(defaultUserCadastrar)
+    it('Não Deverá cadastrar um usuário no banco de dados Pois está faltando Atributos', async () => {
+        const itemIncompleto = {
+            name: "Rafael",
+            idade: 18,
+            email: "deoliverrafa@gmail.com",
+            phoneNumber: "63985003205"
+        }
+
+        const result = await context.create(itemIncompleto)
+        console.log(result)
     })
+
+    // it('Deverá ler usuários do banco de dados', async () => {
+
+    // })
 })
