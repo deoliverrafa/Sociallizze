@@ -23,14 +23,14 @@ router.get('/usuarios', async (req, res) => {
   try {
     await connection.connect();
 
-    const { email, passoword } = req.query;
+    const { email, password } = req.query;
 
-    if (!email || !!passoword) {
+    if (!email || !password) {
       return res.status(400).json({ error: "Email e senha são obrigatórios" })
     }
 
-    const result = await context.read({ email, passoword })
-    
+    const result = await context.read({ email, password })
+
     res.json(result)
   } catch (error) {
     res.status(500).json({ error: 'Erro ao ler banco de dados' })
