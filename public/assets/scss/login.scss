@@ -1,7 +1,7 @@
 @import './variables.scss';
 @import './componets.scss';
 
-.container .top {
+.card .top {
     border: 2px solid $colorGray;
     box-shadow: 3px 3px 10px 0 $colorBlack;
 
@@ -11,7 +11,7 @@
     padding: 5px;
 }
 
-.container .main {
+.card .main {
     border: 2px solid $colorGray;
     box-shadow: 3px 3px 10px 0 $colorBlack;
 
@@ -21,7 +21,7 @@
     padding: 10px;
 }
 
-.container .bottom {
+.card .bottom {
     border: 2px solid $colorGray;
     box-shadow: 3px 3px 10px 0 $colorBlack;
 
@@ -29,4 +29,18 @@
 
     margin: 5px;
     padding: 10px;
+}
+
+.container {
+    &.container-error {
+        display: none;
+    }
+}
+
+.modal {
+    animation: opacityModal .3s ease-in-out forwards;
+}
+
+.modal .card {
+    animation: smoothUpCard .5s ease-in-out forwards;
 }

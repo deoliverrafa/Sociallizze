@@ -34,6 +34,11 @@ html {
 }
 
 .container {
+  height: auto;
+  width: auto;
+}
+
+.card {
   background: #FFFFFF;
   box-shadow: 3px 3px 10px 0 #252324;
   display: flex;
@@ -67,9 +72,12 @@ html {
 }
 
 .button {
-  border: 2px solid #469CF7;
+  border: 2px solid #252324;
   border-radius: 5px;
   box-shadow: 3px 3px 10px 0 #252324;
+  font-size: 1rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
   padding: 10px;
   height: auto;
   width: 100%;
@@ -77,6 +85,20 @@ html {
 .button:hover {
   background: #469CF7;
   color: #FFFFFF;
+}
+.button.button-primary {
+  background: #469CF7;
+  color: #FFFFFF;
+}
+.button.button-primary:hover {
+  background: #1582f5;
+}
+.button.button-dark-primary {
+  background: #0E2A56;
+  color: #FFFFFF;
+}
+.button.button-dark-primary:hover {
+  background: #07152a;
 }
 
 .logo {
@@ -111,6 +133,11 @@ html {
   font-family: "Poppins", sans-serif;
   margin: 5px;
 }
+.text.text-error {
+  color: #E05135;
+  font-size: 1rem;
+  font-weight: bold;
+}
 .text.text-bold {
   font-weight: bold;
 }
@@ -122,6 +149,15 @@ html {
 .link.link-primary {
   color: #469CF7;
 }
+.link.link-primary:hover {
+  color: #1582f5;
+}
+.link.link-dark-primary {
+  color: #0E2A56;
+}
+.link.link-dark-primary:hover {
+  color: #07152a;
+}
 
 @keyframes smoothSideBar {
   0% {
@@ -131,12 +167,28 @@ html {
     transform: translateX(0);
   }
 }
+@keyframes smoothUpCard {
+  0% {
+    transform: translateY(-18rem);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
 @keyframes closeSmoothSideBar {
   0% {
     transform: translateX(0);
   }
   100% {
     transform: translateX(-18rem);
+  }
+}
+@keyframes closeSmoothUpCard {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-18rem);
   }
 }
 @keyframes opacityModal {
@@ -268,6 +320,11 @@ html {
 }
 
 .container {
+  height: auto;
+  width: auto;
+}
+
+.card {
   background: #FFFFFF;
   box-shadow: 3px 3px 10px 0 #252324;
   display: flex;
@@ -301,9 +358,12 @@ html {
 }
 
 .button {
-  border: 2px solid #469CF7;
+  border: 2px solid #252324;
   border-radius: 5px;
   box-shadow: 3px 3px 10px 0 #252324;
+  font-size: 1rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
   padding: 10px;
   height: auto;
   width: 100%;
@@ -312,8 +372,22 @@ html {
   background: #469CF7;
   color: #FFFFFF;
 }
+.button.button-primary {
+  background: #469CF7;
+  color: #FFFFFF;
+}
+.button.button-primary:hover {
+  background: #1582f5;
+}
+.button.button-dark-primary {
+  background: #0E2A56;
+  color: #FFFFFF;
+}
+.button.button-dark-primary:hover {
+  background: #07152a;
+}
 
-.container .top {
+.card .top {
   border: 2px solid #4F4F4F;
   box-shadow: 3px 3px 10px 0 #252324;
   display: flex;
@@ -325,7 +399,7 @@ html {
   padding: 5px;
 }
 
-.container .main {
+.card .main {
   border: 2px solid #4F4F4F;
   box-shadow: 3px 3px 10px 0 #252324;
   display: flex;
@@ -337,7 +411,7 @@ html {
   padding: 10px;
 }
 
-.container .bottom {
+.card .bottom {
   border: 2px solid #4F4F4F;
   box-shadow: 3px 3px 10px 0 #252324;
   display: flex;
@@ -347,6 +421,18 @@ html {
   align-items: center;
   margin: 5px;
   padding: 10px;
+}
+
+.container.container-error {
+  display: none;
+}
+
+.modal {
+  animation: opacityModal 0.3s ease-in-out forwards;
+}
+
+.modal .card {
+  animation: smoothUpCard 0.5s ease-in-out forwards;
 }
 
 /*# sourceMappingURL=styles.min.css.map */

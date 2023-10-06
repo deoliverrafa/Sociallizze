@@ -7,12 +7,30 @@
     }
 }
 
+@keyframes smoothUpCard {
+    0% {
+        transform: translateY(-18rem);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
 @keyframes closeSmoothSideBar {
     0% {
         transform: translateX(0);
     }
     100% {
         transform: translateX(-18rem);
+    }
+}
+
+@keyframes closeSmoothUpCard {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-18rem);
     }
 }
 
