@@ -34,11 +34,13 @@ router.get('/usuarios', async (req, res) => {
     }
 
     // busca no banco de dados através do context
-    const [result] = await context.read({email, password});
+    const result = await context.read({email, password});
+
+    const finalResult = result[0];
 
     // verifica se resultado não é null e id existe no resultado para retorna o result
     if (result.length === 1) {
-      res.json(result);
+      res.json(finalResult);
     } else {
       // retorna uma mensagem de erro de email ou senha incorretos
       return res.status(404).json({ error: "Email ou senha incorretos. Tente novamente" });
@@ -49,9 +51,6 @@ router.get('/usuarios', async (req, res) => {
   }
 });
 
-router.get("/admin", async (req, res) => {
-
-})
 // Configure outras rotas para read, update e delete aqui...
 
 module.exports = router;
