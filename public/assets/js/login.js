@@ -27,6 +27,12 @@ document.querySelector('.form').addEventListener('submit', function (event) {
                 alert("Usuário Encontrado")
                 id = data._id;
                 console.log(id)
+
+                cards[0].style.animation = 'closeSmoothUpCard .5s ease-in-out forwards';
+                modals[0].style.animation = 'closeOpacityModal .3s ease-in-out forwards';
+                setTimeout(() => {
+                    modals[0].style.display = 'none';
+                }, 300);
             }
 
         })
