@@ -34,7 +34,7 @@ router.get('/usuarios', async (req, res) => {
     }
 
     // busca no banco de dados através do context
-    const result = await context.read({email, password});
+    const [result] = await context.read({email, password});
 
     // verifica se resultado não é null e id existe no resultado para retorna o result
     if (result.length === 1) {
@@ -50,7 +50,7 @@ router.get('/usuarios', async (req, res) => {
 });
 
 router.get("/admin", async (req, res) => {
-  
+
 })
 // Configure outras rotas para read, update e delete aqui...
 
