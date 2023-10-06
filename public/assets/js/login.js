@@ -30,16 +30,17 @@ document.querySelector('.form').addEventListener('submit', function (event) {
             }
 
         })
-    // FECHAR O CARD //            
-    iconsClose[0].addEventListener('click', () => {
-        cards[0].style.animation = 'closeSmoothUpCard .5s ease-in-out forwards';
-        modals[0].style.animation = 'closeOpacityModal .3s ease-in-out forwards';
-        setTimeout(() => {
-            modals[0].style.display = 'none';
-        }, 300);
-    });
-    
 })
+
+
+// FECHAR O CARD //            
+iconsClose[0].addEventListener('click', () => {
+    cards[0].style.animation = 'closeSmoothUpCard .5s ease-in-out forwards';
+    modals[0].style.animation = 'closeOpacityModal .3s ease-in-out forwards';
+    setTimeout(() => {
+        modals[0].style.display = 'none';
+    }, 300);
+});
 
 // LÓGICA PARA APARECER O CARD DE LOGIN //
 if (typeof id == "undefined") {
