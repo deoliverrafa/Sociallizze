@@ -30,20 +30,20 @@ document.querySelector('.form').addEventListener('submit', function (event) {
             }
 
         })
-
-    // LÓGICA PARA APARECER O CARD DE LOGIN //
-    if (typeof id == "undefined") {
-        modals[0].style.display = 'flex';
-        modals[0].style.animation = 'opacityModal .3s ease-in-out forwards';
-        cards[0].style.animation = 'smoothUpCard .5s ease-in-out forwards';
-
-    } else if (typeof id == number) {// FECHAR O CARD //            
-        iconsClose[0].addEventListener('click', () => {
-            cards[0].style.animation = 'closeSmoothUpCard .5s ease-in-out forwards';
-            modals[0].style.animation = 'closeOpacityModal .3s ease-in-out forwards';
-            setTimeout(() => {
-                modals[0].style.display = 'none';
-            }, 300);
-        });
-    }
+    // FECHAR O CARD //            
+    iconsClose[0].addEventListener('click', () => {
+        cards[0].style.animation = 'closeSmoothUpCard .5s ease-in-out forwards';
+        modals[0].style.animation = 'closeOpacityModal .3s ease-in-out forwards';
+        setTimeout(() => {
+            modals[0].style.display = 'none';
+        }, 300);
+    });
+    
 })
+
+// LÓGICA PARA APARECER O CARD DE LOGIN //
+if (typeof id == "undefined") {
+    modals[0].style.display = 'flex';
+    modals[0].style.animation = 'opacityModal .3s ease-in-out forwards';
+    cards[0].style.animation = 'smoothUpCard .5s ease-in-out forwards';
+}
