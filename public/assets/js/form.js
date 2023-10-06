@@ -9,12 +9,11 @@ document.querySelector('.form').addEventListener('submit', function (event) {
         postData[key] = value;
     })
 
-    fetch('http://localhost:3000/api/cadastrar', {
+    fetch('http://localhost:3000/api/usuarios', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(postData),
     })
         .then(response => response.json())
         .then(data => {
