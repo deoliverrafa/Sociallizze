@@ -9,7 +9,7 @@ const connection = new getConnection()
 
 router.post('/cadastrar', async (req, res) => {
   try {
-    await connection.connect();    
+    await connection.connect();
 
     const novoUsuario = await context.create(req.body);
 
@@ -19,16 +19,22 @@ router.post('/cadastrar', async (req, res) => {
   }
 });
 
-router.get('/usuarios', async (req,res) => {
-    try {
-        await connection.connect();
+router.get('/usuarios', async (req, res) => {
+  try {
+    await connection.connect();
 
-        const result = await context.read()
+    const { email, passoword } = req.query;
 
-        res.json(result)
-    } catch (error) {
-        res.status(500).json({error: 'Erro ao ler banco de dados'})
+    if (!email || !!passoword) {
+      return res.status(400).json({ error: "Email e senha são obrigatórios" })
     }
+
+    const result = await context.read({ email, passoword })
+    
+    res.json(result)
+  } catch (error) {
+    res.status(500).json({ error: 'Erro ao ler banco de dados' })
+  }
 })
 // Configure outras rotas para read, update e delete aqui...
 
