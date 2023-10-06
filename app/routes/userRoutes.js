@@ -31,6 +31,10 @@ router.get('/usuarios', async (req, res) => {
 
     const result = await context.read({ email, password})
 
+    if (result == [] || result == null) {
+      return res.status(400).json({error: "Email ou senha errados tente novamente"})
+    }
+
     res.json(result)
   } catch (error) {
     res.status(500).json({ error: 'Erro ao ler banco de dados' })
