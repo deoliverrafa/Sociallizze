@@ -24,6 +24,4 @@ document.querySelector('.form').addEventListener('submit', function (event) {
             console.log("Usuário não cadastrado, crie uma conta", error)
             alert('Usuário não cadastrado, crie uma conta', error)
         });
-
-
 })
