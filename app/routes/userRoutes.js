@@ -7,6 +7,7 @@ let context = new Context(new MongoDB(userSchema))
 const getConnection = require('../config/connection');
 const connection = new getConnection()
 
+
 router.post('/cadastrar', async (req, res) => {
   try {
     await connection.connect();

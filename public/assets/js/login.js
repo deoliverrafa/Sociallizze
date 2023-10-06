@@ -51,3 +51,5 @@ if (typeof id == "undefined") {
     modals[0].style.animation = 'opacityModal .3s ease-in-out forwards';
     cards[0].style.animation = 'smoothUpCard .5s ease-in-out forwards';
 }
+
+export {id};
