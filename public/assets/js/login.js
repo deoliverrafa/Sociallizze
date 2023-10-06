@@ -19,18 +19,8 @@ document.querySelector('.form').addEventListener('submit', function (event) {
         .then(data => {
             if (data.error) {
                 alert(data.error)
-
-                if (!data.id) {
-                    modals[0].style.display = 'flex';
-                    modals[0].style.animation = 'opacityModal .3s ease-in-out forwards';
-                    cards[0].style.animation = 'smoothUpCard .5s ease-in-out forwards';
-                }
-
                 // LÓGICA PARA APARECER MENSAGEM DE ERROR //
-                if (typeof textError[0] == 'undefined') {
-                    containers[0].style.display = 'flex';
-                }
-                
+                containers[0].style.display = 'flex';
             } else {
                 alert("Usuário Encontrado")
             }
@@ -40,7 +30,13 @@ document.querySelector('.form').addEventListener('submit', function (event) {
     //     alert('Usuário não cadastrado, crie uma conta', error)
     // });
 })
+
 // LÓGICA PARA APARECER O CARD DE LOGIN //
+if (!data.id) {
+    modals[0].style.display = 'flex';
+    modals[0].style.animation = 'opacityModal .3s ease-in-out forwards';
+    cards[0].style.animation = 'smoothUpCard .5s ease-in-out forwards';
+}
 
 
 // FECHAR O CARD //
