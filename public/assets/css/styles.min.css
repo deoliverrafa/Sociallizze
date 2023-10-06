@@ -1,10 +1,88 @@
 @import url("https://fonts.googleapis.com/css2?family=Oleo+Script&family=Poppins&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Oleo+Script&family=Poppins&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Oleo+Script&family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oleo+Script&family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oleo+Script&family=Poppins&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: #252324;
+  font-family: "Poppins", sans-serif;
+}
+
+html {
+  height: 100vh;
+  width: 100vw;
+}
+
+.modal {
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 1;
+}
+
+.container {
+  background: #FFFFFF;
+  box-shadow: 3px 3px 10px 0 #252324;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: stretch;
+  align-items: stretch;
+  padding: 10px;
+  height: auto;
+  width: auto;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: stretch;
+  align-items: stretch;
+}
+
+.input {
+  border: 2px solid #4F4F4F;
+  border-radius: 5px;
+  box-shadow: 3px 3px 10px 0 #252324;
+  font-size: 1rem;
+  font-family: "Poppins", sans-serif;
+  margin: 5px;
+  padding: 5px;
+  height: auto;
+  width: auto;
+}
+
+.button {
+  border: 2px solid #469CF7;
+  border-radius: 5px;
+  box-shadow: 3px 3px 10px 0 #252324;
+  padding: 10px;
+  height: auto;
+  width: 100%;
+}
+.button:hover {
+  background: #469CF7;
+  color: #FFFFFF;
+}
+
 .logo {
   color: #469CF7;
   font-family: "Oleo Script", cursive;
-  font-size: clamp(2rem, 2.5vw, 2.25rem);
+  font-size: 2.125rem;
   font-weight: bold;
   text-decoration: none;
   margin: 0 10px;
@@ -13,7 +91,7 @@
 .icon {
   color: #252324;
   cursor: pointer;
-  font-size: clamp(1.5rem, 2.5vw, 1.75rem);
+  font-size: 1.625rem;
   margin: 0 10px;
 }
 .icon:hover {
@@ -22,9 +100,26 @@
 
 .title {
   font-family: "Poppins", sans-serif;
-  font-size: clamp(2rem, 2.5vw, 2.25rem);
+  font-size: 2.125rem;
 }
 .title.title-primary {
+  color: #469CF7;
+}
+
+.text {
+  font-size: 1rem;
+  font-family: "Poppins", sans-serif;
+  margin: 5px;
+}
+.text.text-bold {
+  font-weight: bold;
+}
+
+.link {
+  text-decoration: none;
+  padding: 5px;
+}
+.link.link-primary {
   color: #469CF7;
 }
 
@@ -118,13 +213,14 @@ header.header {
 .left-bar .header .item, .left-bar .main .item, .left-bar .bottom .item {
   border: 2px solid #4F4F4F;
   box-shadow: 3px 3px 10px 0px #252324;
+  color: #252324;
   cursor: pointer;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: stretch;
   align-items: center;
-  font-size: clamp(0.875rem, 2.5vw, 1.125rem);
+  font-size: 1rem;
   font-family: "Poppins", sans-serif;
   text-decoration: none;
   margin: 5px;
@@ -135,7 +231,7 @@ header.header {
   color: #252324;
 }
 .left-bar .header .item .icon, .left-bar .main .item .icon, .left-bar .bottom .item .icon {
-  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-size: 1.125rem;
 }
 .left-bar .header .item .icon:hover, .left-bar .main .item .icon:hover, .left-bar .bottom .item .icon:hover {
   color: #252324;
@@ -159,12 +255,98 @@ html {
 .modal {
   background: rgba(0, 0, 0, 0.6);
   display: none;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   top: 0;
   left: 0;
   height: 100vh;
   width: 100vw;
   z-index: 1;
+}
+
+.container {
+  background: #FFFFFF;
+  box-shadow: 3px 3px 10px 0 #252324;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: stretch;
+  align-items: stretch;
+  padding: 10px;
+  height: auto;
+  width: auto;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: stretch;
+  align-items: stretch;
+}
+
+.input {
+  border: 2px solid #4F4F4F;
+  border-radius: 5px;
+  box-shadow: 3px 3px 10px 0 #252324;
+  font-size: 1rem;
+  font-family: "Poppins", sans-serif;
+  margin: 5px;
+  padding: 5px;
+  height: auto;
+  width: auto;
+}
+
+.button {
+  border: 2px solid #469CF7;
+  border-radius: 5px;
+  box-shadow: 3px 3px 10px 0 #252324;
+  padding: 10px;
+  height: auto;
+  width: 100%;
+}
+.button:hover {
+  background: #469CF7;
+  color: #FFFFFF;
+}
+
+.container .top {
+  border: 2px solid #4F4F4F;
+  box-shadow: 3px 3px 10px 0 #252324;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px;
+  padding: 5px;
+}
+
+.container .main {
+  border: 2px solid #4F4F4F;
+  box-shadow: 3px 3px 10px 0 #252324;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: stretch;
+  align-items: stretch;
+  margin: 5px;
+  padding: 10px;
+}
+
+.container .bottom {
+  border: 2px solid #4F4F4F;
+  box-shadow: 3px 3px 10px 0 #252324;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px;
+  padding: 10px;
 }
 
 /*# sourceMappingURL=styles.min.css.map */

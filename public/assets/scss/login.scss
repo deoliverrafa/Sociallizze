@@ -1,0 +1,32 @@
+@import './variables.scss';
+@import './componets.scss';
+
+.container .top {
+    border: 2px solid $colorGray;
+    box-shadow: 3px 3px 10px 0 $colorBlack;
+
+    @include display-flex(row, space-between, center);
+
+    margin: 5px;
+    padding: 5px;
+}
+
+.container .main {
+    border: 2px solid $colorGray;
+    box-shadow: 3px 3px 10px 0 $colorBlack;
+
+    @include display-flex(column, stretch, stretch);
+
+    margin: 5px;
+    padding: 10px;
+}
+
+.container .bottom {
+    border: 2px solid $colorGray;
+    box-shadow: 3px 3px 10px 0 $colorBlack;
+
+    @include display-flex(row, space-between, center);
+
+    margin: 5px;
+    padding: 10px;
+}

@@ -46,6 +46,7 @@ header.header {
     .item {
         border: 2px solid $colorGray;
         box-shadow: 3px 3px 10px 0px $colorBlack;
+        color: $colorBlack;
         cursor: pointer;
 
         @include display-flex(row, stretch, center);

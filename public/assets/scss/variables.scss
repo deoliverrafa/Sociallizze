@@ -23,7 +23,7 @@ $fontPrincipal: 'Poppins', sans-serif;
 }
 
 @mixin font-size($min-size) {
-    font-size: clamp($min-size, .5vw + 2vw, $min-size + .25rem);
+    font-size: clamp($min-size, $min-size + .125rem, $min-size + .25rem);
 }
 
 @mixin hover($background, $color) {

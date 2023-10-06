@@ -1,0 +1,75 @@
+@import './variables.scss';
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    color: $colorBlack;
+
+    font-family: $fontPrincipal;
+}
+
+html {
+    height: 100vh;
+    width: 100vw;
+}
+
+.modal {
+    background: rgba(0, 0 , 0, .6);
+
+    display: none;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    height: 100vh;
+    width: 100vw;
+    z-index: 1;
+}
+
+.container {
+    background: $colorWhite;
+    box-shadow: 3px 3px 10px 0 $colorBlack;
+
+    @include display-flex(column, stretch, stretch);
+
+    padding: 10px;
+    height: auto;
+    width: auto;
+}
+
+.form {
+    @include display-flex(column, stretch, stretch);
+}
+
+.input {
+    border: 2px solid $colorGray;
+    border-radius: 5px;
+    box-shadow: 3px 3px 10px 0 $colorBlack;
+    @include font-size(.875rem);
+    font-family: $fontPrincipal;
+
+    margin: 5px;
+    padding: 5px;
+    height: auto;
+    width: auto;
+}
+
+.button {
+    border: 2px solid $colorPrimary;
+    border-radius: 5px;
+    box-shadow: 3px 3px 10px 0 $colorBlack;
+
+    padding: 10px;
+    height: auto;
+    width: 100%;
+
+    @include hover($colorPrimary, $colorWhite);
+}

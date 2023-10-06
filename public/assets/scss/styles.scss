@@ -1,34 +1,4 @@
-@import './variables.scss';
+@import './componets.scss';
 @import './fonts.scss';
 @import './nav.scss';
-
-* {
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    color: $colorBlack;
-
-    font-family: $fontPrincipal;
-}
-
-html {
-    height: 100vh;
-    width: 100vw;
-}
-
-.modal {
-    background: rgba(0, 0 , 0, .6);
-
-    display: none;
-
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    height: 100vh;
-    width: 100vw;
-    z-index: 1;
-}
-
+@import './login.scss';

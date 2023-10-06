@@ -30,3 +30,24 @@
         @include font-color($colorPrimary);
     }
 }
+
+.text {
+    @include font-size(.875rem);
+    font-family: $fontPrincipal;
+    
+    margin: 5px;
+
+    &.text-bold {
+        font-weight: bold;
+    }
+}
+
+.link {
+    text-decoration: none;
+
+    padding: 5px;
+    
+    &.link-primary {
+        color: $colorPrimary;
+    }
+}
