@@ -3,12 +3,13 @@ document.querySelector('.form').addEventListener('submit', function (event) {
 
     const formData = new FormData(event.target)
 
-    const postData = {};
+    const email = formData.get('email')
+    const password = formData.get('password')
 
     formData.forEach((value, key) => {
         postData[key] = value;
     })
-    fetch(`http://localhost:3000/api/usuarios/?email=${postData[0]}&password=${postData[1]}`, {
+    fetch(`http://localhost:3000/api/usuarios/?email=${email}&password=${password}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

@@ -29,7 +29,7 @@ router.get('/usuarios', async (req, res) => {
       return res.status(400).json({ error: "Email e senha são obrigatórios" })
     }
 
-    const result = await context.read({ email, password })
+    const result = await context.read({ email, password})
 
     res.json(result)
   } catch (error) {
