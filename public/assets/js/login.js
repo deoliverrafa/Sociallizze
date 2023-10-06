@@ -1,6 +1,6 @@
 // IMPORTANDO AS VÁRIAVEIS //
 import { iconsClose, modals, cards, containers, textError } from './variables.js';
-
+let id
 document.querySelector('.form').addEventListener('submit', function (event) {
     event.preventDefault();
 
@@ -23,16 +23,13 @@ document.querySelector('.form').addEventListener('submit', function (event) {
                 containers[0].style.display = 'flex';
             } else {
                 alert("Usuário Encontrado")
+                id = data.id;
             }
         })
-    // .catch(error => {
-    //     console.log("Usuário não cadastrado, crie uma conta", error)
-    //     alert('Usuário não cadastrado, crie uma conta', error)
-    // });
 })
 
 // LÓGICA PARA APARECER O CARD DE LOGIN //
-if (!data.id) {
+if (typeof id == "undefined") {
     modals[0].style.display = 'flex';
     modals[0].style.animation = 'opacityModal .3s ease-in-out forwards';
     cards[0].style.animation = 'smoothUpCard .5s ease-in-out forwards';
