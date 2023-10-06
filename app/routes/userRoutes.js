@@ -31,6 +31,7 @@ router.get('/usuarios', async (req, res) => {
 
     const result = await context.read({ email, password})
 
+    console.log(result)
     if (result == [] || result == null) {
       return res.status(400).json({error: "Email ou senha errados tente novamente"})
     }
