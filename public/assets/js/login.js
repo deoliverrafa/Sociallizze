@@ -1,21 +1,51 @@
 // IMPORTANDO AS VÁRIAVEIS //
 import { iconsClose, modals, cards, containers, textError } from './variables.js';
 
-// LÓGICA PARA APARECER O CARD DE LOGIN //
-if(typeof id == 'undefined') {
-    modals[0].style.display = 'flex';
-    modals[0].style.animation = 'opacityModal .3s ease-in-out forwards';
-    cards[0].style.animation = 'smoothUpCard .5s ease-in-out forwards';
-}
+document.querySelector('.form').addEventListener('submit', function (event) {
+    event.preventDefault();
 
-// LÓGICA PARA APARECER MENSAGEM DE ERROR //
-if(typeof textError[0] == 'undefined') {
-    containers[0].style.display = 'flex';
-}
+    const formData = new FormData(event.target)
+
+    const email = formData.get('email')
+    const password = formData.get('password')
+
+    fetch(`http://localhost:3000/api/usuarios?email=${email}&password=${password}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                alert(data.error)
+
+                if (!data.id) {
+                    modals[0].style.display = 'flex';
+                    modals[0].style.animation = 'opacityModal .3s ease-in-out forwards';
+                    cards[0].style.animation = 'smoothUpCard .5s ease-in-out forwards';
+                }
+
+                // LÓGICA PARA APARECER MENSAGEM DE ERROR //
+                if (typeof textError[0] == 'undefined') {
+                    containers[0].style.display = 'flex';
+                }
+                
+            } else {
+                alert("Usuário Encontrado")
+            }
+        })
+    // .catch(error => {
+    //     console.log("Usuário não cadastrado, crie uma conta", error)
+    //     alert('Usuário não cadastrado, crie uma conta', error)
+    // });
+})
+// LÓGICA PARA APARECER O CARD DE LOGIN //
+
 
 // FECHAR O CARD //
 iconsClose[0].addEventListener('click', () => {
-    cards[0].style.animation = 'closeSmoothUpCard .5s ease-in-out forwards'; 
+    cards[0].style.animation = 'closeSmoothUpCard .5s ease-in-out forwards';
     modals[0].style.animation = 'closeOpacityModal .3s ease-in-out forwards';
     setTimeout(() => {
         modals[0].style.display = 'none';
