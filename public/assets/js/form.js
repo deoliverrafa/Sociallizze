@@ -6,9 +6,6 @@ document.querySelector('.form').addEventListener('submit', function (event) {
     const email = formData.get('email')
     const password = formData.get('password')
 
-    formData.forEach((value, key) => {
-        postData[key] = value;
-    })
     fetch(`http://localhost:3000/api/usuarios/?email=${email}&password=${password}`, {
         method: 'GET',
         headers: {
