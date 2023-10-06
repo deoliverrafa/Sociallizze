@@ -7,22 +7,24 @@ let context = new Context(new MongoDB(userSchema))
 const getConnection = require('../config/connection')
 const connection = new getConnection()
 
-
-
 router.post('/cadastrar', async (req, res) => {
   try {
-    connection.connect();    
+    await connection.connect();    
+
     const novoUsuario = await context.create(req.body);
+
     res.json(novoUsuario);
   } catch (error) {
     res.status(500).json({ error: 'Erro ao criar usuário.' });
   }
 });
 
-router.get('/login', async (req,res) => {
+router.get('/usuarios', async (req,res) => {
     try {
-        connection.connect();
+        await connection.connect();
+
         const result = await context.read()
+
         res.json(result)
     } catch (error) {
         res.status(500).json({error: 'Erro ao ler banco de dados'})
