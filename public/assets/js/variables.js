@@ -4,6 +4,8 @@ const icons = document.querySelectorAll('.icon');
 const modals = document.querySelectorAll('.modal');
 const leftBar = document.querySelectorAll('.left-bar');
 const cards = document.querySelectorAll('.card');
+const containers = document.querySelectorAll('.containers');
+const textError = document.querySelectorAll('.text-error');
 
 // EXPORTANDO AS VARIAVEIS //
-export { icons, iconsClose, modals, leftBar, cards };
+export { icons, iconsClose, modals, leftBar, cards, containers, textError };

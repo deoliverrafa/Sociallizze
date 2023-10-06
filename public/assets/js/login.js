@@ -1,11 +1,16 @@
 // IMPORTANDO AS VÁRIAVEIS //
-import { iconsClose, modals, cards } from './variables.js';
+import { iconsClose, modals, cards, containers, textError } from './variables.js';
 
 // LÓGICA PARA APARECER O CARD DE LOGIN //
 if(typeof id == 'undefined') {
     modals[0].style.display = 'flex';
     modals[0].style.animation = 'opacityModal .3s ease-in-out forwards';
     cards[0].style.animation = 'smoothUpCard .5s ease-in-out forwards';
+}
+
+// LÓGICA PARA APARECER MENSAGEM DE ERROR //
+if(typeof textError[0] == 'undefined') {
+    containers[0].style.display = 'flex';
 }
 
 // FECHAR O CARD //
