@@ -7,11 +7,35 @@
     }
 }
 
-@keyframes closeSideBar {
+@keyframes closeSmoothSideBar {
     0% {
         transform: translateX(0);
     }
     100% {
         transform: translateX(-18rem);
+    }
+}
+
+@keyframes opacityModal {
+    0% {
+        opacity: 0%;
+    }
+    50% {
+        opacity: 50%;
+    }
+    100% {
+        opacity: 100%;
+    }
+
+}
+@keyframes closeOpacityModal {
+    0% {
+        opacity: 100%;
+    }
+    50% {
+        opacity: 50%;
+    }
+    100% {
+        opacity: 0%;
     }
 }
