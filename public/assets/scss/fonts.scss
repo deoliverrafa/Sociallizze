@@ -37,6 +37,13 @@
     
     margin: 5px;
 
+    &.text-error {
+        color: $colorDanger;
+
+        @include font-size(.875rem);
+        font-weight: bold;
+    }
+
     &.text-bold {
         font-weight: bold;
     }
@@ -48,6 +55,10 @@
     padding: 5px;
     
     &.link-primary {
-        color: $colorPrimary;
+        @include link-style($colorPrimary);
+    }
+
+    &.link-dark-primary {
+        @include link-style($colorDarkPrimary);
     }
 }

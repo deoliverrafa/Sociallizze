@@ -18,6 +18,23 @@ $fontPrincipal: 'Poppins', sans-serif;
     align-items: $align;
 }
 
+@mixin button-style($background, $color) {
+    background: $background;
+    color: $color;
+
+    &:hover {
+        background: darken($background, 10%);
+    }
+}
+
+@mixin link-style($color) {
+    color: $color;
+
+    &:hover {
+        color: darken($color, 10%);
+    }
+}
+
 @mixin font-color($color) {
     color: $color;
 }

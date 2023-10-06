@@ -24,22 +24,25 @@
     </header>
 
     <div class="modal">
-        <div class="container">
+        <div class="card">
             <div class="top">
-                <h1 class="title">Faça Login</h1>
-                <span class="icon material-symbols-outlined">close</span>
+                <h1 class="logo">Soziallizze</h1>
+                <span class="icon icon-close material-symbols-outlined">close</span>
             </div>
             <div class="main">
                 <form class="form" action="">
-                    <input class="input" type="email" name="email" placeholder="E-mail" required>
+                    <input class="input" type="email" name="email" placeholder="E-mail, Telefone ou Nome de Usuário" required>
                     <input class="input" type="password" name="password" placeholder="Senha" required>
+                    <div class="container container-error">
+                        <p class="text text-error">Mensagem de error</p>
+                    </div>
                     <p class="text"><input type="checkbox" name="showPassword">Mostrar Senha</p>
-                    <input class="button" type="submit" value="Login">
+                    <input class="button button-dark-primary" type="submit" value="ENTRAR">
                 </form>
             </div>
             <div class="bottom">
-                <p class="text text-bold">Esqueceu a senha?<a class="link link-primary" href="">Recuperar</a></p>
-                <p class="text text-bold">Não possui conta?<a class="link link-primary" href="">Registre-se</a></p>
+                <p class="text text-bold">Esqueceu a senha?<a class="link link-dark-primary" href="">Recuperar</a></p>
+                <p class="text text-bold">Não possui conta?<a class="link link-dark-primary" href="">Registre-se</a></p>
             </div>
         </div>
     </div>
@@ -50,7 +53,7 @@
         <aside class="left-bar">
             <div class="top">
                 <a class="logo" href="index.html">Sociallizze</a>
-                <span class="icon material-symbols-outlined">close</span>
+                <span class="icon icon-close material-symbols-outlined">close</span>
             </div>
             <div class="header">
                 <p>testes</p>
@@ -87,6 +90,7 @@
     </div>
 
     <!-- IMPORTANDO OS SCRIPTS -->
+    <script type="module" src="./public/assets/js/login.js"></script>
     <script type="module" src="./public/assets/js/nav.js"></script>
 </body>
 
