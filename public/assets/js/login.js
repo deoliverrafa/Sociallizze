@@ -1,6 +1,18 @@
 // IMPORTANDO AS VÁRIAVEIS //
-import { iconsClose, modals, cards, containers, textError } from './variables.js';
+import { iconsClose, modals, cards, containers, textError, showLoginMenu, closeLoginMenu, } from './variables.js';
 let id;
+let logged = false
+
+document.addEventListener('DOMContentLoaded', () => {
+    const userLoggedIn = localStorage.getItem('userLoggedIn');
+
+    // LÓGICA PARA APARECER O CARD DE LOGIN //
+    if (userLoggedIn !== 'true' && typeof id == "undefined") {
+        showLoginMenu()
+    } else {
+        closeLoginMenu();
+    }
+})
 
 document.querySelector('.form').addEventListener('submit', function (event) {
     event.preventDefault();
@@ -19,37 +31,22 @@ document.querySelector('.form').addEventListener('submit', function (event) {
         .then(response => response.json())
         .then(data => {
             if (data.error) {
-                alert(data.error)
                 // LÓGICA PARA APARECER MENSAGEM DE ERROR //
                 containers[0].style.display = 'flex'
                 containers[0].querySelector('p').innerHTML = data.error;
             } else {
                 id = data._id;
-                cards[0].style.animation = 'closeSmoothUpCard .5s ease-in-out forwards';
-                modals[0].style.animation = 'closeOpacityModal .3s ease-in-out forwards';
-                setTimeout(() => {
-                    modals[0].style.display = 'none';
-                }, 300);
+                logged = true;
+                // Após o login bem-sucedido
+                localStorage.setItem('userLoggedIn', 'true');
+                closeLoginMenu();
             }
-
         })
 })
 
-
 // FECHAR O CARD //            
 iconsClose[0].addEventListener('click', () => {
-    cards[0].style.animation = 'closeSmoothUpCard .5s ease-in-out forwards';
-    modals[0].style.animation = 'closeOpacityModal .3s ease-in-out forwards';
-    setTimeout(() => {
-        modals[0].style.display = 'none';
-    }, 300);
+    closeLoginMenu()
 });
 
-// LÓGICA PARA APARECER O CARD DE LOGIN //
-if (typeof id == "undefined") {
-    modals[0].style.display = 'flex';
-    modals[0].style.animation = 'opacityModal .3s ease-in-out forwards';
-    cards[0].style.animation = 'smoothUpCard .5s ease-in-out forwards';
-}
-
-export {id};
+export { id };
