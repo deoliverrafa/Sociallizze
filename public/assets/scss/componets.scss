@@ -71,6 +71,7 @@ html {
     border: 2px solid $colorBlack;
     border-radius: 5px;
     box-shadow: 3px 3px 10px 0 $colorBlack;
+    cursor: pointer;
 
     @include font-size(.875rem);
     font-family: $fontPrincipal;
