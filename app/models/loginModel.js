@@ -56,4 +56,4 @@ checkboxs[0].addEventListener('change', () => {
     }
 });
 
-export { id };
+module.exports = id;

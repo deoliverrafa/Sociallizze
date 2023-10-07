@@ -8,10 +8,13 @@ const getConnection = require('../config/connection');
 const connection = new getConnection()
 
 
+// Rota para cadastrar usuário
 router.post('/cadastrar', async (req, res) => {
-  try {
+  // tryCatch para melhor manipulação do erro
+  try { 
     await connection.connect();
 
+    // cria usuário com as requisições passadas
     const novoUsuario = await context.create(req.body);
 
     res.json(novoUsuario);
