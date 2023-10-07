@@ -25,6 +25,10 @@ const userSchema = mongoose.Schema({
         default: () => new Date(),
         require: false
     },
+    messages: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Message'
+    }]
 });
 
 const Usuario = mongoose.model('User', userSchema)
