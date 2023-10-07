@@ -1,1 +1,1 @@
-const login = require('../models/loginModel')
+const login = require('../models/loginModel');
