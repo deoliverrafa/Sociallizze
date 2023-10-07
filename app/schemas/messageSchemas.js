@@ -28,3 +28,7 @@ const messaSchema = mongoose.Schema({
         default: null
     }
 })
+
+const Message = mongoose.model('Message', messaSchema);
+
+module.exports = Message
