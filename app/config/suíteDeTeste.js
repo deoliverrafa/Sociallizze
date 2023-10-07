@@ -6,7 +6,6 @@ const getConnection = require('./connection.js')
 const userSchema = require('../schemas/userSchemas.js')
 const connection = new getConnection();
 let context = new Context(new MongoDB(userSchema));
-
 // Usuário default para Teste de Crud,
 const defaultUserCadastrar = {
     name: "Rafael",
@@ -69,7 +68,7 @@ describe('Suíte de Testes de Usuários', function () {
         }
     })
 
-    it.only("Deverá atualizar um usuário já existente no Banco de dados", async () => {
+    it("Deverá atualizar um usuário já existente no Banco de dados", async () => {
         try {
 
             const _id = {_id: "651f0477fe15cd6219a8ac13"}

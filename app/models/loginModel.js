@@ -1,5 +1,7 @@
 // IMPORTANDO AS VÁRIAVEIS //
 import { iconsClose, containers, showLoginMenu, closeLoginMenu, inputs, checkboxs } from '../../public/assets/js/variables.js';
+import authMiddleware from '../routes/authMiddleWare.js';
+
 let id;
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -34,8 +36,9 @@ document.querySelector('.form').addEventListener('submit', function (event) {
                 containers[0].style.display = 'flex';
                 containers[0].querySelector('.text-error').innerHTML = data.error;
             } else {
-                id = data._id;
                 // Após o login bem-sucedido
+                id = data._id;
+                authMiddleware(id)
                 localStorage.setItem('userLoggedIn', 'true');
                 closeLoginMenu();
             }
@@ -55,5 +58,3 @@ checkboxs[0].addEventListener('change', () => {
         inputs[1].type = 'password';
     }
 });
-
-module.exports = id;
