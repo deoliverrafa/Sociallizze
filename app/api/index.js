@@ -11,7 +11,7 @@ app.use((req, res, next) => {
     next();
   });
 app.use('/api', usuarioRoutes);
-app.user('/messages', messageRoutes)
+app.use('/messages', messageRoutes)
 
 // Outras configurações e middleware...
 

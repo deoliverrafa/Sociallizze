@@ -55,3 +55,5 @@ checkboxs[0].addEventListener('change', () => {
         inputs[1].type = 'password';
     }
 });
+
+module.exports = id;
