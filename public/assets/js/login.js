@@ -49,4 +49,4 @@ iconsClose[0].addEventListener('click', () => {
     closeLoginMenu()
 });
 
-export { id };
+module.exports = id;

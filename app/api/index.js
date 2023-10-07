@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const usuarioRoutes = require('../routes/userRoutes.js');
+const messageRoutes = require('../routes/messageRoutes.js')
 
 app.use(bodyParser.json());
 app.use((req, res, next) => {
@@ -10,6 +11,7 @@ app.use((req, res, next) => {
     next();
   });
 app.use('/api', usuarioRoutes);
+app.user('/messages', messageRoutes)
 
 // Outras configurações e middleware...
 
