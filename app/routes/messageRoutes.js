@@ -6,7 +6,7 @@ const messageSchema = require('../schemas/messageSchemas')
 
 
 
-router.post('/enviar', authMiddleware, async (req, res) => {
+router.post('/enviar', async (req, res) => {
     try {
         console.log(id)
         const {recipientId, content} = req.body
