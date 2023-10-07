@@ -6,6 +6,8 @@ const leftBar = document.querySelectorAll('.left-bar');
 const cards = document.querySelectorAll('.card');
 const containers = document.querySelectorAll('.container');
 const textError = document.querySelectorAll('.text-error');
+const inputs = document.querySelectorAll('.input');
+const checkboxs = document.querySelectorAll('.checkbox');
 
 let showLoginMenu = (() => {
     modals[0].style.display = 'flex';
@@ -22,4 +24,4 @@ let closeLoginMenu = (() => {
 })
 
 // EXPORTANDO AS VARIAVEIS //
-export { icons, iconsClose, modals, leftBar, cards, containers, textError, showLoginMenu, closeLoginMenu, };
+export { icons, iconsClose, modals, leftBar, cards, containers, textError, showLoginMenu, closeLoginMenu, inputs, checkboxs };

@@ -16,7 +16,7 @@ router.post('/cadastrar', async (req, res) => {
 
     res.json(novoUsuario);
   } catch (error) {
-    res.status(500).json({ error: 'Erro ao criar usuário.' });
+    res.status(500).json({ error: 'Error ao criar usuário.' });
   }
 });
 
@@ -31,7 +31,7 @@ router.get('/usuarios', async (req, res) => {
 
     // condicionais para verificação dos parâmetros passados
     if (!email || !password) {
-      return res.status(400).json({ error: "Email e senha são obrigatórios" });
+      return res.status(400).json({ error: "E-mail é senha são obrigatórios." });
     }
 
     // busca no banco de dados através do context
@@ -44,11 +44,11 @@ router.get('/usuarios', async (req, res) => {
       res.json(finalResult);
     } else {
       // retorna uma mensagem de erro de email ou senha incorretos
-      return res.status(404).json({ error: "Email ou senha incorretos. Tente novamente" });
+      return res.status(404).json({ error: "E-mail ou senha incorretos. Tente novamente." });
     }
   } catch (error) {
     // em caso de tudo der errado é repassado essa mensagem de que não conseguiu ler o banco de dados
-    res.status(500).json({ error: 'Erro ao ler banco de dados' });
+    res.status(500).json({ error: 'Error ao ler banco de dados.' });
   }
 });
 
