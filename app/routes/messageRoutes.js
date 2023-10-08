@@ -8,9 +8,9 @@ router.post('/enviar', async (req, res) => {
 
         // Crie uma nova mensagem
         const newMessage = new Message({
-            sender: senderId,
-            recipient: recipientId,
-            content: content
+            senderId,
+            recipientId,
+            content
         });
 
         // Salve a mensagem no banco de dados
