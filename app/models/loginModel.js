@@ -42,17 +42,3 @@ document.querySelector('.form').addEventListener('submit', function (event) {
             }
         })
 })
-
-// FECHAR O CARD //            
-iconsClose[0].addEventListener('click', () => {
-    closeLoginMenu();
-});
-
-// MOSTRAR SENHA //
-checkboxs[0].addEventListener('change', () => {
-    if (checkboxs[0].checked) {
-        inputs[1].type = 'text';
-    } else {
-        inputs[1].type = 'password';
-    }
-});
