@@ -1,7 +1,5 @@
 // IMPORTANDO AS VÁRIAVEIS //
-import { iconsClose, containers, showLoginMenu, closeLoginMenu, inputs, checkboxs } from '../../public/assets/js/variables.js';
-
-let id;
+import {containers, showLoginMenu, closeLoginMenu} from '../../public/assets/js/variables.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const userLoggedIn = localStorage.getItem('userLoggedIn');
@@ -36,7 +34,6 @@ document.querySelector('.form').addEventListener('submit', function (event) {
                 containers[0].querySelector('.text-error').innerHTML = data.error;
             } else {
                 // Após o login bem-sucedido
-                id = data._id;
                 localStorage.setItem('userLoggedIn', 'true');
                 closeLoginMenu();
             }
