@@ -11,7 +11,9 @@ app.use((req, res, next) => {
     next();
   });
 app.use('/api', usuarioRoutes);
+
 app.use('/mensagem', messageRoutes)
+
 // Outras configurações e middleware...
 
 const PORT = process.env.PORT || 3000;

@@ -47,12 +47,18 @@
     &.text-bold {
         font-weight: bold;
     }
+
+    &.text-gray {
+        color: $colorGray;
+    }
 }
 
 .link {
+    cursor: pointer;
+    
     text-decoration: none;
 
-    padding: 5px;
+    margin: 1.5px;
     
     &.link-primary {
         @include link-style($colorPrimary);

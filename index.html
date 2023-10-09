@@ -40,13 +40,13 @@
                     <div class="container container-error">
                         <p class="text text-error">Mensagem de error</p>
                     </div>
-                    <p class="text"><input class="checkbox" type="checkbox" name="showPassword">Mostrar Senha</p>
+                    <p class="text text-checkbox"><input class="checkbox" type="checkbox" name="showPassword">Mostrar Senha</p>
                     <input class="button button-dark-primary" type="submit" value="ENTRAR">
                 </form>
             </div>
             <div class="bottom">
                 <p class="text text-bold">Esqueceu a senha?<p class="link link-dark-primary">Recuperar</p></p>
-                <p class="text text-bold">Não possui conta?<p class="link link-dark-primary">Registre-se</p></p>
+                <p class="text text-bold">Não possui conta?<p class="link linkRegister link-dark-primary">Registre-se</p></p>
             </div>
         </div>
     </div>
@@ -58,6 +58,30 @@
             <div class="top">
                 <h1 class="logo">Soziallizze</h1>
                 <span class="icon icon-close material-symbols-outlined">close</span>
+            </div>
+            <div class="main">
+                <form class="form" action="">
+                    <input class="input" type="text" name="user" placeholder="Usuário" required>
+                    <input class="input" type="text" name="name" placeholder="Nome Completo" required>
+                    <input class="input" type="phone" name="number" placeholder="Número" required>
+                    <input class="input" type="email" name="email" placeholder="E-mail" required>
+                    <input class="input" type="password" name="password" placeholder="Senha" required>
+                    <div class="container">
+                        <p class="text text-gray">Data de Nascimento:</p>
+                        <input class="date" type="date" name="birthday" required>
+                    </div>
+                    <div class="container container-error">
+                        <p class="text text-error">Mensagem de error</p>
+                    </div>
+                    <p class="text text-checkbox"><input class="checkbox" type="checkbox" name="showPassword">Mostrar Senha</p>
+                    <input class="button buttonSubmit button-dark-primary" type="submit" value="ENTRAR">
+                    <button type="button" class="buttonSelect button button-dark-primary">PROXÍMO</button>
+                    <button type="button" class="buttonSelect button button-dark-primary">VOLTAR</button>
+                </form>
+            </div>
+            <div class="bottom">
+                <p class="text text-bold">Termos & Política<p class="link link-dark-primary">Acessar</p></p>
+                <p class="text text-bold">Já possui conta?<p class="link linkRegister link-dark-primary">Faça login</p></p>
             </div>
         </div>
     </div>
@@ -106,8 +130,8 @@
 
     <!-- IMPORTANDO OS SCRIPTS -->
     <script type="module" src="./app/models/loginModel.js"></script>
+    <script type="module" src="./app/models/messageModel.js"></script>
     <script type="module" src="./public/assets/js/nav.js"></script>
-    <script type="module" src="./public/assets/js/login.js"></script>
 </body>
 
 </html>
