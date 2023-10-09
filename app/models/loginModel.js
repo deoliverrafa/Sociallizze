@@ -99,7 +99,3 @@ if(count == 0) {
     textsCheckbox[1].style.display = 'none';
     containers[1].style.display = 'none';
 }
-
-console.log(buttonsSubmit)
-console.log(buttonsSelect)
-console.log()
