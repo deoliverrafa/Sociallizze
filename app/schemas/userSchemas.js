@@ -23,7 +23,6 @@ const userSchema = mongoose.Schema({
     birthDayData:{
         type: Number,
     },
-        required: true,
     insertAt: {
         type: Date,
         default: () => new Date(),
