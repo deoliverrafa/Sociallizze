@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const userSchema = mongoose.Schema({
-    nickname: {
+    nickName: {
         type: String,
         required: true,
     },
@@ -21,7 +21,7 @@ const userSchema = mongoose.Schema({
         required: true,
     },
     birthDayData:{
-        type: Number,
+        type: String,
     },
     insertAt: {
         type: Date,

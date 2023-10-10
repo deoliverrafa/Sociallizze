@@ -9,26 +9,33 @@ const connection = new getConnection()
 
 
 // Rota para cadastrar usuário
+// Rota para cadastrar usuário
 router.post('/cadastrar', async (req, res) => {
-  // tryCatch para melhor manipulação do erro
   try { 
     await connection.connect();
 
-    // cria usuário com as requisições passadas
-    const novoUsuario = await context.create(req.body);
+    const { nickName, userName, phoneNumber, email, password, birthDayData } = req.body;
 
-    res.json(novoUsuario);
+    if (!nickName || !userName || !phoneNumber || !email || !password || !birthDayData) {
+      res.status(400).json({ error: 'Parâmetros nescessários, tente novamente' });
+    } else {
+      const objectToCad = { nickName, userName, phoneNumber, email, password, birthDayData };
+
+      // cria usuário com as requisições passadas
+      const novoUsuario = await context.create(objectToCad);
+
+      res.json(novoUsuario);
+    }
   } catch (error) {
-    res.status(500).json({ error: 'Error ao criar usuário.' });
+    res.status(500).json({ error: 'Erro ao criar usuário.' });
   }
 });
-
 
 // rota para get de usuários passando o parâmetro email e senha
 router.get('/usuarios', async (req, res) => {
   try {
-    await connection.connect();
 
+    await connection.connect();
     // get do email e password da query
     const { email, password } = req.query;
 

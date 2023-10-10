@@ -30,9 +30,15 @@ class MongoDB extends Icrud {
     }
 
     async create(item) {
-        const novoUsuario = new this._usuario(item)
-        return await novoUsuario.save();
-    }
+        try {
+            const novoUsuario = new this._usuario(item);
+            const usuarioCriado = await novoUsuario.save();
+            return usuarioCriado;
+        } catch (error) {
+            console.error('Erro ao criar usuário:', error);
+            throw error; // Rejogua o erro para que possa ser tratado em outro lugar, se necessário
+        }
+    }    
     
     async read(item) {
         const result = await this._usuario.find(item);
