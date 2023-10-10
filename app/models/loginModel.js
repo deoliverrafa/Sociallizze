@@ -53,6 +53,16 @@ checkboxs[0].addEventListener('change', () => {
     }
 });
 
+checkboxs[1].addEventListener('change', () => {
+    if(checkboxs[1].checked) {
+        inputs[6].type = 'text';
+    } else {
+        inputs[6].type = 'password';
+    }
+});
+
+console.log(inputs)
+
 // FECHAR O MODAL LOGIN //
 iconsClose[0].addEventListener('click', () => {
     closeLoginMenu();
@@ -79,20 +89,19 @@ linksRegister[0].addEventListener('click', () => {
 // TRANSIÇÃO PELO CADASTRO // 
 buttonsSelect[1].addEventListener('click', () => {
     count--;
-    console.log(count)
+
     previousButton(count);
     
 });
 
 buttonsSelect[0].addEventListener('click', () => {
     count++;
-    console.log(count)
     nextButton(count);
 });
 
 if(count == 0) {
     buttonsSelect[1].style.display = 'none';
-    buttons[1].style.display = 'none';
+    buttonsSubmit[1].style.display = 'none';
     inputs[4].style.display = 'none';
     inputs[5].style.display = 'none';
     inputs[6].style.display = 'none';

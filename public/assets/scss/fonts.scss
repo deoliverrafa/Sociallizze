@@ -34,7 +34,8 @@
 .text {
     @include font-size(.875rem);
     font-family: $fontPrincipal;
-    
+    white-space: nowrap;   
+
     margin: 5px;
 
     &.text-error {
@@ -51,11 +52,16 @@
     &.text-gray {
         color: $colorGray;
     }
+
+    &.text-checkbox {
+        @include display-flex(row, stretch, center);
+    }
 }
 
 .link {
     cursor: pointer;
     
+    white-space: nowrap;
     text-decoration: none;
 
     margin: 1.5px;

@@ -55,3 +55,13 @@ $fontPrincipal: 'Poppins', sans-serif;
         color: $color;
     }
 }
+
+@mixin check-style($background, $border) {
+    border: 2px solid $border;
+    &:checked {
+        background-image: url('https://i.postimg.cc/m2fn4LjB/icons8-marca-de-sele-o-do-instagram-48.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+}

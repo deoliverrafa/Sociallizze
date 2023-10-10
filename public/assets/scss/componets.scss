@@ -106,3 +106,14 @@ html {
         @include button-style($colorDarkPrimary, $colorWhite);
     }
 }
+
+.checkbox {
+    all: unset;
+    @include check-style($colorWhite, $colorPrimary);
+    border-radius: 3px;
+    cursor: pointer;
+
+    margin: 5px;
+    height: 15px;
+    width: 15px;
+}
