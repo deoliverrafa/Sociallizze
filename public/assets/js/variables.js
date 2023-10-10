@@ -62,9 +62,9 @@ let nextButton = ( (count) => {
         buttonsSelect[1].style.justifyContent = 'center';
         buttonsSelect[1].style.alignItems = 'center';
         buttonsSelect[0].style.display = 'none';
-        buttonsSubmit[0].style.display = 'flex';
-        buttonsSubmit[0].style.justifyContent = 'center';
-        buttonsSubmit[0].style.alignItems = 'center';
+        buttonsSubmit[1].style.display = 'flex';
+        buttonsSubmit[1].style.justifyContent = 'center';
+        buttonsSubmit[1].style.alignItems = 'center';
         inputs[2].style.display = 'none';
         inputs[3].style.display = 'none';
         inputs[4].style.display = 'none';
@@ -81,7 +81,7 @@ let nextButton = ( (count) => {
 let previousButton = ( (count) => {
     if(count == 0) {
         buttonsSelect[1].style.display = 'none';
-        buttonsSubmit[0].style.display = 'none';
+        buttonsSubmit[1].style.display = 'none';
         inputs[2].style.display = 'flex';
         inputs[3].style.display = 'flex';
         inputs[4].style.display = 'none';
@@ -97,9 +97,9 @@ let previousButton = ( (count) => {
         buttonsSelect[1].style.display = 'flex';
         buttonsSelect[1].style.justifyContent = 'center';
         buttonsSelect[1].style.alignItems = 'center';
-        buttonsSubmit[0].style.display = 'none';
-        buttonsSubmit[0].style.justifyContent = 'center';
-        buttonsSubmit[0].style.alignItems = 'center';
+        buttonsSubmit[1].style.display = 'none';
+        buttonsSubmit[1].style.justifyContent = 'center';
+        buttonsSubmit[1].style.alignItems = 'center';
         inputs[2].style.display = 'none';
         inputs[3].style.display = 'none';
         inputs[4].style.display = 'flex';
