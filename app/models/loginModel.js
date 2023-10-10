@@ -61,8 +61,6 @@ checkboxs[1].addEventListener('change', () => {
     }
 });
 
-console.log(inputs)
-
 // FECHAR O MODAL LOGIN //
 iconsClose[0].addEventListener('click', () => {
     closeLoginMenu();
