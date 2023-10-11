@@ -1,4 +1,5 @@
 import { buttons, inputs } from "../../public/assets/js/variables.js";
+
 const birthDayData = document.querySelector('.date')
 
 const nickName = inputs[2]
@@ -29,18 +30,20 @@ buttons[1].addEventListener('click', () => {
     .then(response => {
         if (!response.ok) {
             // Tratamento de erro na resposta
-            console.error('Erro na solicitação: ' + response.status);
-            res.status(response.status).json({ error: 'Erro na solicitação' });
+            // console.error('Erro na solicitação: ' + response.status);
+            // res.status(response.status).json({ error: 'Erro na solicitação' });
         }
         return response.json();
     })
     .then(data => {
         // Processar os dados bem-sucedidos
+        console.log(data)
         window.location.href = 'index.html'
+        alert("Usuário criado com sucesso")
     })
     .catch(error => {
         // Tratar erros aqui e enviar uma resposta de erro
-        console.error('Erro:', error);
-        res.status(500).json({ error: 'Erro no servidor' });
+        // console.error('Erro:', error);
+        // res.status(500).json({ error: 'Erro no servidor' });
     });
     }); 

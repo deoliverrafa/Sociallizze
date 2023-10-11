@@ -6,20 +6,22 @@ const Context = require('../config/contextStrategy/contextStrategy.js')
 let context = new Context(new MongoDB(userSchema))
 const getConnection = require('../config/connection');
 const connection = new getConnection()
+const bcrypt = require('bcrypt');
 
-
-// Rota para cadastrar usuário
 // Rota para cadastrar usuário
 router.post('/cadastrar', async (req, res) => {
-  try { 
+  try {
     await connection.connect();
 
     const { nickName, userName, phoneNumber, email, password, birthDayData } = req.body;
 
     if (!nickName || !userName || !phoneNumber || !email || !password || !birthDayData) {
-      res.status(400).json({ error: 'Parâmetros nescessários, tente novamente' });
+      res.status(400).json({ error: 'Prenncha tudo Corretamente' });
     } else {
-      const objectToCad = { nickName, userName, phoneNumber, email, password, birthDayData };
+
+      const encriptedPass = await bcrypt.hash(password, 5,)
+
+      const objectToCad = { nickName, userName, phoneNumber, email, password: encriptedPass, birthDayData };
 
       // cria usuário com as requisições passadas
       const novoUsuario = await context.create(objectToCad);
@@ -34,34 +36,45 @@ router.post('/cadastrar', async (req, res) => {
 // rota para get de usuários passando o parâmetro email e senha
 router.get('/usuarios', async (req, res) => {
   try {
-
     await connection.connect();
-    // get do email e password da query
+
+    // Obtém o email e senha da query
     const { email, password } = req.query;
 
-    // condicionais para verificação dos parâmetros passados
+    // Condicional para verificar se os parâmetros obrigatórios foram passados
     if (!email || !password) {
-      return res.status(400).json({ error: "E-mail é senha são obrigatórios." });
+      return res.status(400).json({ error: "E-mail e senha são obrigatórios." });
     }
 
-    // busca no banco de dados através do context
-    const result = await context.read({email, password});
+    // Busca o usuário no banco de dados com base no email
+    const result = await context.read({ email });
 
-    const finalResult = result[0];
-
-    // verifica se resultado não é null e id existe no resultado para retorna o result
+    // Verifica se o resultado não é nulo e se há pelo menos um usuário encontrado com esse email
     if (result.length === 1) {
-      res.json(finalResult);
+      const user = result[0];
+
+      // Compara a senha fornecida com a senha criptografada no banco de dados
+      bcrypt.compare(password, user.password, (err, passwordMatch) => {
+        if (err) {
+          return res.status(500).json({ error: 'Erro ao comparar senhas.' });
+        }
+
+        if (passwordMatch) {
+          // Senhas coincidem, o usuário está autenticado
+          return res.json(user);
+        } else {
+          // Senha incorreta
+          return res.status(401).json({ error: "E-mail ou senha incorretos. Tente novamente." });
+        }
+      });
     } else {
-      // retorna uma mensagem de erro de email ou senha incorretos
+      // Nenhum usuário encontrado com esse email
       return res.status(404).json({ error: "E-mail ou senha incorretos. Tente novamente." });
     }
   } catch (error) {
-    // em caso de tudo der errado é repassado essa mensagem de que não conseguiu ler o banco de dados
-    res.status(500).json({ error: 'Error ao ler banco de dados.' });
+    // Em caso de erro ao ler o banco de dados
+    res.status(500).json({ error: 'Erro ao ler banco de dados.' });
   }
 });
-
-// Configure outras rotas para read, update e delete aqui...
 
 module.exports = router;
