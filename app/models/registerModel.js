@@ -18,6 +18,7 @@ buttons[1].addEventListener('click', () => {
         email: email.value,
         password: password.value,
         birthDayData: birthDayData.value,
+        type: "default",
     };
 
     fetch(url, {

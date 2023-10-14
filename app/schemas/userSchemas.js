@@ -28,6 +28,10 @@ const userSchema = mongoose.Schema({
         default: () => new Date(),
         require: false
     },
+    type: {
+        type: String,
+        require: false
+    },
     messages: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Message'

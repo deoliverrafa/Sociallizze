@@ -13,7 +13,7 @@ router.post('/cadastrar', async (req, res) => {
   try {
     await connection.connect();
 
-    const { nickName, userName, phoneNumber, email, password, birthDayData } = req.body;
+    const { nickName, userName, phoneNumber, email, password, birthDayData, type } = req.body;
 
     if (!nickName || !userName || !phoneNumber || !email || !password || !birthDayData) {
       res.status(400).json({ error: 'Prenncha tudo Corretamente' });
@@ -21,7 +21,7 @@ router.post('/cadastrar', async (req, res) => {
 
       const encriptedPass = await bcrypt.hash(password, 5,)
 
-      const objectToCad = { nickName, userName, phoneNumber, email, password: encriptedPass, birthDayData };
+      const objectToCad = { nickName, userName, phoneNumber, email, password: encriptedPass, birthDayData, type };
 
       // cria usuário com as requisições passadas
       const novoUsuario = await context.create(objectToCad);
@@ -46,8 +46,18 @@ router.get('/usuarios', async (req, res) => {
       return res.status(400).json({ error: "E-mail e senha são obrigatórios." });
     }
 
-    // Busca o usuário no banco de dados com base no email
-    const result = await context.read({ email });
+    // Busca o usuário no banco de dados com base no email ou no nick ou no phoneNumber
+    let result = await context.read({ email });
+
+    if (result.length === 0) {
+      const secondTry = await context.read({ nickName: email })
+      result = secondTry;
+      if (result.length === 0) {
+        const thirdTry = await context.read({ phoneNumber: email })
+        result = thirdTry;
+      }
+    }
+
 
     // Verifica se o resultado não é nulo e se há pelo menos um usuário encontrado com esse email
     if (result.length === 1) {
