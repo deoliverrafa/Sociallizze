@@ -11,7 +11,7 @@ footer.bottom {
     left: 0;
    
     height: auto;
-    width: 100%;
+    width: 100vw;
     
     .bottom-item {
         color: $colorBlack;
@@ -24,7 +24,7 @@ footer.bottom {
         
         padding: 5px;
         height: auto;
-        width: 100%;
+        width: 80%;
         
         &.active {
             background: $colorPrimary;
