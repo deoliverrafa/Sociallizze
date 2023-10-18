@@ -1,3 +1,4 @@
+const { token } = require("../routes/userRoutes");
 const recipientId = '651f0562a89be803de06b1c2';
 const senderId = '651ed532bf983781e211edc2';
 const content = 'Ola rafael tudo bem?';
@@ -7,7 +8,7 @@ const url = 'http://localhost:3000/mensagem/enviar'; // A URL deve ser relativa 
 fetch(url, {
   method: 'POST',
   headers: {
-    'Content-Type': 'application/json'
+    'Authorization': `Bearer ${token}`
   },
   body: JSON.stringify({
     recipientId: recipientId,

@@ -1,9 +1,7 @@
 // IMPORTANDO AS VÁRIAVEIS //
 import { nextButton, previousButton, iconsClose, containers, showLoginMenu,  showRegisterMenu, closeLoginMenu, closeRegisterMenu, inputs, checkboxs, linksRegister, buttonsSelect, buttons, textsCheckbox, buttonsSubmit } from '../../public/assets/js/variables.js';
-
 let count = 0;
-let id;
-
+let token;
 document.addEventListener('DOMContentLoaded', () => {
     const userLoggedIn = localStorage.getItem('userLoggedIn');
 
@@ -37,7 +35,8 @@ document.querySelector('.form').addEventListener('submit', function (event) {
                 containers[0].querySelector('.text-error').innerHTML = data.error;
             } else {
                 // Após o login bem-sucedido
-                id = data._id;
+                token = data.token
+                alert(token)    
                 localStorage.setItem('userLoggedIn', 'true');
                 closeLoginMenu();
             }
@@ -106,3 +105,4 @@ if(count == 0) {
     textsCheckbox[1].style.display = 'none';
     containers[1].style.display = 'none';
 }
+

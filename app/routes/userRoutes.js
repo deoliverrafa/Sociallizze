@@ -7,9 +7,10 @@ let context = new Context(new MongoDB(userSchema))
 const getConnection = require('../config/connection');
 const connection = new getConnection()
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken')
 
 // Rota para cadastrar usuário
-router.post('/cadastrar', async (req, res) => {
+router.post('/cadastrar',async (req, res) => {
   try {
     await connection.connect();
 
@@ -71,7 +72,12 @@ router.get('/usuarios', async (req, res) => {
 
         if (passwordMatch) {
           // Senhas coincidem, o usuário está autenticado
-          return res.json(user);
+          const payload = {userId: result._id}
+          const secretKey = 'CHAVE_SECRETA_BOLADONA'
+          const options = {expiresIn: '1h'}
+          const token = jwt.sign(payload, secretKey, options )
+
+          return res.json({token});
         } else {
           // Senha incorreta
           return res.status(401).json({ error: "E-mail ou senha incorretos. Tente novamente." });
