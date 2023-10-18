@@ -94,7 +94,7 @@ html {
     margin: 5px;
     padding: 10px;
     height: auto;
-    width: 100%;
+    @include width-size(18.75rem);
 
     @include hover($colorPrimary, $colorWhite);
 

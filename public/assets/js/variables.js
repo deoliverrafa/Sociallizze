@@ -14,6 +14,7 @@ const linksRegister = document.querySelectorAll('.linkRegister');
 const buttonsSelect = document.querySelectorAll('.buttonSelect');
 const buttons = document.querySelectorAll('.button');
 const buttonsSubmit = document.querySelectorAll('.buttonSubmit');
+const textSuccess = document.querySelectorAll('.text-success');
 
 // FUNÇÕES //
 let showLoginMenu = (() => {
@@ -111,4 +112,4 @@ let previousButton = ( (count) => {
 });
 
 // EXPORTANDO AS VARIAVEIS //
-export { icons, iconsClose, modals, leftBar, cards, containers, textError, showLoginMenu, showRegisterMenu, closeLoginMenu, closeRegisterMenu, inputs, checkboxs, links, linksRegister, buttonsSelect, buttons, textsCheckbox, previousButton, nextButton, buttonsSubmit };
+export { icons, iconsClose, modals, leftBar, cards, containers, textError, showLoginMenu, showRegisterMenu, closeLoginMenu, closeRegisterMenu, textSuccess, inputs, checkboxs, links, linksRegister, buttonsSelect, buttons, textsCheckbox, previousButton, nextButton, buttonsSubmit };

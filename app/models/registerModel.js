@@ -1,17 +1,17 @@
-import { buttons, inputs } from "../../public/assets/js/variables.js";
+import { buttons, inputs, modals, iconsClose, cards, closeRegisterMenu, textSuccess, containers, textError } from "../../public/assets/js/variables.js";
 
 const birthDayData = document.querySelector('.date')
-
 const nickName = inputs[2]
 const userName = inputs[3]
 const phoneNumber = inputs[4]
 const email = inputs[5]
 const password = inputs[6]
-
 const url = `http://localhost:3000/api/cadastrar`
 
-buttons[1].addEventListener('click', () => {
-    const data = {
+buttons[1].addEventListener('click', (event) => {
+    event.preventDefault();
+
+    let data = {
         nickName: nickName.value,
         userName: userName.value,
         phoneNumber: phoneNumber.value,
@@ -38,13 +38,25 @@ buttons[1].addEventListener('click', () => {
     })
     .then(data => {
         // Processar os dados bem-sucedidos
-        console.log(data)
-        window.location.href = 'index.html'
-        alert("Usuário criado com sucesso")
-    })
-    .catch(error => {
-        // Tratar erros aqui e enviar uma resposta de erro
-        // console.error('Erro:', error);
-        // res.status(500).json({ error: 'Erro no servidor' });
-    });
-    }); 
+            if (data.error) {
+                containers[2].style.display = 'flex'
+                textError[1].innerHTML = "Preencha todos os campos"
+            } else {
+                closeRegisterMenu()
+                alert("Usuário cadastrado com sucesso")
+                modals[3].style.display = 'flex';
+                textSuccess[0].innerHTML = 'Conta Registrada com sucesso!!!'   
+            }
+
+    })    
+})
+
+
+// ESCONDER MODAL DE MENSAGEM DE SUCESSO //
+iconsClose[3].addEventListener('click', () => {
+    modals[3].style.animation = 'closeOpacityModal .3s ease-in-out forwards';
+    cards[2].style.animation = 'closeSmoothUpCard .5s ease-in-out forwards';
+    setTimeout( () => {
+        modals[3].style.display = 'none';
+    }, 300);
+});

@@ -1,3 +1,5 @@
+@import './variables.scss';
+
 @keyframes smoothSideBar {
     0% {
         transform: translateX(-18rem);
@@ -6,6 +8,26 @@
         transform: translateX(0);
     }
 }
+
+@keyframes smoothSucessSide {
+    0% {
+        transform: translateX(-5rem);
+        transform: rotate(0deg);
+        opacity: 0;
+    }
+    80% {
+        opacity: .85;
+        transform: scale3d(1.2, 1.2, 1.1);
+        transform: rotate(35deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: rotate(45deg);
+        transform: translateX(0);
+    }
+}
+
 
 @keyframes smoothUpCard {
     0% {
@@ -55,5 +77,53 @@
     }
     100% {
         opacity: 0%;
+    }
+}
+
+.success-animation {
+    margin: 150px auto;
+
+    .checkmark {
+        animation: fill .4s ease-in-out .4s forwards;
+        border-radius: 50%;
+        box-shadow: inset 0 0 0 $colorPrimary;
+
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+
+        margin: auto;
+        height: 100px;
+        width: 100px;
+
+        &.check {
+            animation: smoothSucessSide 1s ease-in-out forwards;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}
+
+@keyframes scale {
+    0%, 100% {
+        transform: none;
+    }
+
+    50% {
+        transform: scale3d(1.1, 1.1, 1);
+    }
+}
+
+@keyframes fill {
+    90% {
+        box-shadow: inset 0 0 0 60px $colorPrimary;
+    }
+
+    100% {
+        background: $colorPrimary;
     }
 }

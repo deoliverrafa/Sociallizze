@@ -1,5 +1,5 @@
 // IMPORTANDO AS VARIAVEIS //
-import { icons, iconsClose, modals, leftBar } from './variables.js';
+import { icons, iconsClose, modals, leftBar, buttons } from './variables.js';
 
 // ABRIR O MENU //
 icons[0].addEventListener('click', () => {

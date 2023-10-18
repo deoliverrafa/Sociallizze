@@ -20,6 +20,14 @@
     margin: 0 5px;
 
     @include hover-font($colorPrimary);
+
+    &.icon-white {
+        color: $colorWhite;
+    }
+
+    &.icon-big {
+        @include font-size(5rem);
+    }
 }
 
 .title {
@@ -37,6 +45,10 @@
     white-space: nowrap;   
 
     margin: 5px;
+
+    &.text-primary {
+        color: $colorPrimary;
+    }
 
     &.text-error {
         color: $colorDanger;

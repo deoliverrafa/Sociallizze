@@ -1,7 +1,9 @@
 // IMPORTANDO AS VÁRIAVEIS //
-import { nextButton, previousButton, iconsClose, containers, showLoginMenu,  showRegisterMenu, closeLoginMenu, closeRegisterMenu, inputs, checkboxs, linksRegister, buttonsSelect, buttons, textsCheckbox, buttonsSubmit } from '../../public/assets/js/variables.js';
+import { nextButton, previousButton, iconsClose, containers, showLoginMenu,  showRegisterMenu, closeLoginMenu, closeRegisterMenu, inputs, checkboxs, linksRegister, buttonsSelect, buttons, textsCheckbox, buttonsSubmit, modals, textSuccess } from '../../public/assets/js/variables.js';
+
 let count = 0;
-let token;
+let id;
+
 document.addEventListener('DOMContentLoaded', () => {
     const userLoggedIn = localStorage.getItem('userLoggedIn');
 
@@ -35,10 +37,12 @@ document.querySelector('.form').addEventListener('submit', function (event) {
                 containers[0].querySelector('.text-error').innerHTML = data.error;
             } else {
                 // Após o login bem-sucedido
-                token = data.token
-                alert(token)    
+                id = data._id;
                 localStorage.setItem('userLoggedIn', 'true');
                 closeLoginMenu();
+                modals[3].style.display = 'flex';
+                textSuccess[0].innerHTML = 'Conta logada com sucesso!!!'
+                
             }
         })
 })
@@ -86,7 +90,6 @@ linksRegister[0].addEventListener('click', () => {
 // TRANSIÇÃO PELO CADASTRO // 
 buttonsSelect[1].addEventListener('click', () => {
     count--;
-
     previousButton(count);
     
 });
@@ -105,4 +108,3 @@ if(count == 0) {
     textsCheckbox[1].style.display = 'none';
     containers[1].style.display = 'none';
 }
-
