@@ -35,6 +35,8 @@ html {
 }
 
 .container {
+    border-radius: 1rem;
+
     padding: 5px;
     height: auto;
     width: auto;
@@ -43,6 +45,7 @@ html {
 .card {
     background: $colorWhite;
     box-shadow: 3px 3px 10px 0 $colorBlack;
+    border-radius: 1rem;
 
     @include display-flex(column, stretch, stretch);
 
@@ -94,7 +97,7 @@ html {
     margin: 5px;
     padding: 10px;
     height: auto;
-    @include width-size(18.75rem);
+    @include width-size(95%);
 
     @include hover($colorPrimary, $colorWhite);
 

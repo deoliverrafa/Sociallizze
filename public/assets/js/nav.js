@@ -1,5 +1,5 @@
 // IMPORTANDO AS VARIAVEIS //
-import { icons, iconsClose, modals, leftBar, buttons } from './variables.js';
+import { icons, iconsClose, modals, leftBar, logos } from './variables.js';
 
 // ABRIR O MENU //
 icons[0].addEventListener('click', () => {
@@ -15,4 +15,13 @@ iconsClose[2].addEventListener('click', () => {
     setTimeout(() => {
         modals[2].style.display = 'none';
     }, 300);
+});
+
+logos[0].addEventListener('mouseover', () => {
+    logos[0].innerHTML = 'Sociallizze';
+    logos[0].style.animation = 'opacityLogo 2s ease-in-out forwards';
+});
+
+logos[0].addEventListener('mouseout', () => {
+    logos[0].innerHTML = 'S';
 });

@@ -30,7 +30,7 @@
 
     <!-- CABEÇALHO -->
     <header class="header">
-        <a class="logo" href="index.html">Sociallizze</a>
+        <a class="logo" href="index.html">S</a>
         <span class="icon material-symbols-outlined">menu</span>
     </header>
 
@@ -83,7 +83,7 @@
                         <p class="text text-error">Mensagem de error</p>
                     </div>
                     <p class="text text-checkbox"><input class="checkbox" type="checkbox" name="showPassword">Mostrar Senha</p>
-                    <input class="button buttonSubmit button-dark-primary" type="submit" value="ENTRAR">
+                    <input class="button buttonSubmit button-dark-primary" type="submit" value="REGISTRE-SE">
                     <button class="buttonSelect button button-dark-primary" type="button">PROXÍMO</button>
                     <button class="buttonSelect button button-dark-primary" type="button">VOLTAR</button>
                 </form>
@@ -107,7 +107,7 @@
                 <p>testes</p>
             </div>
             <div class="main">
-                <a class="item" href="../views/public/friends.html">
+                <a class="item" href="#">
                     <span class="icon material-symbols-outlined">account_circle</span>
                     Perfil
                 </a>
@@ -167,6 +167,39 @@
             </div>
         </div>
     </div>
+
+    <!-- MODAL -->
+    <div class="modal">
+        <!-- MENSAGEM ERROR -->
+        <div class="card">
+            <div class="top">
+                <h1 class="logo">Sociallizze</h1>
+                <span class="icon icon-close material-symbols-outlined">close</span>
+            </div>
+            <div class="main">
+                <div class="success-animation">
+                    <div class="checkmark">
+                        <div class="checkmark check">
+                            <span class="icon icon-big icon-white material-symbols-outlined">
+                                done
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <p class="text text-success text-bold text-primary">Conta Criada Com Sucesso!</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal">
+        <!-- PERFIL -->
+        <div class="card">
+            <div class="top">
+                <h1 class="logo">Sociallizze</h1>
+                <span class="icon icon-close material-symbols-outlined">close</span>
+            </div>
+        </div>
+    </div>
     
     <!-- BOTTOM -->
     <footer class="bottom">
@@ -193,6 +226,7 @@
     <script src="./app/webpack/bundle.js"></script>
     <script type="module" src="./public/assets/js/nav.js"></script>
     <script type="module" src="./public/assets/js/variables.js"></script>
+    <script type="module" src="./public/assets/js/profile.js"></script>
 </body>
 
 </html>

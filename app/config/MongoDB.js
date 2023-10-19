@@ -55,10 +55,5 @@ class MongoDB extends Icrud {
         console.log("Usuário deletado Com Sucesso!!!")
         return result;
     }
-
-    async deleteMany() {
-        const result = await this._usuario.deleteMany({});
-        return result
-    }
 }
 module.exports = MongoDB

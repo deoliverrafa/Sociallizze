@@ -16,45 +16,23 @@ router.post('/cadastrar', async (req, res) => {
     const { nickName, userName, phoneNumber, email, password, birthDayData, type } = req.body;
 
     if (nickName == null || userName == null || phoneNumber == null || email == null || password == null || birthDayData == null) {
-      res.status(400).json({ error: 'Preencha tudo Corretamente' });
+      res.status(400).json({ error: 'Prenncha tudo Corretamente' });
     } else {
 
-      // Verifica se o email já existe
-      let searchInBank = await context.read({ email });
+      const encriptedPass = await bcrypt.hash(password, 5,)
 
-      if (searchInBank.length > 0) {
-        res.status(400).json({ error: 'Email já existente tente novamente' });
-      } else {
-        // Verifica se o Nick Name já existe
-        searchInBank = await context.read({ nickName });
+      const objectToCad = { nickName, userName, phoneNumber, email, password: encriptedPass, birthDayData, type };
 
-        if (searchInBank.length > 0) {
-          res.status(400).json({ error: 'Nick Name já existente tente novamente' });
-        } else {
-          // Verifica se o Phone Number já existe
-          searchInBank = await context.read({ phoneNumber });
+      // cria usuário com as requisições passadas
+      const novoUsuario = await context.create(objectToCad);
 
-          if (searchInBank.length > 0) {
-            res.status(400).json({ error: 'Phone Number já existente tente novamente' });
-          } else {
-            // Se nenhum dos campos já existe, continue com a criação do usuário
-
-            const encriptedPass = await bcrypt.hash(password, 5,)
-
-            const objectToCad = { nickName, userName, phoneNumber, email, password: encriptedPass, birthDayData, type };
-
-            // Cria o usuário com as informações fornecidas
-            const novoUsuario = await context.create(objectToCad);
-
-            res.json(novoUsuario);
-          }
-        }
-      }
+      res.json(novoUsuario);
     }
   } catch (error) {
     res.status(500).json({ error: 'Erro ao criar usuário.' });
   }
 });
+
 // rota para get de usuários passando o parâmetro email e senha
 router.get('/usuarios', async (req, res) => {
   try {
@@ -62,8 +40,6 @@ router.get('/usuarios', async (req, res) => {
 
     // Obtém o email e senha da query
     const { email, password } = req.query;
-
-    console.log(email, password);
 
     // Condicional para verificar se os parâmetros obrigatórios foram passados
     if (!email || !password) {
@@ -73,15 +49,12 @@ router.get('/usuarios', async (req, res) => {
     // Busca o usuário no banco de dados com base no email ou no nick ou no phoneNumber
     let result = await context.read({ email });
 
-    console.log(result)
     if (result.length === 0) {
       const secondTry = await context.read({ nickName: email })
       result = secondTry;
-      console.log(result)
       if (result.length === 0) {
         const thirdTry = await context.read({ phoneNumber: email })
         result = thirdTry;
-        console.log(result)
       }
     }
 
@@ -113,17 +86,5 @@ router.get('/usuarios', async (req, res) => {
     res.status(500).json({ error: 'Erro ao ler banco de dados.' });
   }
 });
-
-
-router.delete('/deleteall', async (req, res) => {
-  try {
-    await connection.connect()
-    const result = await context.deleteMany({})
-
-    res.json(result)
-  } catch (error) {
-    res.status(500).json({ error: "Erro ao deletar usuário." });
-  }
-})
 
 module.exports = router;
