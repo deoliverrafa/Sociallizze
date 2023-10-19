@@ -40,7 +40,7 @@ buttons[1].addEventListener('click', (event) => {
         // Processar os dados bem-sucedidos
             if (data.error) {
                 containers[2].style.display = 'flex'
-                textError[1].innerHTML = "Preencha todos os campos"
+                textError[1].innerHTML = data.error
             } else {
                 closeRegisterMenu()
                 alert("Usuário cadastrado com sucesso")

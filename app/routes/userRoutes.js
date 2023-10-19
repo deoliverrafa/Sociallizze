@@ -15,19 +15,35 @@ router.post('/cadastrar', async (req, res) => {
 
     const { nickName, userName, phoneNumber, email, password, birthDayData, type } = req.body;
 
-    if (nickName == null || userName == null || phoneNumber == null || email == null || password == null || birthDayData == null) {
-      res.status(400).json({ error: 'Prenncha tudo Corretamente' });
-    } else {
-
-      const encriptedPass = await bcrypt.hash(password, 5,)
-
-      const objectToCad = { nickName, userName, phoneNumber, email, password: encriptedPass, birthDayData, type };
-
-      // cria usuário com as requisições passadas
-      const novoUsuario = await context.create(objectToCad);
-
-      res.json(novoUsuario);
+    if (!nickName || !userName || !phoneNumber || !email || !password || !birthDayData) {
+      return res.status(400).json({ error: 'Preencha tudo Corretamente' });
     }
+
+    // Verificar se o email, phoneNumber e nickName já estão em uso
+    const existingUserWithEmail = await context.read({ email });
+    const existingUserWithPhoneNumber = await context.read({ phoneNumber });
+    const existingUserWithNickName = await context.read({ nickName });
+
+    if (existingUserWithEmail.length > 0) {
+      return res.status(400).json({ error: 'Email já está em uso.' });
+    }
+
+    if (existingUserWithPhoneNumber.length > 0) {
+      return res.status(400).json({ error: 'PhoneNumber já está em uso.' });
+    }
+
+    if (existingUserWithNickName.length > 0) {
+      return res.status(400).json({ error: 'NickName já está em uso.' });
+    }
+
+    const encriptedPass = await bcrypt.hash(password, 5);
+
+    const objectToCad = { nickName, userName, phoneNumber, email, password: encriptedPass, birthDayData, type };
+
+    // cria usuário com as requisições passadas
+    const novoUsuario = await context.create(objectToCad);
+
+    res.json(novoUsuario);
   } catch (error) {
     res.status(500).json({ error: 'Erro ao criar usuário.' });
   }
