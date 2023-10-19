@@ -1,0 +1,22 @@
+@import './variables.scss';
+@import './animations.scss';
+
+.card.profile .top {
+    border: 2px solid $colorGray;
+    box-shadow: 3px 3px 10px 0 $colorBlack;
+
+    @include display-flex(row, space-between, center);
+
+    margin: 5px;
+    padding: 5px;
+}
+
+.card.profile .header {
+    border: 2px solid $colorGray;
+    box-shadow: 3px 3px 10px 0 $colorBlack;
+
+    @include display-flex(column, space-between, center);
+
+    margin: 5px;
+    padding: 5px;
+}

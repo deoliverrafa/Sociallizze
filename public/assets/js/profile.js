@@ -1,9 +1,14 @@
 // IMPORTANDO AS VÁRIAVEIS //
-import { itens, modals, iconsClose, cards } from './variables.js';
+import { itens, modals, iconsClose, cards, leftBar } from './variables.js';
 
 // ABRIR O PERFIL //
 itens[0].addEventListener('click', () => {
     modals[5].style.display = 'flex';
+    leftBar[0].style.animation = 'closeSmoothSideBar .5s ease-in-out forwards'; 
+    modals[2].style.animation = 'closeOpacityModal .3s ease-in-out forwards';
+    setTimeout(() => {
+        modals[2].style.display = 'none';
+    }, 300);
 });
 
 // FECHAR O PERFIL //

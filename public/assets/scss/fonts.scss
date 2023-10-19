@@ -3,6 +3,8 @@
 .logo {
     color: $colorPrimary;
 
+    @include display-flex(row, stretch, center);
+
     font-family: $fontLogo;
     @include font-size(2rem);
     font-weight: bold;

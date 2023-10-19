@@ -14,6 +14,10 @@ body {
 html {
     height: 100vh;
     width: 100vw;
+    
+    &:selection {
+        background: $colorPrimary;
+    }
 }
 
 .modal {
@@ -62,6 +66,8 @@ html {
     border: 2px solid $colorGray;
     border-radius: 5px;
     box-shadow: 3px 3px 10px 0 $colorBlack;
+    caret-color: $colorPrimary;
+    
     @include font-size(.875rem);
     font-family: $fontPrincipal;
 
