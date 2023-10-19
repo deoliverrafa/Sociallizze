@@ -1,4 +1,4 @@
-import { buttons, inputs, modals, iconsClose, cards, closeRegisterMenu, textSuccess, containers, textError } from "../../public/assets/js/variables.js";
+import { buttons, inputs, modals, iconsClose, cards, closeRegisterMenu, textSuccess, containers, textError, textNick, textEmail, showLoginMenu, closeLoginMenu } from "../../public/assets/js/variables.js";
 
 const birthDayData = document.querySelector('.date')
 const nickName = inputs[2]
@@ -7,6 +7,20 @@ const phoneNumber = inputs[4]
 const email = inputs[5]
 const password = inputs[6]
 const url = `http://localhost:3000/api/cadastrar`
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const userLoggedIn = localStorage.getItem('userLoggedIn');
+
+    // LÓGICA PARA APARECER O CARD DE LOGIN //
+    if (userLoggedIn !== 'true' && typeof id == "undefined") {
+        showLoginMenu()
+    } else {
+        closeLoginMenu()
+    }
+})
+
+
 
 buttons[1].addEventListener('click', (event) => {
     event.preventDefault();
@@ -42,10 +56,12 @@ buttons[1].addEventListener('click', (event) => {
                 containers[2].style.display = 'flex'
                 textError[1].innerHTML = data.error
             } else {
+                localStorage.setItem('userLoggedIn', 'true');
                 closeRegisterMenu()
-                alert("Usuário cadastrado com sucesso")
                 modals[3].style.display = 'flex';
-                textSuccess[0].innerHTML = 'Conta Registrada com sucesso!!!'   
+                textSuccess[0].innerHTML = 'Conta Registrada com sucesso!!!'
+                textNick[0].innerHTML = data.nickName   
+                textEmail[0].innerHTML = data.email
             }
 
     })    

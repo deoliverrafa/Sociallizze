@@ -29,11 +29,11 @@ router.post('/cadastrar', async (req, res) => {
     }
 
     if (existingUserWithPhoneNumber.length > 0) {
-      return res.status(400).json({ error: 'PhoneNumber já está em uso.' });
+      return res.status(400).json({ error: 'Número de Telefone já está em uso.' });
     }
 
     if (existingUserWithNickName.length > 0) {
-      return res.status(400).json({ error: 'NickName já está em uso.' });
+      return res.status(400).json({ error: 'Nome de Usuário já está em uso.' });
     }
 
     const encriptedPass = await bcrypt.hash(password, 5);

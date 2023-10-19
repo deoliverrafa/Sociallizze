@@ -17,6 +17,8 @@ const buttonsSubmit = document.querySelectorAll('.buttonSubmit');
 const textSuccess = document.querySelectorAll('.text-success');
 const itens = document.querySelectorAll('.item');
 const logos = document.querySelectorAll('.logo');
+const textNick = document.querySelectorAll('.text.nick')
+const textEmail = document.querySelectorAll('.text.email')
 
 // FUNÇÕES //
 let showLoginMenu = (() => {
@@ -114,4 +116,4 @@ let previousButton = ( (count) => {
 });
 
 // EXPORTANDO AS VARIAVEIS //
-export { icons, iconsClose, modals, leftBar, cards, containers, textError, showLoginMenu, showRegisterMenu, closeLoginMenu, closeRegisterMenu, textSuccess, inputs, checkboxs, links, linksRegister, buttonsSelect, buttons, textsCheckbox, previousButton, nextButton, buttonsSubmit, itens, logos };
+export { icons, iconsClose, modals, leftBar, cards, containers, textError, showLoginMenu, showRegisterMenu, closeLoginMenu, closeRegisterMenu, textSuccess, inputs, checkboxs, links, linksRegister, buttonsSelect, buttons, textsCheckbox, previousButton, nextButton, buttonsSubmit, itens, logos, textEmail, textNick };
