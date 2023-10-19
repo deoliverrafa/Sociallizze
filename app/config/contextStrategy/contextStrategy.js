@@ -21,6 +21,10 @@ class ContextStrategy extends Icrud {
         return this.strategy.delete(item)
     }
 
+    deleteMany(){
+        return this.strategy.deleteMany();
+    }
+
     async send(senderId, recipientId, Message, expirationTime) {
         return await this.strategy.send(senderId, recipientId, Message, expirationTime);
     }

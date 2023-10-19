@@ -1,14 +1,13 @@
 // IMPORTANDO AS VÁRIAVEIS //
-import { nextButton, previousButton, iconsClose, containers, showLoginMenu,  showRegisterMenu, closeLoginMenu, closeRegisterMenu, inputs, checkboxs, linksRegister, buttonsSelect, buttons, textsCheckbox, buttonsSubmit, modals, textSuccess } from '../../public/assets/js/variables.js';
+import { nextButton, previousButton, iconsClose, containers, showLoginMenu,  showRegisterMenu, closeLoginMenu, closeRegisterMenu, inputs, checkboxs, linksRegister, buttonsSelect, textsCheckbox, buttonsSubmit, modals, textSuccess } from '../../public/assets/js/variables.js';
 
+let userLoggedIn = localStorage.getItem('userLoggedIn');
 let count = 0;
-let id;
 
 document.addEventListener('DOMContentLoaded', () => {
-    const userLoggedIn = localStorage.getItem('userLoggedIn');
 
     // LÓGICA PARA APARECER O CARD DE LOGIN //
-    if (userLoggedIn !== 'true' && typeof id == "undefined") {
+    if (userLoggedIn !== 'true') {
         showLoginMenu();
     } else {
         closeLoginMenu();
@@ -33,11 +32,11 @@ document.querySelector('.form').addEventListener('submit', function (event) {
         .then(data => {
             if (data.error) {
                 // LÓGICA PARA APARECER MENSAGEM DE ERROR //
+                alert(data)
                 containers[0].style.display = 'flex';
                 containers[0].querySelector('.text-error').innerHTML = data.error;
             } else {
                 // Após o login bem-sucedido
-                id = data._id;
                 localStorage.setItem('userLoggedIn', 'true');
                 closeLoginMenu();
                 modals[3].style.display = 'flex';
@@ -107,4 +106,9 @@ if(count == 0) {
     inputs[6].style.display = 'none';
     textsCheckbox[1].style.display = 'none';
     containers[1].style.display = 'none';
+}
+
+// Defina uma função que retorna o valor de userLoggedIn
+export function getUserLoggedIn() {
+    return localStorage.getItem('userLoggedIn');
 }

@@ -1,4 +1,17 @@
-import { buttons, inputs, modals, iconsClose, cards, closeRegisterMenu, textSuccess, containers, textError } from "../../public/assets/js/variables.js";
+import { buttons, inputs, modals, iconsClose, cards, closeRegisterMenu, textSuccess, containers, textError, closeLoginMenu, showLoginMenu } from "../../public/assets/js/variables.js";
+
+const userLoggedAfterRegister = localStorage.getItem('userLoggedAfterRegistration')
+
+ // LÓGICA PARA APARECER O CARD DE LOGIN //
+
+ document.addEventListener('DOMContentLoaded', () => {
+    // LÓGICA PARA APARECER O CARD DE LOGIN //
+    if (userLoggedAfterRegister == 'true') {
+        closeLoginMenu();
+    } else {
+        showLoginMenu();
+    }
+})
 
 const birthDayData = document.querySelector('.date')
 const nickName = inputs[2]
@@ -37,13 +50,15 @@ buttons[1].addEventListener('click', (event) => {
         return response.json();
     })
     .then(data => {
-        // Processar os dados bem-sucedidos
-            if (data.error) {
-                containers[2].style.display = 'flex'
-                textError[1].innerHTML = "Preencha todos os campos"
-            } else {
-                closeRegisterMenu()
+        if (data.error) {
+            // Se conter erro mostrará mensagem de erro
+            containers[2].style.display = 'flex'
+            textError[1].innerHTML = data.error
+        } else {
+                // Processar os dados bem-sucedidos
+                localStorage.setItem('userLoggedAfterRegistration', 'true');
                 alert("Usuário cadastrado com sucesso")
+                closeRegisterMenu();
                 modals[3].style.display = 'flex';
                 textSuccess[0].innerHTML = 'Conta Registrada com sucesso!!!'   
             }
@@ -56,7 +71,7 @@ buttons[1].addEventListener('click', (event) => {
 iconsClose[3].addEventListener('click', () => {
     modals[3].style.animation = 'closeOpacityModal .3s ease-in-out forwards';
     cards[2].style.animation = 'closeSmoothUpCard .5s ease-in-out forwards';
-    setTimeout( () => {
+    setTimeout(() => {
         modals[3].style.display = 'none';
     }, 300);
 });
