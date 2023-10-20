@@ -134,6 +134,6 @@ function getUserData() {
         });
 }
 
-
+console.log(userEmail)
 
 export { getUserData, userName, userEmail, userId }
