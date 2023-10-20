@@ -7,6 +7,7 @@ let context = new Context(new MongoDB(userSchema))
 const getConnection = require('../config/connection');
 const connection = new getConnection()
 const bcrypt = require('bcrypt');
+const { ObjectId } = require('mongodb');
 
 // Rota para cadastrar usuário
 router.post('/cadastrar', async (req, res) => {
@@ -102,5 +103,20 @@ router.get('/usuarios', async (req, res) => {
     res.status(500).json({ error: 'Erro ao ler banco de dados.' });
   }
 });
+
+router.get('/searchById', async (req, res) => {
+  try {
+    await connection.connect()
+    const { id } = req.query
+    console.log(id)
+    const primaryResult = await context.read({ _id: id })
+    const result = primaryResult[0]
+
+    console.log(result)
+    res.json(result)
+  } catch (error) {
+    res.status(500).json({ error: 'Erro ao buscar usuario' })
+  }
+})
 
 module.exports = router;

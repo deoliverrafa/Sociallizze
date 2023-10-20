@@ -1,12 +1,13 @@
 // IMPORTANDO AS VÁRIAVEIS //
-import { nextButton, previousButton, iconsClose, containers, showLoginMenu,  showRegisterMenu, closeLoginMenu, closeRegisterMenu, inputs, checkboxs, linksRegister, buttonsSelect, buttons, textsCheckbox, buttonsSubmit, modals, textSuccess } from '../../public/assets/js/variables.js';
+import { nextButton, previousButton, iconsClose, containers, showLoginMenu, showRegisterMenu, closeLoginMenu, closeRegisterMenu, inputs, checkboxs, linksRegister, buttonsSelect, textsCheckbox, buttonsSubmit, modals, textSuccess } from '../../public/assets/js/variables.js';
 
 let count = 0;
-let id;
+const userLoggedIn = localStorage.getItem('userLoggedIn');
+const userId = localStorage.getItem('userId')
+const userName = localStorage.getItem('userName')
+const userEmail = localStorage.getItem('userEmail')
 
 document.addEventListener('DOMContentLoaded', () => {
-    const userLoggedIn = localStorage.getItem('userLoggedIn');
-
     // LÓGICA PARA APARECER O CARD DE LOGIN //
     if (userLoggedIn !== 'true' && typeof id == "undefined") {
         showLoginMenu();
@@ -37,19 +38,21 @@ document.querySelector('.form').addEventListener('submit', function (event) {
                 containers[0].querySelector('.text-error').innerHTML = data.error;
             } else {
                 // Após o login bem-sucedido
-                id = data._id;
+                localStorage.setItem('userEmail', data.email);
+                localStorage.setItem('userName', data.nickName);
+                localStorage.setItem('userId', data._id)
                 localStorage.setItem('userLoggedIn', 'true');
                 closeLoginMenu();
                 modals[3].style.display = 'flex';
                 textSuccess[0].innerHTML = 'Conta logada com sucesso!!!'
-                
+
             }
         })
 })
 
 // MOSTRAR SENHA //
 checkboxs[0].addEventListener('change', () => {
-    if(checkboxs[0].checked) {
+    if (checkboxs[0].checked) {
         inputs[1].type = 'text';
     } else {
         inputs[1].type = 'password';
@@ -57,7 +60,7 @@ checkboxs[0].addEventListener('change', () => {
 });
 
 checkboxs[1].addEventListener('change', () => {
-    if(checkboxs[1].checked) {
+    if (checkboxs[1].checked) {
         inputs[6].type = 'text';
     } else {
         inputs[6].type = 'password';
@@ -91,7 +94,7 @@ linksRegister[0].addEventListener('click', () => {
 buttonsSelect[1].addEventListener('click', () => {
     count--;
     previousButton(count);
-    
+
 });
 
 buttonsSelect[0].addEventListener('click', () => {
@@ -99,7 +102,7 @@ buttonsSelect[0].addEventListener('click', () => {
     nextButton(count);
 });
 
-if(count == 0) {
+if (count == 0) {
     buttonsSelect[1].style.display = 'none';
     buttonsSubmit[1].style.display = 'none';
     inputs[4].style.display = 'none';
@@ -108,3 +111,29 @@ if(count == 0) {
     textsCheckbox[1].style.display = 'none';
     containers[1].style.display = 'none';
 }
+
+function getUserData() {
+    return fetch(`http://localhost:3000/api/searchById?id=${localStorage.getItem('userId')}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }})
+        .then(response => {
+            if (!response) {
+                console.log("Erro ao pegar dados do usuário");
+                return null;
+            }
+            return response.json();
+        })
+        .then(data => {
+            return data;
+        })
+        .catch(error => {
+            console.log("Erro ao pegar userData", error);
+            return null;
+        });
+}
+
+
+
+export { getUserData, userName, userEmail, userId }

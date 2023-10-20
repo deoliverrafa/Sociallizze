@@ -7,11 +7,12 @@ const phoneNumber = inputs[4]
 const email = inputs[5]
 const password = inputs[6]
 const url = `http://localhost:3000/api/cadastrar`
+let id;
 
+
+const userLoggedIn = localStorage.getItem('userLoggedIn');
 
 document.addEventListener('DOMContentLoaded', () => {
-    const userLoggedIn = localStorage.getItem('userLoggedIn');
-
     // LÓGICA PARA APARECER O CARD DE LOGIN //
     if (userLoggedIn !== 'true' && typeof id == "undefined") {
         showLoginMenu()
@@ -42,37 +43,36 @@ buttons[1].addEventListener('click', (event) => {
         },
         body: JSON.stringify(data),
     })
-    .then(response => {
-        if (!response.ok) {
-            // Tratamento de erro na resposta
-            // console.error('Erro na solicitação: ' + response.status);
-            // res.status(response.status).json({ error: 'Erro na solicitação' });
-        }
-        return response.json();
-    })
-    .then(data => {
-        // Processar os dados bem-sucedidos
+        .then(response => {
+            if (!response.ok) {
+                // Tratamento de erro na resposta
+                // console.error('Erro na solicitação: ' + response.status);
+                // res.status(response.status).json({ error: 'Erro na solicitação' });
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Processar os dados bem-sucedidos
             if (data.error) {
                 containers[2].style.display = 'flex'
                 textError[1].innerHTML = data.error
             } else {
+                id = data._id;
                 localStorage.setItem('userLoggedIn', 'true');
+                localStorage.setItem('userId', id)
                 closeRegisterMenu()
                 modals[3].style.display = 'flex';
                 textSuccess[0].innerHTML = 'Conta Registrada com sucesso!!!'
-                textNick[0].innerHTML = data.nickName   
-                textEmail[0].innerHTML = data.email
             }
 
-    })    
+        })
 })
-
 
 // ESCONDER MODAL DE MENSAGEM DE SUCESSO //
 iconsClose[3].addEventListener('click', () => {
     modals[3].style.animation = 'closeOpacityModal .3s ease-in-out forwards';
     cards[2].style.animation = 'closeSmoothUpCard .5s ease-in-out forwards';
-    setTimeout( () => {
+    setTimeout(() => {
         modals[3].style.display = 'none';
     }, 300);
 });
