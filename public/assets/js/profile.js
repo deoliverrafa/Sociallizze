@@ -1,6 +1,6 @@
 // IMPORTANDO AS VÁRIAVEIS //
 import { getUserData } from '../../../app/models/loginModel.js';
-import { itens, modals, iconsClose, cards, leftBar, textEmail, textNick } from './variables.js';
+import { itens, modals, iconsClose, cards, leftBar, textNick } from './variables.js';
 
 let profileOpen = false;
 
@@ -12,7 +12,6 @@ itens[0].addEventListener('click', async () => {
         modals[5].style.display = 'flex';
         modals[2].style.animation = 'closeOpacityModal .3s ease-in-out forwards';
         leftBar[0].style.animation = 'closeSmoothSideBar .5s ease-in-out forwards';
-        textEmail[0].innerHTML = dadosUser.email
         textNick[0].innerHTML = dadosUser.nickName
         setTimeout(() => {
             modals[2].style.display = 'none';
