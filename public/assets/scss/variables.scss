@@ -43,6 +43,11 @@ $fontPrincipal: 'Poppins', sans-serif;
     font-size: clamp($min-size, $min-size + .125rem, $min-size + .25rem);
 }
 
+@mixin size($height-size, $width-size) {
+    height: clamp($height-size, $height-size + .125rem, $height-size + .25rem);
+    width: clamp($width-size, $width-size + .125rem, $width-size + .25rem);
+}
+
 @mixin width-size($min-size) {
     width: clamp($min-size, $min-size + .125rem, $min-size + .25rem);
 }

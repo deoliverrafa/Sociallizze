@@ -114,6 +114,10 @@ html {
     &.button-dark-primary {
         @include button-style($colorDarkPrimary, $colorWhite);
     }
+    
+    &.button-danger {
+        @include button-style($colorDanger, $colorWhite);
+    }
 }
 
 .checkbox {
@@ -125,4 +129,13 @@ html {
     margin: 5px;
     height: 15px;
     width: 15px;
+}
+
+.image {
+    height: auto;
+    width: auto;
+    
+    &.profile {
+        @include size(6.25rem, 6.25rem);
+    }
 }

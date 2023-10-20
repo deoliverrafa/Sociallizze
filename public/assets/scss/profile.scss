@@ -20,3 +20,14 @@
     margin: 5px;
     padding: 5px;
 }
+
+.card.profile .header .card {
+    @include display-flex(row, stretch, center);
+    border-radius: 0;
+    
+    margin: 5px 0;
+    
+    .container {
+        @include display-flex(column, center, center);
+    }
+}
