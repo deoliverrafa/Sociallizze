@@ -33,14 +33,16 @@ const userSchema = mongoose.Schema({
         require: false
     },
     avatar: {
-        data: Buffer,
-        contentType: String,
+        type: String,
+        require: false
     },
     Nfollowers: {
         type: String,
+        require: false
     },
     Nfollowing:{
         type: String,
+        require: false
     },
     messages: [{
         type: mongoose.Schema.Types.ObjectId,

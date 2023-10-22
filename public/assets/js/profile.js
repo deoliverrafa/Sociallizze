@@ -15,7 +15,7 @@ itens[0].addEventListener('click', async () => {
         leftBar[0].style.animation = 'closeSmoothSideBar .5s ease-in-out forwards';
         
         textNick[0].innerHTML = dadosUser.nickName
-        imageProfile[0].src = dadosUser.avatar
+        // imageProfile[0].src = dadosUser.avatar
 
         setTimeout(() => {
             modals[2].style.display = 'none';
@@ -41,7 +41,7 @@ iconsClose[5].addEventListener('click', () => {
 
 
 buttonLogOut[0].addEventListener('click', async () => {
-    logOut()
+
     window.location.href = 'index.html'
 })
 

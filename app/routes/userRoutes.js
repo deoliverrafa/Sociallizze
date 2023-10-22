@@ -124,13 +124,10 @@ router.put('/updateAvatar', async (req, res) => {
 
     const { userId, avatar } = req.body
 
-    console.log(userId)
-    console.log(avatar)
-    
     let result = await context.update({ _id: userId }, avatar)
 
     if (result.length < 0) {
-      rest.status(404).json({ error: 'Erro ao atualizar usuário' })
+      res.status(404).json({ error: 'Erro ao atualizar usuário' })
     } else {
       res.json(result);
     }
