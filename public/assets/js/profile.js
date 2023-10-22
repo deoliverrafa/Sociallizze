@@ -41,7 +41,7 @@ iconsClose[5].addEventListener('click', () => {
 
 
 buttonLogOut[0].addEventListener('click', async () => {
-    logOut
+    logOut()
     window.location.href = 'index.html'
 })
 
@@ -58,5 +58,4 @@ async function loadUserData() {
 async function logOut(){
     localStorage.setItem('userLoggedIn', 'false')
     localStorage.setItem('userId', null)
-    return true
 }
