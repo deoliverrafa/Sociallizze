@@ -30,6 +30,7 @@ iconsClose[5].addEventListener('click', () => {
         cards[4].style.animation = 'closeSmoothUpCard .5s ease-in-out forwards';
         setTimeout(() => {
             modals[5].style.display = 'none';
+            modals[2].style.display = 'none';
             // Redefinindo as animações
             cards[4].style.animation = 'smoothUpCard .5s ease-in-out forwards';
             modals[5].style.animation = 'opacityModal .3s ease-in-out forwards';
@@ -37,6 +38,7 @@ iconsClose[5].addEventListener('click', () => {
         }, 300);
     }
 });
+
 
 buttonLogOut[0].addEventListener('click', async () => {
     logOut()

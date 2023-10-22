@@ -3,7 +3,7 @@ const router = express.Router();
 const MongoDB = require('../config/MongoDB');
 const userSchema = require('../schemas/userSchemas.js')
 const Context = require('../config/contextStrategy/contextStrategy.js')
-let context = new Context(new MongoDB(userSchema))
+const context = new Context(new MongoDB(userSchema))
 const getConnection = require('../config/connection');
 const connection = new getConnection()
 const bcrypt = require('bcrypt');
@@ -118,31 +118,25 @@ router.get('/searchById', async (req, res) => {
 
 
 // Rota para atualizar dados de um usuário
-router.put('/updateData/:userId', async (req, res) => {
+
+router.put('/updateAvatar', async (req, res) => {
   try {
-    const { userId } = req.params; // Obtenha o ID do usuário da URL
 
-    // Certifique-se de que userId seja um valor válido (pode ser uma verificação adicional)
+    const { userId, avatar } = req.body
 
-    // Use o modelo de usuário para encontrar o usuário pelo ID
-    const user = await context.read(userId);
+    console.log(userId)
+    console.log(avatar)
+    
+    let result = await context.update({ _id: userId }, avatar)
 
-    if (!user) {
-      return res.status(404).json({ error: 'Usuário não encontrado' });
+    if (result.length < 0) {
+      rest.status(404).json({ error: 'Erro ao atualizar usuário' })
+    } else {
+      res.json(result);
     }
-
-    // Atualize os dados do usuário com base nos dados do corpo da solicitação (req.body)
-    user.nickName = req.body.nickName; // Exemplo de atualização de nome de usuário
-    // Atualize outros campos conforme necessário
-
-    // Salve as alterações no banco de dados
-    await user.save();
-
-    res.json({ message: 'Dados do usuário atualizados com sucesso' });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Erro ao atualizar usuário, tente novamente' });
+    res.status(500).json({ error: 'Erro na solicitação' })
   }
-});
+})
 
 module.exports = router;
