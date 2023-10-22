@@ -1,6 +1,6 @@
 // IMPORTANDO AS VÁRIAVEIS //
 import { getUserData } from '../../../app/models/loginModel.js';
-import { itens, modals, iconsClose, cards, leftBar, textNick } from './variables.js';
+import { itens, modals, iconsClose, cards, leftBar, textNick, buttonLogOut } from './variables.js';
 
 let profileOpen = false;
 
@@ -36,6 +36,11 @@ iconsClose[5].addEventListener('click', () => {
     }
 });
 
+buttonLogOut[0].addEventListener('click', async () => {
+    logOut()
+    window.location.href = 'index.html'
+})
+
 async function loadUserData() {
     try {
         let userData = await getUserData();
@@ -45,3 +50,11 @@ async function loadUserData() {
         console.log("Erro ao carregar dados: ", error);
     }
 }
+
+async function logOut(){
+    localStorage.setItem('userLoggedIn', 'false')
+    localStorage.setItem('userId', null)
+    return "Unlogged"
+}
+console.log(localStorage.getItem("userLoggedIn"))
+console.log(localStorage.getItem("userId"))

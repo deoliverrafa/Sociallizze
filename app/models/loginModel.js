@@ -2,6 +2,7 @@
 import { nextButton, previousButton, iconsClose, containers, showLoginMenu, showRegisterMenu, closeLoginMenu, closeRegisterMenu, inputs, checkboxs, linksRegister, buttonsSelect, textsCheckbox, buttonsSubmit, modals, textSuccess } from '../../public/assets/js/variables.js';
 
 let count = 0;
+
 const userLoggedIn = localStorage.getItem('userLoggedIn');
 const userId = localStorage.getItem('userId')
 const userName = localStorage.getItem('userName')
@@ -9,7 +10,12 @@ const userEmail = localStorage.getItem('userEmail')
 
 document.addEventListener('DOMContentLoaded', () => {
     // LÓGICA PARA APARECER O CARD DE LOGIN //
-    if (userLoggedIn !== 'true' && typeof id == "undefined") {
+    
+    if (userLoggedIn == 'true' && localStorage.getItem('userId') == null) {
+        localStorage.setItem('userLoggedIn', 'false')
+    }
+    
+    if (userLoggedIn !== 'true') {
         showLoginMenu();
     } else {
         closeLoginMenu();
@@ -133,7 +139,4 @@ function getUserData() {
             return null;
         });
 }
-
-console.log(userEmail)
-
 export { getUserData, userName, userEmail, userId }
