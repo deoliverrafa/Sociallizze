@@ -41,7 +41,7 @@ iconsClose[5].addEventListener('click', () => {
 
 
 buttonLogOut[0].addEventListener('click', async () => {
-
+    logOut
     window.location.href = 'index.html'
 })
 
