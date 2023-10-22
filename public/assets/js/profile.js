@@ -1,6 +1,6 @@
 // IMPORTANDO AS VÁRIAVEIS //
 import { getUserData } from '../../../app/models/loginModel.js';
-import { itens, modals, iconsClose, cards, leftBar, textNick, buttonLogOut } from './variables.js';
+import { itens, modals, iconsClose, cards, leftBar, textNick, buttonLogOut, imageProfile } from './variables.js';
 
 let profileOpen = false;
 
@@ -13,8 +13,9 @@ itens[0].addEventListener('click', async () => {
         modals[2].style.animation = 'closeOpacityModal .3s ease-in-out forwards';
         leftBar[0].style.animation = 'closeSmoothSideBar .5s ease-in-out forwards';
         
-        
         textNick[0].innerHTML = dadosUser.nickName
+        imageProfile[0].src = dadosUser.avatar
+
         setTimeout(() => {
             modals[2].style.display = 'none';
         }, 300);
@@ -56,5 +57,3 @@ async function logOut(){
     localStorage.setItem('userId', null)
     return "Unlogged"
 }
-console.log(localStorage.getItem("userLoggedIn"))
-console.log(localStorage.getItem("userId"))
