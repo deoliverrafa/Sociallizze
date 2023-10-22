@@ -12,6 +12,8 @@ itens[0].addEventListener('click', async () => {
         modals[5].style.display = 'flex';
         modals[2].style.animation = 'closeOpacityModal .3s ease-in-out forwards';
         leftBar[0].style.animation = 'closeSmoothSideBar .5s ease-in-out forwards';
+        
+        
         textNick[0].innerHTML = dadosUser.nickName
         setTimeout(() => {
             modals[2].style.display = 'none';
@@ -27,8 +29,8 @@ iconsClose[5].addEventListener('click', () => {
         setTimeout(() => {
             modals[5].style.display = 'none';
             // Redefinindo as animações
-            cards[4].style.animation = 'none';
-            modals[5].style.animation = 'none';
+            cards[4].style.animation = 'smoothUpCard .5s ease-in-out forwards';
+            modals[5].style.animation = 'opacityModal .3s ease-in-out forwards';
             profileOpen = false;
         }, 300);
     }
