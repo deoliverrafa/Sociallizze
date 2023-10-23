@@ -1,6 +1,6 @@
 // IMPORTANDO AS VÁRIAVEIS //
 
-import { itens } from "../../public/assets/js/variables";
+import { iconsClose, itens, buttonLogOut } from "../../public/assets/js/variables";
 import { getUserData } from "./loginModel";
 
 
