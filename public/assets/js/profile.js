@@ -3,7 +3,7 @@ import { itens, modals, iconsClose, cards, leftBar, textNick, buttonLogOut, bios
 
 let profileOpen = false;
 let isExpanded = false;
-const charLimit = 35;
+const charLimit = 20;
 const bioText = bios[0].innerText;
 
 itens[0].addEventListener('click', async () => {
