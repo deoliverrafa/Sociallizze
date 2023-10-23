@@ -51,7 +51,9 @@ document.querySelector('.form').addEventListener('submit', function (event) {
                 closeLoginMenu();
                 modals[3].style.display = 'flex';
                 textSuccess[0].innerHTML = 'Conta logada com sucesso!!!'
-
+                setTimeout(() => {
+                    window.location.href = 'index.html'
+                }, 1500);
             }
         })
 })
