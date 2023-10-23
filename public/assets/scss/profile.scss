@@ -15,25 +15,40 @@
     border: 2px solid $colorGray;
     box-shadow: 3px 3px 10px 0 $colorBlack;
 
-    @include display-flex(column, space-between, center);
+    @include display-flex(column, center, center);
 
-    margin: 5px;
     padding: 5px;
-}
 
-.card.profile .header .card {
-    @include display-flex(row, stretch, center);
-    border-radius: 0;
-    
-    margin: 5px 0;
-    
     .container {
-        @include display-flex(column, center, center);
+        @include display-flex(row, center, center);
     }
+
+    .card {
+        @include display-flex(row, stretch, center);
+        border-radius: 0;
+        
+        margin: 5px 0;
+
+        .container {
+            cursor: pointer;
+
+            @include display-flex(column, center, center);
+        }
+    }    
 }
 
-.card.profile .header .card .container {
-    cursor: pointer;
+.card.profile .main {
+    .card {
+        border-radius: 0;
+
+        margin: 5px;
+        padding: 0;
+
+        .container {
+            border-bottom: 2px solid $colorDarkPrimary;
+            border-radius: 0;
+        }
+    }
 }
 
 .card.profile .bottom {
