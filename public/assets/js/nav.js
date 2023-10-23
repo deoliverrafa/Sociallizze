@@ -58,40 +58,4 @@ logos[0].addEventListener('mouseover', () => {
            logoCount++;
        }, 1000);
     };
-    // EFEITO ESCONDER LOGO COMPLETO //
-    if(logoCount == 1) {
-        setTimeout(() => {
-            logoAnimate[10].style.display = 'none';
-        }, 0);
-        setTimeout(() => {
-            logoAnimate[9].style.display = 'none';
-        }, 200);
-        setTimeout(() => {
-            logoAnimate[8].style.display = 'none';
-        }, 400);
-        setTimeout(() => {
-            logoAnimate[7].style.display = 'none';
-        }, 600);
-        setTimeout(() => {
-            logoAnimate[6].style.display = 'none';
-        }, 800);
-        setTimeout(() => {
-            logoAnimate[5].style.display = 'none';
-        }, 1000);
-        setTimeout(() => {
-            logoAnimate[4].style.display = 'none';
-        }, 1200);
-        setTimeout(() => {
-            logoAnimate[3].style.display = 'none';
-        }, 1400);
-        setTimeout(() => {
-            logoAnimate[2].style.display = 'none';
-        }, 1600);
-        setTimeout(() => {
-            logoAnimate[1].style.display = 'none';
-        }, 1800);
-        setTimeout(() => {
-           logoCount--;
-       }, 1000);
-    };
 });

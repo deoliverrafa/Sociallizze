@@ -35,6 +35,11 @@ iconsClose[5].addEventListener('click', () => {
     }
 });
 
+// REMOVER ANIMAÇÕES //
+cards[8].style.animation = 'none';
+cards[9].style.animation = 'none';
+cards[10].style.animation = 'none';
+modals[5].style.height = 'auto';
 // ESCONDER BIO - MOSTRAR BIO //
 if (bioText.length > charLimit) {
     const truncatedText = bioText.slice(0, charLimit) + '...';
@@ -42,9 +47,11 @@ if (bioText.length > charLimit) {
 
     mores[0].addEventListener('click', () => {
         if (isExpanded) {
+            modals[5].style.height = 'auto';
             bios[0].innerText = truncatedText;
             mores[0].innerText = 'MAIS';
         } else {
+            modals[5].style.height = 'auto';
             bios[0].innerText = bioText;
             mores[0].innerText = 'MENOS';
         }

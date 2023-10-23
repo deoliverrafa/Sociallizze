@@ -36,6 +36,10 @@
     font-family: $fontPrincipal;
     @include font-size(2rem);
 
+    &.title-medium {
+        @include font-size(1.5rem);
+    }
+
     &.title-primary {
         @include font-color($colorPrimary);
     }
