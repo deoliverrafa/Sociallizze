@@ -13,10 +13,10 @@ itens[0].addEventListener('click', async () => {
         modals[5].style.display = 'flex';
         modals[2].style.animation = 'closeOpacityModal .3s ease-in-out forwards';
         leftBar[0].style.animation = 'closeSmoothSideBar .5s ease-in-out forwards';
-        
+        cards[5].style.animation = 'none';
+        cards[6].style.animation = 'none';
         textNick[0].innerHTML = dadosUser.nickName
         // imageProfile[0].src = dadosUser.avatar
-
         setTimeout(() => {
             modals[2].style.display = 'none';
         }, 300);
