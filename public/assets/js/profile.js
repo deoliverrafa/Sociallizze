@@ -35,6 +35,10 @@ iconsClose[5].addEventListener('click', () => {
     }
 });
 
+// REMOVER ANIMAÇÕES //
+cards[8].style.animation = 'none';
+cards[9].style.animation = 'none';
+cards[10].style.animation = 'none';
 modals[5].style.height = 'auto';
 // ESCONDER BIO - MOSTRAR BIO //
 if (bioText.length > charLimit) {
