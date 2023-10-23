@@ -44,6 +44,18 @@ html {
     padding: 5px;
     height: auto;
     width: auto;
+    
+    &.container-row {
+        @include display-flex(row, stretch, center);
+    }
+    
+    &.container-column {
+        @include display-flex(column, stretch, center);
+    }
+    
+    &.container-column-center {
+        @include display-flex(column, center, center);
+    }
 }
 
 .card {
@@ -137,5 +149,9 @@ html {
     
     &.profile {
         @include size(6.25rem, 6.25rem);
+    }
+    
+    &.checkmark {
+        @include size(.9375rem, .9375rem);
     }
 }

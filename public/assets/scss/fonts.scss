@@ -74,6 +74,10 @@
     &.city {
         @include display-flex(row, center, center);
     }
+    
+    &.bio {
+        text-wrap: wrap;
+    }
 }
 
 .link {

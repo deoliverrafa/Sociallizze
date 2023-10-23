@@ -34,6 +34,7 @@ header.header {
     @include display-flex(row, space-between, center);
 
     padding: 5px;
+    width: 100%;
 }
 
 .left-bar .header, .left-bar .main, .left-bar .bottom {
@@ -66,5 +67,13 @@ header.header {
 
             @include hover-font($colorBlack);
         }
+    }
+}
+
+.left-bar .header {
+    .card {
+        border-radius: 0;
+        
+        @include display-flex(row, stretch, center);
     }
 }
