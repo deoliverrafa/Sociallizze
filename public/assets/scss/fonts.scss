@@ -74,9 +74,16 @@
     &.city {
         @include display-flex(row, center, center);
     }
+
+    &.more {
+        cursor: pointer;
+    }
     
     &.bio {
         text-wrap: wrap;
+        text-overflow: clip;
+
+        width: clamp(24ch, 24.25ch, 24.5ch);
     }
 }
 

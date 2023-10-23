@@ -4,7 +4,7 @@ import { itens, modals, iconsClose, cards, leftBar, textNick, buttonLogOut, imag
 
 let profileOpen = false;
 let isExpanded = false;
-const charLimit = 35;
+const charLimit = 25;
 const bioText = bio[0].innerText;
 
 itens[0].addEventListener('click', async () => {

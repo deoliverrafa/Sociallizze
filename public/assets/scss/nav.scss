@@ -71,6 +71,10 @@ header.header {
 }
 
 .left-bar .header {
+    @include display-flex(row, center, center);
+    
+    padding: 5px 0 10px 0;
+    width: 100%;
     .card {
         border-radius: 0;
         
