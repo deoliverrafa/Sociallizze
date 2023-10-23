@@ -8,7 +8,6 @@ const getConnection = require('../config/connection');
 const connection = new getConnection()
 const bcrypt = require('bcrypt');
 const multer = require('multer')
-const path = require('path')
 
 // Rota para cadastrar usuário
 router.post('/cadastrar', async (req, res) => {
@@ -108,8 +107,13 @@ router.get('/usuarios', async (req, res) => {
 router.get('/searchById', async (req, res) => {
   try {
     await connection.connect()
+
     const { id } = req.query
+    
     const primaryResult = await context.read({ _id: id })
+
+    console.log(primaryResult)
+    
     const result = primaryResult[0]
 
     res.json(result)
@@ -123,65 +127,61 @@ const storage = multer.memoryStorage(); // Usando memoryStorage para armazenar o
 const upload = multer({ storage: storage });
 
 // Rota para atualizar a imagem de perfil de um usuário
+
 router.put('/updateAvatar', upload.single('avatar'), async (req, res) => {
   try {
-    const userId = req.query.userId; // Recupere o ID do usuário dos parâmetros da consulta
-    const avatar = req.file; // Recupere o arquivo de imagem do corpo da solicitação
-
-    // console.log("Avatar", avatar)
-    // console.log("Id Usuário --> ", userId)
+    const userId = req.query.userId;
+    const avatar = req.file;
 
     if (!userId || !avatar) {
       return res.status(400).json({ error: 'Parâmetros inválidos.' });
     }
 
-    // Verifique se o usuário existe
-    connection.connect();
-    const [usuario] = await context.read({ _id: userId });
+    await connection.connect();
+
+    const usuario = await context.update(userId, {
+      'avatar.contentType': avatar.mimetype,
+      'avatar.filename': avatar.originalname,
+      'avatar.image': avatar.buffer,
+    });
 
     if (!usuario) {
       return res.status(404).json({ error: 'Usuário não encontrado.' });
     }
 
-    // Atualize o campo de avatar do usuário no modelo Mongoose
-    usuario.avatar = {
-      filename: avatar.originalname,
-      contentType: avatar.mimetype,
-      image: avatar.buffer, // Use o buffer do arquivo como os dados da imagem
-    };
-
-    console.log("Usuario --> ", usuario)
-    // Salve as alterações no banco de dados
-    await usuario.save();
-
-    return res.status(200).json({ message: 'Imagem de perfil atualizada com sucesso.' });
+    return res.status(200).json({ message: 'Imagem de perfil atualizada com sucesso.', usuario });
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return res.status(500).json({ error: 'Erro na solicitação' });
   }
 });
-
 
 // Rota para pegar imagem de perfil do usuário
 
 router.get('/getUserImage', async (req, res) => {
   try {
-    await connection.connect()
+    await connection.connect();
 
-    const { userId } = req.query
+    const { userId } = req.query;
 
-    if (!id) {
-      return res.status(404).json({error: "Id nescesário"})
+    if (!userId) {
+      return res.status(404).json({ error: "Id necessário" });
     }
 
-    const user = await context.read({ _id: userId })
+    const [user] = await context.read({ _id: userId });
 
-    const result = user.avatar.image
+    if (!user || !user.avatar || !user.avatar.image) {
+      return res.status(404).json({ error: "Imagem de usuário não encontrada" });
+    }
 
-    return res.json(result)
+    const contentType = user.avatar.contentType;
+
+    res.set('Content-Type', contentType);
+    res.send(user.avatar.image);
   } catch (error) {
-    return res.status(500).json({ error: "Erro na solicitação" })
+    console.log(error);
+    return res.status(500).json({ error: "Erro na solicitação" });
   }
-})
+});
 
 module.exports = router;

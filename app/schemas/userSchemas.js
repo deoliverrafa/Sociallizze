@@ -1,4 +1,5 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+
 const userSchema = mongoose.Schema({
     nickName: {
         type: String,
@@ -8,29 +9,29 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    phoneNumber:{
+    phoneNumber: {
         type: String,
-        required: true,
+        required: false, // Tornar este campo não obrigatório
     },
     email: {
         type: String,
-        required: true,
+        required: false, // Tornar este campo não obrigatório
     },
     password: {
         type: String,
         required: true,
     },
-    birthDayData:{
+    birthDayData: {
         type: String,
     },
     insertAt: {
         type: Date,
         default: () => new Date(),
-        require: false
+        require: false,
     },
     type: {
         type: String,
-        require: false
+        require: false,
     },
     avatar: {
         filename: String,
@@ -39,11 +40,11 @@ const userSchema = mongoose.Schema({
     },
     Nfollowers: {
         type: String,
-        require: false
+        require: false,
     },
-    Nfollowing:{
+    Nfollowing: {
         type: String,
-        require: false
+        require: false,
     },
     messages: [{
         type: mongoose.Schema.Types.ObjectId,
@@ -51,6 +52,6 @@ const userSchema = mongoose.Schema({
     }]
 });
 
-const Usuario = mongoose.model('User', userSchema)
+const Usuario = mongoose.model('User', userSchema);
 
 module.exports = Usuario;
