@@ -1,5 +1,5 @@
 // IMPORTANDO AS VARIAVEIS //
-import { icons, iconsClose, modals, leftBar, logos } from './variables.js';
+import { icons, iconsClose, modals, leftBar, logos, cards } from './variables.js';
 
 const logoAnimate = document.querySelectorAll('.logo-animate');
 let logoCount = 0;
@@ -9,6 +9,7 @@ icons[0].addEventListener('click', () => {
     modals[2].style.display = 'flex';
     modals[2].style.animation = 'opacityModal .3s ease-in-out forwards';
     leftBar[0].style.animation = 'smoothSideBar .5s ease-in-out forwards'; 
+    cards[2].style.animation = 'none';
 });
 
 // FECHAR O MENU //

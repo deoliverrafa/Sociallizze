@@ -1,8 +1,11 @@
 // IMPORTANDO AS VÁRIAVEIS //
 import { getUserData } from '../../../app/models/loginModel.js';
-import { itens, modals, iconsClose, cards, leftBar, textNick, buttonLogOut, imageProfile } from './variables.js';
+import { itens, modals, iconsClose, cards, leftBar, textNick, buttonLogOut, imageProfile, bio, more } from './variables.js';
 
 let profileOpen = false;
+let isExpanded = false;
+const charLimit = 35;
+const bioText = bio[0].innerText;
 
 itens[0].addEventListener('click', async () => {
 
@@ -13,8 +16,8 @@ itens[0].addEventListener('click', async () => {
         modals[5].style.display = 'flex';
         modals[2].style.animation = 'closeOpacityModal .3s ease-in-out forwards';
         leftBar[0].style.animation = 'closeSmoothSideBar .5s ease-in-out forwards';
-        cards[5].style.animation = 'none';
         cards[6].style.animation = 'none';
+        cards[7].style.animation = 'none';
         textNick[0].innerHTML = dadosUser.nickName
         // imageProfile[0].src = dadosUser.avatar
         setTimeout(() => {
@@ -58,4 +61,21 @@ async function loadUserData() {
 async function logOut(){
     localStorage.setItem('userLoggedIn', 'false')
     localStorage.setItem('userId', null)
+}
+
+// ESCONDER BIO - MOSTRAR BIO //
+if (bioText.length > charLimit) {
+    const truncatedText = bioText.slice(0, charLimit) + '...';
+    bio[0].innerText = truncatedText;
+
+    more[0].addEventListener('click', () => {
+        if (isExpanded) {
+            bio[0].innerText = truncatedText;
+            more[0].innerText = 'MAIS';
+        } else {
+            bio[0].innerText = bioText;
+            more[0].innerText = 'MENOS';
+        }
+        isExpanded = !isExpanded;
+    });
 }

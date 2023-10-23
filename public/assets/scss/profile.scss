@@ -31,3 +31,32 @@
         @include display-flex(column, center, center);
     }
 }
+
+.card.profile .header .card .container {
+    cursor: pointer;
+}
+
+.card.profile .bottom {
+    .item {
+        border: 2px solid $colorGray;
+        box-shadow: 3px 3px 10px 0px $colorBlack;
+        color: $colorBlack;
+        cursor: pointer;
+    
+        @include display-flex(row, stretch, center);
+    
+        @include font-size(.875rem);
+        font-family: $fontPrincipal;
+        text-decoration: none;
+    
+        margin: 5px;
+        padding: 10px;
+        width: 90%;
+    
+        @include hover($colorPrimary, $colorBlack);
+        
+        .icon:hover {
+            color: $colorBlack;
+        }
+    }
+}
