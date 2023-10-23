@@ -33,8 +33,9 @@ const userSchema = mongoose.Schema({
         require: false
     },
     avatar: {
-        type: String,
-        require: false
+        filename: String,
+        contentType: String,
+        image: Buffer,
     },
     Nfollowers: {
         type: String,
