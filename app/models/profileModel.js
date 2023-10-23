@@ -1,13 +1,9 @@
 // IMPORTANDO AS VÁRIAVEIS //
 
-import { buttonLogOut, imageProfile, textNick } from "../../public/assets/js/variables";
-import { getUserData, userId } from "./loginModel";
+import { buttonLogOut, imageProfile, showLoginMenu, textNick } from "../../public/assets/js/variables";
+import { getUserData, userId, userLoggedIn } from "./loginModel";
 
-console.log(userId);
-
-if (userId == null || userId == undefined) {
-
-} else {
+if (userId != null || userLoggedIn == 'true') {
     const dadosUser = await getUserData();
     if (dadosUser) {
         textNick[0].innerHTML = dadosUser.nickName;
@@ -16,12 +12,11 @@ if (userId == null || userId == undefined) {
 
     const image = await getUserImage();
     if (image) {
-        const imageUrl = URL.createObjectURL(image); // Converte o blob em uma URL
+        const imageUrl = URL.createObjectURL(image);
         imageProfile[0].src = imageUrl;
         imageProfile[1].src = imageUrl;
     }
 }
-
 
 buttonLogOut[0].addEventListener('click', async () => {
     logOut()
@@ -63,7 +58,7 @@ document.getElementById('avatarForm').addEventListener('submit', async (e) => {
 
 async function logOut() {
     localStorage.setItem('userLoggedIn', 'false')
-    localStorage.setItem('userId', null)
+    localStorage.setItem('userId', 'null')
 }
 
 async function getUserImage() {

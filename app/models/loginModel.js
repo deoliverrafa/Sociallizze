@@ -5,8 +5,7 @@ let count = 0;
 
 const userLoggedIn = localStorage.getItem('userLoggedIn');
 const userId = localStorage.getItem('userId')
-const userName = localStorage.getItem('userName')
-const userEmail = localStorage.getItem('userEmail')
+
 
 document.addEventListener('DOMContentLoaded', () => {
     // LÓGICA PARA APARECER O CARD DE LOGIN //
@@ -121,7 +120,7 @@ if (count == 0) {
 }
 
 function getUserData() {
-    return fetch(`http://localhost:3000/api/searchById?id=${localStorage.getItem('userId')}`, {
+    return fetch(`http://localhost:3000/api/searchById?id=${userId}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -141,4 +140,4 @@ function getUserData() {
             return null;
         });
 }
-export { getUserData, userName, userEmail, userId }
+export { getUserData, userId, userLoggedIn }
