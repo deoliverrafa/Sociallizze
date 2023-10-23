@@ -1,21 +1,16 @@
 // IMPORTANDO AS VÁRIAVEIS //
 
-import { iconsClose, itens, buttonLogOut } from "../../public/assets/js/variables";
+import { buttonLogOut, textNick } from "../../public/assets/js/variables";
 import { getUserData } from "./loginModel";
 
-
-itens[0].addEventListener('click', async () => {
-    console.log("Olá")
-});
-
-iconsClose[5].addEventListener('click', () => {
-
-});
-
+if (localStorage.getItem('userId') != null) {
+    const dadosUser = await getUserData()
+    textNick[0].innerHTML = dadosUser.nickName;
+    textNick[1].innerHTML = dadosUser.nickName;
+}
 
 buttonLogOut[0].addEventListener('click', async () => {
-    const dadosUser = await loadUserData()
-
+    logOut()
     window.location.href = 'index.html'
 })
 
