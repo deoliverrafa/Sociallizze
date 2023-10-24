@@ -22,6 +22,7 @@ const bios = document.querySelectorAll('.bio');
 const mores = document.querySelectorAll('.more');
 const buttonLogOut = document.querySelectorAll('.button.logout')
 const imageProfile = document.querySelectorAll('.image.profile')
+const fabs = document.querySelectorAll('.fab');
 
 // FUNÇÕES //
 let showLoginMenu = (() => {
@@ -119,4 +120,4 @@ let previousButton = ( (count) => {
 });
 
 // EXPORTANDO AS VARIAVEIS //
-export { icons, iconsClose, modals, leftBar, cards, containers, textError, showLoginMenu, showRegisterMenu, closeLoginMenu, closeRegisterMenu, textSuccess, inputs, checkboxs, links, linksRegister, buttonsSelect, buttons, textsCheckbox, previousButton, nextButton, buttonsSubmit, itens, logos, textNick, buttonLogOut, imageProfile, bios, mores };
+export { icons, iconsClose, modals, leftBar, cards, containers, textError, showLoginMenu, showRegisterMenu, closeLoginMenu, closeRegisterMenu, textSuccess, inputs, checkboxs, links, linksRegister, buttonsSelect, buttons, textsCheckbox, previousButton, nextButton, buttonsSubmit, itens, logos, textNick, buttonLogOut, imageProfile, bios, mores, fabs };

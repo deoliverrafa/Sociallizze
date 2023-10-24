@@ -1,6 +1,10 @@
 @import './variables.scss';
 @import './animations.scss';
 
+.card.profile {
+    overflow: auto;
+}
+
 .card.profile .top {
     border: 2px solid $colorGray;
     box-shadow: 3px 3px 10px 0 $colorBlack;
@@ -18,9 +22,24 @@
     @include display-flex(column, center, center);
 
     padding: 5px;
+    
+    .profile {
+        border-radius: 100%;
+    }
 
     .container {
         @include display-flex(row, center, center);
+     
+        .icon {
+                @include font-size(.875rem);
+                
+                margin: 0;
+                padding: 0;
+            }
+            
+            .icon:hover {
+                color: $colorBlack;
+            }
     }
 
     .card {
@@ -47,6 +66,8 @@
         .container {
             border-bottom: 2px solid $colorDarkPrimary;
             border-radius: 0;
+            
+            @include display-flex(row, space-between, center);
         }
     }
 }

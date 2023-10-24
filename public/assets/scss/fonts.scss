@@ -74,10 +74,6 @@
     &.text-checkbox {
         @include display-flex(row, stretch, center);
     }
-    
-    &.city {
-        @include display-flex(row, center, center);
-    }
 
     &.more {
         cursor: pointer;

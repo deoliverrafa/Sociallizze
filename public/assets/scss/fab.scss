@@ -9,7 +9,7 @@ div.fab-container {
     padding: 5px;
     height: auto;
     width: auto;
-    z-index: 999;
+    z-index: 1;
 
     
     .fab {
@@ -29,5 +29,13 @@ div.fab-container {
         .icon {
             color: $colorWhite;
         }
+    }
+    
+    .fab-text, .fab-image, .fab-video, .fab-close {
+        display: none;
+    }
+    
+    .fab-text, .fab-image, .fab-video {
+        animation: scale .3s ease-in-out forwards;
     }
 }

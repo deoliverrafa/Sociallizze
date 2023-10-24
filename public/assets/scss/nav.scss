@@ -8,6 +8,7 @@ header.header {
 
     height: 3.5rem;
     width: 100vw;
+    z-index: 1;
 }
 
 .left-bar {
@@ -75,9 +76,27 @@ header.header {
     
     padding: 5px 0 10px 0;
     width: 100%;
+    
+    .profile {
+        border-radius: 100%;
+    }
+    
     .card {
         border-radius: 0;
         
         @include display-flex(row, stretch, center);
     }
+    
+    .container {
+        .icon {
+                @include font-size(.875rem);
+                
+                margin: 0;
+                padding: 0;
+            }
+            
+            .icon:hover {
+                color: $colorBlack;
+            }
+        }
 }

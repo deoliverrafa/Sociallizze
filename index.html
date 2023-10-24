@@ -122,13 +122,17 @@
                 <div class="card">
                     <img class="image profile" src="./public/assets/images/user/user.png">
                     <div class="container container-column-center">
-                        <p class="text nick">Usuário</p>
-                        <p class="text city text-gray">
+                        <div class="container container-row">
+                            <p class="text nick text-bold">Usuário</p>
+                            <img class="image checkmark" src="./public/assets/images/user/checkmark_blue.png">
+                        </div>
+                        <div class="container container-row">
                             <span class="icon material-symbols-outlined">location_on
-                            </span>Cidade,
-                            <span class="state">ET
                             </span>
-                        </p>
+                            <p class="text city">Cidade</p>
+                            <span>-</span>
+                            <p class="text state">ESTADO</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -231,12 +235,13 @@
                     <p class="text nick text-bold">Usuário</p>
                     <img class="image checkmark" src="./public/assets/images/user/checkmark_blue.png">
                 </div>
-                <p class="text city text-gray">
+                <div class="container container-row">
                     <span class="icon material-symbols-outlined">location_on
-                    </span>Cidade,
-                    <span class="state">ET
                     </span>
-                </p>
+                    <p class="text city">Cidade</p>
+                    <span>-</span>
+                    <p class="text state">ESTADO</p>
+                </div>
                 <div class="card">
                     <div class="container">
                         <p class="text text-bold">Nível</p>
@@ -265,6 +270,7 @@
                 <div class="card">
                     <div class="container">
                         <h2 class="title title-medium title-primary">Texto</h2>
+                       <span class="text more text-primary">MAIS</span>
                     </div>
                     <div class="container">
                         teste teste teste teste
@@ -273,6 +279,7 @@
                 <div class="card">
                     <div class="container">
                         <h2 class="title title-medium title-primary">Fotos</h2>
+                        <span class="text more text-primary">MAIS</span>
                     </div>
                     <div class="container">
                         teste teste teste teste
@@ -281,6 +288,7 @@
                 <div class="card">
                     <div class="container">
                         <h2 class="title title-medium title-primary">Videos</h2>
+                        <span class="text more text-primary">MAIS</span>
                     </div>
                     <div class="container">
                         teste teste teste teste
@@ -313,16 +321,19 @@
 
     <!-- BOTÃO DE FAB -->
     <div class="fab-container">
-        <a class="fab fab-text" href="">
+        <a class="fab fab-text" href="#">
             <span class="icon material-symbols-outlined">text_fields</span>
         </a>
-        <a class="fab fab-image" href="">
+        <a class="fab fab-image" href="#">
             <span class="icon material-symbols-outlined">image</span>
         </a>
-        <a class="fab fab-video" href="">
+        <a class="fab fab-video" href="#">
             <span class="icon material-symbols-outlined">videocam</span>
         </a>
-        <a class="fab" href="">
+        <a class="fab fab-close" href="#">
+            <span class="icon material-symbols-outlined">close</span>
+        </a>
+        <a class="fab fab-add" href="#">
             <span class="icon material-symbols-outlined">add</span>
         </a>
     </div>
@@ -352,6 +363,7 @@
     <script type="module" src="./public/assets/js/nav.js"></script>
     <script type="module" src="./public/assets/js/variables.js"></script>
     <script type="module" src="./public/assets/js/profile.js"></script>
+    <script type="module" src="./public/assets/js/fab.js"></script>
 </body>
 
 </html>

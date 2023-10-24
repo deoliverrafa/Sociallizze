@@ -25,6 +25,7 @@ footer.bottom {
         padding: 5px;
         height: auto;
         width: 80%;
+        z-index: 1;
         
         &.active {
             background: $colorPrimary;
