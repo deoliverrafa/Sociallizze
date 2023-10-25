@@ -3,6 +3,11 @@
 * {
     margin: 0;
     padding: 0;
+
+    &::selection {
+        color: $colorWhite;
+        background: $colorPrimary;
+    }
 }
 
 body {
@@ -14,10 +19,19 @@ body {
 html {
     height: 100vh;
     width: 100vw;
-    
-    &:selection {
-        background: $colorPrimary;
-    }
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: $colorDarkPrimary;
+}
+
+::-webkit-scrollbar-thumb {
+    background: $colorPrimary;
+    border-radius: 10px;
 }
 
 .modal {
@@ -73,6 +87,16 @@ html {
     height: auto;
     width: auto;
     z-index: 2;
+}
+
+.loading {
+    animation: 1.5s shine linear infinite;
+    
+    color: transparent;
+    background: #EEE;
+    background: linear-gradient(110deg, #ECECEC 8%, #F5F5F5 18%, #ECECEC 33%);
+    border-radius: 5px;
+    background-size: 200%;
 }
 
 .form {

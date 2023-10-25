@@ -130,18 +130,34 @@
             </div>
             <div class="header">
                 <div class="card">
-                    <img class="image profile" src="./public/assets/images/user/user.png">
-                    <div class="container container-column-center">
-                        <div class="container container-row">
-                            <p class="text nick text-bold">Usuário</p>
-                            <img class="image checkmark" src="./public/assets/images/user/checkmark_blue.png">
-                        </div>
+                    <div class="container container-row">
+                        <img class="image profile" src="./public/assets/images/user/user.png">
+                        <div class="container container-column-center">
+                            <div class="container container-row">
+                                <p class="text nick text-bold">Usuário</p>
+                                <img class="image checkmark" src="./public/assets/images/user/checkmark_blue.png">
+                            </div>
                         <div class="container container-row">
                             <span class="icon material-symbols-outlined">location_on
                             </span>
                             <p class="text city">Cidade</p>
                             <span>-</span>
                             <p class="text state">ESTADO</p>
+                        </div>
+                        </div>
+                    </div>
+                    <!-- LOADING -->
+                    <div class="container load container-row">
+                        <img class="image loading profile" src="">
+                        <div class="container container-column-center">
+                            <div class="container container-row">
+                                <p class="text loading">Usuário</p>
+                            </div>
+                            <div class="container container-row">
+                                <p class="text loading">Cidade</p>
+                                <span class="loading">-</span>
+                                <p class="text loading">ESTADO</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -240,30 +256,63 @@
                 <span class="icon icon-close material-symbols-outlined">close</span>
             </div>
             <div class="header">
-                <img class="image profile" src="./public/assets/images/user/user.png" alt="">
-                <div class="container container-row">
-                    <p class="text nick text-bold">Usuário</p>
-                    <img class="image checkmark" src="./public/assets/images/user/checkmark_blue.png">
-                </div>
-                <div class="container container-row">
-                    <span class="icon material-symbols-outlined">location_on
-                    </span>
-                    <p class="text city">Cidade</p>
-                    <span>-</span>
-                    <p class="text state">ESTADO</p>
+                <div class="card">
+                    <div class="container container-column-center">
+                        <img class="image profile" src="./public/assets/images/user/user.png" alt="">
+                        <div class="container container-row">
+                            <p class="text nick text-bold">Usuário</p>
+                            <img class="image checkmark" src="./public/assets/images/user/checkmark_blue.png">
+                        </div>
+                        <div class="container container-row">
+                            <span class="icon material-symbols-outlined">location_on
+                            </span>
+                            <p class="text city">Cidade</p>
+                            <span>-</span>
+                            <p class="text state">ESTADO</p>
+                        </div>
+                    </div>
+                    <!-- LOADING -->
+                    <div class="container load container-column-center">
+                        <img class="image loading profile" src="" alt="">
+                        <div class="container container-row">
+                            <p class="text loading">Usuário</p>
+                        </div>
+                        <div class="container container-row">
+                            <p class="text loading">Cidade</p>
+                            <span class="loading">-</span>
+                            <p class="text loading">ESTADO</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="card">
-                    <div class="container">
-                        <p class="text text-bold">Nível</p>
-                        <p class="text text-gray">Indisponível</p>
+                    <div class="container container-row">
+                        <div class="container container-column-center">
+                            <p class="text text-bold">Nível</p>
+                            <p class="text text-gray">Indisponível</p>
+                        </div>
+                        <div class="container container-column-center">
+                            <p class="text text-bold">Seguidores</p>
+                            <p class="text text-gray">1000</p>
+                        </div>
+                        <div class="container container-column-center">
+                            <p class="text text-bold">Seguindo</p>
+                            <p class="text text-gray">1000</p>
+                        </div>
                     </div>
-                    <div class="container">
-                        <p class="text text-bold">Seguidores</p>
-                        <p class="text text-gray">1000</p>
-                    </div>
-                    <div class="container">
-                        <p class="text text-bold">Seguindo</p>
-                        <p class="text text-gray">1000</p>
+                    <!-- LOADING -->
+                    <div class="container load container-row">
+                        <div class="container container-column-center">
+                            <p class="text loading">Nível</p>
+                            <p class="text loading">Indisponível</p>
+                        </div>
+                        <div class="container container-column-center">
+                            <p class="text loading">Seguidores</p>
+                            <p class="text loading">1000</p>
+                        </div>
+                        <div class="container container-column-center">
+                            <p class="text loading">Seguindo</p>
+                            <p class="text loading">1000</p>
+                        </div>
                     </div>
                 </div>
                 <div class="card">
@@ -347,26 +396,6 @@
             <span class="icon material-symbols-outlined">add</span>
         </a>
     </div>
-    
-    <!-- BOTTOM -->
-    <footer class="bottom">
-        <a class="bottom-item active" href="../index.html">
-            <span class="icon material-symbols-outlined">home</span>
-            Início
-        </a>
-        <a class="bottom-item" href="">
-            <span class="icon material-symbols-outlined">chat</span>
-            Mensagens
-        </a>
-        <a class="bottom-item" href="">
-            <span class="icon material-symbols-outlined">communities</span>
-            Comunidades
-        </a>
-        <a class="bottom-item" href="./views/public/friends.html">
-            <span class="icon material-symbols-outlined">group</span>
-            Amigos
-        </a>
-    </footer>
 
     <!-- IMPORTANDO OS SCRIPTS -->
     <script src="./app/webpack/bundle.js"></script>

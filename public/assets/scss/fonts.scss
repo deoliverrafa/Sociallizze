@@ -80,6 +80,8 @@
     }
     
     &.bio {
+        @include display-flex(column, center, center);
+        
         text-wrap: wrap;
         text-overflow: clip;
 

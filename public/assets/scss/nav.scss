@@ -84,7 +84,7 @@ header.header {
     .card {
         border-radius: 0;
         
-        @include display-flex(row, stretch, center);
+        @include display-flex(column, stretch, center);
     }
     
     .container {

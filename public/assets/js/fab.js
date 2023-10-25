@@ -1,5 +1,9 @@
 // IMPORTANDO AS VARIÁVEIS//
-import { fabs } from './variables.js';
+import { fabs, icons } from './variables.js';
+
+// Correção FAB
+
+icons[27].style.fontSize = '1.87rem';
 
 // MOSTRAR OS FABS //
 fabs[4].addEventListener('click', () => {
@@ -8,7 +12,7 @@ fabs[4].addEventListener('click', () => {
     fabs[2].style.display = 'flex';
     fabs[3].style.display = 'flex';
     fabs[4].style.display = 'none';
-    fabs[3].style.animation = 'rotate .3s ease-in-out forwards';
+    icons[27].style.animation = 'rotate .3s ease-in-out forwards';
 });
 
 // ESCONDER OS FABS //
@@ -18,5 +22,5 @@ fabs[3].addEventListener('click', () => {
     fabs[2].style.display = 'none';
     fabs[3].style.display = 'none';
     fabs[4].style.display = 'flex';
-    fabs[4].style.animation = 'rotate .3s ease-in-out forwards';
+    icons[26].style.animation = 'rotate .3s ease-in-out forwards';
 });

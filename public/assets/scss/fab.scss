@@ -2,9 +2,11 @@
 @import './animations.scss';
 
 div.fab-container {
+    @include display-flex(column, center, center);
+
     position: absolute;
-    bottom: clamp(15vh, 16vh, 17vh);
-    right: clamp(15vw, 16vw, 17vw);
+    bottom: clamp(6vh, 7vh, 8vh);
+    right: clamp(6vw, 7vw, 8vw);
 
     padding: 5px;
     height: auto;
@@ -28,6 +30,8 @@ div.fab-container {
 
         .icon {
             color: $colorWhite;
+
+            font-weight: bold;
         }
     }
     
