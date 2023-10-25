@@ -63,6 +63,9 @@ buttons[1].addEventListener('click', (event) => {
                 closeRegisterMenu()
                 modals[3].style.display = 'flex';
                 textSuccess[0].innerHTML = 'Conta Registrada com sucesso!!!'
+                setTimeout(() => {
+                    window.location.href = 'index.html'
+                }, 1500);
             }
 
         })

@@ -8,16 +8,23 @@ const getConnection = require('../config/connection');
 const connection = new getConnection()
 const bcrypt = require('bcrypt');
 const multer = require('multer')
+const validator = require('validator')
 
 // Rota para cadastrar usuário
 router.post('/cadastrar', async (req, res) => {
   try {
     await connection.connect();
-
+    
     const { nickName, userName, phoneNumber, email, password, birthDayData, type } = req.body;
-
+    
     if (!nickName || !userName || !phoneNumber || !email || !password || !birthDayData) {
       return res.status(400).json({ error: 'Preencha tudo Corretamente' });
+    }
+    
+    let isValidEmail = validator.isEmail(email)
+    if (isValidEmail == false) {
+      console.log("entrei aqui")
+      return res.status(400).json({ error: 'Insira um email válido' });
     }
 
     // Verificar se o email, phoneNumber e nickName já estão em uso
@@ -109,9 +116,9 @@ router.get('/searchById', async (req, res) => {
     await connection.connect()
 
     const { id } = req.query
-    
+
     const primaryResult = await context.read({ _id: id })
-    
+
     const result = primaryResult[0]
 
     res.json(result)
