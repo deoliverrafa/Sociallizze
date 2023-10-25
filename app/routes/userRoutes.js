@@ -111,8 +111,6 @@ router.get('/searchById', async (req, res) => {
     const { id } = req.query
     
     const primaryResult = await context.read({ _id: id })
-
-    console.log(primaryResult)
     
     const result = primaryResult[0]
 
