@@ -280,54 +280,54 @@
                             <p class="text loading">ㅤㅤㅤㅤ</p>
                         </div>
                     </div>
-                </div>
-                <div class="card">
-                    <div class="container container-row">
-                        <div class="container container-column-center">
-                            <p class="text text-bold">Nível</p>
-                            <p class="text text-gray">Indisponível</p>
+                    <div class="card">
+                        <div class="container container-row">
+                            <div class="container container-column-center">
+                                <p class="text text-bold">Nível</p>
+                                <p class="text text-gray">Indisponível</p>
+                            </div>
+                            <div class="container container-column-center">
+                                <p class="text text-bold">Seguidores</p>
+                                <p class="text text-gray">1000</p>
+                            </div>
+                            <div class="container container-column-center">
+                                <p class="text text-bold">Seguindo</p>
+                                <p class="text text-gray">1000</p>
+                            </div>
                         </div>
-                        <div class="container container-column-center">
-                            <p class="text text-bold">Seguidores</p>
-                            <p class="text text-gray">1000</p>
-                        </div>
-                        <div class="container container-column-center">
-                            <p class="text text-bold">Seguindo</p>
-                            <p class="text text-gray">1000</p>
+                        <!-- LOADING -->
+                        <div class="container load container-row">
+                            <div class="container container-column-center">
+                                <p class="text loading">ㅤㅤㅤㅤ</p>
+                                <p class="text loading">ㅤㅤㅤㅤㅤㅤㅤㅤ</p>
+                            </div>
+                            <div class="container container-column-center">
+                                <p class="text loading">ㅤㅤㅤㅤㅤㅤㅤ</p>
+                                <p class="text loading">ㅤㅤㅤ</p>
+                            </div>
+                            <div class="container container-column-center">
+                                <p class="text loading">ㅤㅤㅤㅤㅤㅤㅤ</p>
+                                <p class="text loading">ㅤㅤㅤ</p>
+                            </div>
                         </div>
                     </div>
-                    <!-- LOADING -->
-                    <div class="container load container-row">
+                    <div class="card">
+                        <h2 class="title title-medium title-primary">Bio</h2>
                         <div class="container container-column-center">
-                            <p class="text loading">ㅤㅤㅤㅤ</p>
-                            <p class="text loading">ㅤㅤㅤㅤㅤㅤㅤㅤ</p>
+                            <p class="text bio text-bold">
+                                teste
+                            </p>
+                            <span class="text more text-primary">MAIS</span>
                         </div>
-                        <div class="container container-column-center">
-                            <p class="text loading">ㅤㅤㅤㅤㅤㅤㅤ</p>
-                            <p class="text loading">ㅤㅤㅤ</p>
+                        <!-- LOADING -->
+                        <div class="container load container-column-center">
+                            <p class="text bio text-bold">
+                                <span class="loading">ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ</span>
+                                <span class="loading">ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ</span>
+                                <span class="loading">ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ</span>
+                                <span class="loading">ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ</span>
+                            </p>
                         </div>
-                        <div class="container container-column-center">
-                            <p class="text loading">ㅤㅤㅤㅤㅤㅤㅤ</p>
-                            <p class="text loading">ㅤㅤㅤ</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <h2 class="title title-medium title-primary">Bio</h2>
-                    <div class="container container-column-center">
-                        <p class="text bio text-bold">
-                            teste
-                        </p>
-                        <span class="text more text-primary">MAIS</span>
-                    </div>
-                    <!-- LOADING -->
-                    <div class="container load container-column-center">
-                        <p class="text bio text-bold">
-                            <span class="loading">ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ</span>
-                            <span class="loading">ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ</span>
-                            <span class="loading">ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ</span>
-                            <span class="loading">ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ</span>
-                        </p>
                     </div>
                 </div>
             </div>
@@ -413,6 +413,7 @@
             </div>
             <div class="header">
                 <div class="container container-column-center">
+                    <h2 class="title title-medium title-primary">Perfil</h2>
                     <div class="container container-row">
                         <form class="form" id="avatarForm" enctype="multipart/form-data">
                             <img class="image profile" src="./public/assets/images/user/user.png">
@@ -426,15 +427,21 @@
             </div>
             <div class="main">
                 <div class="container container-column-center">
+                    <h2 class="title title-medium title-primary">Cidade</h2>
+                    <form class="form">
+                        <input class="input" type="text" placeholder="Cidade">
+                    </form>
+                </div>
+                <div class="container container-column-center">
                     <h2 class="title title-medium title-primary">Bio</h2>
                     <form class="form">
-                        <input class="input" type="text" placeholder="(max 100ch)">
+                        <input class="input" type="text" placeholder="max de 100 caracteres">
                     </form>
                 </div>
             </div>
             <div class="bottom">
                 <h2 class="title title-medium title-primary">Senha</h2>
-                <p class="text text-dark-primary">Deseja alterar sua senha? <a class="text text-primary" href="#">Alterar</a></p>
+                <p class="text text-dark-primary">Deseja alterar sua senha? <a class="text alt text-primary" href="#">Alterar</a></p>
                 <form class="form">
                     <div class="container container-column">
                         <input class="input old-password" type="password" placeholder="Senha antiga">

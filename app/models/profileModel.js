@@ -3,7 +3,7 @@
 import { bios, buttonLogOut, containers, imageProfile, loads, textNick, mores } from "../../public/assets/js/variables";
 import { getUserData, userId, userLoggedIn } from "./loginModel";
 
-let dadosUser;
+let dadosUser = null
 
 console.log("Image profile -->", imageProfile)
 
