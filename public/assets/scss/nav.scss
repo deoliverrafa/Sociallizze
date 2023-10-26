@@ -23,6 +23,8 @@ header.header {
     position: absolute;
     top: 0;
     left: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
 
     height: 100%;
     width: auto;

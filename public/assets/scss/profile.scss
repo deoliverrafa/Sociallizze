@@ -2,7 +2,8 @@
 @import './animations.scss';
 
 .card.profile {
-    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .card.profile .top {
