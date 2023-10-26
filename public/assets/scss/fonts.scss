@@ -56,6 +56,10 @@
         color: $colorPrimary;
     }
 
+    &.text-dark-primary {
+        color: $colorDarkPrimary;
+    }
+
     &.text-error {
         color: $colorDanger;
 
@@ -82,10 +86,11 @@
     &.bio {
         @include display-flex(column, center, center);
         
+        text-align: center;
         text-wrap: wrap;
         text-overflow: clip;
 
-        width: clamp(24ch, 24.25ch, 24.5ch);
+        width: 20ch;
     }
 }
 

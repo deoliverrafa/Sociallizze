@@ -55,10 +55,7 @@
         </a>
         <span class="icon material-symbols-outlined">menu</span>
     </header>
-    <form id="avatarForm" enctype="multipart/form-data">
-        <input type="file" name="avatar" id="avatarInput" accept="image/*" required>
-        <button type="submit">Upload de Imagem de Perfil</button>
-      </form>
+    
     <!-- MODAL -->
     <div class="modal">
         <!-- LOGIN -->
@@ -151,12 +148,12 @@
                         <img class="image loading profile" src="">
                         <div class="container container-column-center">
                             <div class="container container-row">
-                                <p class="text loading">ㅤㅤㅤㅤㅤㅤㅤ</p>
+                                <p class="text loading">ㅤㅤㅤㅤㅤ</p>
                             </div>
                             <div class="container container-row">
-                                <p class="text loading">ㅤㅤㅤㅤㅤㅤ</p>
+                                <p class="text loading">ㅤㅤㅤㅤ</p>
                                 <span class="loading">ㅤ</span>
-                                <p class="text loading">ㅤㅤㅤㅤㅤㅤ</p>
+                                <p class="text loading">ㅤㅤㅤㅤ</p>
                             </div>
                         </div>
                     </div>
@@ -275,12 +272,12 @@
                     <div class="container load container-column-center">
                         <img class="image loading profile" src="" alt="">
                         <div class="container container-row">
-                            <p class="text loading">ㅤㅤㅤㅤㅤㅤㅤ</p>
+                            <p class="text loading">ㅤㅤㅤㅤㅤ</p>
                         </div>
                         <div class="container container-row">
-                            <p class="text loading">ㅤㅤㅤㅤㅤㅤ</p>
+                            <p class="text loading">ㅤㅤㅤㅤ</p>
                             <span class="loading">ㅤ</span>
-                            <p class="text loading">ㅤㅤㅤㅤㅤㅤ</p>
+                            <p class="text loading">ㅤㅤㅤㅤ</p>
                         </div>
                     </div>
                 </div>
@@ -302,16 +299,16 @@
                     <!-- LOADING -->
                     <div class="container load container-row">
                         <div class="container container-column-center">
-                            <p class="text loading">Nível</p>
-                            <p class="text loading">Indisponível</p>
+                            <p class="text loading">ㅤㅤㅤㅤ</p>
+                            <p class="text loading">ㅤㅤㅤㅤㅤㅤㅤㅤ</p>
                         </div>
                         <div class="container container-column-center">
-                            <p class="text loading">Seguidores</p>
-                            <p class="text loading">1000</p>
+                            <p class="text loading">ㅤㅤㅤㅤㅤㅤㅤ</p>
+                            <p class="text loading">ㅤㅤㅤ</p>
                         </div>
                         <div class="container container-column-center">
-                            <p class="text loading">Seguindo</p>
-                            <p class="text loading">1000</p>
+                            <p class="text loading">ㅤㅤㅤㅤㅤㅤㅤ</p>
+                            <p class="text loading">ㅤㅤㅤ</p>
                         </div>
                     </div>
                 </div>
@@ -319,20 +316,17 @@
                     <h2 class="title title-medium title-primary">Bio</h2>
                     <div class="container container-column-center">
                         <p class="text bio text-bold">
-                            <span class="bio-paragraph">12345678912345678912</span>
-                            <span class="bio-paragraph">12345678912345678912</span>
-                            <span class="bio-paragraph">12345678912345678912</span>
-                            <span class="bio-paragraph">12345678912345678912</span>
+                            teste
                         </p>
                         <span class="text more text-primary">MAIS</span>
                     </div>
                     <!-- LOADING -->
                     <div class="container load container-column-center">
                         <p class="text bio text-bold">
-                            <span class="loading">12345678912345678912</span>
-                            <span class="loading">12345678912345678912</span>
-                            <span class="loading">12345678912345678912</span>
-                            <span class="loading">12345678912345678912</span>
+                            <span class="loading">ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ</span>
+                            <span class="loading">ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ</span>
+                            <span class="loading">ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ</span>
+                            <span class="loading">ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ</span>
                         </p>
                     </div>
                 </div>
@@ -407,6 +401,58 @@
         <a class="fab fab-add" href="#">
             <span class="icon material-symbols-outlined">add</span>
         </a>
+    </div>
+
+    <!-- MODAL -->
+    <div class="modal">
+        <!-- EDITAR PERFIL -->
+        <div class="card edit">
+            <div class="top">
+                <h1 class="logo">Sociallizze</h1>
+                <span class="icon icon-close material-symbols-outlined">close</span>
+            </div>
+            <div class="header">
+                <div class="container container-column-center">
+                    <div class="container container-row">
+                        <form class="form" id="avatarForm" enctype="multipart/form-data">
+                            <img class="image profile" src="./public/assets/images/user/user.png">
+                            <label class="file file-dark-primary" for="avatarInput" style="bottom: clamp(5px, 6px, 7px);">
+                                <span class="icon material-symbols-outlined">upload</span>
+                            </label>
+                            <input class="file no-text" type="file" name="avatar" id="avatarInput" accept="image/*" placeholder="sesed">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="main">
+                <div class="container container-column-center">
+                    <h2 class="title title-medium title-primary">Bio</h2>
+                    <form class="form">
+                        <input class="input" type="text" placeholder="(max 100ch)">
+                    </form>
+                </div>
+            </div>
+            <div class="bottom">
+                <h2 class="title title-medium title-primary">Senha</h2>
+                <p class="text text-dark-primary">Deseja alterar sua senha? <a class="text text-primary" href="#">Alterar</a></p>
+                <form class="form">
+                    <div class="container container-column">
+                        <input class="input old-password" type="password" placeholder="Senha antiga">
+                        <p class="text text-checkbox"><input class="checkbox" type="checkbox" name="showPassword">Mostrar Senha</p>
+                        <button class="button button-dark-primary" type="button">PRÓXIMO</button>
+                    </div>
+                    <div class="container container-column">
+                        <input class="input new-password" type="password" placeholder="Nova senha">
+                        <input class="input new-password" type="password" placeholder="Repita">
+                        <p class="text text-checkbox"><input class="checkbox" type="checkbox" name="showPassword">Mostrar Senha</p>
+                    </div>
+                </form>
+            </div>
+            <div class="footer">
+                <button class="button cancel button-danger" type="button">CANCELAR</button>
+                <button class="button save button-dark-primary" type="submit">SALVAR</button>
+            </div>
+        </div>
     </div>
 
     <!-- IMPORTANDO OS SCRIPTS -->

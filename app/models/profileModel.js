@@ -1,25 +1,64 @@
 // IMPORTANDO AS VÁRIAVEIS //
 
-import { buttonLogOut, imageProfile, textNick } from "../../public/assets/js/variables";
+import { bios, buttonLogOut, containers, imageProfile, loads, textNick, mores } from "../../public/assets/js/variables";
 import { getUserData, userId, userLoggedIn } from "./loginModel";
 
+let dadosUser;
 
+console.log("Image profile -->", imageProfile)
 
 document.addEventListener('DOMContentLoaded', async () => {
     // LÓGICA PARA PEGAR DADOS DO USUÁRIO //
-
     if (await verifyUserLogged() == true) {
-        const dadosUser = await getUserData();
+
+        dadosUser = await getUserData();
+
         if (dadosUser) {
             textNick[0].innerHTML = dadosUser.nickName;
             textNick[1].innerHTML = dadosUser.nickName;
+            let bioText = bios[0].innerText = dadosUser.bio;
+            let isExpanded = false;
+            const charLimit = 22;
+            // ESCONDER BIO - MOSTRAR BIO //
+            if (bioText.length > charLimit) {
+                const truncatedText = bioText.slice(0, charLimit)
+                bios[0].innerText = truncatedText;
+
+                mores[0].addEventListener('click', () => {
+                    if (isExpanded) {
+                        bios[0].innerText = truncatedText;
+                        mores[0].innerText = 'MAIS';
+                    } else {
+                        bios[0].innerText = bioText;
+                        mores[0].innerText = 'MENOS';
+                    }
+                    isExpanded = !isExpanded;
+                });
+            }
+
+            // Lógica perfil secundário
+            loads[0].style.display = 'none'
+            containers[3].style.display = 'flex'
+
+            // Lógica perfil primário
+            loads[1].style.display = 'none'
+            containers[11].style.display = 'flex'
+
+            // Lógica seguidores
+            loads[2].style.display = 'none'
+            containers[17].style.display = 'flex'
+
+            // Lógica da bio
+            loads[3].style.display = 'none'
+            containers[25].style.display = 'flex'
         }
 
         const image = await getUserImage();
         if (image) {
             const imageUrl = URL.createObjectURL(image);
             imageProfile[0].src = imageUrl;
-            imageProfile[1].src = imageUrl;
+            imageProfile[2].src = imageUrl;
+            imageProfile[4].src = imageUrl;
         }
     }
 })
@@ -68,14 +107,13 @@ async function logOut() {
     localStorage.setItem('userId', 'null')
 }
 
-async function verifyUserLogged(){
+async function verifyUserLogged() {
     let status;
     if (userId == null || userLoggedIn == 'false') {
         status = false
     } else {
         status = true
     }
-
     return status;
 }
 

@@ -2,9 +2,6 @@
 import { itens, modals, iconsClose, cards, leftBar, textNick, buttonLogOut, bios, mores } from './variables.js';
 
 let profileOpen = false;
-let isExpanded = false;
-const charLimit = 20;
-const bioText = bios[0].innerText;
 
 itens[0].addEventListener('click', async () => {
     if (!profileOpen) {
@@ -14,6 +11,7 @@ itens[0].addEventListener('click', async () => {
         leftBar[0].style.animation = 'closeSmoothSideBar .5s ease-in-out forwards';
         cards[6].style.animation = 'none';
         cards[7].style.animation = 'none';
+        cards[11].style.animation = 'none';
 
         setTimeout(() => {
             modals[2].style.display = 'none';
@@ -39,19 +37,7 @@ iconsClose[5].addEventListener('click', () => {
 cards[8].style.animation = 'none';
 cards[9].style.animation = 'none';
 cards[10].style.animation = 'none';
-// ESCONDER BIO - MOSTRAR BIO //
-if (bioText.length > charLimit) {
-    const truncatedText = bioText.slice(0, charLimit) + '...';
-    bios[0].innerText = truncatedText;
 
-    mores[0].addEventListener('click', () => {
-        if (isExpanded) {
-            bios[0].innerText = truncatedText;
-            mores[0].innerText = 'MAIS';
-        } else {
-            bios[0].innerText = bioText;
-            mores[0].innerText = 'MENOS';
-        }
-        isExpanded = !isExpanded;
-    });
+export {
+    profileOpen 
 }

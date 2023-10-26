@@ -93,8 +93,8 @@ html {
     animation: 1.5s shine linear infinite;
     
     color: transparent;
-    background: #EEE;
-    background: linear-gradient(110deg, #ECECEC 8%, #F5F5F5 18%, #ECECEC 33%);
+    background: #9a9a9ad0;
+    background: linear-gradient(110deg, #9a9a9ad0 8%, #939393 18%, #acabab 33%);
     border-radius: 5px;
     background-size: 200%;
 }
@@ -116,6 +116,41 @@ html {
     padding: 5px;
     height: auto;
     width: auto;
+}
+
+.file {
+    border-radius: 100%;
+    cursor: pointer;
+
+    @include display-flex(column, center, center);
+
+    position: absolute;
+
+    @include size(2rem, 2rem);
+
+    .icon {
+        color: $colorWhite;
+
+        &:hover {
+            color: $colorWhite;
+        }
+    }
+
+    &.no-text[type=file] { 
+        color:transparent;
+    }
+
+    &.no-text {
+        visibility:hidden;
+    }
+
+    &.file-primary {
+        background: $colorPrimary;
+    }
+
+    &.file-dark-primary {
+        background: $colorDarkPrimary;
+    }
 }
 
 .date {
@@ -177,6 +212,8 @@ html {
     width: auto;
     
     &.profile {
+        border-radius: 100%;
+
         @include size(6.25rem, 6.25rem);
     }
     
