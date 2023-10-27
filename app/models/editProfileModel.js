@@ -1,5 +1,5 @@
 import { profileOpen } from '../../public/assets/js/profile';
-import { alts, cancels, cards, containers, headers, icons, iconsClose, itens, modals, saves } from "../../public/assets/js/variables";
+import { alts, cancels, cards, containers, headers, icons, iconsClose, itens, modals, saves, imageProfile } from "../../public/assets/js/variables";
 
 const formImage = document.getElementById('avatarForm')
 
@@ -70,6 +70,8 @@ saves[0].addEventListener('click', () => {
 
 console.log("Modais: ", modals)
 
+console.log("Profiles: ", imageProfile);
+
 console.log("Cards: ", cards)
 
 console.log("Iten: ", itens)
@@ -81,3 +83,19 @@ console.log("Icones: ", icons)
 console.log("Container: ", containers)
 
 console.log("Header: ", headers)
+
+//
+const avatarInput = document.getElementById('avatarInput');
+
+avatarInput.addEventListener('change', function() {
+    const file = avatarInput.files[0];
+
+    if (file) {
+        const reader = new FileReader();
+
+        reader.onload = function(event) {
+            imageProfile[4].src = event.target.result;
+        };
+            reader.readAsDataURL(file);
+        }
+    });
