@@ -1,6 +1,7 @@
 import { profileOpen } from '../../public/assets/js/profile';
 import { alts, cancels, cards, containers, headers, icons, iconsClose, itens, modals, saves, imageProfile } from "../../public/assets/js/variables";
 
+let file;
 const formImage = document.getElementById('avatarForm')
 
 console.log(formImage)
@@ -84,18 +85,18 @@ console.log("Container: ", containers)
 
 console.log("Header: ", headers)
 
-//
 const avatarInput = document.getElementById('avatarInput');
 
 avatarInput.addEventListener('change', function() {
-    const file = avatarInput.files[0];
-
+    file = avatarInput.files[0];
     if (file) {
         const reader = new FileReader();
-
+        
         reader.onload = function(event) {
             imageProfile[4].src = event.target.result;
         };
-            reader.readAsDataURL(file);
+        reader.readAsDataURL(file);
+        console.log(file)
         }
     });
+    
