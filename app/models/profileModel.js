@@ -6,7 +6,7 @@ import { getUserData, userId, userLoggedIn } from "./loginModel";
 let dadosUser = null
 
 console.log("Image profile -->", imageProfile)
-
+console.log(dadosUser)
 document.addEventListener('DOMContentLoaded', async () => {
     // LÓGICA PARA PEGAR DADOS DO USUÁRIO //
     if (await verifyUserLogged() == true) {
@@ -52,7 +52,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             loads[3].style.display = 'none'
             containers[25].style.display = 'flex'
         }
-
         const image = await getUserImage();
         if (image) {
             const imageUrl = URL.createObjectURL(image);
@@ -60,6 +59,22 @@ document.addEventListener('DOMContentLoaded', async () => {
             imageProfile[2].src = imageUrl;
             imageProfile[4].src = imageUrl;
         }
+    } else {
+        // Lógica perfil secundário
+        loads[0].style.display = 'flex'
+        containers[3].style.display = 'none'
+
+        // Lógica perfil primário
+        loads[1].style.display = 'flex'
+        containers[11].style.display = 'none'
+
+        // Lógica seguidores
+        loads[2].style.display = 'flex'
+        containers[17].style.display = 'none'
+
+        // Lógica da bio
+        loads[3].style.display = 'flex'
+        containers[25].style.display = 'none'
     }
 })
 
@@ -67,39 +82,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 buttonLogOut[0].addEventListener('click', async () => {
     logOut()
     window.location.href = 'index.html'
-});
-
-// Rota para atualizar a imagem de perfil de um usuário
-document.getElementById('avatarForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    const formData = new FormData();
-    formData.append('avatar', document.getElementById('avatarInput').files[0]);
-
-    // Obtenha o ID do usuário (substitua pelo método real para obtê-lo)
-    const userId = localStorage.getItem('userId');
-
-    await fetch(`http://localhost:3000/api/updateAvatar?userId=${userId}`, {
-        method: 'PUT',
-        body: formData,
-    }).then((response) => {
-        if (!response.ok) {
-            alert('Erro ao atualizar a imagem de perfil');
-        }
-        return response.json();
-    })
-        .then((data) => {
-            if (data.error) {
-                alert('Erro ao pegar dados')
-                console.log(data.error);
-            } else {
-                alert('Foto de perfil atualizada com sucesso');
-            }
-        })
-        .catch((error) => {
-            alert(error.message);
-            console.log(error.error);
-        });
 });
 
 async function logOut() {

@@ -420,7 +420,7 @@
                             <label class="file file-dark-primary" for="avatarInput" style="bottom: clamp(5px, 6px, 7px);">
                                 <span class="icon material-symbols-outlined">upload</span>
                             </label>
-                            <input class="file no-text" type="file" name="avatar" id="avatarInput" accept="image/*" placeholder="sesed">
+                            <input class="file no-text" type="file" name="avatar" id="avatarInput" accept="image/*">
                         </form>
                     </div>
                 </div>
@@ -428,14 +428,14 @@
             <div class="main">
                 <div class="container container-column-center">
                     <h2 class="title title-medium title-primary">Cidade</h2>
-                    <form class="form">
-                        <input class="input" type="text" placeholder="Cidade">
+                    <form class="form" id="cityForm">
+                        <input class="input" id="cityInput" name="city" type="text" placeholder="Cidade">
                     </form>
                 </div>
                 <div class="container container-column-center">
                     <h2 class="title title-medium title-primary">Bio</h2>
-                    <form class="form">
-                        <input class="input" type="text" placeholder="max de 100 caracteres">
+                    <form class="form" id="bioForm">
+                        <input class="input" id="bioInput" name="bio" type="text" placeholder="max de 100 caracteres">
                     </form>
                 </div>
             </div>
