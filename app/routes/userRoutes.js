@@ -189,9 +189,4 @@ router.get('/getUserImage', async (req, res) => {
   }
 });
 
-// ROTA ATUALIZAR PERFIL //
-router.put('/attProfile', async(req, res) => {
-  console.log(req.body);
-});
-
 module.exports = router;
