@@ -2,7 +2,12 @@
 @import './animations.scss';
 
 header.header {
-    box-shadow: 0px 3px 10px 0px rgba(37, 35, 36, 1);
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(10, 10, 10, .3);
 
     @include display-flex(row, space-between, center);
 
@@ -32,7 +37,7 @@ header.header {
 }
 
 .left-bar .top {
-    border-bottom: 2px solid $colorBlack;
+    border-bottom: 1px solid $colorGray;
 
     @include display-flex(row, space-between, center);
 
@@ -41,7 +46,7 @@ header.header {
 }
 
 .left-bar .header, .left-bar .main, .left-bar .bottom {
-    border-bottom: 2px solid $colorGray;
+    border-bottom: 1px solid $colorGray;
 
     @include display-flex(column, stretch, stretch);
 
@@ -49,8 +54,12 @@ header.header {
     height: auto;
     width: 100%;
     .item {
-        border: 2px solid $colorGray;
-        box-shadow: 3px 3px 10px 0px $colorBlack;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(10, 10, 10, .3);
         color: $colorBlack;
         cursor: pointer;
 

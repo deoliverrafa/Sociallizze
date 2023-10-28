@@ -1,38 +1,37 @@
 @import './variables.scss';
 @import './componets.scss';
 
-.card .top {
-    border: 2px solid $colorGray;
-    box-shadow: 3px 3px 10px 0 $colorBlack;
+.card.login, .card.register {
+    background: $colorWhite;
+    
+    .top, .main, .bottom {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(10
+        , 10, 10, 0.3);
+    
+        margin: 5px;
+        padding: 5px;
+    }
+    
+    .top {
+        @include display-flex(row, space-between, center);
+    }
 
-    @include display-flex(row, space-between, center);
+    .main {
+        @include display-flex(column, stretch, stretch);
+    }
 
-    margin: 5px;
-    padding: 5px;
-}
+    .bottom {
+        @include display-flex(column, space-between, center);
+    }
 
-.card .main {
-    border: 2px solid $colorGray;
-    box-shadow: 3px 3px 10px 0 $colorBlack;
-
-    @include display-flex(column, stretch, stretch);
-
-    margin: 5px;
-    padding: 10px;
-}
-
-.card .bottom {
-    border: 2px solid $colorGray;
-    box-shadow: 3px 3px 10px 0 $colorBlack;
-
-    @include display-flex(column, space-between, center);
-
-    margin: 5px;
-    padding: 5px;
-}
-
-.container {
-    &.container-error {
-        display: none;
+    .container {
+        &.container-error {
+            display: none;
+        }
     }
 }
