@@ -1,10 +1,14 @@
 import { profileOpen } from '../../public/assets/js/profile';
 import { alts, cancels, cards, containers, headers, icons, iconsClose, itens, modals, saves, imageProfile } from "../../public/assets/js/variables";
 
-let file;
-const formImage = document.getElementById('avatarForm')
+let avatarFile;
+let cityData;
+let bioData;
 
-console.log(formImage)
+const avatarInput = document.getElementById('avatarInput');
+const bioInput = document.getElementById('bioForm')
+const cityInput = document.getElementById('cityForm')
+
 itens[11].addEventListener('click', async () => {
     modals[6].style.display = 'flex'
     modals[5].style.display = 'none';
@@ -30,44 +34,7 @@ cancels[0].addEventListener('click', () => {
     window.location.href = 'index.html';
 });
 
-saves[0].addEventListener('click', () => {
-    fetch('http://localhost:3000/api/attProfile', {
-        method: 'PUT',
-        body: ''
-    });
-});
-
 // Rota para atualizar a imagem de perfil de um usuário
-
-saves[0].addEventListener('click', () => {
-    let formsData;
-    const userId = localStorage.getItem('userId');
-
-    document.getElementById('avatarForm').addEventListener('submit', async (e) => {
-        e.preventDefault();
-        formsData += new FormData();
-
-        
-        formsData.append('avatar', document.getElementById('avatarInput').files[0]);
-        // Obtenha o ID do usuário (substitua pelo método real para obtê-lo)
-        
-
-        document.getElementById('cityForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            formsData += new FormData();
-            // Obtenha o ID do usuário (substitua pelo método real para obtê-lo)
-        })
-
-        document.getElementById('bioForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            formsData += new FormData();
-            // Obtenha o ID do usuário (substitua pelo método real para obtê-lo)
-
-        })
-    })
-
-    console.log(formsData)
-})
 
 console.log("Modais: ", modals)
 
@@ -85,18 +52,54 @@ console.log("Container: ", containers)
 
 console.log("Header: ", headers)
 
-const avatarInput = document.getElementById('avatarInput');
+avatarInput.addEventListener('change', function () {
+    avatarFile = avatarInput.files[0];
 
-avatarInput.addEventListener('change', function() {
-    file = avatarInput.files[0];
-    if (file) {
+    if (avatarFile) {
         const reader = new FileReader();
-        
-        reader.onload = function(event) {
+
+        reader.onload = function (event) {
             imageProfile[4].src = event.target.result;
         };
-        reader.readAsDataURL(file);
-        console.log(file)
-        }
+        reader.readAsDataURL(avatarFile);
+    }
+});
+
+cityInput.addEventListener('change', () => {
+    cityData = cityInput.firstElementChild.value;
+    console.log("Dados Cidade -->", cityData)
+})
+
+bioInput.addEventListener('change', () => {
+    bioData = bioInput.firstElementChild.value;
+    console.log("Dados bio -->", bioData)
+})
+
+saves[0].addEventListener('click', async () => {
+    const userId = localStorage.getItem('userId');
+
+    const formData = new FormData(); // Use um objeto FormData para enviar a imagem.
+    formData.append('avatar', avatarFile); // Adicione a imagem ao FormData.
+
+    // Adicione os outros dados ao FormData.
+
+    if (bioData !== undefined) {
+        formData.append('bioData', bioData);
+    }
+    if (cityData !== undefined) {
+        formData.append('cityData', cityData);
+    }
+
+    formData.append('userId', userId);
+
+    const response = await fetch('http://localhost:3000/api/attProfile', {
+        method: 'PUT',
+        body: formData, // Use o FormData como corpo da solicitação.
     });
-    
+
+    if (!response.ok) {
+        alert('Erro ao atualizar perfil')
+    } else {
+        window.location.href = 'index.html';
+    }
+});

@@ -5,17 +5,33 @@ import { getUserData, userId, userLoggedIn } from "./loginModel";
 
 let dadosUser = null
 
-console.log("Image profile -->", imageProfile)
-console.log(dadosUser)
 document.addEventListener('DOMContentLoaded', async () => {
     // LÓGICA PARA PEGAR DADOS DO USUÁRIO //
     if (await verifyUserLogged() == true) {
-
         dadosUser = await getUserData();
+
+        console.log(dadosUser)
+        // Lógica perfil secundário
+        loads[0].style.display = 'none'
+        containers[3].style.display = 'flex'
+
+        // Lógica perfil primário
+        loads[1].style.display = 'none'
+        containers[11].style.display = 'flex'
+
+        // Lógica seguidores
+        loads[2].style.display = 'none'
+        containers[17].style.display = 'flex'
+
+        // Lógica da bio
+        loads[3].style.display = 'none'
+        containers[25].style.display = 'flex'
+        
 
         if (dadosUser) {
             textNick[0].innerHTML = dadosUser.nickName;
             textNick[1].innerHTML = dadosUser.nickName;
+
             let bioText = bios[0].innerText = dadosUser.bio;
             let isExpanded = false;
             const charLimit = 22;
@@ -35,23 +51,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                     isExpanded = !isExpanded;
                 });
             }
-
-            // Lógica perfil secundário
-            loads[0].style.display = 'none'
-            containers[3].style.display = 'flex'
-
-            // Lógica perfil primário
-            loads[1].style.display = 'none'
-            containers[11].style.display = 'flex'
-
-            // Lógica seguidores
-            loads[2].style.display = 'none'
-            containers[17].style.display = 'flex'
-
-            // Lógica da bio
-            loads[3].style.display = 'none'
-            containers[25].style.display = 'flex'
         }
+
         const image = await getUserImage();
         if (image) {
             const imageUrl = URL.createObjectURL(image);
@@ -60,19 +61,19 @@ document.addEventListener('DOMContentLoaded', async () => {
             imageProfile[4].src = imageUrl;
         }
     } else {
-        // Lógica perfil secundário
+        // Lógica esconder perfil secundário
         loads[0].style.display = 'flex'
         containers[3].style.display = 'none'
 
-        // Lógica perfil primário
+        // Lógica esconder perfil primário
         loads[1].style.display = 'flex'
         containers[11].style.display = 'none'
 
-        // Lógica seguidores
+        // Lógica esconder seguidores
         loads[2].style.display = 'flex'
         containers[17].style.display = 'none'
 
-        // Lógica da bio
+        // Lógica esconder da bio
         loads[3].style.display = 'flex'
         containers[25].style.display = 'none'
     }
@@ -101,7 +102,6 @@ async function verifyUserLogged() {
 
 async function getUserImage() {
     const userId = localStorage.getItem('userId');
-
     if (!userId) {
         return null;
     }

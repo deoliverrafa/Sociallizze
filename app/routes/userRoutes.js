@@ -14,13 +14,13 @@ const validator = require('validator')
 router.post('/cadastrar', async (req, res) => {
   try {
     await connection.connect();
-    
+
     const { nickName, userName, phoneNumber, email, password, birthDayData, type } = req.body;
-    
+
     if (!nickName || !userName || !phoneNumber || !email || !password || !birthDayData) {
       return res.status(400).json({ error: 'Preencha tudo Corretamente' });
     }
-    
+
     let isValidEmail = validator.isEmail(email)
     if (isValidEmail == false) {
       console.log("entrei aqui")
@@ -116,9 +116,7 @@ router.get('/searchById', async (req, res) => {
     await connection.connect()
 
     const { id } = req.query
-
     const primaryResult = await context.read({ _id: id })
-
     const result = primaryResult[0]
 
     res.json(result)
@@ -126,40 +124,6 @@ router.get('/searchById', async (req, res) => {
     res.status(500).json({ error: 'Erro ao buscar usuario' })
   }
 })
-
-const storage = multer.memoryStorage(); // Usando memoryStorage para armazenar o arquivo como um buffer na memória
-
-const upload = multer({ storage: storage });
-
-// Rota para atualizar a imagem de perfil de um usuário
-
-router.put('/updateAvatar', upload.single('avatar'), async (req, res) => {
-  try {
-    const userId = req.query.userId;
-    const avatar = req.file;
-
-    if (!userId || !avatar) {
-      return res.status(400).json({ error: 'Parâmetros inválidos.' });
-    }
-
-    await connection.connect();
-
-    const usuario = await context.update(userId, {
-      'avatar.contentType': avatar.mimetype,
-      'avatar.filename': avatar.originalname,
-      'avatar.image': avatar.buffer,
-    });
-
-    if (!usuario) {
-      return res.status(404).json({ error: 'Usuário não encontrado.' });
-    }
-
-    return res.status(200).json({ message: 'Imagem de perfil atualizada com sucesso.', usuario });
-  } catch (error) {
-    console.log(error);
-    return res.status(500).json({ error: 'Erro na solicitação' });
-  }
-});
 
 // Rota para pegar imagem de perfil do usuário
 
@@ -186,6 +150,59 @@ router.get('/getUserImage', async (req, res) => {
   } catch (error) {
     console.log(error);
     return res.status(500).json({ error: "Erro na solicitação" });
+  }
+});
+
+const storage = multer.memoryStorage(); // Usando memoryStorage para armazenar o arquivo como um buffer na memória
+
+const upload = multer({ storage: storage });
+
+// Rota para atualizar os Dados do Usuário
+
+router.put('/attProfile', upload.single('avatar'), async (req, res) => {
+    const { bioData, cityData, userId } = req.body;
+    const avatarFile = req.file;
+
+    if (!userId) {
+      return res.status(401).json({ error: 'Não autorizado. Faça o login para alterar o perfil.' });
+    }
+
+    try {
+      await connection.connect();
+
+      const updateData = {}; // Objeto para armazenar os campos que serão atualizados
+
+      if (avatarFile) {
+        if (avatarFile.mimetype) {
+          updateData['avatar.contentType'] = avatarFile.mimetype;
+        }
+        if (avatarFile.originalname) {
+          updateData['avatar.filename'] = avatarFile.originalname;
+        }
+        if (avatarFile.buffer) {
+          updateData['avatar.image'] = avatarFile.buffer;
+        }
+      }
+      
+      if (typeof bioData !== 'undefined') {
+        updateData.bio = bioData;
+      }
+
+      if (typeof cityData !== 'undefined') {
+        updateData.city = cityData;
+      }
+
+      const usuario = await context.update(userId, updateData);
+
+      if (!usuario) {
+        return res.status(404).json({ error: 'Usuário não encontrado.' });
+      }
+
+      return res.status(200).json({ message: 'Imagem de perfil atualizada com sucesso.', usuario });
+
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ error: 'Erro na solicitação' });
   }
 });
 

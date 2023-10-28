@@ -38,11 +38,23 @@ const userSchema = mongoose.Schema({
         contentType: String,
         image: Buffer,
     },
-    Nfollowers: {
+    nFollowers: {
         type: String,
         require: false,
     },
-    Nfollowing: {
+    nFollowing: {
+        type: String,
+        require: false,
+    },
+    city:{
+        type: String,
+        require: false,
+    },
+    state: {
+        type: String,
+        require: false,
+    },
+    bio: {
         type: String,
         require: false,
     },

@@ -119,8 +119,8 @@ if (count == 0) {
     containers[1].style.display = 'none';
 }
 
-function getUserData() {
-    return fetch(`http://localhost:3000/api/searchById?id=${userId}`, {
+async function getUserData() {
+    return await fetch(`http://localhost:3000/api/searchById?id=${userId}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

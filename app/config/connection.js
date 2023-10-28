@@ -17,6 +17,10 @@ class getConnection {
         connection.once('open', () => console.log('DB funcionando'))
         return connection;
     }
+
+    async close() {
+        Mongoose.connection.close();
+    }
 };
 
 module.exports = getConnection;
