@@ -9,6 +9,7 @@ const password = inputs[6]
 const url = `http://localhost:3000/api/cadastrar`
 let id;
 
+
 const userLoggedIn = localStorage.getItem('userLoggedIn');
 
 document.addEventListener('DOMContentLoaded', () => {

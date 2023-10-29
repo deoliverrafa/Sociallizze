@@ -120,13 +120,11 @@ if (count == 0) {
 }
 
 async function getUserData() {
-    return await fetch(`http://localhost:3000/api/searchById`, {
+    return await fetch(`http://localhost:3000/api/searchById?id=${userId}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(userId)
-    })
+        }})
         .then(response => {
             if (!response) {
                 console.log("Erro ao pegar dados do usuário");

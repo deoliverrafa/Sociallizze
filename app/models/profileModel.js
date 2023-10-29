@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (await verifyUserLogged() == true) {
         dadosUser = await getUserData();
 
-        console.log(dadosUser)
         // Lógica perfil secundário
         loads[0].style.display = 'none'
         containers[3].style.display = 'flex'
@@ -107,14 +106,13 @@ async function getUserImage() {
     }
 
     try {
-        const response = await fetch(`http://localhost:3000/api/getUserImage`, {
+        const response = await fetch(`http://localhost:3000/api/getUserImage?userId=${userId}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(userId)
-        }
-        );
+        });
+
         const imageBlob = await response.blob();
         return imageBlob;
     } catch (error) {
