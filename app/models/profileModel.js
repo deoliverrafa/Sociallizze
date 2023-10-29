@@ -107,13 +107,14 @@ async function getUserImage() {
     }
 
     try {
-        const response = await fetch(`http://localhost:3000/api/getUserImage?userId=${userId}`, {
+        const response = await fetch(`http://localhost:3000/api/getUserImage`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
             },
-        });
-
+            body: JSON.stringify(userId)
+        }
+        );
         const imageBlob = await response.blob();
         return imageBlob;
     } catch (error) {
