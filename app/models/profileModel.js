@@ -1,6 +1,6 @@
 // IMPORTANDO AS VÁRIAVEIS //
 
-import { bios, buttonLogOut, containers, imageProfile, loads, textNick, mores } from "../../public/assets/js/variables";
+import { bios, buttonLogOut, containers, imageProfile, loads, mores, textNick } from "../../public/assets/js/variables";
 import { getUserData, userId, userLoggedIn } from "./loginModel";
 
 let dadosUser = null
@@ -106,7 +106,7 @@ async function getUserImage() {
     }
 
     try {
-        const response = await fetch(`http://localhost:3000/api/getUserImage?userId=${userId}`, {
+        const response = await fetch(`http://54.94.41.85:3000/api/getUserImage?userId=${userId}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

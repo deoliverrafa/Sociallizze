@@ -1,5 +1,5 @@
 // IMPORTANDO AS VÁRIAVEIS //
-import { nextButton, previousButton, iconsClose, containers, showLoginMenu, showRegisterMenu, closeLoginMenu, closeRegisterMenu, inputs, checkboxs, linksRegister, buttonsSelect, textsCheckbox, buttonsSubmit, modals, textSuccess } from '../../public/assets/js/variables.js';
+import { buttonsSelect, buttonsSubmit, checkboxs, closeLoginMenu, closeRegisterMenu, containers, iconsClose, inputs, linksRegister, modals, nextButton, previousButton, showLoginMenu, showRegisterMenu, textSuccess, textsCheckbox } from '../../public/assets/js/variables.js';
 
 let count = 0;
 
@@ -29,7 +29,7 @@ document.querySelector('.form').addEventListener('submit', function (event) {
     const email = formData.get('email');
     const password = formData.get('password');
 
-    fetch(`http://localhost:3000/api/usuarios?email=${email}&password=${password}`, {
+    fetch(`http://54.94.41.85:3000/api/usuarios?email=${email}&password=${password}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -120,7 +120,7 @@ if (count == 0) {
 }
 
 async function getUserData() {
-    return await fetch(`http://localhost:3000/api/searchById?id=${userId}`, {
+    return await fetch(`http://54.94.41.85:3000/api/searchById?id=${userId}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -140,4 +140,4 @@ async function getUserData() {
             return null;
         });
 }
-export { getUserData, userId, userLoggedIn }
+export { getUserData, userId, userLoggedIn };

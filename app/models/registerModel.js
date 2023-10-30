@@ -1,4 +1,4 @@
-import { buttons, inputs, modals, iconsClose, cards, closeRegisterMenu, textSuccess, containers, textError, textNick, textEmail, showLoginMenu, closeLoginMenu } from "../../public/assets/js/variables.js";
+import { buttons, cards, closeLoginMenu, closeRegisterMenu, containers, iconsClose, inputs, modals, showLoginMenu, textError, textSuccess } from "../../public/assets/js/variables.js";
 
 const birthDayData = document.querySelector('.date')
 const nickName = inputs[2]
@@ -6,7 +6,7 @@ const userName = inputs[3]
 const phoneNumber = inputs[4]
 const email = inputs[5]
 const password = inputs[6]
-const url = `http://localhost:3000/api/cadastrar`
+const url = `http://54.94.41.85:3000/api/cadastrar`
 let id;
 
 

@@ -1,5 +1,5 @@
 import { profileOpen } from '../../public/assets/js/profile';
-import { alts, cancels, cards, containers, headers, icons, iconsClose, itens, modals, saves, imageProfile } from "../../public/assets/js/variables";
+import { alts, cancels, cards, containers, headers, icons, iconsClose, imageProfile, itens, modals, saves } from "../../public/assets/js/variables";
 
 let avatarFile;
 let cityData;
@@ -92,7 +92,7 @@ saves[0].addEventListener('click', async () => {
 
     formData.append('userId', userId);
 
-    const response = await fetch('http://localhost:3000/api/attProfile', {
+    const response = await fetch('http://54.94.41.85:3000/api/attProfile', {
         method: 'PUT',
         body: formData, // Use o FormData como corpo da solicitação.
     });
