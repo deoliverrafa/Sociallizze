@@ -74,6 +74,13 @@
     &.text-gray {
         color: $colorGray;
     }
+    
+    &.text-wrap {
+        text-wrap: wrap;
+        text-overflow: clip;
+        
+        width: 100%;
+    }
 
     &.text-checkbox {
         @include display-flex(row, stretch, center);

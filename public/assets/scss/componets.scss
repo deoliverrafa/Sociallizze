@@ -75,8 +75,6 @@ html {
 }
 
 .card {
-    animation: smoothUpCard .5s ease-in-out forwards;
-    
     background: rgba(255, 255, 255, 0.2);
     border-radius: 10px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -108,9 +106,13 @@ html {
 }
 
 .input {
-    border: 2px solid $colorGray;
-    border-radius: 5px;
-    box-shadow: 3px 3px 10px 0 $colorBlack;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(10
+    , 10, 10, 0.3);
     caret-color: $colorPrimary;
     
     @include font-size(.875rem);
@@ -158,9 +160,14 @@ html {
 }
 
 .date {
-    border: 2px solid $colorGray;
-    border-radius: 5px;
-    box-shadow: 3px 3px 10px 0 $colorBlack;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(10
+    , 10, 10, 0.3);
+    
     @include font-size(.875rem);
     font-family: $fontPrincipal;
 
@@ -171,9 +178,13 @@ html {
 }
 
 .button {
-    border: 2px solid $colorBlack;
-    border-radius: 5px;
-    box-shadow: 3px 3px 10px 0 $colorBlack;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(10
+    , 10, 10, 0.3);
     cursor: pointer;
 
     @include font-size(.875rem);

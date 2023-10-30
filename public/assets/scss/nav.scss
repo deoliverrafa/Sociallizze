@@ -79,6 +79,11 @@ header.header {
 
             @include hover-font($colorBlack);
         }
+        
+        &.active {
+            background: $colorPrimary;
+            color: $colorBlack;
+        }
     }
 }
 
@@ -110,4 +115,17 @@ header.header {
                 color: $colorBlack;
             }
         }
+}
+
+// SOBRE //
+header.header.about, header.header.contacts {
+    .container.container-row {
+        @include display-flex(row, stretch, center);
+        
+        a {
+            .icon {
+                margin: 5px;
+            }
+        }
+    }
 }
