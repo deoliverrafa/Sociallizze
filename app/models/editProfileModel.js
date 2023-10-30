@@ -92,7 +92,7 @@ saves[0].addEventListener('click', async () => {
 
     formData.append('userId', userId);
 
-    const response = await fetch('http://54.94.41.85:3000/api/attProfile', {
+    const response = await fetch('https://54.94.41.85:3000/api/attProfile', {
         method: 'PUT',
         body: formData, // Use o FormData como corpo da solicitação.
     });
