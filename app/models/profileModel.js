@@ -106,7 +106,7 @@ async function getUserImage() {
     }
 
     try {
-        const response = await fetch(`https://54.94.41.85:3000/api/getUserImage?userId=${userId}`, {
+        const response = await fetch(`http://54.94.41.85:3000/api/getUserImage?userId=${userId}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

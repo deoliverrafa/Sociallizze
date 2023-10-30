@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 //   });
 
 app.use(cors({
-  origin: ['https://sociallizze.online', 'https://54.94.41.85:5500'],
+  origin: ['https://sociallizze.online', 'http://54.94.41.85:5500'],
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   preflightContinue: false,
   optionsSuccessStatus: 204,

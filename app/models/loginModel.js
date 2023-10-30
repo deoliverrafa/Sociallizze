@@ -29,7 +29,7 @@ document.querySelector('.form').addEventListener('submit', function (event) {
     const email = formData.get('email');
     const password = formData.get('password');
 
-    fetch(`https://54.94.41.85:3000/api/usuarios?email=${email}&password=${password}`, {
+    fetch(`http://54.94.41.85:3000/api/usuarios?email=${email}&password=${password}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -120,7 +120,7 @@ if (count == 0) {
 }
 
 async function getUserData() {
-    return await fetch(`https://54.94.41.85:3000/api/searchById?id=${userId}`, {
+    return await fetch(`http://54.94.41.85:3000/api/searchById?id=${userId}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
