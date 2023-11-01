@@ -30,6 +30,10 @@
     &.icon-big {
         @include font-size(5rem);
     }
+    
+    &.icon-small {
+        @include font-size(.875rem);
+    }
 }
 
 .title {
