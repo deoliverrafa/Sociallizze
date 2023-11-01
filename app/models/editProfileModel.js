@@ -1,5 +1,5 @@
-import { profileOpen } from '../../public/assets/js/profile';
-import { alts, cancels, cards, containers, headers, icons, iconsClose, imageProfile, itens, modals, saves } from "../../public/assets/js/variables";
+import { profileOpen } from './profileModel';
+import { alts, cancels, cards, containers, headers, icons, iconsClose, imageProfile, itens, modals, saves } from "./variables";
 
 let avatarFile;
 let cityData;
@@ -16,7 +16,6 @@ itens[11].addEventListener('click', async () => {
 
 iconsClose[6].addEventListener('click', () => {
     modals[6].style.display = 'none';
-    profileOpen = false;
 });
 
 // ESCONDE OS INPUTS DE TROCAR DE SENHA //

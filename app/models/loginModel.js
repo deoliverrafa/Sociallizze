@@ -1,5 +1,5 @@
 // IMPORTANDO AS VÁRIAVEIS //
-import { buttonsSelect, buttonsSubmit, checkboxs, closeLoginMenu, closeRegisterMenu, containers, iconsClose, inputs, linksRegister, modals, nextButton, previousButton, showLoginMenu, showRegisterMenu, textSuccess, textsCheckbox } from '../../public/assets/js/variables.js';
+import { buttonsSelect, buttonsSubmit, checkboxs, closeLoginMenu, closeRegisterMenu, containers, iconsClose, inputs, linksRegister, modals, nextButton, previousButton, showLoginMenu, showRegisterMenu, textSuccess, textsCheckbox } from './variables.js';
 
 let count = 0;
 
@@ -141,3 +141,4 @@ async function getUserData() {
         });
 }
 export { getUserData, userId, userLoggedIn };
+

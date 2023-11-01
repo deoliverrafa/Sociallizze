@@ -1,6 +1,6 @@
 // IMPORTANDO AS VÁRIAVEIS //
 
-import { bios, buttonLogOut, containers, imageProfile, loads, mores, textNick } from "../../public/assets/js/variables";
+import { bios, buttonLogOut, containers, imageProfile, loads, mores, textNick } from "./variables";
 import { getUserData, userId, userLoggedIn } from "./loginModel";
 
 let dadosUser = null

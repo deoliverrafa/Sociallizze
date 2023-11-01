@@ -64,6 +64,10 @@ html {
     &.container-row {
         @include display-flex(row, stretch, center);
     }
+
+    &.container-row-center {
+        @include display-flex(row, center, center);
+    }
     
     &.container-column {
         @include display-flex(column, stretch, center);
@@ -85,6 +89,7 @@ html {
 
     @include display-flex(column, stretch, stretch);
 
+    margin: 5px 10px;
     padding: 10px;
     height: auto;
     width: auto;
@@ -236,4 +241,16 @@ html {
     &.checkmark {
         @include size(.9375rem, .9375rem);
     }
+}
+
+.scroll {
+    overflow-x: auto;
+}
+
+.overflow-x {
+    overflow-x: auto;
+}
+
+.overflow-y {
+    overflow-y: auto;
 }

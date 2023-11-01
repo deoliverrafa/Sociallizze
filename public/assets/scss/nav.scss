@@ -8,11 +8,16 @@ header.header {
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(10, 10, 10, .3);
-
+    
     @include display-flex(row, space-between, center);
 
-    height: 3.5rem;
-    width: 100vw;
+    position: relative;
+    top: 0;
+    right: 0;
+
+    margin: 5px 10px;
+    height: auto;
+    width: auto;
     z-index: 1;
 }
 

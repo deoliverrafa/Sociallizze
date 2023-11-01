@@ -1,4 +1,4 @@
-import { buttons, cards, closeLoginMenu, closeRegisterMenu, containers, iconsClose, inputs, modals, showLoginMenu, textError, textSuccess } from "../../public/assets/js/variables.js";
+import { buttons, cards, closeLoginMenu, closeRegisterMenu, containers, iconsClose, inputs, modals, showLoginMenu, textError, textSuccess } from "./variables.js";
 
 const birthDayData = document.querySelector('.date')
 const nickName = inputs[2]

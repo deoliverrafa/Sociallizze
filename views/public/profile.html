@@ -49,7 +49,8 @@
     
     <!-- PRINCIPAL -->
     <main class="profile">
-        <div class="card">
+        <div>
+            <!-- PERFIL -->
             <div class="card container container-column-center">
                 <img class="image profile" src="./../../public/assets/images/user/user.png" alt="">
                 <div class="container container-row">
@@ -58,9 +59,9 @@
                 </div>
                 <div class="container container-row">
                     <span class="icon icon-small icon-close material-symbols-outlined">location_on</span>
-                    <p class="text city text-bold">Cidade</p>
+                    <p class="text city">Cidade</p>
                     <span>-</span>
-                    <p class="text state text-bold">Estado</p>
+                    <p class="text state">Estado</p>
                 </div>
                 <!-- LOADING -->
                 <div class="container load container-column-center">
@@ -75,13 +76,61 @@
                     </div>
                 </div>
             </div>
+            <!-- SEGUIDORES -->
+            <div class="card container container-row-center">
+                <div class="container container-column-center">
+                    <p class="text text-bold">Nível</p>
+                    <p class="text level">Indísponivel</p>
+                </div>
+                <div class="container container-column-center">
+                    <p class="text text-bold">Seguidores</p>
+                    <p class="text followers">1000</p>
+                </div>
+                <div class="container container-column-center">
+                    <p class="text text-bold">Seguindo</p>
+                    <p class="text following">100</p>
+                </div>
+            </div>
+            <!-- SUB MENU -->
+            <div class="card container container-row-center">
+                <div class="scroll container container-row">
+                    <div class="item container container-row">
+                        <span class="icon material-symbols-outlined">text_fields</span>
+                        <p class="text text-bold">Postagens</p>
+                    </div>
+                    <div class="item container container-row">
+                        <span class="icon material-symbols-outlined">image</span>
+                        <p class="text text-bold">Fotos</p>
+                    </div>
+                    <div class="item container container-row">
+                        <span class="icon material-symbols-outlined">videocam</span>
+                        <p class="text text-bold">Vídeos</p>
+                    </div>
+                    <div class="item container container-row">
+                        <span class="icon material-symbols-outlined">edit</span>
+                        <p class="text text-bold">Bio</p>
+                    </div>
+                </div>
+            </div>
         </div>
+
+        <!-- BIO -->
+        <!-- <div class="card container container-column-center">
+            <h2 class="title title-primary">BIO</h2>
+            <div class="container container-column-center">
+                <p class="text bio">Indisponivel</p>
+                <p class="text more text-primary">MAIS</p>
+            </div>
+            <div class="container load container-column-center">
+                <p class="text loading">ㅤㅤㅤㅤㅤ</p>
+            </div>
+        </div> -->
     </main>
 
     <!-- IMPORTANDO OS SCRIPTS -->
     <script src="./../../app/webpack/bundle.js"></script>
     <script type="module" src="./../../public/assets/js/nav.js"></script>
-    <script type="module" src="./../../public/assets/js/variables.js"></script>
+    <script type="module" src="././variables.js"></script>
 </body>
 
 </html>
