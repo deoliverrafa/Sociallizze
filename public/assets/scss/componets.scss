@@ -93,14 +93,15 @@ html {
 
 .loading {
     animation: 1.5s shine linear infinite;
-    
+    -webkit-animation: 1.5s shine linear infinite;
+
     color: transparent;
     background: #9a9a9ad0;
     background: linear-gradient(110deg, #9a9a9ad0 8%, #939393 18%, #acabab 33%);
+    background: -o-linear-gradient(340deg, #9a9a9ad0 8%, #939393 18%, #acabab 33%);
     border-radius: 5px;
     background-size: 200%;
 }
-
 .form {
     @include display-flex(column, stretch, stretch);
 }
