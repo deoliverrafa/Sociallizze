@@ -1,5 +1,5 @@
 // IMPORTANDO AS VÁRIAVEIS //
-import { imageProfile, textNick } from "../../public/assets/js/variables";
+import { imageProfile, textNick, itens } from "../../public/assets/js/variables";
 import { getUserData, getUserImage, verifyUserLogged } from "./userFunctions";
 
 let dadosUser = null
@@ -25,3 +25,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 })
+
+// EXIBIR CONTEÚDO NO PERFIL //
+const containerPost = document.querySelectorAll('.post.container');
+containerPost.style.display = 'none';
+
+itens[0].addEventListener('click', () => {
+    containerPost.style.display = 'flex';
+});
