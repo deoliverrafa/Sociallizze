@@ -23,5 +23,5 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 buttonLogOut[0].addEventListener('click', () => {
     logOut()
-    window.location.href = 'index.html'
+    window.location.href = './../../index.html'
 })
