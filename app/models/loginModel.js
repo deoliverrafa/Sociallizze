@@ -74,16 +74,6 @@ checkboxs[1].addEventListener('change', () => {
     }
 });
 
-// FECHAR O MODAL LOGIN //
-iconsClose[0].addEventListener('click', () => {
-    closeLoginMenu();
-});
-
-// FECHAR O MODAL REGISTRO //
-iconsClose[1].addEventListener('click', () => {
-    closeRegisterMenu();
-});
-
 // TRANSIÇÃO TELA DE LOGIN //
 linksRegister[1].addEventListener('click', () => {
     closeRegisterMenu();

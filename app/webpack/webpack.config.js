@@ -1,9 +1,12 @@
 const path = require('path')
 
 module.exports = {
-    entry: './controller.js',
+    entry: { 
+        index: './indexController.js',
+        profile: './profileController.js'},
+
     output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, '')
+        filename: '[name].bundle.js',
+        path: path.resolve(__dirname, '../../public/assets/js')
     }
 }

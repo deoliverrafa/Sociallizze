@@ -1,9 +1,11 @@
 // IMPORTANDO AS VÁRIAVEIS //
 
-import { bios, buttonLogOut, containers, imageProfile, textNick } from "../../public/assets/js/variables";
+import { bios, buttonLogOut, containers, icons, iconsClose, imageProfile, textNick } from "../../public/assets/js/variables";
 import { getUserData, userId, userLoggedIn } from "./loginModel";
 
 let dadosUser = null
+
+console.log(iconsClose);
 
 document.addEventListener('DOMContentLoaded', async () => {
     // LÓGICA PARA PEGAR DADOS DO USUÁRIO //
@@ -13,26 +15,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (dadosUser) {
             textNick[0].innerHTML = dadosUser.nickName;
             textNick[1].innerHTML = dadosUser.nickName;
-
-            let bioText = bios[0].innerText = dadosUser.bio;
-            let isExpanded = false;
-            const charLimit = 22;
-            // ESCONDER BIO - MOSTRAR BIO //
-            if (bioText.length > charLimit) {
-                const truncatedText = bioText.slice(0, charLimit)
-                bios[0].innerText = truncatedText;
-
-                mores[0].addEventListener('click', () => {
-                    if (isExpanded) {
-                        bios[0].innerText = truncatedText;
-                        mores[0].innerText = 'MAIS';
-                    } else {
-                        bios[0].innerText = bioText;
-                        mores[0].innerText = 'MENOS';
-                    }
-                    isExpanded = !isExpanded;
-                });
-            }
         }
 
         const image = await getUserImage();
@@ -42,31 +24,15 @@ document.addEventListener('DOMContentLoaded', async () => {
             imageProfile[2].src = imageUrl;
             imageProfile[4].src = imageUrl;
         }
-    } else {
-        // Lógica esconder perfil secundário
-        loads[0].style.display = 'flex'
-        containers[3].style.display = 'none'
-
-        // Lógica esconder perfil primário
-        loads[1].style.display = 'flex'
-        containers[11].style.display = 'none'
-
-        // Lógica esconder seguidores
-        loads[2].style.display = 'flex'
-        containers[17].style.display = 'none'
-
-        // Lógica esconder da bio
-        loads[3].style.display = 'flex'
-        containers[25].style.display = 'none'
     }
 })
 
-
-
-buttonLogOut[0].addEventListener('click', async () => {
-    logOut()
-    window.location.href = 'index.html'
-});
+if (window.location.href == "profile.html") {    
+    buttonLogOut[0].addEventListener('click', async () => {
+        logOut()
+        window.location.href = 'index.html'
+    });
+}
 
 async function logOut() {
     localStorage.setItem('userLoggedIn', 'false')
@@ -105,3 +71,45 @@ async function getUserImage() {
         return null;
     }
 }
+
+
+// IMPORTANDO AS VÁRIAVEIS //
+
+let profileOpen = false;
+
+itens[0].addEventListener('click', async () => {
+    if (!profileOpen) {
+        profileOpen = true;
+        modals[5].style.display = 'flex';
+        modals[2].style.animation = 'closeOpacityModal .3s ease-in-out forwards';
+        leftBar[0].style.animation = 'closeSmoothSideBar .5s ease-in-out forwards';
+        cards[6].style.animation = 'none';
+        cards[7].style.animation = 'none';
+        cards[11].style.animation = 'none';
+
+        setTimeout(() => {
+            modals[2].style.display = 'none';
+        }, 300);
+    }
+});
+
+iconsClose[5].addEventListener('click', () => {
+    if (profileOpen) {
+        modals[5].style.animation = 'closeOpacityModal .3s ease-in-out forwards';
+        cards[4].style.animation = 'closeSmoothUpCard .5s ease-in-out forwards';
+        setTimeout(() => {
+            modals[5].style.display = 'none';
+            modals[2].style.display = 'none';
+            cards[4].style.animation = 'smoothUpCard .5s ease-in-out forwards';
+            modals[5].style.animation = 'opacityModal .3s ease-in-out forwards';
+            profileOpen = false;
+        }, 300);
+    }
+});
+
+// REMOVER ANIMAÇÕES //
+cards[8].style.animation = 'none';
+cards[9].style.animation = 'none';
+cards[10].style.animation = 'none';
+
+export {logOut, profileOpen};

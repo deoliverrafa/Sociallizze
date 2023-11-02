@@ -1,9 +1,6 @@
 // IMPORTANDO AS VARIÁVEIS//
 import { fabs, icons } from './variables.js';
 
-// Correção FAB
-
-icons[27].style.fontSize = '1.87rem';
 
 // MOSTRAR OS FABS //
 fabs[4].addEventListener('click', () => {
