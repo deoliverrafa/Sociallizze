@@ -13,7 +13,7 @@ icons[0].addEventListener('click', () => {
 });
 
 // FECHAR O MENU //
-iconsClose[2].addEventListener('click', () => {
+iconsClose[0].addEventListener('click', () => {
     leftBar[0].style.animation = 'closeSmoothSideBar .5s ease-in-out forwards'; 
     modals[2].style.animation = 'closeOpacityModal .3s ease-in-out forwards';
     setTimeout(() => {
