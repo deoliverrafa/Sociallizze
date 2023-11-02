@@ -31,6 +31,10 @@
         @include font-size(5rem);
     }
     
+    &.icon-medium {
+        @include font-size(1rem);
+    }
+    
     &.icon-small {
         @include font-size(.875rem);
     }
