@@ -1,5 +1,5 @@
 // IMPORTANDO AS VÁRIAVEIS //
-import { imageProfile, textNick, itens } from "../../public/assets/js/variables";
+import { imageProfile, textNick, itens, modals, iconsClose } from "../../public/assets/js/variables";
 import { getUserData, getUserImage, verifyUserLogged } from "./userFunctions";
 
 let dadosUser = null
@@ -25,6 +25,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 })
+
+// MOSTRAR - EDITAR PERFIL //
+itens[4].addEventListener('click', () => {
+    modals[0].style.display = 'flex';
+});
+
+// ESCONDER - EDITAR PERFIL //
 
 // EXIBIR CONTEÚDO NO PERFIL //
 const containerPost = document.querySelectorAll('.post.container');
