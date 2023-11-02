@@ -1,5 +1,5 @@
 // IMPORTANDO AS VÁRIAVEIS //
-import { itens, modals, iconsClose, cards, leftBar, textNick, buttonLogOut, bios, mores } from './variables.js';
+import { itens, modals, iconsClose, cards, leftBar, textNick, buttonLogOut, bios, mores } from '../../public/assets/js/variables';
 
 let profileOpen = false;
 
