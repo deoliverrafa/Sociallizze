@@ -19,11 +19,9 @@ const itens = document.querySelectorAll('.item');
 const logos = document.querySelectorAll('.logo');
 const textNick = document.querySelectorAll('.nick')
 const bios = document.querySelectorAll('.bio');
-const mores = document.querySelectorAll('.more');
 const buttonLogOut = document.querySelectorAll('.button.logout')
 const imageProfile = document.querySelectorAll('.image.profile')
 const fabs = document.querySelectorAll('.fab');
-const loads = document.querySelectorAll('.load')
 const headers = document.querySelectorAll('.header')
 const alts = document.querySelectorAll('.alt');
 const cancels = document.querySelectorAll('.cancel');
@@ -125,4 +123,4 @@ let previousButton = ( (count) => {
 });
 
 // EXPORTANDO AS VARIAVEIS //
-export { icons, iconsClose, modals, leftBar, cards, containers, textError, showLoginMenu, showRegisterMenu, closeLoginMenu, closeRegisterMenu, textSuccess, inputs, checkboxs, links, linksRegister, buttonsSelect, buttons, textsCheckbox, previousButton, nextButton, buttonsSubmit, itens, logos, textNick, buttonLogOut, imageProfile, bios, mores, fabs, loads, headers, alts, cancels, saves };
+export { icons, iconsClose, modals, leftBar, cards, containers, textError, showLoginMenu, showRegisterMenu, closeLoginMenu, closeRegisterMenu, textSuccess, inputs, checkboxs, links, linksRegister, buttonsSelect, buttons, textsCheckbox, previousButton, nextButton, buttonsSubmit, itens, logos, textNick, buttonLogOut, imageProfile, bios, fabs, headers, alts, cancels, saves };
