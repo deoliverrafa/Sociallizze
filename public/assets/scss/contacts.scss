@@ -1,2 +1,15 @@
 @import './variables.scss';
 @import './animations.scss';
+
+header.header.contacts {
+    @include display-flex(row, space-between, center);
+    
+    position: relative;
+    top: 0;
+    right: 0;
+    
+    margin: 5px 10px;
+    height: auto;
+    width: auto;
+    z-index: 1;
+}
