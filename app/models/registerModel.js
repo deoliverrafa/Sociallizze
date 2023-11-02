@@ -9,20 +9,15 @@ const password = inputs[6]
 const url = `https://sociallizze-api.up.railway.app/api/cadastrar`
 let id;
 
-// FUNÇÃO AUTO COMPLETAR NOME //
-function autoCompleteNome() {
-    let nomeInput = inputs[3];
-    let nome = nomeInput.value;
-    let partesNome = nome.split(" ");
-
-    for (let i = 0; i < partesNome.length; i++) {
-        if (partesNome[i].length > 0) {
-            partesNome[i] = partesNome[i][0].toUpperCase() + partesNome[i].substring(1).toLowerCase();
-        }
-    }
-    nomeInput.value = partesNome.join(" ");
+// FUNÇÃO AUTO COMPLETAR NÚMERO //
+function regexNumber() {
+    let regexNumber = /(\d{2})(\d{5})(\d{4})/;
+    
+    let numberRegex = phoneNumber.replace(regex, '($1) $2-$3');
+    
+    return numberRegex;
 }
-
+console.log(numberRegex);
 
 const userLoggedIn = localStorage.getItem('userLoggedIn');
 
