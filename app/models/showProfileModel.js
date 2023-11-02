@@ -12,11 +12,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         const image = await getUserImage();
-        if (image.type ='image/png') {
+        if (image.type == "image/png") {
             const imageUrl = URL.createObjectURL(image);
             imageProfile[0].src = imageUrl;
         } else {
-            imageProfile[0].src = 'public/assets/images/user/'
+            imageProfile[0].src = '../../public/assets/images/user/user.png'
         }
     } else {
         window.location.href = '../../index.html'
