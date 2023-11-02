@@ -10,17 +10,17 @@ const url = `https://sociallizze-api.up.railway.app/api/cadastrar`
 let id;
 
 // FUNÇÃO AUTO COMPLETAR NOME //
-function nameAutoComplete() {
-    let nameValue = userName.value;
-    let nameSplit = nameValue.split(' ');
-    
-    for (let i = 0; i < nameSplit.length; i++) {
-        if (nameSplit[i].length > 0) {
-            nameSplit[i] = nameSplit[i].charAt(0).toUpperCase() + nameSplit[i].slice(1).toLowerCase();
+function autoCompleteNome() {
+    let nomeInput = inputs[3];
+    let nome = nomeInput.value;
+    let partesNome = nome.split(" ");
+
+    for (let i = 0; i < partesNome.length; i++) {
+        if (partesNome[i].length > 0) {
+            partesNome[i] = partesNome[i][0].toUpperCase() + partesNome[i].substring(1).toLowerCase();
         }
     }
-
-    userName.value = nameSplit.join(" ");
+    nomeInput.value = partesNome.join(" ");
 }
 
 
