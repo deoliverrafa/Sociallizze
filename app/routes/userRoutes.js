@@ -23,7 +23,6 @@ router.post('/cadastrar', async (req, res) => {
 
     let isValidEmail = validator.isEmail(email)
     if (isValidEmail == false) {
-      console.log("entrei aqui")
       return res.status(400).json({ error: 'Insira um email válido' });
     }
 
