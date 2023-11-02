@@ -9,15 +9,32 @@ const password = inputs[6]
 const url = `https://sociallizze-api.up.railway.app/api/cadastrar`
 let id;
 
-// FUNÇÃO AUTO COMPLETAR NÚMERO //
-function regexNumber() {
+// REGEX - FORMATAR NÚMERO //
+function formatPhoneNumber() {
     let regexNumber = /(\d{2})(\d{5})(\d{4})/;
-    
-    let numberRegex = phoneNumber.replace(regex, '($1) $2-$3');
-    
-    return numberRegex;
+    let formattedNumber = phoneNumber.value.replace(regexNumber, '($1) $2-$3');
+    phoneNumber.value = formattedNumber;
 }
 
+phoneNumber.addEventListener('input', function() {
+    formatPhoneNumber();
+});
+
+// REGEX - FORMATAR NOME //
+function formatName() {
+    let userNameSplit = userName.value.split(' ');
+
+    for (let i = 0; i < userNameSplit.length; i++) {
+        userNameSplit[i] = userNameSplit[i].charAt(0).toUpperCase() + userNameSplit[i].slice(1);
+    }
+
+    let formattedName = userNameSplit.join(' ');
+    userName.value = formattedName;
+}
+
+userName.addEventListener('input', function() {
+    formatName();
+});
 
 const userLoggedIn = localStorage.getItem('userLoggedIn');
 
