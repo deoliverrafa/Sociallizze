@@ -15,10 +15,15 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         const image = await getUserImage();
-        if (image) {
+
+        console.log(image)
+        if (image.type == "image/png") {
             const imageUrl = URL.createObjectURL(image);
             imageProfile[0].src = imageUrl;
             imageProfile[1].src = imageUrl;
+        } else {
+            imageProfile[0].src = 'public/assets/images/user/user.png'
+            imageProfile[1].src = 'public/assets/images/user/user.png'
         }
     }
 })
