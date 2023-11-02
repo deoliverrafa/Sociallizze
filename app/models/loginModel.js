@@ -9,11 +9,11 @@ const userId = localStorage.getItem('userId')
 
 document.addEventListener('DOMContentLoaded', () => {
     // LÓGICA PARA APARECER O CARD DE LOGIN //
-    
+
     if (userLoggedIn == 'true' && localStorage.getItem('userId') == null) {
         localStorage.setItem('userLoggedIn', 'false')
     }
-    
+
     if (userLoggedIn !== 'true') {
         showLoginMenu();
     } else {
@@ -114,7 +114,8 @@ async function getUserData() {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-        }})
+        }
+    })
         .then(response => {
             if (!response) {
                 console.log("Erro ao pegar dados do usuário");
