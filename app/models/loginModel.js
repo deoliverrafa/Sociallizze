@@ -1,5 +1,5 @@
 // IMPORTANDO AS VÁRIAVEIS //
-import { buttonsSelect, buttonsSubmit, checkboxs, closeLoginMenu, closeRegisterMenu, containers, iconsClose, inputs, linksRegister, modals, nextButton, previousButton, showLoginMenu, showRegisterMenu, textSuccess, textsCheckbox } from './variables.js';
+import { buttonsSelect, buttonsSubmit, checkboxs, closeLoginMenu, closeRegisterMenu, containers, iconsClose, inputs, linksRegister, modals, nextButton, previousButton, showLoginMenu, showRegisterMenu, textSuccess, textsCheckbox } from '../../public/assets/js/variables';
 
 let count = 0;
 

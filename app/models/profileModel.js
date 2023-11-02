@@ -1,6 +1,6 @@
 // IMPORTANDO AS VÁRIAVEIS //
 
-import { bios, buttonLogOut, containers, imageProfile, loads, mores, textNick } from "./variables";
+import { bios, buttonLogOut, containers, imageProfile, loads, mores, textNick } from "../../public/assets/js/variables";
 import { getUserData, userId, userLoggedIn } from "./loginModel";
 
 let dadosUser = null
@@ -77,6 +77,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         containers[25].style.display = 'none'
     }
 })
+
 
 
 buttonLogOut[0].addEventListener('click', async () => {

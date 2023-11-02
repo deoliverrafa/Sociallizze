@@ -1,5 +1,5 @@
 import { profileOpen } from './profileModel';
-import { alts, cancels, cards, containers, headers, icons, iconsClose, imageProfile, itens, modals, saves } from "./variables";
+import { alts, cancels, cards, containers, headers, icons, iconsClose, imageProfile, itens, modals, saves } from "../../public/assets/js/variables";
 
 let avatarFile;
 let cityData;
