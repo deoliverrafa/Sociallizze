@@ -1,5 +1,4 @@
 // IMPORTANDO AS VÁRIAVEIS //
-
 import { imageProfile, showLoginMenu, textNick } from "../../public/assets/js/variables";
 import { getUserData, getUserImage, verifyUserLogged } from "./userFunctions";
 
