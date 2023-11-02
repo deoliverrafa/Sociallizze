@@ -24,6 +24,12 @@ main.profile {
         height: auto;
         width: auto;
     }
+    
+    .button {
+        .icon {
+            color: $colorWhite;
+        }
+    }
 
     .item {
         background: rgba(255, 255, 255, 0.2);
@@ -44,7 +50,7 @@ main.profile {
         margin: 5px;
         padding: 10px;
         height: auto;
-        width: auto;
+        width: 90%;
 
         @include hover($colorPrimary, $colorBlack);
 
