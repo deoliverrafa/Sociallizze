@@ -108,28 +108,4 @@ if (count == 0) {
     textsCheckbox[1].style.display = 'none';
     containers[1].style.display = 'none';
 }
-
-async function getUserData() {
-    return await fetch(`https://sociallizze-api.up.railway.app/api/searchById?id=${userId}`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    })
-        .then(response => {
-            if (!response) {
-                console.log("Erro ao pegar dados do usuário");
-                return null;
-            }
-            return response.json();
-        })
-        .then(data => {
-            return data;
-        })
-        .catch(error => {
-            console.log("Erro ao pegar userData", error);
-            return null;
-        });
-}
-export { getUserData, userId, userLoggedIn };
-
+export { userId, userLoggedIn };

@@ -1,7 +1,7 @@
 // IMPORTANDO AS VÁRIAVEIS //
 
-import { imageProfile, textNick } from "../../public/assets/js/variables";
-import { getUserData } from "./loginModel";
+import { imageProfile, showLoginMenu, textNick } from "../../public/assets/js/variables";
+import { getUserData, getUserImage, verifyUserLogged } from "./userFunctions";
 
 let dadosUser = null
 
@@ -21,7 +21,5 @@ document.addEventListener('DOMContentLoaded', async () => {
             imageProfile[0].src = imageUrl;
             imageProfile[1].src = imageUrl;
         }
-    } else {
-        window.location.href = 'index.html'
     }
 })

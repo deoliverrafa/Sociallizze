@@ -1,22 +1,27 @@
 // Lógica para aparecer dados do usuário no perfil extendido
+import { buttonLogOut, imageProfile, textNick } from "../../public/assets/js/variables";
+import { getUserData, getUserImage, logOut, verifyUserLogged } from "./userFunctions";
 
 document.addEventListener('DOMContentLoaded', async () => {
     // LÓGICA PARA PEGAR DADOS DO USUÁRIO //
     if (await verifyUserLogged() == true) {
         let dadosUser = await getUserData();
 
-        console.log(dadosUser)
         if (dadosUser) {
-            textNick[1].innerHTML = dadosUser.nickName;
+            textNick[0].innerHTML = dadosUser.nickName;
         }
 
         const image = await getUserImage();
         if (image) {
             const imageUrl = URL.createObjectURL(image);
             imageProfile[0].src = imageUrl;
-            imageProfile[1].src = imageUrl;
         }
     } else {
         window.location.href = 'index.html'
     }
+})
+
+buttonLogOut[0].addEventListener('click', () => {
+    logOut()
+    window.location.href = 'index.html'
 })
