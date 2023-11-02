@@ -5,8 +5,6 @@ import { getUserData, userId, userLoggedIn } from "./loginModel";
 
 let dadosUser = null
 
-console.log(imageProfile)
-console.log(textNick)
 
 document.addEventListener('DOMContentLoaded', async () => {
     // LÓGICA PARA PEGAR DADOS DO USUÁRIO //
