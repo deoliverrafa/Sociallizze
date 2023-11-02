@@ -17,11 +17,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             imageProfile[0].src = imageUrl;
         }
     } else {
-        window.location.href = 'index.html'
+        window.location.href = '../../index.html'
     }
 })
 
 buttonLogOut[0].addEventListener('click', () => {
     logOut()
-    window.location.href = 'index.html'
+    window.location.href = '../../index.html'
 })
