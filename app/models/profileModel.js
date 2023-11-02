@@ -23,8 +23,5 @@ document.addEventListener('DOMContentLoaded', async () => {
             imageProfile[0].src = 'public/assets/images/user/user.png'
             imageProfile[1].src = 'public/assets/images/user/user.png'
         }
-    } else {
-        window.location.href = 'index.html'
     }
-
 })
