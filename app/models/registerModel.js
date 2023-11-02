@@ -17,7 +17,7 @@ function regexNumber() {
     
     return numberRegex;
 }
-console.log(numberRegex);
+
 
 const userLoggedIn = localStorage.getItem('userLoggedIn');
 

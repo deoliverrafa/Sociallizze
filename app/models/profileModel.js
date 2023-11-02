@@ -15,8 +15,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         const image = await getUserImage();
-
-        console.log(image)
         if (image.type == "image/png") {
             const imageUrl = URL.createObjectURL(image);
             imageProfile[0].src = imageUrl;
