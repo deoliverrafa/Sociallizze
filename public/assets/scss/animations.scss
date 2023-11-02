@@ -80,34 +80,6 @@
     }
 }
 
-.success-animation {
-    margin: 150px auto;
-
-    .checkmark {
-        animation: fill .4s ease-in-out .4s forwards;
-        border-radius: 50%;
-        box-shadow: inset 0 0 0 $colorPrimary;
-
-        display: flex;
-        flex-direction: column;
-        flex-wrap: nowrap;
-        justify-content: center;
-        align-items: center;
-
-        margin: auto;
-        height: 100px;
-        width: 100px;
-
-        &.check {
-            animation: smoothSucessSide 1s ease-in-out forwards;
-            
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-    }
-}
-
 @keyframes scale {
     0%, 100% {
         transform: none;
