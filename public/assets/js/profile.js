@@ -1,5 +1,5 @@
 // IMPORTANDO AS VÁRIAVEIS //
-import { itens, modals, iconsClose, cards, leftBar, textNick, buttonLogOut, bios, mores } from './variables.js';
+/*import { itens, modals, iconsClose, cards, leftBar, textNick, buttonLogOut, bios } from './variables.js';
 
 let profileOpen = false;
 
@@ -40,4 +40,4 @@ cards[10].style.animation = 'none';
 
 export {
     profileOpen 
-}
+}*/

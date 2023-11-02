@@ -9,24 +9,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // LÓGICA PARA PEGAR DADOS DO USUÁRIO //
     if (await verifyUserLogged() == true) {
         dadosUser = await getUserData();
-
-        // Lógica perfil secundário
-        loads[0].style.display = 'none'
-        containers[3].style.display = 'flex'
-
-        // Lógica perfil primário
-        loads[1].style.display = 'none'
-        containers[11].style.display = 'flex'
-
-        // Lógica seguidores
-        loads[2].style.display = 'none'
-        containers[17].style.display = 'flex'
-
-        // Lógica da bio
-        loads[3].style.display = 'none'
-        containers[25].style.display = 'flex'
         
-
         if (dadosUser) {
             textNick[0].innerHTML = dadosUser.nickName;
             textNick[1].innerHTML = dadosUser.nickName;
