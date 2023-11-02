@@ -2,7 +2,16 @@
 @import './animations.scss';
 
 header.header.profile {
+    @include display-flex(row, space-between, center);
     
+    position: relative;
+    top: 0;
+    right: 0;
+    
+    margin: 5px 10px;
+    height: auto;
+    width: auto;
+    z-index: 1;
 }
 
 main.profile {
