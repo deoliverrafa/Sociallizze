@@ -25,16 +25,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 })
 
-// MOSTRAR - EDITAR PERFIL //
-itens[4].addEventListener('click', () => {
-    modals[0].style.display = 'flex';
-});
-
-// ESCONDER - EDITAR PERFIL //
-iconsClose[0].addEventListener('click', () => {
-    modals[0].style.display = 'none';
-});
-
 // EXIBIR CONTEÚDO NO PERFIL //
 itens[0].addEventListener('click', () => {
     itens[1].classList.remove('active');
