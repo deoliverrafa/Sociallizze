@@ -63,6 +63,11 @@ main.profile {
 
         @include hover($colorPrimary, $colorBlack);
 
+        &.active {
+            background: $colorPrimary;
+            color: $colorWhite;
+        }
+
         .icon {
             @include font-size(1rem);
 

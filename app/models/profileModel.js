@@ -4,7 +4,6 @@ import { getUserData, getUserImage, verifyUserLogged } from "./userFunctions";
 
 let dadosUser = null
 
-
 document.addEventListener('DOMContentLoaded', async () => {
     // LÓGICA PARA PEGAR DADOS DO USUÁRIO //
     if (await verifyUserLogged() == true) {
@@ -32,11 +31,35 @@ itens[4].addEventListener('click', () => {
 });
 
 // ESCONDER - EDITAR PERFIL //
+iconsClose[0].addEventListener('click', () => {
+    modals[0].style.display = 'none';
+});
 
 // EXIBIR CONTEÚDO NO PERFIL //
-const containerPost = document.querySelectorAll('.post.container');
-containerPost.style.display = 'none';
-
 itens[0].addEventListener('click', () => {
-    containerPost.style.display = 'flex';
+    itens[1].classList.remove('active');
+    itens[2].classList.remove('active');
+    itens[3].classList.remove('active');
+    itens[0].classList.add('active');
+});
+
+itens[1].addEventListener('click', () => {
+    itens[0].classList.remove('active');
+    itens[2].classList.remove('active');
+    itens[3].classList.remove('active');
+    itens[1].classList.add('active');
+});
+
+itens[2].addEventListener('click', () => {
+    itens[0].classList.remove('active');
+    itens[1].classList.remove('active');
+    itens[3].classList.remove('active');
+    itens[2].classList.add('active');
+});
+
+itens[3].addEventListener('click', () => {
+    itens[0].classList.remove('active');
+    itens[1].classList.remove('active');
+    itens[2].classList.remove('active');
+    itens[3].classList.add('active');
 });
