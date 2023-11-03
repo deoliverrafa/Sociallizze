@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         if (dadosUser) {
             textNick[0].innerHTML = dadosUser.nickName;
+            textName[0].innerHTML = dadosUser.userName;
         }
 
         const image = await getUserImage();
@@ -25,11 +26,20 @@ document.addEventListener('DOMContentLoaded', async () => {
 })
 
 // EXIBIR CONTEÚDO NO PERFIL //
+const cardPost = document.querySelectorAll('.card.post');
+const cardPhoto = document.querySelectorAll('.card.photo');
+const cardVideo = document.querySelectorAll('.card.video');
+const cardBio = document.querySelectorAll('.card.bio');
+
 itens[0].addEventListener('click', () => {
     itens[1].classList.remove('active');
     itens[2].classList.remove('active');
     itens[3].classList.remove('active');
     itens[0].classList.add('active');
+    cardPhoto[0].classList.add('container-disable');
+    cardVideo[0].classList.add('container-disable');
+    cardBio[0].classList.add('container-disable');
+    cardPost[0].classList.remove('container-disable');
 });
 
 itens[1].addEventListener('click', () => {
@@ -37,6 +47,10 @@ itens[1].addEventListener('click', () => {
     itens[2].classList.remove('active');
     itens[3].classList.remove('active');
     itens[1].classList.add('active');
+    cardPost[0].classList.add('container-disable');
+    cardVideo[0].classList.add('container-disable');
+    cardBio[0].classList.add('container-disable');
+    cardPhoto[0].classList.remove('container-disable');
 });
 
 itens[2].addEventListener('click', () => {
@@ -44,6 +58,10 @@ itens[2].addEventListener('click', () => {
     itens[1].classList.remove('active');
     itens[3].classList.remove('active');
     itens[2].classList.add('active');
+    cardPost[0].classList.add('container-disable');
+    cardPhoto[0].classList.add('container-disable');
+    cardBio[0].classList.add('container-disable');
+    cardVideo[0].classList.remove('container-disable');
 });
 
 itens[3].addEventListener('click', () => {
@@ -51,6 +69,10 @@ itens[3].addEventListener('click', () => {
     itens[1].classList.remove('active');
     itens[2].classList.remove('active');
     itens[3].classList.add('active');
+    cardPost[0].classList.add('container-disable');
+    cardPhoto[0].classList.add('container-disable');
+    cardVideo[0].classList.add('container-disable');
+    cardBio[0].classList.remove('container-disable');
 });
 
 export {dadosUser}

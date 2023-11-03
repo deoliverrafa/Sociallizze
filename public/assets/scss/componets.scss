@@ -80,6 +80,10 @@ html {
     &.container-row-between {
         @include display-flex(row, space-between, center);
     }
+    
+    &.container-disable {
+        display: none;
+    }
 }
 
 .card {
