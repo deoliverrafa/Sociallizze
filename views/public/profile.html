@@ -114,19 +114,36 @@
                     <p class="text text-bold">Usuário sem postagens</p>
                 </div>
             </div>
+            <!-- FOTOS -->
+            <div class="card post container container-column-center">
+                <div class="card container container-column-center">
+                    <p class="text text-bold">Usuário sem postagens</p>
+                </div>
+            </div>
+            <!-- VIDEOS -->
+            <div class="card post container container-column-center">
+                <div class="card container container-column-center">
+                    <p class="text text-bold">Usuário sem postagens</p>
+                </div>
+            </div>
+            <!-- BIO -->
+            <div class="card post container container-column-center">
+                <div class="card container container-column-center">
+                    <p class="text text-bold">Usuário sem postagens</p>
+                </div>
+            </div>
+            <!-- FAVORITOS -->
             <div class="card container container-column-center">
-                <div class="item">
-                    <span class="icon material-symbols-outlined">edit_square</span>
-                    Editar perfil
-                </div>
-                <div class="item">
-                    <span class="icon material-symbols-outlined">favorite</span>
-                    Curtidos
-                </div>
                 <div class="item">
                     <span class="icon material-symbols-outlined">bookmark</span>
                     Favoritos
                 </div>
+                <!-- CURTIDOS -->
+                <div class="item">
+                    <span class="icon material-symbols-outlined">favorite</span>
+                    Curtidos
+                </div>
+                <!-- BLOQUEADOS -->
                 <div class="item">
                     <span class="icon material-symbols-outlined">block</span>
                     Bloqueados
@@ -140,65 +157,6 @@
             </div>
         </div>
     </main>
-    
-    <!-- MODAL -->
-    <div class="modal">
-        <!-- EDITAR PERFIL -->
-        <div class="card editProfile">
-            <div class="card container container-row-center">
-                <h1 class="logo">Editar Perfil</h1>
-                <span class="icon icon-close material-symbols-outlined">close</span>
-            </div>
-            <div class="card container-container-column-center">
-                <div class="container container-column-center">
-                    <h2 class="title title-medium title-primary">Perfil</h2>
-                    <div class="container container-row">
-                        <form class="form" id="avatarForm" enctype="multipart/form-data">
-                            <img class="image profile" src="../../public/assets/images/user/user.png">
-                            <label class="file file-dark-primary" for="avatarInput" style="bottom: clamp(5px, 6px, 7px);">
-                                <span class="icon material-symbols-outlined">upload</span>
-                            </label>
-                            <input class="file no-text" type="file" name="avatar" id="avatarInput" accept="image/*">
-                        </form>
-                    </div>
-                </div>
-            </div>
-                <div class="card container container-column-center">
-                    <div class="container container-column-center">
-                        <h2 class="title title-medium title-primary">Cidade</h2>
-                        <form class="form" id="cityForm">
-                            <input class="input" id="cityInput" name="city" type="text" placeholder="Cidade">
-                        </form>
-                    </div>
-                    <div class="container container-column-center">
-                        <h2 class="title title-medium title-primary">Bio</h2>
-                        <form class="form" id="bioForm">
-                            <input class="input" id="bioInput" name="bio" type="text" placeholder="max de 100 caracteres">
-                        </form>
-                    </div>
-                </div>
-                <div class="card container container-column-center">
-                    <h2 class="title title-medium title-primary">Senha</h2>
-                    <p class="text text-dark-primary">Deseja alterar sua senha? <a class="text alt text-primary" href="#">Alterar</a></p>
-                    <form class="form">
-                        <div class="container container-column">
-                            <input class="input old-password" type="password" placeholder="Senha antiga">
-                            <p class="text text-checkbox"><input class="checkbox" type="checkbox" name="showPassword">Mostrar Senha</p>
-                            <button class="button button-dark-primary" type="button">PRÓXIMO</button>
-                        </div>
-                        <div class="container container-column">
-                            <input class="input new-password" type="password" placeholder="Nova senha">
-                            <input class="input new-password" type="password" placeholder="Repita">
-                            <p class="text text-checkbox"><input class="checkbox" type="checkbox" name="showPassword">Mostrar Senha</p>
-                        </div>
-                    </form>
-                </div>
-                <div class="card container container-column-center">
-                    <button class="button cancel button-danger" type="button">CANCELAR</button>
-                    <button class="button save button-dark-primary" type="submit">SALVAR</button>
-                </div>
-            </div>
-        </div>
 
     <!-- IMPORTANDO OS SCRIPTS -->
     <script src="../../public/assets/js/profile.bundle.js"></script>
