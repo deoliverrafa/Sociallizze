@@ -10,8 +10,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         dadosUser = await getUserData();
 
         if (dadosUser) {
-            textNick[0].innerHTML = dadosUser.nickName;
-            textName[0].innerHTML = dadosUser.userName;
+            textNick[0].innerHTML = `@${dadosUser.nickName}`;
         }
 
         const image = await getUserImage();

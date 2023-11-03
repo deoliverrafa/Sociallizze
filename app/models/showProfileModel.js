@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (await verifyUserLogged() == true) {
 
         if (dadosUser) {
-            textNick[0].innerHTML = dadosUser.nickName;
+            textNick[0].innerHTML = `@${dadosUser.nickName}`;
         } else {
             textNick[0].innerHTML = 'Usuario'
         }
