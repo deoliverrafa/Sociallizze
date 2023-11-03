@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (image.type == "image/png") {
             const imageUrl = URL.createObjectURL(image);
             imageProfile[0].src = imageUrl;
-            imageProfile[1].src = imageUrl;
         } else {
             imageProfile[0].src = 'public/assets/images/user/user.png'
             imageProfile[1].src = 'public/assets/images/user/user.png'
@@ -63,3 +62,5 @@ itens[3].addEventListener('click', () => {
     itens[2].classList.remove('active');
     itens[3].classList.add('active');
 });
+
+export {dadosUser}

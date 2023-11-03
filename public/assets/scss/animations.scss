@@ -60,9 +60,6 @@
     0% {
         opacity: 0%;
     }
-    50% {
-        opacity: 50%;
-    }
     100% {
         opacity: 100%;
     }
@@ -71,9 +68,6 @@
 @keyframes closeOpacityModal {
     0% {
         opacity: 100%;
-    }
-    50% {
-        opacity: 50%;
     }
     100% {
         opacity: 0%;

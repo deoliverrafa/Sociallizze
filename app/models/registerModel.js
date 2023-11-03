@@ -98,7 +98,7 @@ buttons[1].addEventListener('click', (event) => {
 })
 
 // ESCONDER MODAL DE MENSAGEM DE SUCESSO //
-iconsClose[3].addEventListener('click', () => {
+iconsClose[2].addEventListener('click', () => {
     modals[3].style.animation = 'closeOpacityModal .3s ease-in-out forwards';
     cards[2].style.animation = 'closeSmoothUpCard .5s ease-in-out forwards';
     setTimeout(() => {
