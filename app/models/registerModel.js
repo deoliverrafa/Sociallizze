@@ -104,15 +104,21 @@ if (dates[0]) {
 
 // SELECIONAR NACIONALIDADE //
 let regexNumber = '';
+let regexFormat = '';
+let maxLength = '';
 selects[0].addEventListener('change', function() {
     const nationalitySelected = this.value;
 
     switch (nationalitySelected) {
         case 'BR':
             regexNumber = /(\d{2})(\d{5})(\d{4})/;
+            regexFormat = '($1) $2-$3';
+            maxLength = '13';
             break;
         case 'US':
             regexNumber = /(\d{3})(\d{3})(\d{4})/;
+            regexFormat = '($1) $2-$3';
+            maxLength = '13';
             break;
     }
 });
@@ -120,8 +126,9 @@ selects[0].addEventListener('change', function() {
 // REGEX - FORMATAR NÚMERO
 function formatPhoneNumber() {
     if (regexNumber) {
-        let formattedNumber = phoneNumber.value.replace(regexNumber, '($1) $2-$3');
+        let formattedNumber = phoneNumber.value.replace(regexNumber, regexFormat);
         phoneNumber.value = formattedNumber;
+        phoneNumber.setAttribute('maxlength', maxLength);
     }
 }
 
