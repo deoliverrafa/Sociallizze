@@ -27,6 +27,7 @@ const headers = document.querySelectorAll('.header')
 const alts = document.querySelectorAll('.alt');
 const cancels = document.querySelectorAll('.cancel');
 const saves = document.querySelectorAll('.save');
+const dates = document.querySelectorAll('.date');
 
 // FUNÇÕES //
 let showLoginMenu = (() => {
@@ -64,11 +65,14 @@ let nextButton = ( (count) => {
         buttonsSelect[1].style.alignItems = 'center';
         inputs[2].style.display = 'none';
         inputs[3].style.display = 'none';
-        inputs[4].style.display = 'flex';
-        inputs[5].style.display = 'flex';
-        inputs[6].style.display = 'flex';
-        textsCheckbox[1].style.display = 'flex';
-        containers[1].style.display = 'none';
+        inputs[4].style.display = 'none';
+        inputs[5].style.display = 'none';
+        inputs[6].style.display = 'none';
+        textsCheckbox[1].style.display = 'none';
+        containers[1].style.display = 'flex';
+        containers[1].style.flexDirection = 'column';
+        containers[1].style.justifyContent = 'center';
+        containers[1].style.alignItems = 'center';
     }
     if(count == 2) {
         buttonsSelect[1].style.display = 'flex';
@@ -80,14 +84,11 @@ let nextButton = ( (count) => {
         buttonsSubmit[1].style.alignItems = 'center';
         inputs[2].style.display = 'none';
         inputs[3].style.display = 'none';
-        inputs[4].style.display = 'none';
-        inputs[5].style.display = 'none';
-        inputs[6].style.display = 'none';
-        textsCheckbox[1].style.display = 'none';
-        containers[1].style.display = 'flex';
-        containers[1].style.flexDirection = 'column';
-        containers[1].style.justifyContent = 'center';
-        containers[1].style.alignItems = 'center';
+        inputs[4].style.display = 'flex';
+        inputs[5].style.display = 'flex';
+        inputs[6].style.display = 'flex';
+        textsCheckbox[1].style.display = 'flex';
+        containers[1].style.display = 'none';
     }
 });
 
@@ -115,13 +116,16 @@ let previousButton = ( (count) => {
         buttonsSubmit[1].style.alignItems = 'center';
         inputs[2].style.display = 'none';
         inputs[3].style.display = 'none';
-        inputs[4].style.display = 'flex';
-        inputs[5].style.display = 'flex';
-        inputs[6].style.display = 'flex';
-        textsCheckbox[1].style.display = 'flex';
-        containers[1].style.display = 'none';
+        inputs[4].style.display = 'none';
+        inputs[5].style.display = 'none';
+        inputs[6].style.display = 'none';
+        textsCheckbox[1].style.display = 'none';
+        containers[1].style.display = 'flex';
+        containers[1].style.flexDirection = 'column';
+        containers[1].style.justifyContent = 'center';
+        containers[1].style.alignItems = 'center';
     }
 });
 
 // EXPORTANDO AS VARIAVEIS //
-export { icons, iconsClose, modals, leftBar, cards, containers, textError, showLoginMenu, showRegisterMenu, closeLoginMenu, closeRegisterMenu, textSuccess, inputs, checkboxs, links, linksRegister, buttonsSelect, buttons, textsCheckbox, previousButton, nextButton, buttonsSubmit, itens, logos, textNick, buttonLogOut, imageProfile, bios, fabs, headers, alts, cancels, saves, textName };
+export { icons, iconsClose, modals, leftBar, cards, containers, textError, showLoginMenu, showRegisterMenu, closeLoginMenu, closeRegisterMenu, textSuccess, inputs, checkboxs, links, linksRegister, buttonsSelect, buttons, textsCheckbox, previousButton, nextButton, buttonsSubmit, itens, logos, textNick, buttonLogOut, imageProfile, bios, fabs, headers, alts, cancels, saves, textName, dates };

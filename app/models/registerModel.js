@@ -1,4 +1,4 @@
-import { buttons, cards, closeLoginMenu, closeRegisterMenu, containers, iconsClose, inputs, modals, showLoginMenu, textError, textSuccess } from "../../public/assets/js/variables";
+import { buttons, cards, closeLoginMenu, closeRegisterMenu, containers, iconsClose, inputs, modals, showLoginMenu, textError, textSuccess, dates } from "../../public/assets/js/variables";
 
 const birthDayData = document.querySelector('.date')
 const nickName = inputs[2]
@@ -105,3 +105,26 @@ iconsClose[2].addEventListener('click', () => {
         modals[3].style.display = 'none';
     }, 300);
 });
+
+// DATA MÍNIMA - DATA MÁXIMA //
+if (dates[0]) { 
+    const dateMax = new Date();
+    dateMax.setFullYear(dateMax.getFullYear() - 14);
+    const dateMin = new Date();
+    dateMin.setFullYear(dateMin.getFullYear() - 100);
+        
+    const maxDate = new Date(dateMax);
+    maxDate.setDate(dateMax.getDate());
+    const minDate = new Date(dateMin);
+    minDate.setDate(dateMin.getDate());
+            
+    const dateMaxFormatted = maxDate.toISOString().split('T')[0];
+    const dateMinFormatted = minDate.toISOString().split('T')[0];
+           
+    dates[0].setAttribute('max', dateMaxFormatted);
+    dates[0].setAttribute('min', dateMinFormatted);
+            
+    dates[0].addEventListener('input', function() {
+            const dateSelected = dates[0].value;
+        });
+}
