@@ -1,4 +1,4 @@
-import { buttons, cards, closeLoginMenu, closeRegisterMenu, containers, iconsClose, inputs, modals, showLoginMenu, textError, textSuccess, dates } from "../../public/assets/js/variables";
+import { buttons, cards, closeLoginMenu, closeRegisterMenu, containers, iconsClose, inputs, modals, showLoginMenu, textError, textSuccess, dates, selects } from "../../public/assets/js/variables";
 
 const birthDayData = document.querySelector('.date')
 const nickName = inputs[2]
@@ -8,33 +8,6 @@ const email = inputs[5]
 const password = inputs[6]
 const url = `https://sociallizze-api.up.railway.app/api/cadastrar`
 let id;
-
-// REGEX - FORMATAR NÚMERO //
-function formatPhoneNumber() {
-    let regexNumber = /(\d{2})(\d{5})(\d{4})/;
-    let formattedNumber = phoneNumber.value.replace(regexNumber, '($1) $2-$3');
-    phoneNumber.value = formattedNumber;
-}
-
-phoneNumber.addEventListener('input', function() {
-    formatPhoneNumber();
-});
-
-// REGEX - FORMATAR NOME //
-function formatName() {
-    let userNameSplit = userName.value.split(' ');
-
-    for (let i = 0; i < userNameSplit.length; i++) {
-        userNameSplit[i] = userNameSplit[i].charAt(0).toUpperCase() + userNameSplit[i].slice(1);
-    }
-
-    let formattedName = userNameSplit.join(' ');
-    userName.value = formattedName;
-}
-
-userName.addEventListener('input', function() {
-    formatName();
-});
 
 const userLoggedIn = localStorage.getItem('userLoggedIn');
 
@@ -128,3 +101,46 @@ if (dates[0]) {
             const dateSelected = dates[0].value;
         });
 }
+
+// SELECIONAR NACIONALIDADE //
+let regexNumber = '';
+selects[0].addEventListener('change', function() {
+    const nationalitySelected = this.value;
+
+    switch (nationalitySelected) {
+        case 'BR':
+            regexNumber = /(\d{2})(\d{5})(\d{4})/;
+            break;
+        case 'US':
+            regexNumber = /(\d{3})(\d{3})(\d{4})/;
+            break;
+    }
+});
+
+// REGEX - FORMATAR NÚMERO
+function formatPhoneNumber() {
+    if (regexNumber) {
+        let formattedNumber = phoneNumber.value.replace(regexNumber, '($1) $2-$3');
+        phoneNumber.value = formattedNumber;
+    }
+}
+
+phoneNumber.addEventListener('input', function() {
+    formatPhoneNumber();
+});
+
+// REGEX - FORMATAR NOME //
+function formatName() {
+    let userNameSplit = userName.value.split(' ');
+
+    for (let i = 0; i < userNameSplit.length; i++) {
+        userNameSplit[i] = userNameSplit[i].charAt(0).toUpperCase() + userNameSplit[i].slice(1);
+    }
+
+    let formattedName = userNameSplit.join(' ');
+    userName.value = formattedName;
+}
+
+userName.addEventListener('input', function() {
+    formatName();
+});

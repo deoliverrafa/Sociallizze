@@ -28,6 +28,7 @@ const alts = document.querySelectorAll('.alt');
 const cancels = document.querySelectorAll('.cancel');
 const saves = document.querySelectorAll('.save');
 const dates = document.querySelectorAll('.date');
+const selects = document.querySelectorAll('.select');
 
 // FUNÇÕES //
 let showLoginMenu = (() => {
@@ -128,4 +129,4 @@ let previousButton = ( (count) => {
 });
 
 // EXPORTANDO AS VARIAVEIS //
-export { icons, iconsClose, modals, leftBar, cards, containers, textError, showLoginMenu, showRegisterMenu, closeLoginMenu, closeRegisterMenu, textSuccess, inputs, checkboxs, links, linksRegister, buttonsSelect, buttons, textsCheckbox, previousButton, nextButton, buttonsSubmit, itens, logos, textNick, buttonLogOut, imageProfile, bios, fabs, headers, alts, cancels, saves, textName, dates };
+export { icons, iconsClose, modals, leftBar, cards, containers, textError, showLoginMenu, showRegisterMenu, closeLoginMenu, closeRegisterMenu, textSuccess, inputs, checkboxs, links, linksRegister, buttonsSelect, buttons, textsCheckbox, previousButton, nextButton, buttonsSubmit, itens, logos, textNick, buttonLogOut, imageProfile, bios, fabs, headers, alts, cancels, saves, textName, dates, selects };
