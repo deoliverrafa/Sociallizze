@@ -22,6 +22,10 @@
     margin: 0 5px;
 
     @include hover-font($colorPrimary);
+    
+    &.icon-primary {
+        color: $colorPrimary;
+    }
 
     &.icon-white {
         color: $colorWhite;
