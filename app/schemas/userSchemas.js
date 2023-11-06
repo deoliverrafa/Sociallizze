@@ -21,6 +21,10 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    nacionality: {
+        type: String,
+        require: true,
+    },
     birthDayData: {
         type: String,
     },

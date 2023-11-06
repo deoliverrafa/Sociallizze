@@ -1,6 +1,9 @@
 import { buttons, cards, closeLoginMenu, closeRegisterMenu, containers, iconsClose, inputs, modals, showLoginMenu, textError, textSuccess, dates, selects } from "../../public/assets/js/variables";
 
+console.log(selects)
+
 const birthDayData = document.querySelector('.date')
+const nacionality = selects[0]
 const nickName = inputs[2]
 const userName = inputs[3]
 const phoneNumber = inputs[4]
@@ -20,8 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 })
 
-
-
 buttons[1].addEventListener('click', (event) => {
     event.preventDefault();
 
@@ -32,6 +33,7 @@ buttons[1].addEventListener('click', (event) => {
         email: email.value,
         password: password.value,
         birthDayData: birthDayData.value,
+        nacionality: nacionality.value,
         type: "default",
     };
 
@@ -44,9 +46,8 @@ buttons[1].addEventListener('click', (event) => {
     })
         .then(response => {
             if (!response.ok) {
-                // Tratamento de erro na resposta
-                // console.error('Erro na solicitação: ' + response.status);
-                // res.status(response.status).json({ error: 'Erro na solicitação' });
+                console.error('Erro na solicitação: ' + response.status);
+                res.status(response.status).json({ error: 'Erro na solicitação' });
             }
             return response.json();
         })
@@ -80,33 +81,33 @@ iconsClose[2].addEventListener('click', () => {
 });
 
 // DATA MÍNIMA - DATA MÁXIMA //
-if (dates[0]) { 
+if (dates[0]) {
     const dateMax = new Date();
     dateMax.setFullYear(dateMax.getFullYear() - 14);
     const dateMin = new Date();
     dateMin.setFullYear(dateMin.getFullYear() - 100);
-        
+
     const maxDate = new Date(dateMax);
     maxDate.setDate(dateMax.getDate());
     const minDate = new Date(dateMin);
     minDate.setDate(dateMin.getDate());
-            
+
     const dateMaxFormatted = maxDate.toISOString().split('T')[0];
     const dateMinFormatted = minDate.toISOString().split('T')[0];
-           
+
     dates[0].setAttribute('max', dateMaxFormatted);
     dates[0].setAttribute('min', dateMinFormatted);
-            
-    dates[0].addEventListener('input', function() {
-            const dateSelected = dates[0].value;
-        });
+
+    dates[0].addEventListener('input', function () {
+        const dateSelected = dates[0].value;
+    });
 }
 
 // SELECIONAR NACIONALIDADE //
 let regexNumber = '';
 let regexFormat = '';
 let maxLength = '';
-selects[0].addEventListener('change', function() {
+selects[0].addEventListener('change', function () {
     const nationalitySelected = this.value;
 
     switch (nationalitySelected) {
@@ -132,7 +133,7 @@ function formatPhoneNumber() {
     }
 }
 
-phoneNumber.addEventListener('input', function() {
+phoneNumber.addEventListener('input', function () {
     formatPhoneNumber();
 });
 
@@ -148,6 +149,6 @@ function formatName() {
     userName.value = formattedName;
 }
 
-userName.addEventListener('input', function() {
+userName.addEventListener('input', function () {
     formatName();
 });

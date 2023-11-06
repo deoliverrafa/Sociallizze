@@ -15,9 +15,9 @@ router.post('/cadastrar', async (req, res) => {
   try {
     await connection.connect();
 
-    const { nickName, userName, phoneNumber, email, password, birthDayData, type } = req.body;
+    const { nickName, userName, phoneNumber, email, password, birthDayData, type, nacionality } = req.body;
 
-    if (!nickName || !userName || !phoneNumber || !email || !password || !birthDayData) {
+    if (!nickName || !userName || !phoneNumber || !email || !password || !birthDayData || !nacionality) {
       return res.status(400).json({ error: 'Preencha tudo Corretamente' });
     }
 
@@ -45,7 +45,7 @@ router.post('/cadastrar', async (req, res) => {
 
     const encriptedPass = await bcrypt.hash(password, 5);
 
-    const objectToCad = { nickName, userName, phoneNumber, email, password: encriptedPass, birthDayData, type };
+    const objectToCad = { nickName, userName, phoneNumber, email, password: encriptedPass, birthDayData, type, nacionality };
 
     // cria usuário com as requisições passadas
     const novoUsuario = await context.create(objectToCad);

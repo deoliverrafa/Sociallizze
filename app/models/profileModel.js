@@ -1,25 +1,23 @@
 // IMPORTANDO AS VÁRIAVEIS //
-import { imageProfile, textNick, itens, modals, iconsClose } from "../../public/assets/js/variables";
+import { imageProfile, textNick, itens } from "../../public/assets/js/variables";
 import { getUserData, getUserImage, verifyUserLogged } from "./userFunctions";
 
-let dadosUser = null
 
 document.addEventListener('DOMContentLoaded', async () => {
     // LÓGICA PARA PEGAR DADOS DO USUÁRIO //
     if (await verifyUserLogged() == true) {
-        dadosUser = await getUserData();
-
+       const dadosUser = await getUserData();
+       
         if (dadosUser) {
             textNick[0].innerHTML = `@${dadosUser.nickName}`;
         }
 
-        const image = await getUserImage();
+        image = await getUserImage();
         if (image.type == "image/png") {
             const imageUrl = URL.createObjectURL(image);
             imageProfile[0].src = imageUrl;
         } else {
             imageProfile[0].src = 'public/assets/images/user/user.png'
-            imageProfile[1].src = 'public/assets/images/user/user.png'
         }
     }
 })
@@ -73,5 +71,3 @@ itens[3].addEventListener('click', () => {
     cardVideo[0].classList.add('container-disable');
     cardBio[0].classList.remove('container-disable');
 });
-
-export {dadosUser}
