@@ -29,7 +29,7 @@ document.querySelector('.form').addEventListener('submit', function (event) {
     const email = formData.get('email');
     const password = formData.get('password');
 
-    fetch(`http://localhost:3000/api/usuarios?email=${email}&password=${password}`, {
+    fetch(`https://sociallizze-api.up.railway.app/api/usuarios?email=${email}&password=${password}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
