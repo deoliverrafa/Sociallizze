@@ -1,4 +1,3 @@
-import { profileOpen } from './profileModel';
 import { alts, cancels, cards, containers, headers, icons, iconsClose, imageProfile, itens, modals, saves } from "../../public/assets/js/variables";
 
 let avatarFile;
@@ -91,7 +90,7 @@ saves[0].addEventListener('click', async () => {
 
     formData.append('userId', userId);
 
-    const response = await fetch('https://sociallizze-api.up.railway.app/api/attProfile', {
+    const response = await fetch('http://localhost:3000/api/attProfile', {
         method: 'PUT',
         body: formData, // Use o FormData como corpo da solicitação.
     });

@@ -1,4 +1,4 @@
-import { buttons, cards, closeLoginMenu, closeRegisterMenu, containers, iconsClose, inputs, modals, showLoginMenu, textError, textSuccess, dates, selects } from "../../public/assets/js/variables";
+import { buttons, cards, closeLoginMenu, closeRegisterMenu, containers, dates, iconsClose, inputs, modals, selects, showLoginMenu, textError, textSuccess } from "../../public/assets/js/variables";
 
 console.log(selects)
 
@@ -9,7 +9,7 @@ const userName = inputs[3]
 const phoneNumber = inputs[4]
 const email = inputs[5]
 const password = inputs[6]
-const url = `https://sociallizze-api.up.railway.app/api/cadastrar`
+const url = `http://localhost:3000/api/cadastrar`
 let id;
 
 const userLoggedIn = localStorage.getItem('userLoggedIn');
@@ -116,7 +116,7 @@ selects[0].addEventListener('change', function () {
             regexFormat = '($1) $2-$3';
             maxLength = '13';
             break;
-        case 'US':
+        case 'USA':
             regexNumber = /(\d{3})(\d{3})(\d{4})/;
             regexFormat = '($1) $2-$3';
             maxLength = '13';
