@@ -44,8 +44,8 @@ buttons[1].addEventListener('click', (event) => {
     })
         .then(response => {
             if (!response.ok) {
-                console.error('Erro na solicitação: ' + response.status);
-                res.status(response.status).json({ error: 'Erro na solicitação' });
+                // console.error('Erro na solicitação: ' + response.status);
+                // res.status(response.status).json({ error: 'Erro na solicitação' });
             }
             return response.json();
         })
