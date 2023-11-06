@@ -2,17 +2,11 @@
 import { buttonLogOut, imageProfile, textBirthDayData, textEmail, textNacionality, textNick, textNumber, textName } from "../../public/assets/js/variables";
 import { getUserData, getUserImage, logOut, verifyUserLogged } from "./userFunctions";
 
-console.log(textNumber)
-console.log(textBirthDayData)
-console.log(textEmail)
-console.log(textNacionality)
-
 document.addEventListener('DOMContentLoaded', async () => {
     // LÓGICA PARA REAPROVEITAR DADOS DO USUÁRIO //
     if (await verifyUserLogged() == true) {
         const dadosUser = await getUserData();
         if (dadosUser) {
-            console.log(dadosUser)
             textName[0].innerHTML = dadosUser.userName;
             textNick[0].innerHTML = `@${dadosUser.nickName}`;
             textNumber[0].innerHTML = dadosUser.phoneNumber;
