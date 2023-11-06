@@ -1,5 +1,5 @@
 // Lógica para aparecer dados do usuário no perfil extendido
-import { buttonLogOut, imageProfile, textBirthDayData, textEmail, textNacionality, textNick, textNumber } from "../../public/assets/js/variables";
+import { buttonLogOut, imageProfile, textBirthDayData, textEmail, textNacionality, textNick, textNumber, textName } from "../../public/assets/js/variables";
 import { getUserData, getUserImage, logOut, verifyUserLogged } from "./userFunctions";
 
 console.log(textNumber)
@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const dadosUser = await getUserData();
         if (dadosUser) {
             console.log(dadosUser)
+            textName[0].innerHTML = dadosUser.userName;
             textNick[0].innerHTML = `@${dadosUser.nickName}`;
             textNumber[0].innerHTML = dadosUser.phoneNumber;
             textBirthDayData[0].innerHTML = dadosUser.birthDayData;
