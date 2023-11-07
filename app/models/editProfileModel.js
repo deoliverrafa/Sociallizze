@@ -7,7 +7,7 @@ const avatarInput = document.getElementById('avatarInput');
 
 // CANCELA MUDANÇAS //
 cancels[0].addEventListener('click', () => {
-    window.location.href = 'index.html';
+    window.location.href = './../../index.html';
 });
 
 // ALTERAR AVATAR //
@@ -18,7 +18,7 @@ avatarInput.addEventListener('change', function () {
         const reader = new FileReader();
 
         reader.onload = function (event) {
-            imageProfile[4].src = event.target.result;
+            imageProfile[0].src = event.target.result;
         };
         reader.readAsDataURL(avatarFile);
     }
@@ -52,6 +52,6 @@ saves[0].addEventListener('click', async () => {
     if (!response.ok) {
         alert('Erro ao atualizar perfil')
     } else {
-        window.location.href = 'index.html';
+        window.location.href = './../../index.html';
     }
 });

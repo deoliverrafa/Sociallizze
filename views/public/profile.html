@@ -51,7 +51,15 @@
         <div>
             <!-- PERFIL -->
             <div class="card container container-column-center">
-                <img class="image profile" src="./../../public/assets/images/user/user.png" alt="">
+                <div class="container container-row">
+                    <form class="form" id="avatarForm" enctype="multipart/form-data">
+                        <img class="image profile" src="./../../public/assets/images/user/user.png">
+                        <label class="file file-dark-primary" for="avatarInput">
+                            <span class="icon material-symbols-outlined">upload</span>
+                        </label>
+                        <input class="file no-text" type="file" name="avatar" id="avatarInput" accept="image/*">
+                    </form>
+                </div>
                 <div class="container container-row">
                     <p class="text name text-bold">Nome</p>
                 </div>
