@@ -1,4 +1,4 @@
-import {  imageProfile, saves } from "../../public/assets/js/variables";
+import { imageProfile, edits, modals, iconsClose } from "../../public/assets/js/variables";
 
 let avatarFile;
 let bioData;
@@ -20,6 +20,20 @@ avatarInput.addEventListener('change', function () {
     }
 });
 
+// EXIBIR O EDITAR PERFIL //
+const body = document.querySelector("body");
+edits[0].addEventListener('click', () => {
+    modals[0].style.display = 'flex';
+    body.style.overflowY = 'hidden';
+    window.scrollTo(0, 0);
+});
+
+// FECHAR O EDITAR PERFIL //
+iconsClose[1].addEventListener('click', () => {
+    modals[0].style.display = 'none';
+    body.style.overflowY = 'auto';
+});
+
 // SALVAR MUDANÇAS //
 btnEditProfile.addEventListener('click', async () => {
     const userId = localStorage.getItem('userId');
@@ -35,7 +49,7 @@ btnEditProfile.addEventListener('click', async () => {
     
     formData.append('userId', userId);
     
-    // const response = await fetch('https://sociallizze-api.up.railway.app/api/attProfile', {
+    // const response = await fetch('http://localhost:3000/api/attProfile', {
     //     method: 'PUT',
     //     body: formData, // Use o FormData como corpo da solicitação.
     // });

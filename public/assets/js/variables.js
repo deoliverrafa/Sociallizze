@@ -19,6 +19,7 @@ const itens = document.querySelectorAll('.item');
 const logos = document.querySelectorAll('.logo');
 const textNick = document.querySelectorAll('.nick')
 const textName = document.querySelectorAll('.name')
+const textBio = document.querySelectorAll('.text.bio')
 const bios = document.querySelectorAll('.bio');
 const buttonLogOut = document.querySelectorAll('.button.logout')
 const imageProfile = document.querySelectorAll('.image.profile')
@@ -28,6 +29,7 @@ const alts = document.querySelectorAll('.alt');
 const cancels = document.querySelectorAll('.cancel');
 const saves = document.querySelectorAll('.save');
 const dates = document.querySelectorAll('.date');
+const edits = document.querySelectorAll('.edit');
 const selects = document.querySelectorAll('.select');
 const textNacionality = document.querySelectorAll('.text.nationality')
 const textBirthDayData = document.querySelectorAll('.text.birthday')
@@ -133,4 +135,4 @@ let previousButton = ( (count) => {
 });
 
 // EXPORTANDO AS VARIAVEIS //
-export { icons, iconsClose, modals, leftBar, cards, containers, textError, showLoginMenu, showRegisterMenu, closeLoginMenu, closeRegisterMenu, textSuccess, inputs, checkboxs, links, linksRegister, buttonsSelect, buttons, textsCheckbox, previousButton, nextButton, buttonsSubmit, itens, logos, textNick, buttonLogOut, imageProfile, bios, fabs, headers, alts, cancels, saves, textName, dates, selects, textBirthDayData, textNacionality, textEmail, textNumber };
+export { icons, iconsClose, modals, leftBar, cards, containers, textError, showLoginMenu, showRegisterMenu, closeLoginMenu, closeRegisterMenu, textSuccess, inputs, checkboxs, links, linksRegister, buttonsSelect, buttons, textsCheckbox, previousButton, nextButton, buttonsSubmit, itens, logos, textNick, buttonLogOut, imageProfile, bios, fabs, headers, alts, cancels, saves, textName, dates, selects, textBirthDayData, textNacionality, textEmail, textNumber, textBio, edits };

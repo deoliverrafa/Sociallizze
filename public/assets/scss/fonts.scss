@@ -94,6 +94,10 @@
         width: 100%;
     }
 
+    &.text-small {
+        @include font-size(.625rem);
+    }
+
     &.text-checkbox {
         @include display-flex(row, stretch, center);
     }
@@ -109,7 +113,7 @@
         text-wrap: wrap;
         text-overflow: clip;
 
-        width: 20ch;
+        width: 15ch;
     }
 }
 

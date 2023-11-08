@@ -5,7 +5,8 @@
     <!-- CONFIGURAÇÕES DO HTML -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Bem-vindo à Sociallizze - A plataforma de mídia social criada por brasileiros, feita especialmente para você. Aqui, reunimos pessoas de todas as idades, com um foco especial na galera mais jovem. Compartilhe seus momentos mais incríveis, inspire-se com conteúdo cativante, conecte-se com amigos e faça novas amizades. Junte-se à nossa comunidade diversificada, onde a criatividade e a autenticidade florescem. Sociallizze - O seu espaço para se expressar, se divertir e se conectar.">
+    <meta name="description"
+        content="Bem-vindo à Sociallizze - A plataforma de mídia social criada por brasileiros, feita especialmente para você. Aqui, reunimos pessoas de todas as idades, com um foco especial na galera mais jovem. Compartilhe seus momentos mais incríveis, inspire-se com conteúdo cativante, conecte-se com amigos e faça novas amizades. Junte-se à nossa comunidade diversificada, onde a criatividade e a autenticidade florescem. Sociallizze - O seu espaço para se expressar, se divertir e se conectar.">
     <meta name="author" content="Hexa Company">
     <link rel="canonical" href="https://sociallizze.online/">
     <!-- PALAVRAS CHAVES -->
@@ -18,17 +19,19 @@
     <!-- LINK DE COMPARTILHAMENTO -->
     <meta property="og:title" content="Sociallizze - Faça login ou registre-se">
     <meta property="og:image" content="https://i.ibb.co/TPX62Rz/og.png">
-    <meta property="og:description" content="Crie uma conta, ou faça login no Sociallizze. Compartilhe seus momentos mais incríveis, inspire-se com conteúdo cativante, conecte-se com amigos e faça novas amizades. Junte-se à nossa comunidade diversificada, onde a criatividade e a autenticidade florescem. Sociallizze - O seu espaço para se expressar, se divertir e se conectar.">
+    <meta property="og:description"
+        content="Crie uma conta, ou faça login no Sociallizze. Compartilhe seus momentos mais incríveis, inspire-se com conteúdo cativante, conecte-se com amigos e faça novas amizades. Junte-se à nossa comunidade diversificada, onde a criatividade e a autenticidade florescem. Sociallizze - O seu espaço para se expressar, se divertir e se conectar.">
     <meta property="og:url" content="https://sociallizze.online/">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="627">
-    
+
     <!-- TÍTULO -->
     <title>Sociallizze - Perfil</title>
-    
+
     <!-- IMPORTANDO OS ICONES -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <!-- IMPORTANDO O NORMALIZE -->
     <link rel="stylesheet" href="./../../public/vendor/normalize/normalize.css">
     <!-- IMPORTANDO O CSS MINIFY -->
@@ -45,7 +48,8 @@
             <h2 class="logo">Perfil</h2>
         </div>
     </header>
-    
+
+
     <!-- PRINCIPAL -->
     <main class="profile">
         <div>
@@ -64,8 +68,8 @@
                     <p class="text name text-bold">Nome</p>
                 </div>
                 <div class="container container-row">
-                        <p class="text nick">Nome</p>
-                        <img class="image checkmark" src="./../../public/assets/images/user/checkmark_blue.png">
+                    <p class="text nick">Nome</p>
+                    <img class="image checkmark" src="./../../public/assets/images/user/checkmark_blue.png">
                 </div>
                 <div class="container container-row-center">
                     <button class="button button-primary" type="button">
@@ -160,6 +164,7 @@
                 <div class="container no-bio container-column-center">
                     <p class="text text-bold">Usuário sem bio</p>
                 </div>
+                <span class="icon icon-white edit edit-dark-primary material-symbols-outlined">edit</span>
             </div>
             <!-- FAVORITOS -->
             <div class="card container container-column-center">
@@ -178,11 +183,40 @@
                     Bloqueados
                 </div>
             </div>
-            <div class="card container container-row">
+            <div class="card container container-column-center">
                 <button class="button logout button-danger" type="button">
                     <span class="icon icon-medium material-symbols-outlined">logout</span>
                     DESLOGAR
                 </button>
+                <button class="button cancel button-danger" type="button">
+                    <span class="icon icon-medium material-symbols-outlined">close</span>
+                    CANCELAR
+                </button>
+                <button class="button save button-dark-primary" type="button">
+                    <span class="icon icon-medium material-symbols-outlined">save</span>
+                    SALVAR
+                </button>
+            </div>
+        </div>
+
+        <!-- MODAL -->
+
+        <div class="modal editProfile">
+            <div class="card editProfile">
+                <div class="card container container-row-between">
+                    <h2 class="logo">Editar Bio</h2>
+                    <span class="icon icon-close material-symbols-outlined">close</span>
+                </div>
+                <div class="card container container-column-center">
+                    <form class="form">
+                        <input class="input" type="text" placeholder="Bio" maxlength="100">
+                    </form>
+                    <p class="text text-small text-dark-primary">(<span class="count">0</span>/100)</p>
+                    <button class="button save button-dark-primary" type="button">
+                        <span class="icon icon-medium icon-white material-symbols-outlined">save</span>
+                        SALVAR
+                    </button>
+                </div>
             </div>
         </div>
     </main>
@@ -192,4 +226,5 @@
     <script type="module" src="./../../public/assets/js/nav.js"></script>
     <script type="module" src="../../public/assets/js/variables.js"></script>
 </body>
+
 </html>

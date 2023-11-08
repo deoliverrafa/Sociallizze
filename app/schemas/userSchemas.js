@@ -50,14 +50,6 @@ const userSchema = mongoose.Schema({
         type: String,
         require: false,
     },
-    city:{
-        type: String,
-        require: false,
-    },
-    state: {
-        type: String,
-        require: false,
-    },
     bio: {
         type: String,
         require: false,

@@ -28,6 +28,8 @@
 body {
   color: #252324;
   font-family: "Poppins", sans-serif;
+  height: 100vh;
+  width: 100vw;
 }
 
 html {
@@ -376,6 +378,9 @@ html {
   text-overflow: clip;
   width: 100%;
 }
+.text.text-small {
+  font-size: 0.75rem;
+}
 .text.text-checkbox {
   display: flex;
   flex-direction: row;
@@ -395,7 +400,7 @@ html {
   text-align: center;
   text-wrap: wrap;
   text-overflow: clip;
-  width: 20ch;
+  width: 15ch;
 }
 
 .link {
@@ -665,6 +670,8 @@ header.header.about .container.container-row a .icon, header.header.contacts .co
 body {
   color: #252324;
   font-family: "Poppins", sans-serif;
+  height: 100vh;
+  width: 100vw;
 }
 
 html {
@@ -1384,6 +1391,41 @@ div.fab-container .fab-text, div.fab-container .fab-image, div.fab-container .fa
 }
 .logo-animate:nth-child(n+2) {
   display: none;
+}
+
+div.modal.editProfile {
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}
+
+.edit {
+  border-radius: 100%;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  padding: 2px;
+  height: 2.125rem;
+  width: 2.125rem;
+}
+.edit .icon {
+  color: #FFFFFF;
+}
+.edit .icon:hover {
+  color: #FFFFFF;
+}
+.edit.edit-primary {
+  background: #469CF7;
+}
+.edit.edit-dark-primary {
+  background: #0E2A56;
+}
+.edit.edit-dark-primary:hover {
+  background: #469CF7;
+  color: #0E2A56;
 }
 
 div.card.editProfile {
