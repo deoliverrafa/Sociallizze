@@ -129,6 +129,12 @@ html {
     padding: 5px;
     height: auto;
     width: auto;
+
+    &.input-search {
+        all: unset;
+        @include check-style($colorWhite, $colorPrimary);
+        border-radius: 3px;
+    }
 }
 
 .file {
