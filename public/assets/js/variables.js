@@ -70,16 +70,17 @@ let nextButton = ( (count) => {
         buttonsSelect[1].style.display = 'flex';
         buttonsSelect[1].style.justifyContent = 'center';
         buttonsSelect[1].style.alignItems = 'center';
-        inputs[2].style.display = 'none';
-        inputs[3].style.display = 'none';
+        textsCheckbox[1].style.display = 'none';
+        containers[2].style.display = 'none';
+        containers[3].style.display = 'none';
+        containers[4].style.display = 'none';
+        containers[5].style.display = 'none';
+        containers[6].style.display = 'none';
+        containers[7].style.display = 'none';
+        containers[8].style.display = 'flex';
         inputs[4].style.display = 'none';
         inputs[5].style.display = 'none';
         inputs[6].style.display = 'none';
-        textsCheckbox[1].style.display = 'none';
-        containers[1].style.display = 'flex';
-        containers[1].style.flexDirection = 'column';
-        containers[1].style.justifyContent = 'center';
-        containers[1].style.alignItems = 'center';
     }
     if(count == 2) {
         buttonsSelect[1].style.display = 'flex';
@@ -89,13 +90,17 @@ let nextButton = ( (count) => {
         buttonsSubmit[1].style.display = 'flex';
         buttonsSubmit[1].style.justifyContent = 'center';
         buttonsSubmit[1].style.alignItems = 'center';
-        inputs[2].style.display = 'none';
-        inputs[3].style.display = 'none';
+        textsCheckbox[1].style.display = 'flex';
+        containers[2].style.display = 'none';
+        containers[3].style.display = 'none';
+        containers[4].style.display = 'none';
+        containers[5].style.display = 'flex';
+        containers[6].style.display = 'flex';
+        containers[7].style.display = 'flex';
+        containers[8].style.display = 'none';
         inputs[4].style.display = 'flex';
         inputs[5].style.display = 'flex';
         inputs[6].style.display = 'flex';
-        textsCheckbox[1].style.display = 'flex';
-        containers[1].style.display = 'none';
     }
 });
 
@@ -103,13 +108,16 @@ let previousButton = ( (count) => {
     if(count == 0) {
         buttonsSelect[1].style.display = 'none';
         buttonsSubmit[1].style.display = 'none';
-        inputs[2].style.display = 'flex';
-        inputs[3].style.display = 'flex';
+        textsCheckbox[1].style.display = 'none';
+        containers[3].style.display = 'flex';
+        containers[4].style.display = 'flex';
+        containers[5].style.display = 'none';
+        containers[6].style.display = 'none';
+        containers[7].style.display = 'none';
+        containers[8].style.display = 'none';
         inputs[4].style.display = 'none';
         inputs[5].style.display = 'none';
         inputs[6].style.display = 'none';
-        textsCheckbox[1].style.display = 'none';
-        containers[1].style.display = 'none';
     }
     if(count == 1) {
         buttonsSelect[0].style.display = 'flex';
@@ -121,16 +129,17 @@ let previousButton = ( (count) => {
         buttonsSubmit[1].style.display = 'none';
         buttonsSubmit[1].style.justifyContent = 'center';
         buttonsSubmit[1].style.alignItems = 'center';
-        inputs[2].style.display = 'none';
-        inputs[3].style.display = 'none';
+        textsCheckbox[1].style.display = 'none';
+        containers[2].style.display = 'none';
+        containers[3].style.display = 'none';
+        containers[4].style.display = 'none';
+        containers[5].style.display = 'none';
+        containers[6].style.display = 'none';
+        containers[7].style.display = 'none';
+        containers[8].style.display = 'flex';
         inputs[4].style.display = 'none';
         inputs[5].style.display = 'none';
         inputs[6].style.display = 'none';
-        textsCheckbox[1].style.display = 'none';
-        containers[1].style.display = 'flex';
-        containers[1].style.flexDirection = 'column';
-        containers[1].style.justifyContent = 'center';
-        containers[1].style.alignItems = 'center';
     }
 });
 

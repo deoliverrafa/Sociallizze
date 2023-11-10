@@ -1,0 +1,22 @@
+@import './variables.scss';
+@import './animations.scss';
+
+main.friends {
+  .card.search-friends {
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .card.friends {
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .button {
+    width: auto;
+
+    .icon {
+      color: $colorWhite;
+    }
+  }
+} 

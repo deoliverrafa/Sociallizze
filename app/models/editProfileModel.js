@@ -1,4 +1,4 @@
-import { imageProfile, edits, modals, iconsClose } from "../../public/assets/js/variables";
+import { edits, iconsClose, imageProfile, modals } from "../../public/assets/js/variables";
 
 let avatarFile;
 let bioData;
@@ -49,7 +49,7 @@ btnEditProfile.addEventListener('click', async () => {
     
     formData.append('userId', userId);
     
-    // const response = await fetch('http://localhost:3000/api/attProfile', {
+    // const response = await fetch('https://sociallizze-api.up.railway.app/api/attProfile', {
     //     method: 'PUT',
     //     body: formData, // Use o FormData como corpo da solicitação.
     // });

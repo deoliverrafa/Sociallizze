@@ -52,14 +52,15 @@
         border: 1px solid rgba(10
         , 10, 10, 0.3);
         
-        @include font-size(1.35rem);
-        
         @include display-flex(column, center, center);
         
         margin: 0;
         padding: 5px;
         
-        @include hover-font($colorPrimary);
+        &:hover {
+            color: $colorBlack;
+            cursor: default;
+        }
     }
 }
 

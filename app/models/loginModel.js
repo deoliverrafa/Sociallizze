@@ -6,7 +6,6 @@ let count = 0;
 const userLoggedIn = localStorage.getItem('userLoggedIn');
 const userId = localStorage.getItem('userId')
 
-
 document.addEventListener('DOMContentLoaded', () => {
     // LÓGICA PARA APARECER O CARD DE LOGIN //
 
@@ -29,7 +28,7 @@ document.querySelector('.form').addEventListener('submit', function (event) {
     const email = formData.get('email');
     const password = formData.get('password');
 
-    fetch(`http://localhost:3000/api/usuarios?email=${email}&password=${password}`, {
+    fetch(`https://sociallizze-api.up.railway.app/api/usuarios?email=${email}&password=${password}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -106,6 +105,11 @@ if (count == 0) {
     inputs[5].style.display = 'none';
     inputs[6].style.display = 'none';
     textsCheckbox[1].style.display = 'none';
-    containers[1].style.display = 'none';
+    containers[5].style.display = 'none';
+    containers[6].style.display = 'none';
+    containers[7].style.display = 'none';
+    containers[8].style.display = 'none';
 }
+
 export { userId, userLoggedIn };
+

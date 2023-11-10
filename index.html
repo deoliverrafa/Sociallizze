@@ -60,7 +60,7 @@
         <!-- LOGIN -->
         <div class="card login">
             <div class="top">
-                <h1 class="logo">Sociallizze</h1>
+                <h1 class="logo">Faça Login</h1>
             </div>
             <div class="main">
                 <form class="form" action="">
@@ -69,8 +69,8 @@
                         <input class="input input-icon" type="text" name="email" placeholder="E-mail, Telefone ou Usuário" autocomplete="on" required>
                     </div>
                     <div class="container container-row">
-                        <span class="icon icon-input material-symbols-outlined">home</span>
-                        <input class="input" type="password" name="password" placeholder="Senha" required>
+                        <span class="icon icon-input material-symbols-outlined">lock</span>
+                        <input class="input input-icon" type="password" name="password" placeholder="Senha" required>
                     </div>
                     <div class="container container-error">
                         <p class="text text-error">Mensagem de error</p>
@@ -91,7 +91,7 @@
         <!-- REGISTRO -->
         <div class="card register">
             <div class="top">
-                <h1 class="logo">Sociallizze</h1>
+                <h1 class="logo">Registre-se</h1>
             </div>
             <div class="main">
                 <form class="form" action="">
@@ -103,17 +103,32 @@
                         <span class="icon icon-input material-symbols-outlined">face</span>
                         <input class="input input-icon" type="text" name="name" placeholder="Nome Completo" autocomplete="on" required>
                     </div>
-                    <input class="input" type="phone" name="number" placeholder="Número" autocomplete="on" maxlength="13" required>
-                    <input class="input" type="email" name="email" placeholder="E-mail" autocomplete="on" required>
-                    <input class="input" type="password" name="password" placeholder="Senha" required>
-                    <div class="container">
-                        <p class="text text-gray">Data de Nascimento:</p>
-                        <input class="date" type="date" name="birthday" value="2000-01-01" required>
+                    <div class="container container-row">
+                        <span class="icon icon-input material-symbols-outlined">phone</span>
+                        <input class="input input-icon" type="phone" name="number" placeholder="Número" autocomplete="on" maxlength="13" required>
+                    </div>
+                    <div class="container container-row">
+                        <span class="icon icon-input material-symbols-outlined">mail</span>
+                        <input class="input input-icon" type="email" name="email" placeholder="E-mail" autocomplete="on" required>
+                    </div>
+                    <div class="container container-row">
+                        <span class="icon icon-input material-symbols-outlined">lock</span>
+                        <input class="input input-icon" type="password" name="password" placeholder="Senha" required>
+                    </div>
+                    <div class="container container-column-center">
+                        <label class="text text-gray" for="birthday">Data de Nascimento:</label>
+                        <div class="container container-row">
+                            <span class="icon icon-input material-symbols-outlined">calendar_month</span>
+                            <input class="date date-icon" type="date" name="birthday" value="2000-01-01" required>
+                        </div>
                         <label class="text text-gray" for="countrySelect">Nacionalidade:</label>
-                        <select class="select" name="country">
-                            <option value="Brazil" selected>Brasil</option>
-                            <option value="United States">Estados Unidos</option>
-                        </select>
+                        <div class="container container-row">
+                            <span class="icon icon-input material-symbols-outlined">flag</span>
+                            <select class="select select-icon" name="country">
+                                <option value="Brazil" selected>Brasil</option>
+                                <option value="United States">Estados Unidos</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="container container-error">
                         <p class="text text-error">Mensagem de error</p>

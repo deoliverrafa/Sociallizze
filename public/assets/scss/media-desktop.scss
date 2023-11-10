@@ -21,4 +21,29 @@
       width: 60%;
     }
   }
+
+  .modal.editProfile {
+    .card.editProfile {
+      @include display-flex(column, center, center);
+
+      height: auto;
+      width: auto;
+
+      .button {
+        width: 100%;
+      }
+    }
+  }
+
+  main.friends {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    
+    .card {
+      width: 80%;
+    }
+  }
 }

@@ -132,7 +132,7 @@ html {
     
     &.input-icon {
         border-radius: 0 10px 10px 0;
-       
+
         margin: 0;
     }
 }
@@ -188,6 +188,12 @@ html {
     padding: 5px;
     height: auto;
     width: auto;
+
+    &.date-icon {
+        border-radius: 0 10px 10px 0;
+       
+        margin: 0;
+    }
 }
 
 .select {
@@ -206,6 +212,12 @@ html {
     padding: 5px;
     height: auto;
     width: auto;
+
+    &.select-icon {
+        border-radius: 0 10px 10px 0;
+       
+        margin: 0;
+    }
 }
 
 .button {
@@ -228,8 +240,6 @@ html {
     padding: 10px;
     height: auto;
     @include width-size(95%);
-
-    
 
     &.button-primary {
         @include button-style($colorPrimary, $colorWhite);
@@ -258,13 +268,20 @@ html {
 .image {
     height: auto;
     width: auto;
+
     
     &.profile {
         border-radius: 100%;
-
+        
         @include size(6.25rem, 6.25rem);
     }
     
+    &.profile-small {
+        border-radius: 100%;
+
+        @include size(3.5rem, 3.5rem);
+    }
+
     &.checkmark {
         @include size(.9375rem, .9375rem);
     }
