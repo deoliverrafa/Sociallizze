@@ -64,8 +64,14 @@
             </div>
             <div class="main">
                 <form class="form" action="">
-                    <input class="input" type="text" name="email" placeholder="E-mail, Telefone ou Nome de Usuário" autocomplete="on" required>
-                    <input class="input" type="password" name="password" placeholder="Senha" required>
+                    <div class="container container-row">
+                        <span class="icon icon-input material-symbols-outlined">email</span>
+                        <input class="input input-icon" type="text" name="email" placeholder="E-mail, Telefone ou Usuário" autocomplete="on" required>
+                    </div>
+                    <div class="container container-row">
+                        <span class="icon icon-input material-symbols-outlined">home</span>
+                        <input class="input" type="password" name="password" placeholder="Senha" required>
+                    </div>
                     <div class="container container-error">
                         <p class="text text-error">Mensagem de error</p>
                     </div>
@@ -89,8 +95,14 @@
             </div>
             <div class="main">
                 <form class="form" action="">
-                    <input class="input" type="text" name="user" placeholder="Usuário" required>
-                    <input class="input" type="text" name="name" placeholder="Nome Completo" autocomplete="on" required>
+                    <div class="container container-row">
+                        <span class="icon icon-input material-symbols-outlined">person</span>
+                        <input class="input input-icon" type="text" name="user" placeholder="Usuário" required>
+                    </div>
+                    <div class="container container-row">
+                        <span class="icon icon-input material-symbols-outlined">face</span>
+                        <input class="input input-icon" type="text" name="name" placeholder="Nome Completo" autocomplete="on" required>
+                    </div>
                     <input class="input" type="phone" name="number" placeholder="Número" autocomplete="on" maxlength="13" required>
                     <input class="input" type="email" name="email" placeholder="E-mail" autocomplete="on" required>
                     <input class="input" type="password" name="password" placeholder="Senha" required>
