@@ -1,11 +1,10 @@
-import { edits, iconsClose, imageProfile, modals } from "../../public/assets/js/variables";
+import { edits, iconsClose, imageProfile, inputs, modals } from "../../public/assets/js/variables";
 
 let avatarFile;
 let bioData;
 
 const avatarInput = document.getElementById('avatarInput');
-const btnEditProfile = document.querySelector('.file')
-
+const btnConfirmChanges = document.querySelectorAll('.button.save');
 // ALTERAR AVATAR //
 avatarInput.addEventListener('change', function () {
     avatarFile = avatarInput.files[0];
@@ -34,29 +33,41 @@ iconsClose[1].addEventListener('click', () => {
     body.style.overflowY = 'auto';
 });
 
+// PEGA VALOR DA BIO SE O USUÁRIO ALTERAR
+inputs[0].addEventListener('input', () => {
+    bioData = inputs[0].value
+})
+
+// FECHAR ALTERAÇÂO DE BIO
+btnConfirmChanges[1].addEventListener('click', async () => {
+    modals[0].style.display = 'none';
+    body.style.overflowY = 'auto';
+})
+
 // SALVAR MUDANÇAS //
-btnEditProfile.addEventListener('click', async () => {
+btnConfirmChanges[0].addEventListener('click', async () => {
     const userId = localStorage.getItem('userId');
-    const formData = new FormData(); // Use um objeto FormData para enviar a imagem.
-    formData.append('avatar', avatarFile); // Adicione a imagem ao FormData.
+    const formData = new FormData(); // Crie um novo FormData aqui.
 
-    // Adicione os outros dados ao FormData.
-    // resto da lógica
-
-    if (bioData !== undefined) {
-        formData.append('bioData', bioData);
-    }
-    
+    formData.append('avatar', avatarFile);
     formData.append('userId', userId);
-    
-    // const response = await fetch('https://sociallizze-api.up.railway.app/api/attProfile', {
-    //     method: 'PUT',
-    //     body: formData, // Use o FormData como corpo da solicitação.
-    // });
-    
-    // if (!response.ok) {
-    //     alert('Erro ao atualizar perfil')
-    // } else {
-    //     window.location.href = './../../index.html';
-    // }
+    formData.append('bioData', bioData);
+
+    try {
+        const response = await fetch('http://localhost:3000/api/attProfile', {
+            method: 'PUT',
+            body: formData,
+        });
+
+        const data = await response.json();
+
+        if (!data) {
+            alert(data.error)
+        } else {
+            window.location.reload();
+        }
+    } catch (error) {
+        console.error(error);
+        alert("Erro na solicitação");
+    }
 });

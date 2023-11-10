@@ -75,12 +75,7 @@ router.get('/usuarios', async (req, res) => {
     if (result.length === 0) {
       const secondTry = await context.read({ nickName: email })
       result = secondTry;
-      if (result.length === 0) {
-        const thirdTry = await context.read({ phoneNumber: email })
-        result = thirdTry;
-      }
     }
-
 
     // Verifica se o resultado não é nulo e se há pelo menos um usuário encontrado com esse email
     if (result.length === 1) {
@@ -97,16 +92,16 @@ router.get('/usuarios', async (req, res) => {
           return res.json(user);
         } else {
           // Senha incorreta
-          return res.status(401).json({ error: "E-mail ou senha incorretos. Tente novamente." });
+          return res.status(401).json({ error: "E-mail ou senha incorretos" });
         }
       });
     } else {
       // Nenhum usuário encontrado com esse email
-      return res.status(404).json({ error: "E-mail ou senha incorretos. Tente novamente." });
+      return res.status(404).json({ error: "E-mail ou senha incorretos" });
     }
   } catch (error) {
     // Em caso de erro ao ler o banco de dados
-    res.status(500).json({ error: 'Erro ao ler banco de dados.' });
+    res.status(500).json({ error: 'Erro ao ler banco de dados' });
   }
 });
 
@@ -159,7 +154,7 @@ const upload = multer({ storage: storage });
 // Rota para atualizar os Dados do Usuário
 
 router.put('/attProfile', upload.single('avatar'), async (req, res) => {
-    const { bioData, cityData, userId } = req.body;
+    const { bioData, userId } = req.body;
     const avatarFile = req.file;
 
     if (!userId) {
@@ -185,10 +180,6 @@ router.put('/attProfile', upload.single('avatar'), async (req, res) => {
       
       if (typeof bioData !== 'undefined') {
         updateData.bio = bioData;
-      }
-
-      if (typeof cityData !== 'undefined') {
-        updateData.city = cityData;
       }
 
       const usuario = await context.update(userId, updateData);

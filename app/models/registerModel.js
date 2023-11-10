@@ -1,5 +1,7 @@
 import { buttons, cards, closeLoginMenu, closeRegisterMenu, containers, dates, iconsClose, inputs, modals, selects, showLoginMenu, textError, textSuccess } from "../../public/assets/js/variables";
 
+console.log(selects)
+
 const birthDayData = document.querySelector('.date')
 const nacionality = selects[0]
 const nickName = inputs[2]
@@ -44,8 +46,8 @@ buttons[1].addEventListener('click', (event) => {
     })
         .then(response => {
             if (!response.ok) {
-                // console.error('Erro na solicitação: ' + response.status);
-                // res.status(response.status).json({ error: 'Erro na solicitação' });
+                console.error('Erro na solicitação: ' + response.status);
+                res.status(response.status).json({ error: 'Erro na solicitação' });
             }
             return response.json();
         })
@@ -105,29 +107,23 @@ if (dates[0]) {
 let regexNumber = '';
 let regexFormat = '';
 let maxLength = '';
-let nationalitySelected = "Brazil"
-nacionality.addEventListener('change', async function () {
-    nationalitySelected = this.value;
-    await doRegex()
-});
+selects[0].addEventListener('change', function () {
+    const nationalitySelected = this.value;
 
-
-async function doRegex(){
     switch (nationalitySelected) {
-        case 'Brazil':
+        case 'BR':
             regexNumber = /(\d{2})(\d{5})(\d{4})/;
             regexFormat = '($1) $2-$3';
             maxLength = '13';
             break;
-        case 'United States':
+        case 'USA':
             regexNumber = /(\d{3})(\d{3})(\d{4})/;
             regexFormat = '($1) $2-$3';
             maxLength = '13';
-            break;       
-}
-}
+            break;
+    }
+});
 
-doRegex()
 // REGEX - FORMATAR NÚMERO
 function formatPhoneNumber() {
     if (regexNumber) {
@@ -154,5 +150,5 @@ function formatName() {
 }
 
 userName.addEventListener('input', function () {
-    formatName();
+    formatName();   
 });

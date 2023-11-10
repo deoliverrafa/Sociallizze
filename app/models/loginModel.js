@@ -6,6 +6,7 @@ let count = 0;
 const userLoggedIn = localStorage.getItem('userLoggedIn');
 const userId = localStorage.getItem('userId')
 
+console.log(containers)
 document.addEventListener('DOMContentLoaded', () => {
     // LÓGICA PARA APARECER O CARD DE LOGIN //
 
@@ -28,7 +29,7 @@ document.querySelector('.form').addEventListener('submit', function (event) {
     const email = formData.get('email');
     const password = formData.get('password');
 
-    fetch(`https://sociallizze-api.up.railway.app/api/usuarios?email=${email}&password=${password}`, {
+    fetch(`http://localhost:3000/api/usuarios?email=${email}&password=${password}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -38,8 +39,8 @@ document.querySelector('.form').addEventListener('submit', function (event) {
         .then(data => {
             if (data.error) {
                 // LÓGICA PARA APARECER MENSAGEM DE ERROR //
-                containers[0].style.display = 'flex';
-                containers[0].querySelector('.text-error').innerHTML = data.error;
+                containers[2].style.display = 'flex';
+                containers[2].querySelector('.text-error').innerHTML = data.error;
             } else {
                 // Após o login bem-sucedido
                 localStorage.setItem('userEmail', data.email);

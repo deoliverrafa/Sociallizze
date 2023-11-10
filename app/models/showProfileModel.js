@@ -1,6 +1,6 @@
 // Lógica para aparecer dados do usuário no perfil extendido
-import { buttonLogOut, imageProfile, textBirthDayData, textEmail, textNacionality, textNick, textNumber, textName, itens, textBio } from "../../public/assets/js/variables";
-import { getUserData, getUserImage, logOut, verifyUserLogged } from "./userFunctions";
+import { buttonLogOut, imageProfile, textBirthDayData, textEmail, textNacionality, textNick, textNumber, textName, itens, textBio, buttons } from "../../public/assets/js/variables";
+import { getUserData, getUserImage, logOut, userId, verifyUserLogged } from "./userFunctions";
 
 const cardPost = document.querySelectorAll('.card.post');
 const cardPhoto = document.querySelectorAll('.card.photo');
@@ -20,8 +20,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             textBirthDayData[0].innerHTML = dadosUser.birthDayData;
             textEmail[0].innerHTML = dadosUser.email;
             textNacionality[0].innerHTML = dadosUser.nacionality;
+            
             // BIO INDEFINIDA //
-            if(!dadosUser.bio) {
+            if (!dadosUser.bio) {
                 containerBio[1].style.display = 'none';
                 containerNoBio[0].style.display = 'flex';
             } else {
@@ -29,22 +30,37 @@ document.addEventListener('DOMContentLoaded', async () => {
                 textBio[0].innerHTML = dadosUser.bio;
 
             }
+
+            // ESCONDER BOTÕES DESNECESSÁRIOS ADICIONAR, REMOVER, BLOQUEAR
+            if (userId == dadosUser._id) {
+                buttons[0].style.display = 'none';
+                buttons[1].style.display = 'none';
+                buttons[2].style.display = 'none';
+                buttons[3].style.display = 'none';
+            }
+
         } else {
             textNick[0].innerHTML = 'Usuario'
         }
+
+        // PUXA IMAGEM DO BANCO DE DADOS
         const image = await getUserImage();
 
+        // VERIFICA SE HÁ IMAGEM
         if (image.type == "image/png") {
             const imageUrl = URL.createObjectURL(image);
             imageProfile[0].src = imageUrl;
         } else {
+            // ATRIBUI IMAGEM DEFAULT
             imageProfile[0].src = '../../public/assets/images/user/user.png'
         }
+
     } else {
         window.location.href = '../../index.html'
     }
 })
 
+// LÓGICA DE LOGOUT
 buttonLogOut[0].addEventListener('click', () => {
     logOut()
     window.location.href = '../../index.html'
