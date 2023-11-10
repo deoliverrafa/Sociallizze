@@ -3,7 +3,9 @@ const path = require('path')
 module.exports = {
     entry: { 
         index: './indexController.js',
-        profile: './profileController.js'},
+        profile: './profileController.js',
+        friends: './friendsController.js',
+    },
 
     output: {
         filename: '[name].bundle.js',

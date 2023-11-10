@@ -1,0 +1,1 @@
+(()=>{var r={296:()=>{},355:(r,o,t)=>{const e=t(296);r.exports={friendsController:e}}},o={};!function t(e){var n=o[e];if(void 0!==n)return n.exports;var s=o[e]={exports:{}};return r[e](s,s.exports,t),s.exports}(355)})();
