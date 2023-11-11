@@ -67,6 +67,10 @@
 .title {
     font-family: $fontPrincipal;
     @include font-size(2rem);
+    
+    &.title-small {
+        @include font-size(1rem);
+    }
 
     &.title-medium {
         @include font-size(1.5rem);
@@ -151,5 +155,9 @@
 
     &.link-dark-primary {
         @include link-style($colorDarkPrimary);
+    }
+    
+    &.link-bold {
+        font-weight: bold;
     }
 }
