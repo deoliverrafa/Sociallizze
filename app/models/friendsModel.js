@@ -24,7 +24,6 @@ async function createDivUser(user) {
 
     if (image.type == "image/png") {
         userImage.src = URL.createObjectURL(image);
-        console.log(userImage.src)
     } else {
         userImage.src = './../../public/assets/images/user/user.png';
     }
@@ -76,7 +75,7 @@ async function createDivUser(user) {
 }
 
 // Função para criar div de usuário que você está seguindo
-function createDivFollowingUser(user) {
+async function createDivFollowingUser(user) {
     const novaDiv = document.createElement('div');
     novaDiv.classList.add('container', 'search-friends', 'container-column-center');
 
@@ -88,8 +87,16 @@ function createDivFollowingUser(user) {
 
     const userImage = document.createElement('img');
     userImage.classList.add('image', 'profile-small');
-    userImage.src = "./../../public/assets/images/user/user.png";
-    userDiv.appendChild(userImage);
+
+    // PEGA IMAGEM DE CADA USUARIO
+    const image = await getUserImage(user._id);
+
+    if (image.type == "image/png") {
+        userImage.src = URL.createObjectURL(image);
+    } else {
+        userImage.src = './../../public/assets/images/user/user.png';
+    }
+    userDiv.appendChild(userImage)
 
     const userInfoDiv = document.createElement('div');
     userInfoDiv.classList.add('container', 'container-column-center');
@@ -140,6 +147,7 @@ function criarBotao(iconName, buttonText, buttonClass, user, tipo) {
     // Adiciona um evento de clique para cada botão, registrando o usuário e o tipo de botão
     newButton.addEventListener('click', async () => {
         if (tipo == 'seguir') {
+            console.log("Clickado")
             try {
                 // Faça uma solicitação para seguir o usuário
                 const response = await fetch('https://sociallizze-api.up.railway.app/api/follow', {
@@ -233,7 +241,7 @@ const searchUsersDebounced = debounce(async (searchTerm) => {
                         containers[5].appendChild(followingUserDiv);
                     }
                 } else {
-                    const userDiv = createDivUser(user);
+                    const userDiv = await createDivUser(user);
                     if (userDiv instanceof Node) {
                         containers[3].appendChild(userDiv);
                     }
