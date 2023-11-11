@@ -141,7 +141,7 @@ function criarBotao(iconName, buttonText, buttonClass, user, tipo) {
         if (tipo == 'seguir') {
             try {
                 // Faça uma solicitação para seguir o usuário
-                const response = await fetch('http://localhost:3000/api/follow', {
+                const response = await fetch('https://sociallizze-api.up.railway.app/api/follow', {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -166,7 +166,7 @@ function criarBotao(iconName, buttonText, buttonClass, user, tipo) {
 
         if (tipo == 'remover') {
             try {
-                const response = await fetch('http://localhost:3000/api/unfollow', {
+                const response = await fetch('https://sociallizze-api.up.railway.app/api/unfollow', {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -209,7 +209,7 @@ const searchUsersDebounced = debounce(async (searchTerm) => {
             return;
         }
 
-        const response = await fetch(`http://localhost:3000/api/getUser?nickName=${searchTerm}`, {
+        const response = await fetch(`https://sociallizze-api.up.railway.app/api/getUser?nickName=${searchTerm}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -256,7 +256,7 @@ function isUserFollowing(currentUser, user) {
 async function getCurrentUser() {
     // FUNÇÃO IMPLEMENTADA PARA PEGAR DADOS DO USUÁRIO ATUAL
 
-    const response = await fetch(`http://localhost:3000/api/getCurrentUser?currentUserId=${localStorage.getItem('userId')}`, {
+    const response = await fetch(`https://sociallizze-api.up.railway.app/api/getCurrentUser?currentUserId=${localStorage.getItem('userId')}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
