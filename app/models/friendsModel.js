@@ -20,14 +20,15 @@ function createDivUser(user) {
 
     // PEGA IMAGEM DE CADA USUARIO
     const dataImage = user.avatar ? user.avatar.image : null;
-    if (dataImage) {
+
+    console.log(dataImage)
+    if (dataImage && dataImage instanceof Blob) {
         userImage.src = URL.createObjectURL(dataImage);
+        // Limpeza da URL quando não for mais necessária
+        URL.revokeObjectURL(userImage.src);
     } else {
         userImage.src = './../../public/assets/images/user/user.png';
     }
-    // Limpeza da URL quando não for mais necessária
-
-    userDiv.appendChild(userImage);
 
     // Cria a div com o nome do usuário e checkmark
     const userInfoDiv = document.createElement('div');
@@ -249,7 +250,9 @@ const searchUsersDebounced = debounce(async (searchTerm) => {
 
 // Função para verificar se o usuário já está sendo seguido
 function isUserFollowing(currentUser, user) {
-    return currentUser.following.some((followedUserId) => followedUserId === user._id);
+    const userIsFollowing = currentUser.following && currentUser.following.some((followedUserId) => followedUserId === user._id);
+
+    return userIsFollowing || false;
 }
 
 // Função para obter o usuário atual
