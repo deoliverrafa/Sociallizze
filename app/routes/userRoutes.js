@@ -152,7 +152,6 @@ const storage = multer.memoryStorage(); // Usando memoryStorage para armazenar o
 const upload = multer({ storage: storage });
 
 // Rota para atualizar os Dados do Usuário
-
 router.put('/attProfile', upload.single('avatar'), async (req, res) => {
   const { bioData, userId } = req.body;
   const avatarFile = req.file;
@@ -248,6 +247,7 @@ router.put('/follow', async (req, res) => {
 });
 
 
+// ROTA PARA PEGAR USUARIO ATUAL PELO ID
 router.get('/getCurrentUser', async (req, res) => {
   try {
     await connection.connect()
@@ -259,8 +259,25 @@ router.get('/getCurrentUser', async (req, res) => {
     }
     res.status(200).json(currentUser);
   } catch (error) {
-    return res.status(500).json({error: "Erro ao pegar usuário"})
+    return res.status(500).json({ error: "Erro ao pegar usuário" })
   }
 })
+
+// ROTA PARA DEIXAR DE SEGUIR O USUARIO
+router.put('/unfollow', async (req, res) => {
+  try {
+      const { userIdToUnfollow, currentUserId } = req.body;
+
+      // Lógica para remover o usuário do array 'following'
+      await userSchema.findByIdAndUpdate(currentUserId, {
+          $pull: { following: userIdToUnfollow },
+      });
+
+      res.status(200).json({ success: true, message: 'Usuário removido com sucesso' });
+  } catch (error) {
+      console.error('Erro ao remover o usuário:', error);
+      res.status(500).json({ success: false, message: 'Erro ao remover o usuário' });
+  }
+});
 
 module.exports = router;

@@ -1,16 +1,6 @@
 import { cards, containers, inputs } from "../../public/assets/js/variables";
 
 function createDivUser(user) {
-    // PEGA IMAGEM DE CADA USUARIO
-    let urlImage;
-    const dataImage = user.avatar.image;
-    
-    if (dataImage) {
-        urlImage = URL.createObjectURL(dataImage)
-    } else {
-        urlImage = './../../public/assets/images/user/user.png'
-    }   
-
 
     // Cria a div container
     const novaDiv = document.createElement('div');
@@ -27,11 +17,17 @@ function createDivUser(user) {
     // Adiciona a imagem do usuário
     const userImage = document.createElement('img');
     userImage.classList.add('image', 'profile-small');
-    userImage.src = `${urlImage}`;
-    userDiv.appendChild(userImage);
 
+    // PEGA IMAGEM DE CADA USUARIO
+    const dataImage = user.avatar ? user.avatar.image : null;
+    if (dataImage) {
+        userImage.src = URL.createObjectURL(dataImage);
+    } else {
+        userImage.src = './../../public/assets/images/user/user.png';
+    }
     // Limpeza da URL quando não for mais necessária
-    URL.revokeObjectURL(urlImage);
+
+    userDiv.appendChild(userImage);
 
     // Cria a div com o nome do usuário e checkmark
     const userInfoDiv = document.createElement('div');
@@ -117,7 +113,7 @@ function createDivFollowingUser(user) {
     const buttonsDiv = document.createElement('div');
     buttonsDiv.classList.add('container', 'container-row');
 
-    const buttonRemover = criarBotao('person_remove', 'REMOVER', 'remove', user, 'bloquear');
+    const buttonRemover = criarBotao('person_remove', 'REMOVER', 'remove', user, 'remover');
     const buttonSeguindo = criarBotao('person_check', 'SEGUINDO', 'check', user, 'seguindo');
 
     buttonsDiv.appendChild(buttonSeguindo);
@@ -169,7 +165,27 @@ function criarBotao(iconName, buttonText, buttonClass, user, tipo) {
         };
 
         if (tipo == 'remover') {
-            console.log("Estou Aqui")
+            try {
+                const response = await fetch('http://localhost:3000/api/unfollow', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        userIdToUnfollow: user._id,
+                        currentUserId: localStorage.getItem('userId'),
+                    }),
+                });
+
+                if (response.ok) {
+                    // Atualize o botão ou faça outras ações necessárias
+                    console.log('Usuario removido com sucesso');
+                } else {
+                    console.error('Erro ao remover o usuário:', response.statusText);
+                }
+            } catch (error) {
+                console.log("Erro ao remover usuario", error);
+            }
         }
     });
     return newButton;
