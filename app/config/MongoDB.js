@@ -41,7 +41,7 @@ class MongoDB extends Icrud {
     }    
     
     async read(item) {
-        const result = await this._usuario.find(item);
+        const result = await this._usuario.find(item).limit(10);
         return result;
     }
 

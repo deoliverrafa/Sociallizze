@@ -5,11 +5,13 @@ const userSchema = mongoose.Schema({
     nickName: {
         type: String,
         required: true,
+        index: true,
     },
 
     userName: {
         type: String,
         required: true,
+        index:true,
     },
 
     phoneNumber: {

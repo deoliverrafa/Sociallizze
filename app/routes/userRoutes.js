@@ -57,7 +57,7 @@ router.post('/cadastrar', async (req, res) => {
 });
 
 // rota para get de usuários passando o parâmetro email e senha
-router.get('/usuarios', async (req, res) => {
+router.get('/login', async (req, res) => {
   try {
     await connection.connect();
 
@@ -154,46 +154,80 @@ const upload = multer({ storage: storage });
 // Rota para atualizar os Dados do Usuário
 
 router.put('/attProfile', upload.single('avatar'), async (req, res) => {
-    const { bioData, userId } = req.body;
-    const avatarFile = req.file;
+  const { bioData, userId } = req.body;
+  const avatarFile = req.file;
 
-    if (!userId) {
-      return res.status(401).json({ error: 'Não autorizado. Faça o login para alterar o perfil.' });
+  if (!userId) {
+    return res.status(401).json({ error: 'Não autorizado. Faça o login para alterar o perfil.' });
+  }
+
+  try {
+    await connection.connect();
+
+    const updateData = {}; // Objeto para armazenar os campos que serão atualizados
+
+    if (avatarFile) {
+      if (avatarFile.mimetype) {
+        updateData['avatar.contentType'] = avatarFile.mimetype;
+      }
+      if (avatarFile.originalname) {
+        updateData['avatar.filename'] = avatarFile.originalname;
+      }
+      if (avatarFile.buffer) {
+        updateData['avatar.image'] = avatarFile.buffer;
+      }
     }
 
-    try {
-      await connection.connect();
+    if (typeof bioData !== 'undefined') {
+      updateData.bio = bioData;
+    }
 
-      const updateData = {}; // Objeto para armazenar os campos que serão atualizados
+    const usuario = await context.update(userId, updateData);
 
-      if (avatarFile) {
-        if (avatarFile.mimetype) {
-          updateData['avatar.contentType'] = avatarFile.mimetype;
-        }
-        if (avatarFile.originalname) {
-          updateData['avatar.filename'] = avatarFile.originalname;
-        }
-        if (avatarFile.buffer) {
-          updateData['avatar.image'] = avatarFile.buffer;
-        }
-      }
-      
-      if (typeof bioData !== 'undefined') {
-        updateData.bio = bioData;
-      }
+    if (!usuario) {
+      return res.status(404).json({ error: 'Usuário não encontrado.' });
+    }
 
-      const usuario = await context.update(userId, updateData);
-
-      if (!usuario) {
-        return res.status(404).json({ error: 'Usuário não encontrado.' });
-      }
-
-      return res.status(200).json({ message: 'Imagem de perfil atualizada com sucesso.', usuario });
+    return res.status(200).json({ message: 'Imagem de perfil atualizada com sucesso.', usuario });
 
   } catch (error) {
     console.log(error);
     return res.status(500).json({ error: 'Erro na solicitação' });
   }
 });
+
+
+// ROTA PARA GET DO INPUT FRIENDS
+router.get('/getUser', async (req, res) => {
+  await connection.connect()
+
+  const { nickName } = req.query;
+
+  try {
+    // Certifique-se de que 'nickName' não é undefined ou null
+    if (!nickName) {
+      return res.status(400).json({ error: 'Parâmetro nickName não fornecido' });
+    }
+
+    // Use a função findUSersToFriends corrigida
+    const response = await context.read({ nickName: { $regex: new RegExp(nickName, 'i') } });
+
+    if (!response || response.length === 0) {
+      return res.json({ message: 'Usuário não encontrado. Tente novamente.' });
+    }
+
+    return res.json(response);
+  } catch (error) {
+    console.error('Erro ao buscar usuários:', error);
+    return res.status(500).json({ error: 'Erro interno do servidor' });
+  }
+});
+
+
+// ROTA PARA SEGUIR USUÁRIO
+
+router.put('/follow', async (req, res) => {
+  
+})
 
 module.exports = router;
