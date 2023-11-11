@@ -190,7 +190,7 @@ const searchUsersDebounced = debounce(async (searchTerm) => {
             return;
         }
 
-        const response = await fetch(`https://sociallizze-api.up.railway.app/api/getUser?nickName=${searchTerm}`, {
+        const response = await fetch(`http://localhost:3000/api/getUser?nickName=${searchTerm}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
