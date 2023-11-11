@@ -1,8 +1,6 @@
 import { cards, containers, inputs } from "../../public/assets/js/variables";
 
 function createDivUser(user) {
-
-    console.log('User na div', user)
     // Cria a div container
     const novaDiv = document.createElement('div');
     novaDiv.classList.add('container', 'search-friends', 'container-column-center');
@@ -48,15 +46,15 @@ function createDivUser(user) {
 
     // Cria os botões
     const buttonSeguir = criarBotao('person_add', 'SEGUIR', 'add', user, 'seguir');
-    const buttonRemover = criarBotao('person_remove', 'BLOQUEAR', 'remove', user, 'bloquear');
-    const buttonSeguindo = criarBotao('person_check', 'SEGUINDO', 'check', user, 'seguindo');    
+    // const buttonRemover = criarBotao('person_remove', 'BLOQUEAR', 'remove', user, 'bloquear');
+    // const buttonSeguindo = criarBotao('person_check', 'SEGUINDO', 'check', user, 'seguindo');    
 
     // Adiciona os botões à div card
     const buttonsDiv = document.createElement('div');
     buttonsDiv.classList.add('container', 'container-row');
     buttonsDiv.appendChild(buttonSeguir);
-    buttonsDiv.appendChild(buttonSeguindo);
-    buttonsDiv.appendChild(buttonRemover);
+    // buttonsDiv.appendChild(buttonSeguindo);
+    // buttonsDiv.appendChild(buttonRemover);
     cardDiv.appendChild(buttonsDiv);
 
     // Adiciona a div card à div container
@@ -79,20 +77,36 @@ function criarBotao(iconName, buttonText, buttonClass, user, tipo) {
     newButton.appendChild(document.createTextNode(buttonText));
 
     // Adiciona um evento de clique para cada botão, registrando o usuário e o tipo de botão
-    newButton.addEventListener('click', () => {
-        if (tipo == 'SEGUIR') {
-            
-        }
-        if (tipo == 'SEGUINDO') {
-            console.log(tipo)
-        }
-        if (tipo == 'REMOVER') {
-            console.log(tipo)   
-        }
-    });
+    newButton.addEventListener('click', async () => {
+        if (tipo == 'seguir') {
+            try {
+                // Faça uma solicitação para seguir o usuário
+                const response = await fetch('http://localhost:3000/api/follow', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        userIdToFollow: user._id,
+                        currentUserId: localStorage.getItem('userId'),
+                    }),
+                });
 
+                // Verifique se a solicitação foi bem-sucedida
+                if (response.ok) {
+                    console.log('Usuário seguido com sucesso!');
+                    // Atualize o botão ou faça outras ações necessárias
+                } else {
+                    console.error('Erro ao seguir o usuário:', response.statusText);
+                }
+            } catch (error) {
+                console.error('Erro ao seguir o usuário:', error);
+            }
+        };
+    });
     return newButton;
 }
+
 
 
 // CRIANDO-SE A FUNÇÃO DEBOUNCE PARA QUE NÃO VENHA FAZER A PESQUISA APÓS CADA LETRA DIGITADA
@@ -123,8 +137,10 @@ const searchUsersDebounced = debounce(async (searchTerm) => {
         // Limpa os resultados anteriores antes de adicionar novos
         containers[3].innerHTML = '';
 
+        const currentUser = await getCurrentUser(); // Implemente esta função
+
         data.forEach((user) => {
-            if (user._id === localStorage.getItem('userId')) {
+            if (user._id === currentUser._id || isUserFollowing(currentUser, user)) {
                 return null;
             }
             const userDiv = createDivUser(user);
@@ -138,6 +154,28 @@ const searchUsersDebounced = debounce(async (searchTerm) => {
     }
 }, 300); // Delay de 300 milissegundos
 
+// Função para verificar se o usuário já está sendo seguido
+function isUserFollowing(currentUser, user) {
+    return currentUser.following.some((followedUserId) => followedUserId === user._id);
+}
+
+// Função para obter o usuário atual (substitua conforme necessário)
+async function getCurrentUser() {
+    // FUNÇÃO IMPLEMENTADA PARA PEGAR DADOS DO USUÁRIO ATUAL
+    
+    const response = await fetch(`http://localhost:3000/api/getCurrentUser?currentUserId=${localStorage.getItem('userId')}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
+
+    if (!response.ok) {
+        throw new Error('Erro ao obter usuário atual');
+    }
+
+    return await response.json();
+}
 // Adiciona o evento de input com o debounce
 inputs[0].addEventListener('input', async () => {
     const searchTerm = inputs[0].value.trim();
@@ -147,7 +185,6 @@ inputs[0].addEventListener('input', async () => {
         containers[3].innerHTML = '';
         return;
     }
-
     // Chama a função de busca com debounce
     searchUsersDebounced(searchTerm);
 });

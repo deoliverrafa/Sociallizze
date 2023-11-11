@@ -225,9 +225,42 @@ router.get('/getUser', async (req, res) => {
 
 
 // ROTA PARA SEGUIR USUÁRIO
-
 router.put('/follow', async (req, res) => {
-  
+  try {
+    await connection.connect();
+    // Obtenha o ID do usuário a ser seguido
+    const { currentUserId, userIdToFollow } = req.body;
+
+    // Encontra o usuário atual no banco de dados
+    const currentUser = await userSchema.findById(currentUserId);
+
+    // Adiciona o ID do usuário a ser seguido ao array following
+    currentUser.following.push(userIdToFollow);
+
+    // Salva as alterações no banco de dados
+    await currentUser.save();
+
+    res.status(200).json({ message: 'Usuário seguido com sucesso!' });
+  } catch (error) {
+    console.error('Erro ao seguir o usuário:', error);
+    res.status(500).json({ error: 'Erro interno do servidor' });
+  }
+});
+
+
+router.get('/getCurrentUser', async (req, res) => {
+  try {
+    await connection.connect()
+    const { currentUserId } = req.query
+    const currentUser = await userSchema.findById(currentUserId);
+
+    if (!currentUser) {
+      return res.status(404).json({ error: 'Usuário não encontrado' });
+    }
+    res.status(200).json(currentUser);
+  } catch (error) {
+    return res.status(500).json({error: "Erro ao pegar usuário"})
+  }
 })
 
 module.exports = router;
