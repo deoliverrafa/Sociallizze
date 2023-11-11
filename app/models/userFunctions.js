@@ -1,4 +1,4 @@
-let userId = localStorage.getItem('userId')
+let localUserId = localStorage.getItem('userId')
 let userLoggedIn = localStorage.getItem('userLoggedIn')
 
 async function verifyUserLogged() {
@@ -11,8 +11,7 @@ async function verifyUserLogged() {
     return status;
 }
 
-async function getUserImage() {
-    const userId = localStorage.getItem('userId');
+async function getUserImage(userId) {
     if (!userId) {
         return null;
     }
@@ -39,7 +38,7 @@ async function logOut() {
     localStorage.setItem('userId', 'null')
 }
 
-async function getUserData() {
+async function getUserData(userId) {
     return await fetch(`https://sociallizze-api.up.railway.app/api/searchById?id=${userId}`, {
         method: 'GET',
         headers: {
@@ -62,4 +61,4 @@ async function getUserData() {
         });
 }
 
-export { getUserData, getUserImage, logOut, verifyUserLogged, userId, userLoggedIn };
+export { getUserData, getUserImage, logOut, verifyUserLogged, localUserId, userLoggedIn };

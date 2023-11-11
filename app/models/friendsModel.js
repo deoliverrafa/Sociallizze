@@ -1,6 +1,7 @@
 import { cards, containers, inputs } from "../../public/assets/js/variables";
+import { getUserImage, localUserId } from "./userFunctions";
 
-function createDivUser(user) {
+async function createDivUser(user) {
 
     // Cria a div container
     const novaDiv = document.createElement('div');
@@ -19,16 +20,15 @@ function createDivUser(user) {
     userImage.classList.add('image', 'profile-small');
 
     // PEGA IMAGEM DE CADA USUARIO
-    const dataImage = user.avatar ? user.avatar.image : null;
+    const image = await getUserImage(user._id);
 
-    console.log(dataImage)
-    if (dataImage && dataImage instanceof Blob) {
-        userImage.src = URL.createObjectURL(dataImage);
-        // Limpeza da URL quando não for mais necessária
-        URL.revokeObjectURL(userImage.src);
+    if (image.type == "image/png") {
+        userImage.src = URL.createObjectURL(image);
+        console.log(userImage.src)
     } else {
         userImage.src = './../../public/assets/images/user/user.png';
     }
+    userDiv.appendChild(userImage)
 
     // Cria a div com o nome do usuário e checkmark
     const userInfoDiv = document.createElement('div');
@@ -225,23 +225,22 @@ const searchUsersDebounced = debounce(async (searchTerm) => {
 
         const currentUser = await getCurrentUser(); // Implemente esta função
 
-        data.forEach((user) => {
-            if (user._id === currentUser._id) {
-                return null;
-            }
-
-            if (isUserFollowing(currentUser, user)) {
-                const followingUserDiv = createDivFollowingUser(user);
-                if (followingUserDiv) {
-                    containers[5].appendChild(followingUserDiv);
-                }
-            } else {
-                const userDiv = createDivUser(user);
-                if (userDiv) {
-                    containers[3].appendChild(userDiv);
+        data.forEach(async (user) => {
+            if (user._id !== currentUser._id) {
+                if (isUserFollowing(currentUser, user)) {
+                    const followingUserDiv = await createDivFollowingUser(user);
+                    if (followingUserDiv instanceof Node) {
+                        containers[5].appendChild(followingUserDiv);
+                    }
+                } else {
+                    const userDiv = createDivUser(user);
+                    if (userDiv instanceof Node) {
+                        containers[3].appendChild(userDiv);
+                    }
                 }
             }
         });
+
 
     } catch (error) {
         console.log("Erro ao obter dados", error);

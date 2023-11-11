@@ -1,6 +1,6 @@
 // Lógica para aparecer dados do usuário no perfil extendido
 import { buttonLogOut, imageProfile, textBirthDayData, textEmail, textNacionality, textNick, textNumber, textName, itens, textBio, buttons } from "../../public/assets/js/variables";
-import { getUserData, getUserImage, logOut, userId, verifyUserLogged } from "./userFunctions";
+import { getUserData, getUserImage, localUserId, logOut, verifyUserLogged } from "./userFunctions";
 
 const cardPost = document.querySelectorAll('.card.post');
 const cardPhoto = document.querySelectorAll('.card.photo');
@@ -12,7 +12,7 @@ const containerNoBio = document.querySelectorAll('.container.no-bio');
 document.addEventListener('DOMContentLoaded', async () => {
     // LÓGICA PARA REAPROVEITAR DADOS DO USUÁRIO //
     if (await verifyUserLogged() == true) {
-        const dadosUser = await getUserData();
+        const dadosUser = await getUserData(localUserId);
         if (dadosUser) {
             textName[0].innerHTML = dadosUser.userName;
             textNick[0].innerHTML = `@${dadosUser.nickName}`;
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
 
             // ESCONDER BOTÕES DESNECESSÁRIOS ADICIONAR, REMOVER, BLOQUEAR
-            if (userId == dadosUser._id) {
+            if (localUserId == dadosUser._id) {
                 buttons[0].style.display = 'none';
                 buttons[1].style.display = 'none';
                 buttons[2].style.display = 'none';

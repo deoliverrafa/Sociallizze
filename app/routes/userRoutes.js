@@ -203,22 +203,22 @@ router.get('/getUser', async (req, res) => {
   const { nickName } = req.query;
 
   try {
-    // Certifique-se de que 'nickName' não é undefined ou null
-    if (!nickName) {
-      return res.status(400).json({ error: 'Parâmetro nickName não fornecido' });
-    }
+      // Certifique-se de que 'nickName' não é undefined ou null
+      if (!nickName) {
+          return res.status(400).json({ error: 'Parâmetro nickName não fornecido' });
+      }
 
-    // Use a função findUSersToFriends corrigida
-    const response = await context.read({ nickName: { $regex: new RegExp(nickName, 'i') } });
+      // Use a função findUSersToFriends corrigida
+      const response = await context.read({ nickName: { $regex: new RegExp(nickName, 'i') } });
 
-    if (!response || response.length === 0) {
-      return res.json({ message: 'Usuário não encontrado. Tente novamente.' });
-    }
+      if (!response || response.length === 0) {
+          return res.json({ message: 'Usuário não encontrado. Tente novamente.' });
+      }
 
-    return res.json(response);
+      return res.json(response)
   } catch (error) {
-    console.error('Erro ao buscar usuários:', error);
-    return res.status(500).json({ error: 'Erro interno do servidor' });
+      console.error('Erro ao buscar usuários:', error);
+      return res.status(500).json({ error: 'Erro interno do servidor' });
   }
 });
 
