@@ -1,6 +1,17 @@
 import { cards, containers, inputs } from "../../public/assets/js/variables";
 
 function createDivUser(user) {
+    // PEGA IMAGEM DE CADA USUARIO
+    let urlImage;
+    const dataImage = user.avatar.image;
+    
+    if (dataImage) {
+        urlImage = URL.createObjectURL(dataImage)
+    } else {
+        urlImage = './../../public/assets/images/user/user.png'
+    }   
+
+
     // Cria a div container
     const novaDiv = document.createElement('div');
     novaDiv.classList.add('container', 'search-friends', 'container-column-center');
@@ -16,9 +27,12 @@ function createDivUser(user) {
     // Adiciona a imagem do usuário
     const userImage = document.createElement('img');
     userImage.classList.add('image', 'profile-small');
-    userImage.src = "./../../public/assets/images/user/user.png";
+    userImage.src = `${urlImage}`;
     userDiv.appendChild(userImage);
 
+    // Limpeza da URL quando não for mais necessária
+    URL.revokeObjectURL(urlImage);
+    
     // Cria a div com o nome do usuário e checkmark
     const userInfoDiv = document.createElement('div');
     userInfoDiv.classList.add('container', 'container-column-center');
