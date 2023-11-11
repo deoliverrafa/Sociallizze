@@ -32,7 +32,7 @@ function createDivUser(user) {
 
     // Limpeza da URL quando não for mais necessária
     URL.revokeObjectURL(urlImage);
-    
+
     // Cria a div com o nome do usuário e checkmark
     const userInfoDiv = document.createElement('div');
     userInfoDiv.classList.add('container', 'container-column-center');
@@ -145,7 +145,7 @@ function criarBotao(iconName, buttonText, buttonClass, user, tipo) {
         if (tipo == 'seguir') {
             try {
                 // Faça uma solicitação para seguir o usuário
-                const response = await fetch('http://localhost:3000/api/follow', {
+                const response = await fetch('https://sociallizze-api.up.railway.app/api/follow', {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -193,7 +193,7 @@ const searchUsersDebounced = debounce(async (searchTerm) => {
             return;
         }
 
-        const response = await fetch(`http://localhost:3000/api/getUser?nickName=${searchTerm}`, {
+        const response = await fetch(`https://sociallizze-api.up.railway.app/api/getUser?nickName=${searchTerm}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -240,7 +240,7 @@ function isUserFollowing(currentUser, user) {
 async function getCurrentUser() {
     // FUNÇÃO IMPLEMENTADA PARA PEGAR DADOS DO USUÁRIO ATUAL
 
-    const response = await fetch(`http://localhost:3000/api/getCurrentUser?currentUserId=${localStorage.getItem('userId')}`, {
+    const response = await fetch(`https://sociallizze-api.up.railway.app/api/getCurrentUser?currentUserId=${localStorage.getItem('userId')}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
