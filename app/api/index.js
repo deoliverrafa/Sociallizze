@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 //   });
 
 app.use(cors({
-  origin: ['https://sociallizze.online', 'http://localhost:5500', 'sociallizze-api.up.railway.app', 'http://localhost:6700'],
+  origin: ['online', 'http://localhost:5500', 'sociallizze-api.up.railway.app', 'http://localhost:6700'],
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   preflightContinue: false,
   optionsSuccessStatus: 204,

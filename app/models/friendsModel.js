@@ -64,65 +64,53 @@ function createDivUser(user) {
     containers[3].appendChild(novaDiv);
 }
 
-function createDivFollowingUsers(user) {
-    // Cria a div container
+// Função para criar div de usuário que você está seguindo
+function createDivFollowingUser(user) {
     const novaDiv = document.createElement('div');
     novaDiv.classList.add('container', 'search-friends', 'container-column-center');
 
-    // Cria a div card
     const cardDiv = document.createElement('div');
     cardDiv.classList.add('card', 'user', 'container', 'container-row-between');
 
-    // Cria a div com a imagem e informações do usuário
     const userDiv = document.createElement('div');
     userDiv.classList.add('container', 'container-row');
 
-    // Adiciona a imagem do usuário
     const userImage = document.createElement('img');
     userImage.classList.add('image', 'profile-small');
     userImage.src = "./../../public/assets/images/user/user.png";
     userDiv.appendChild(userImage);
 
-    // Cria a div com o nome do usuário e checkmark
     const userInfoDiv = document.createElement('div');
     userInfoDiv.classList.add('container', 'container-column-center');
 
-    // Adiciona o contêiner antes do nome do usuário
     const nameContainer = document.createElement('div');
     nameContainer.classList.add('container', 'container-row');
     userInfoDiv.appendChild(nameContainer);
 
-    // Adiciona o nome do usuário
     const userName = document.createElement('p');
     userName.classList.add('text', 'nick', 'text-bold');
     userName.textContent = user.nickName;
     nameContainer.appendChild(userName);
 
-    // Adiciona o checkmark
     const checkmarkImage = document.createElement('img');
     checkmarkImage.classList.add('image', 'checkmark');
     checkmarkImage.src = "./../../public/assets/images/user/checkmark_blue.png";
     nameContainer.appendChild(checkmarkImage);
 
     userDiv.appendChild(userInfoDiv);
-
     cardDiv.appendChild(userDiv);
 
-    // Cria os botões
-    const buttonRemover = criarBotao('person_remove', 'BLOQUEAR', 'remove', user, 'bloquear');
-    const buttonSeguindo = criarBotao('person_check', 'SEGUINDO', 'check', user, 'seguindo');    
-
-    // Adiciona os botões à div card
     const buttonsDiv = document.createElement('div');
     buttonsDiv.classList.add('container', 'container-row');
+
+    const buttonRemover = criarBotao('person_remove', 'REMOVER', 'remove', user, 'bloquear');
+    const buttonSeguindo = criarBotao('person_check', 'SEGUINDO', 'check', user, 'seguindo');
+
     buttonsDiv.appendChild(buttonSeguindo);
     buttonsDiv.appendChild(buttonRemover);
     cardDiv.appendChild(buttonsDiv);
 
-    // Adiciona a div card à div container
     novaDiv.appendChild(cardDiv);
-
-    // Adiciona a div container ao container[0]
     containers[5].appendChild(novaDiv);
 }
 
@@ -184,6 +172,7 @@ function debounce(func, delay) {
     };
 }
 
+
 const searchUsersDebounced = debounce(async (searchTerm) => {
     try {
         if (searchTerm == 'null') {
@@ -201,6 +190,7 @@ const searchUsersDebounced = debounce(async (searchTerm) => {
 
         // Limpa os resultados anteriores antes de adicionar novos
         containers[3].innerHTML = '';
+        containers[5].innerHTML = '';
 
         const currentUser = await getCurrentUser(); // Implemente esta função
 
@@ -208,18 +198,17 @@ const searchUsersDebounced = debounce(async (searchTerm) => {
             if (user._id === currentUser._id) {
                 return null;
             }
-            const userDiv = createDivUser(user);
-            if (userDiv) {
-                containers[3].appendChild(userDiv);
-            }
-        });
 
-        // Adiciona os usuários que você está seguindo
-        currentUser.following.forEach(async (followedUserId) => {
-            const followedUser = await getUserById(followedUserId); // Implemente esta função
-            const followingUserDiv = createDivFollowingUsers(followedUser);
-            if (followingUserDiv) {
-                containers[3].appendChild(followingUserDiv);
+            if (isUserFollowing(currentUser, user)) {
+                const followingUserDiv = createDivFollowingUser(user);
+                if (followingUserDiv) {
+                    containers[5].appendChild(followingUserDiv);
+                }
+            } else {
+                const userDiv = createDivUser(user);
+                if (userDiv) {
+                    containers[3].appendChild(userDiv);
+                }
             }
         });
 
@@ -257,6 +246,7 @@ inputs[0].addEventListener('input', async () => {
     if (searchTerm.length === 0) {
         // Limpa os resultados se o campo de pesquisa estiver vazio
         containers[3].innerHTML = '';
+        containers[5].innerHTML = '';
         return;
     }
     // Chama a função de busca com debounce
