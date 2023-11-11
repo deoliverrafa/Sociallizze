@@ -6,7 +6,6 @@ let count = 0;
 const userLoggedIn = localStorage.getItem('userLoggedIn');
 const userId = localStorage.getItem('userId')
 
-console.log(containers)
 document.addEventListener('DOMContentLoaded', () => {
     // LÓGICA PARA APARECER O CARD DE LOGIN //
 

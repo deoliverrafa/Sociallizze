@@ -1,7 +1,5 @@
 import { buttons, cards, closeLoginMenu, closeRegisterMenu, containers, dates, iconsClose, inputs, modals, selects, showLoginMenu, textError, textSuccess } from "../../public/assets/js/variables";
 
-console.log(selects)
-
 const birthDayData = document.querySelector('.date')
 const nacionality = selects[0]
 const nickName = inputs[2]
