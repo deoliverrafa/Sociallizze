@@ -54,7 +54,7 @@ btnConfirmChanges[0].addEventListener('click', async () => {
     formData.append('bioData', bioData);
 
     try {
-        const response = await fetch('http://localhost:3000/api/attProfile', {
+        const response = await fetch('https://sociallizze-api.up.railway.app/api/attProfile', {
             method: 'PUT',
             body: formData,
         });
