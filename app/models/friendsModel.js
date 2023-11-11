@@ -64,6 +64,68 @@ function createDivUser(user) {
     containers[3].appendChild(novaDiv);
 }
 
+function createDivFollowingUsers(user) {
+    // Cria a div container
+    const novaDiv = document.createElement('div');
+    novaDiv.classList.add('container', 'search-friends', 'container-column-center');
+
+    // Cria a div card
+    const cardDiv = document.createElement('div');
+    cardDiv.classList.add('card', 'user', 'container', 'container-row-between');
+
+    // Cria a div com a imagem e informações do usuário
+    const userDiv = document.createElement('div');
+    userDiv.classList.add('container', 'container-row');
+
+    // Adiciona a imagem do usuário
+    const userImage = document.createElement('img');
+    userImage.classList.add('image', 'profile-small');
+    userImage.src = "./../../public/assets/images/user/user.png";
+    userDiv.appendChild(userImage);
+
+    // Cria a div com o nome do usuário e checkmark
+    const userInfoDiv = document.createElement('div');
+    userInfoDiv.classList.add('container', 'container-column-center');
+
+    // Adiciona o contêiner antes do nome do usuário
+    const nameContainer = document.createElement('div');
+    nameContainer.classList.add('container', 'container-row');
+    userInfoDiv.appendChild(nameContainer);
+
+    // Adiciona o nome do usuário
+    const userName = document.createElement('p');
+    userName.classList.add('text', 'nick', 'text-bold');
+    userName.textContent = user.nickName;
+    nameContainer.appendChild(userName);
+
+    // Adiciona o checkmark
+    const checkmarkImage = document.createElement('img');
+    checkmarkImage.classList.add('image', 'checkmark');
+    checkmarkImage.src = "./../../public/assets/images/user/checkmark_blue.png";
+    nameContainer.appendChild(checkmarkImage);
+
+    userDiv.appendChild(userInfoDiv);
+
+    cardDiv.appendChild(userDiv);
+
+    // Cria os botões
+    const buttonRemover = criarBotao('person_remove', 'BLOQUEAR', 'remove', user, 'bloquear');
+    const buttonSeguindo = criarBotao('person_check', 'SEGUINDO', 'check', user, 'seguindo');    
+
+    // Adiciona os botões à div card
+    const buttonsDiv = document.createElement('div');
+    buttonsDiv.classList.add('container', 'container-row');
+    buttonsDiv.appendChild(buttonSeguindo);
+    buttonsDiv.appendChild(buttonRemover);
+    cardDiv.appendChild(buttonsDiv);
+
+    // Adiciona a div card à div container
+    novaDiv.appendChild(cardDiv);
+
+    // Adiciona a div container ao container[0]
+    containers[5].appendChild(novaDiv);
+}
+
 // Função para criar botões
 function criarBotao(iconName, buttonText, buttonClass, user, tipo) {
     const newButton = document.createElement('button');
@@ -94,7 +156,7 @@ function criarBotao(iconName, buttonText, buttonClass, user, tipo) {
 
                 // Verifique se a solicitação foi bem-sucedida
                 if (response.ok) {
-                    console.log('Usuário seguido com sucesso!');
+                    return;
                     // Atualize o botão ou faça outras ações necessárias
                 } else {
                     console.error('Erro ao seguir o usuário:', response.statusText);
@@ -103,6 +165,10 @@ function criarBotao(iconName, buttonText, buttonClass, user, tipo) {
                 console.error('Erro ao seguir o usuário:', error);
             }
         };
+
+        if (tipo == 'bloquear') {
+
+        }
     });
     return newButton;
 }
@@ -117,7 +183,6 @@ function debounce(func, delay) {
         timeoutId = setTimeout(() => func.apply(this, args), delay);
     };
 }
-
 
 const searchUsersDebounced = debounce(async (searchTerm) => {
     try {
@@ -140,12 +205,21 @@ const searchUsersDebounced = debounce(async (searchTerm) => {
         const currentUser = await getCurrentUser(); // Implemente esta função
 
         data.forEach((user) => {
-            if (user._id === currentUser._id || isUserFollowing(currentUser, user)) {
+            if (user._id === currentUser._id) {
                 return null;
             }
             const userDiv = createDivUser(user);
             if (userDiv) {
                 containers[3].appendChild(userDiv);
+            }
+        });
+
+        // Adiciona os usuários que você está seguindo
+        currentUser.following.forEach(async (followedUserId) => {
+            const followedUser = await getUserById(followedUserId); // Implemente esta função
+            const followingUserDiv = createDivFollowingUsers(followedUser);
+            if (followingUserDiv) {
+                containers[3].appendChild(followingUserDiv);
             }
         });
 
@@ -159,10 +233,10 @@ function isUserFollowing(currentUser, user) {
     return currentUser.following.some((followedUserId) => followedUserId === user._id);
 }
 
-// Função para obter o usuário atual (substitua conforme necessário)
+// Função para obter o usuário atual
 async function getCurrentUser() {
     // FUNÇÃO IMPLEMENTADA PARA PEGAR DADOS DO USUÁRIO ATUAL
-    
+
     const response = await fetch(`http://localhost:3000/api/getCurrentUser?currentUserId=${localStorage.getItem('userId')}`, {
         method: 'GET',
         headers: {
