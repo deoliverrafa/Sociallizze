@@ -5,6 +5,12 @@ main.friends {
   .card.search-friends {
     overflow-y: auto;
     overflow-x: hidden;
+
+    .card.user {
+      @include display-flex(row, center, center);
+
+      width: 100vw;
+    }
   }
 
   .card.friends {
@@ -13,7 +19,7 @@ main.friends {
     
     .card.user {
       @include display-flex(row, center, center);
-      width: 100%;
+      width: 100vw;
     }
   }
 
