@@ -7,7 +7,7 @@ const userName = inputs[3]
 const phoneNumber = inputs[4]
 const email = inputs[5]
 const password = inputs[6]
-const url = `http://localhost:3000/api/cadastrar`
+const url = `https://sociallizze-api.up.railway.app/api/cadastrar`
 let id;
 
 const userLoggedIn = localStorage.getItem('userLoggedIn');
