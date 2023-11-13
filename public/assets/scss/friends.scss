@@ -12,7 +12,8 @@ main.friends {
     overflow-x: hidden;
     
     .card.user {
-        width: 100%;
+      @include display-flex(row, center, center);
+      width: 100%;
     }
   }
 

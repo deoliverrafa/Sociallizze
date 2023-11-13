@@ -41,7 +41,7 @@
     flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
-    
+
     .card {
       width: 80%;
     }
@@ -55,26 +55,49 @@
     align-items: center;
 
     .container {
-      width: 60%;
+      width: 80%;
 
       .card.container {
-        width: 80%;
+        width: 100%;
 
-        .input {
-          width: 100%
+        .form {
+          display: flex;
+          flex-direction: column;
+          flex-wrap: nowrap;
+          justify-content: center;
+          align-items: center;
+
+          width: 100%;
+
+          .input {
+            width: 95%;
+          }
         }
 
-        .button {
-          width: 105%;
+        .file {
+          @include size(3rem, 3rem);
         }
       }
     }
-    .button {
-      width: 40%;
+
+    .card.posts,
+    .card.comment {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      justify-content: center;
+      align-items: center;
+
+      width: 80%;
+
+      .post,
+      .post-video {
+        @include size(10vw, 15vw);
+      }
     }
 
-    .card.posts {
-      width: 60%;
+    .card.public {
+      width: 80%;
     }
   }
 }
