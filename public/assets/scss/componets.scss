@@ -108,6 +108,47 @@ html {
     z-index: 2;
 }
 
+hr {
+    border: none;
+    
+    @include display-flex(column, center, center);
+    
+    position: relative;
+    
+    height: 20px;
+    width: 100%;
+    z-index: 0;
+    
+    &:after {
+        content: '';
+        
+        background: linear-gradient(to right, rgba(14, 42, 86, 0), rgba(14, 42, 86, 0.75), rgba(14, 42, 86, 0));;
+        
+        position: absolute;
+        
+        height: 2px;
+        width: 100%;
+        z-index: 1;
+    }
+    
+    &:before {
+        content: '';
+        transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            -o-transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+        
+        background: $colorDarkPrimary;
+        
+        position: absolute;
+        
+        height: 10px;
+        width: 10px;
+        z-index: 2;
+    }
+}
+
 .form {
     @include display-flex(column, stretch, stretch);
 }
@@ -132,6 +173,12 @@ html {
     
     &.input-icon {
         border-radius: 0 10px 10px 0;
+
+        margin: 0;
+    }
+    
+    &.input-button {
+        border-radius: 10px 0 0 10px;
 
         margin: 0;
     }
@@ -251,6 +298,22 @@ html {
     
     &.button-danger {
         @include button-style($colorDanger, $colorWhite);
+    }
+    
+    &.button-icon {
+        border-radius: 0 10px 10px 0;
+    
+        margin: 0;
+        
+        &.button-icon-primary {
+            @include button-style($colorPrimary, $colorWhite);
+            
+            .icon {
+                color: $colorWhite;
+                
+                @include font-size(1rem);
+            }
+        }
     }
 }
 
