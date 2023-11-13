@@ -1,5 +1,5 @@
-import { cards, containers, inputs } from "../../public/assets/js/variables";
-import { getUserImage, localUserId } from "./userFunctions";
+import { containers, inputs } from "../../public/assets/js/variables";
+import { getUserImage } from "./userFunctions";
 
 async function createDivUser(user) {
 
@@ -121,16 +121,25 @@ async function createDivFollowingUser(user) {
     const buttonsDiv = document.createElement('div');
     buttonsDiv.classList.add('container', 'container-row');
 
-    const buttonRemover = criarBotao('person_remove', 'REMOVER', 'remove', user, 'remover');
     const buttonSeguindo = criarBotao('person_check', 'SEGUINDO', 'check', user, 'seguindo');
 
+    // Adiciona um evento de mouseover para ativar o botão de remoção
+    buttonSeguindo.addEventListener('mouseover', () => {
+        const buttonRemover = criarBotao('person_remove', 'REMOVER', 'remove', user, 'remover');
+        buttonRemover.addEventListener('mouseout', () => {
+            // Restaura o botão "SEGUINDO" quando o mouse sai do botão de remoção
+            buttonRemover.replaceWith(buttonSeguindo);
+        });
+        buttonSeguindo.replaceWith(buttonRemover);
+    });
+
     buttonsDiv.appendChild(buttonSeguindo);
-    buttonsDiv.appendChild(buttonRemover);
     cardDiv.appendChild(buttonsDiv);
 
     novaDiv.appendChild(cardDiv);
     containers[5].appendChild(novaDiv);
 }
+
 
 // Função para criar botões
 function criarBotao(iconName, buttonText, buttonClass, user, tipo) {
@@ -147,7 +156,6 @@ function criarBotao(iconName, buttonText, buttonClass, user, tipo) {
     // Adiciona um evento de clique para cada botão, registrando o usuário e o tipo de botão
     newButton.addEventListener('click', async () => {
         if (tipo == 'seguir') {
-            console.log("Clickado")
             try {
                 // Faça uma solicitação para seguir o usuário
                 const response = await fetch('http://localhost:3000/api/follow', {
@@ -163,9 +171,14 @@ function criarBotao(iconName, buttonText, buttonClass, user, tipo) {
 
                 // Verifique se a solicitação foi bem-sucedida
                 if (response.ok) {
-                    return;
-                    
                     span.textContent = 'person_check';
+                    newButton.innerHTML = 'SEGUINDO'
+
+                    newButton.addEventListener('mouseover', () => {
+                        const buttonRemover = criarBotao('person_remove', 'REMOVER', 'remove', user, 'remover');
+                        newButton.replaceWith(buttonRemover);
+                    });
+                    return;
                 } else {
                     console.error('Erro ao seguir o usuário:', response.statusText);
                 }
