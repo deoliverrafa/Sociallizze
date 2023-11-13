@@ -9,7 +9,7 @@ main.friends {
     .card.user {
       @include display-flex(row, center, center);
 
-      width: 100vw;
+      width: 100%;
     }
   }
 
@@ -19,7 +19,7 @@ main.friends {
     
     .card.user {
       @include display-flex(row, center, center);
-      width: 100vw;
+      width: 100%;
     }
   }
 
