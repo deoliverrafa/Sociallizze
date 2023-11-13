@@ -203,7 +203,7 @@ function criarBotao(iconName, buttonText, buttonClass, user, tipo) {
 
 
 // CRIANDO-SE A FUNÇÃO DEBOUNCE PARA QUE NÃO VENHA FAZER A PESQUISA APÓS CADA LETRA DIGITADA
-function debounce(func, delay) {
+async function debounce(func, delay) {
     let timeoutId;
     return function (...args) {
         clearTimeout(timeoutId);
@@ -212,7 +212,7 @@ function debounce(func, delay) {
 }
 
 
-const searchUsersDebounced = debounce(async (searchTerm) => {
+const searchUsersDebounced = await debounce(async (searchTerm) => {
     try {
         if (searchTerm == 'null') {
             return;
@@ -231,29 +231,28 @@ const searchUsersDebounced = debounce(async (searchTerm) => {
         containers[3].innerHTML = '';
         containers[5].innerHTML = '';
 
-        const currentUser = await getCurrentUser(); // Implemente esta função
+        const currentUser = await getCurrentUser();
 
-        data.forEach(async (user) => {
+        for (const user of data) {
             if (user._id !== currentUser._id) {
                 if (isUserFollowing(currentUser, user)) {
-                    const followingUserDiv = await createDivFollowingUser(user);
+                    const followingUserDiv = createDivFollowingUser(user);
                     if (followingUserDiv instanceof Node) {
                         containers[5].appendChild(followingUserDiv);
                     }
                 } else {
-                    const userDiv = await createDivUser(user);
+                    const userDiv = createDivUser(user);
                     if (userDiv instanceof Node) {
                         containers[3].appendChild(userDiv);
                     }
                 }
             }
-        });
-
+        }
 
     } catch (error) {
         console.log("Erro ao obter dados", error);
     }
-}, 300); // Delay de 300 milissegundos
+}, 1000); // Delay de 1000 milissegundos
 
 // Função para verificar se o usuário já está sendo seguido
 function isUserFollowing(currentUser, user) {
