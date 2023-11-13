@@ -46,4 +46,35 @@
       width: 80%;
     }
   }
+
+  main.card.post {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+
+    .container {
+      width: 60%;
+
+      .card.container {
+        width: 80%;
+
+        .input {
+          width: 100%
+        }
+
+        .button {
+          width: 105%;
+        }
+      }
+    }
+    .button {
+      width: 40%;
+    }
+
+    .card.posts {
+      width: 60%;
+    }
+  }
 }
