@@ -50,14 +50,42 @@
     <main class="settings">
         <div class="card">
             <div class="container">
+                <h2 class="title title-small title-primary">Geral</h2>
+                <label class="text text-gray" for="birthday">Selecionar Modo:</label>
+                        <div class="container container-row">
+                            <span class="icon icon-input material-symbols-outlined">routine</span>
+                            <select class="select select-icon" name="theme">
+                                <option value="Light" selected>Claro</option>
+                                <option value="Dark">Escuro</option>
+                            </select>
+            </div>
+            <div class="container">
                 <h2 class="title title-small title-primary">Conta</h2>
-                <form class="form">
-                    <p class="text text-checkbox"><input class="checkbox" type="checkbox" checked>Exibir Nacionalidade</p>
-                    <p class="text text-checkbox"><input class="checkbox" type="checkbox" checked>Exibir Data de Nascimento</p>
-                    <p class="text text-checkbox"><input class="checkbox" type="checkbox" checked>Exibir Número</p>
-                    <p class="text text-checkbox"><input class="checkbox" type="checkbox" checked>Exibir E-mail</p>
-                </form>
-                <a class="link link-danger">Deletar conta</a>
+                <p class="text text-checkbox"><input class="checkbox" type="checkbox" checked>Exibir Nacionalidade</p>
+                <p class="text text-checkbox"><input class="checkbox" type="checkbox" checked>Exibir Data de Nascimento</p>
+                <p class="text text-checkbox"><input class="checkbox" type="checkbox" checked>Exibir Número</p>
+                <p class="text text-checkbox"><input class="checkbox" type="checkbox" checked>Exibir E-mail</p>
+                <div class="container container-column">
+                    <a class="link link-primary">Alterar senha</a>
+                    <a class="link link-danger">Deletar conta</a>
+                    <form class="form">
+                        <div class="container container-row-center">
+                            <span class="icon icon-input material-symbols-outlined">lock</span>
+                            <input class="input input-icon" type="password" name="password" placeholder="Senha" required>
+                        </div><div class="container container-row-center">
+                            <span class="icon icon-input material-symbols-outlined">lock</span>
+                            <input class="input input-icon" type="password" name="password" placeholder="Nova Senha" required>
+                        </div>
+                        <button class="button save button-dark-primary" type="button">
+                        <span class="icon icon-medium icon-white material-symbols-outlined">save</span>
+                        SALVAR
+                    </button>
+                    <button class="button delete button-danger" type="button">
+                        <span class="icon icon-medium icon-white material-symbols-outlined">delete</span>
+                        DELETAR
+                    </button>
+                    </form>
+                </div>
             </div>
         </div>
     </main>
