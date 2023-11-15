@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         // PUXA IMAGEM DO BANCO DE DADOS
-        const image = await getUserImage();
+        const image = await getUserImage(localUserId);
 
         // VERIFICA SE HÁ IMAGEM
         if (image.type == "image/png") {

@@ -152,8 +152,8 @@ const storage = multer.memoryStorage(); // Usando memoryStorage para armazenar o
 const upload = multer({ storage: storage });
 
 // Rota para atualizar os Dados do Usuário
-router.put('/attProfile', upload.single('avatar'), async (req, res) => {
-  const { bioData, userId } = req.body;
+router.put('/attProfilePhoto', upload.single('avatar'), async (req, res) => {
+  const { userId } = req.body;
   const avatarFile = req.file;
 
   if (!userId) {
@@ -177,10 +177,6 @@ router.put('/attProfile', upload.single('avatar'), async (req, res) => {
       }
     }
 
-    if (typeof bioData !== 'undefined') {
-      updateData.bio = bioData;
-    }
-
     const usuario = await context.update(userId, updateData);
 
     if (!usuario) {
@@ -195,6 +191,28 @@ router.put('/attProfile', upload.single('avatar'), async (req, res) => {
   }
 });
 
+// ROTA PARA FAZER O UPDATE DA BIO
+router.put('/updateBio', async (req, res) => {
+  await connection.connect();
+
+  const { bioData, localUserId } = req.body;
+
+  try {
+      const updatedUser = await userSchema.findByIdAndUpdate(
+        localUserId,
+          { $set: { bio: bioData } }, // Novos dados a serem atualizados
+          { new: true } // Opção 'new' para retornar o documento atualizado
+      );
+      if (!updatedUser) {
+          return res.status(404).json({ error: 'Usuário não encontrado' });
+      }
+
+      res.json(updatedUser); // Retorna o usuário atualizado
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Erro ao atualizar a bio do usuário' });
+  }
+});
 
 // ROTA PARA GET DO INPUT FRIENDS
 router.get('/getUser', async (req, res) => {
@@ -203,22 +221,22 @@ router.get('/getUser', async (req, res) => {
   const { nickName } = req.query;
 
   try {
-      // Certifique-se de que 'nickName' não é undefined ou null
-      if (!nickName) {
-          return res.status(400).json({ error: 'Parâmetro nickName não fornecido' });
-      }
+    // Certifique-se de que 'nickName' não é undefined ou null
+    if (!nickName) {
+      return res.status(400).json({ error: 'Parâmetro nickName não fornecido' });
+    }
 
-      // Use a função findUSersToFriends corrigida
-      const response = await context.read({ nickName: { $regex: new RegExp(nickName, 'i') } });
+    // Use a função findUSersToFriends corrigida
+    const response = await context.read({ nickName: { $regex: new RegExp(nickName, 'i') } });
 
-      if (!response || response.length === 0) {
-          return res.json({ message: 'Usuário não encontrado. Tente novamente.' });
-      }
+    if (!response || response.length === 0) {
+      return res.json({ message: 'Usuário não encontrado. Tente novamente.' });
+    }
 
-      return res.json(response)
+    return res.json(response)
   } catch (error) {
-      console.error('Erro ao buscar usuários:', error);
-      return res.status(500).json({ error: 'Erro interno do servidor' });
+    console.error('Erro ao buscar usuários:', error);
+    return res.status(500).json({ error: 'Erro interno do servidor' });
   }
 });
 
@@ -267,17 +285,17 @@ router.get('/getCurrentUser', async (req, res) => {
 // ROTA PARA DEIXAR DE SEGUIR O USUARIO
 router.put('/unfollow', async (req, res) => {
   try {
-      const { userIdToUnfollow, currentUserId } = req.body;
+    const { userIdToUnfollow, currentUserId } = req.body;
 
-      // Lógica para remover o usuário do array 'following'
-      await userSchema.findByIdAndUpdate(currentUserId, {
-          $pull: { following: userIdToUnfollow },
-      });
+    // Lógica para remover o usuário do array 'following'
+    await userSchema.findByIdAndUpdate(currentUserId, {
+      $pull: { following: userIdToUnfollow },
+    });
 
-      res.status(200).json({ success: true, message: 'Usuário removido com sucesso' });
+    res.status(200).json({ success: true, message: 'Usuário removido com sucesso' });
   } catch (error) {
-      console.error('Erro ao remover o usuário:', error);
-      res.status(500).json({ success: false, message: 'Erro ao remover o usuário' });
+    console.error('Erro ao remover o usuário:', error);
+    res.status(500).json({ success: false, message: 'Erro ao remover o usuário' });
   }
 });
 
