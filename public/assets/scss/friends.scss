@@ -10,7 +10,7 @@ main.friends {
   .card.friends {
     overflow-y: auto;
     overflow-x: hidden;
-    
+
     .card.user {
       @include display-flex(row, center, center);
       width: 100%;

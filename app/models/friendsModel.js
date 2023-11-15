@@ -126,10 +126,17 @@ async function createDivFollowingUser(user) {
     // Adiciona um evento de mouseover para ativar o botão de remoção
     buttonSeguindo.addEventListener('mouseover', () => {
         const buttonRemover = criarBotao('person_remove', 'REMOVER', 'remove', user, 'remover');
+        const buttonRemovido = criarBotao('person_remove', 'REMOVIDO', 'remove', user, 'remover')
+
         buttonRemover.addEventListener('mouseout', () => {
             // Restaura o botão "SEGUINDO" quando o mouse sai do botão de remoção
-            buttonRemover.replaceWith(buttonSeguindo);
+            buttonRemover.replaceWith(buttonSeguindo);  
         });
+
+        buttonRemover.addEventListener('click', () => {
+            buttonRemover.replaceWith(buttonRemovido);
+        })
+
         buttonSeguindo.replaceWith(buttonRemover);
     });
 
@@ -158,7 +165,7 @@ function criarBotao(iconName, buttonText, buttonClass, user, tipo) {
         if (tipo == 'seguir') {
             try {
                 // Faça uma solicitação para seguir o usuário
-                const response = await fetch('https://sociallizze-api.up.railway.app/api/follow', {
+                const response = await fetch('http://localhost:3000/api/follow', {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -171,8 +178,8 @@ function criarBotao(iconName, buttonText, buttonClass, user, tipo) {
 
                 // Verifique se a solicitação foi bem-sucedida
                 if (response.ok) {
-                    span.textContent = 'person_check';
-                    newButton.innerHTML = 'SEGUINDO'
+                    const buttonSeguindo = criarBotao('person_check', 'SEGUINDO', 'check', user, 'seguindo');
+                    newButton.replaceWith(buttonSeguindo)
 
                     newButton.addEventListener('mouseover', () => {
                         const buttonRemover = criarBotao('person_remove', 'REMOVER', 'remove', user, 'remover');
@@ -189,7 +196,7 @@ function criarBotao(iconName, buttonText, buttonClass, user, tipo) {
 
         if (tipo == 'remover') {
             try {
-                const response = await fetch('https://sociallizze-api.up.railway.app/api/unfollow', {
+                const response = await fetch('http://localhost:3000/api/unfollow', {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -232,7 +239,7 @@ const searchUsersDebounced = await debounce(async (searchTerm) => {
             return;
         }
 
-        const response = await fetch(`https://sociallizze-api.up.railway.app/api/getUser?nickName=${searchTerm}`, {
+        const response = await fetch(`http://localhost:3000/api/getUser?nickName=${searchTerm}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -251,7 +258,9 @@ const searchUsersDebounced = await debounce(async (searchTerm) => {
             if (user._id !== currentUser._id) {
                 if (isUserFollowing(currentUser, user)) {
                     const followingUserDiv = createDivFollowingUser(user);
-                    if (followingUserDiv instanceof Node) {
+                    if (followingUserDiv instanceof Node) {7
+                        // Habilitando container de amigos
+                        containers[4].style.display = 'flex';
                         containers[5].appendChild(followingUserDiv);
                     }
                 } else {
@@ -279,7 +288,7 @@ function isUserFollowing(currentUser, user) {
 async function getCurrentUser() {
     // FUNÇÃO IMPLEMENTADA PARA PEGAR DADOS DO USUÁRIO ATUAL
 
-    const response = await fetch(`https://sociallizze-api.up.railway.app/api/getCurrentUser?currentUserId=${localStorage.getItem('userId')}`, {
+    const response = await fetch(`http://localhost:3000/api/getCurrentUser?currentUserId=${localStorage.getItem('userId')}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

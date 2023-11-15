@@ -17,7 +17,7 @@ async function getUserImage(userId) {
     }
 
     try {
-        const response = await fetch(`https://sociallizze-api.up.railway.app/api/getUserImage?userId=${userId}`, {
+        const response = await fetch(`http://localhost:3000/api/getUserImage?userId=${userId}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -39,7 +39,7 @@ async function logOut() {
 }
 
 async function getUserData(userId) {
-    return await fetch(`https://sociallizze-api.up.railway.app/api/searchById?id=${userId}`, {
+    return await fetch(`http://localhost:3000/api/searchById?id=${userId}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

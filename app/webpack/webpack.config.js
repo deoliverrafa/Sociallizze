@@ -5,6 +5,7 @@ module.exports = {
         index: './indexController.js',
         profile: './profileController.js',
         friends: './friendsController.js',
+        posts: './postsController.js'
     },
 
     output: {
