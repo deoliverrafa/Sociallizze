@@ -95,6 +95,10 @@
     &.text-dark-primary {
         color: $colorDarkPrimary;
     }
+    
+    &.text-danger {
+        color: $colorDanger;
+    }
 
     &.text-error {
         color: $colorDanger;
@@ -163,6 +167,10 @@
 
     &.link-dark-primary {
         @include link-style($colorDarkPrimary);
+    }
+    
+    &.link-danger {
+        @include link-style($colorDanger);
     }
     
     &.link-bold {
