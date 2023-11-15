@@ -61,4 +61,5 @@ async function getUserData(userId) {
         });
 }
 
-export { getUserData, getUserImage, logOut, verifyUserLogged, localUserId, userLoggedIn };
+export { getUserData, getUserImage, localUserId, logOut, userLoggedIn, verifyUserLogged };
+
