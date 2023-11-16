@@ -8,11 +8,29 @@ const cardVideo = document.querySelectorAll('.card.video');
 const cardBio = document.querySelectorAll('.card.bio');
 const containerBio = document.querySelectorAll('.container.bio');
 const containerNoBio = document.querySelectorAll('.container.no-bio');
+const profileCard = document.querySelectorAll('.profile')
+const logoLoading = document.querySelectorAll('.logo.rotate')
 
 document.addEventListener('DOMContentLoaded', async () => {
     // LÓGICA PARA REAPROVEITAR DADOS DO USUÁRIO //
+
+    const loader = document.getElementById('loader');
+    profileCard[1].style.display = 'none'
+
+    logoLoading[0].style.animation = 'rotate .3s infinite linear';
+    loader.style.display = 'flex'; // Mostra o indicador de carregamento
+
     if (await verifyUserLogged() == true) {
         const dadosUser = await getUserData(localUserId);
+
+        // ESCONDER BOTÕES DESNECESSÁRIOS ADICIONAR, REMOVER, BLOQUEAR
+        if (localUserId == dadosUser._id) {
+            buttons[0].style.display = 'none';
+            buttons[1].style.display = 'none';
+            buttons[2].style.display = 'none';
+            buttons[3].style.display = 'none';
+        }
+
         if (dadosUser) {
             textName[0].innerHTML = dadosUser.userName;
             textNick[0].innerHTML = `@${dadosUser.nickName}`;
@@ -20,7 +38,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             textBirthDayData[0].innerHTML = dadosUser.birthDayData;
             textEmail[0].innerHTML = dadosUser.email;
             textNacionality[0].innerHTML = dadosUser.nacionality;
-            
+
             // BIO INDEFINIDA //
             if (!dadosUser.bio) {
                 containerBio[1].style.display = 'none';
@@ -29,14 +47,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                 containerNoBio[0].style.display = 'none';
                 textBio[0].innerHTML = dadosUser.bio;
 
-            }
-
-            // ESCONDER BOTÕES DESNECESSÁRIOS ADICIONAR, REMOVER, BLOQUEAR
-            if (localUserId == dadosUser._id) {
-                buttons[0].style.display = 'none';
-                buttons[1].style.display = 'none';
-                buttons[2].style.display = 'none';
-                buttons[3].style.display = 'none';
             }
 
         } else {
@@ -55,6 +65,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             imageProfile[0].src = '../../public/assets/images/user/user.png'
         }
 
+        loader.style.display = 'none';
+        profileCard[1].style.display = 'flex'
+        return true;
     } else {
         window.location.href = '../../index.html'
     }

@@ -1,6 +1,7 @@
 import { containers, inputs } from "../../public/assets/js/variables";
-import { getUserImage } from "./userFunctions";
+import { getUserImage, localUserId } from "./userFunctions";
 
+console.log(containers)
 // Função para criar o card do usuário
 async function createUserCard(nickName, id, isFollowing, containers) {
     const containerIndex = isFollowing ? 5 : 3;
@@ -12,7 +13,7 @@ async function createUserCard(nickName, id, isFollowing, containers) {
     cardDiv.classList.add('card', 'user', 'container', 'container-row-between');
 
     const userDiv = document.createElement('div');
-    userDiv.classList.add('container', 'container-row');
+    userDiv.classList.add('container', 'container-row-between');
 
     const userImage = document.createElement('img');
     userImage.classList.add('image', 'profile-small');
@@ -205,7 +206,7 @@ const searchUsersDebounced = await debounce(async (searchTerm) => {
     } catch (error) {
         console.log("Erro ao obter dados", error);
     }
-}, 300); // Delay de 300 milissegundos
+}, 1200); // Delay de 800 milissegundos
 
 // Função para verificar se o usuário já está sendo seguido
 function isUserFollowing(currentUser, user) {
@@ -218,7 +219,7 @@ function isUserFollowing(currentUser, user) {
 async function getCurrentUser() {
     // FUNÇÃO IMPLEMENTADA PARA PEGAR DADOS DO USUÁRIO ATUAL
 
-    const response = await fetch(`https://sociallizze-api.up.railway.app/api/getCurrentUser?currentUserId=${localStorage.getItem('userId')}`, {
+    const response = await fetch(`https://sociallizze-api.up.railway.app/api/getCurrentUser?currentUserId=${localUserId}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

@@ -110,6 +110,4 @@ if (count == 0) {
     containers[7].style.display = 'none';
     containers[8].style.display = 'none';
 }
-
 export { userId, userLoggedIn };
-
