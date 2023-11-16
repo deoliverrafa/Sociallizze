@@ -1,8 +1,10 @@
 import { containers, inputs } from "../../public/assets/js/variables";
 import { getUserImage, localUserId } from "./userFunctions";
 const logoLoading = document.querySelectorAll('.logo.rotate')
+const divLoading = document.getElementById('loader')
 
-containers[3].style.display = 'flex';
+divLoading.style.display = 'none';
+console.log(containers);
 
 // Função para criar o card do usuário
 async function createUserCard(nickName, id, isFollowing, containers) {
@@ -55,13 +57,13 @@ async function createUserCard(nickName, id, isFollowing, containers) {
     const buttonSeguir = createButton(isFollowing ? 'person_check' : 'person_add', isFollowing ? 'SEGUINDO' : 'SEGUIR', isFollowing ? 'check' : 'add', id, isFollowing ? 'seguindo' : 'seguir');
 
     buttonSeguir.addEventListener('mouseover', () => {
-
         if (isFollowing) {
-            const buttonRemover = createButton('person_remove', 'REMOVER', 'remove', id, 'remover');
-            buttonsDiv.appendChild(buttonRemover);
+            const buttonRemover = createButton('person_remove', 'REMOVENDO...', 'remove', id, 'remover');
+
+            buttonSeguir.replaceWith(buttonRemover);
 
             buttonRemover.addEventListener('mouseout', () => {
-                buttonsDiv.removeChild(buttonRemover);
+                buttonRemover.replaceWith(buttonSeguir);
             });
 
             buttonRemover.addEventListener('click', async () => {
@@ -72,14 +74,19 @@ async function createUserCard(nickName, id, isFollowing, containers) {
                             'Content-Type': 'application/json',
                         },
                         body: JSON.stringify({
-                            userIdToUnfollow: user._id,
+                            userIdToUnfollow: id,
                             currentUserId: localStorage.getItem('userId'),
                         }),
                     });
 
                     if (response.ok) {
                         // Atualize o botão ou faça outras ações necessárias
-                        console.log('Usuário removido com sucesso');
+                        const buttonRemoved = createButton('person_remove', 'REMOVIDO', 'removed', id, 'removed');
+
+                        buttonRemover.replaceWith(buttonRemoved)
+
+                        // Tratamento de Erro
+                        // console.log('Usuário removido com sucesso');
                     } else {
                         console.error('Erro ao remover o usuário:', response.statusText);
                     }
@@ -127,11 +134,6 @@ function createButton(iconName, buttonText, buttonClass, id, tipo) {
                 if (response.ok) {
                     const buttonSeguindo = createButton('person_check', 'SEGUINDO', 'check', id, 'seguindo');
                     newButton.replaceWith(buttonSeguindo)
-
-                    newButton.addEventListener('mouseover', () => {
-                        const buttonRemover = createButton('person_remove', 'REMOVER', 'remove', id, 'remover');
-                        newButton.replaceWith(buttonRemover);
-                    });
                     return;
                 } else {
                     console.error('Erro ao seguir o usuário:', response.statusText);
@@ -149,7 +151,7 @@ function createButton(iconName, buttonText, buttonClass, id, tipo) {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        userIdToUnfollow: user._id,
+                        userIdToUnfollow: id,
                         currentUserId: localStorage.getItem('userId'),
                     }),
                 });
@@ -165,35 +167,19 @@ function createButton(iconName, buttonText, buttonClass, id, tipo) {
             }
         }
     });
+
     return newButton;
 }
-
-function startLoadingAnimation() {
-    logoLoading.forEach(logo => {
-        logo.style.animation = 'rotate .3s infinite linear';
-    });
-}
-
-// Função para parar a animação de loading
-function stopLoadingAnimation() {
-    logoLoading.forEach(logo => {
-        logo.style.animation = 'none';
-    });
-}
-
 
 const searchUsersDebounced = await debounce(async (searchTerm) => {
     try {
         if (searchTerm == 'null') {
             return;
         }
+
         // ANIMAÇÃO PARA PESQUISAR USUÁRIOS
-        containers[3].style.display = 'flex';
-        startLoadingAnimation();
-
-        // ... (restante do código para buscar usuários)
-
-        stopLoadingAnimation(); // Parar a animação após o término da busca
+        divLoading.style.display = 'flex';
+        logoLoading[0].style.animation = 'rotate .3s infinite linear'
 
         const response = await fetch(`https://sociallizze-api.up.railway.app/api/getUser?nickName=${searchTerm}`, {
             method: 'GET',
@@ -204,9 +190,14 @@ const searchUsersDebounced = await debounce(async (searchTerm) => {
 
         const data = await response.json();
 
+        
         // Limpa os resultados anteriores antes de adicionar novos
         containers[4].innerHTML = '';
         containers[6].innerHTML = '';
+        
+        // ESCONDE ANIMAÇÃO PARA PESQUISAR USUÁRIOS
+        divLoading.style.display = 'none';
+        logoLoading[0].style.animation = 'none';
 
         const currentUser = await getCurrentUser();
 
@@ -225,7 +216,6 @@ const searchUsersDebounced = await debounce(async (searchTerm) => {
                 }
             }
         }
-
     } catch (error) {
         console.log("Erro ao obter dados", error);
     }
@@ -269,10 +259,12 @@ async function debounce(func, delay) {
 inputs[0].addEventListener('input', async () => {
     const searchTerm = inputs[0].value.trim();
     const container = containers;
+
     if (searchTerm.length === 0) {
         containers[4].innerHTML = '';
         containers[6].innerHTML = '';
         return;
     }
+
     searchUsersDebounced(searchTerm, container);
 });
