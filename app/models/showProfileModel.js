@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             buttons[2].style.display = 'none';
             buttons[3].style.display = 'none';
         }
+        
 
         if (dadosUser) {
             textName[0].innerHTML = dadosUser.userName;
