@@ -1,10 +1,12 @@
 import { containers, inputs } from "../../public/assets/js/variables";
 import { getUserImage, localUserId } from "./userFunctions";
+const logoLoading = document.querySelectorAll('.logo.rotate')
 
-console.log(containers)
+containers[3].style.display = 'none';
+
 // Função para criar o card do usuário
 async function createUserCard(nickName, id, isFollowing, containers) {
-    const containerIndex = isFollowing ? 5 : 3;
+    const containerIndex = isFollowing ? 6 : 4;
 
     const novaDiv = document.createElement('div');
     novaDiv.classList.add('container', 'search-friends', 'container-column-center');
@@ -171,6 +173,9 @@ const searchUsersDebounced = await debounce(async (searchTerm) => {
         if (searchTerm == 'null') {
             return;
         }
+        // ANIMAÇÃO PARA PESQUISAR USUÁRIOS
+        containers[3].style.display = 'flex';
+        logoLoading[0].style.animation = 'rotate .3s infinite linear';
 
         const response = await fetch(`https://sociallizze-api.up.railway.app/api/getUser?nickName=${searchTerm}`, {
             method: 'GET',
@@ -182,22 +187,26 @@ const searchUsersDebounced = await debounce(async (searchTerm) => {
         const data = await response.json();
 
         // Limpa os resultados anteriores antes de adicionar novos
-        containers[3].innerHTML = '';
-        containers[5].innerHTML = '';
+        containers[4].innerHTML = '';
+        containers[6].innerHTML = '';
 
         const currentUser = await getCurrentUser();
+        
+        // // ESCODE O LOADING DE USUARIOS
+        // containers[3].style.display = 'none';
+        // logoLoading[0].style.animation = 'none';
 
         for (const user of data) {
             if (user._id !== currentUser._id) {
                 if (isUserFollowing(currentUser, user)) {
                     const followingUserCard = await createUserCard(user.nickName, user._id, true, containers);
                     if (followingUserCard instanceof Node) {
-                        containers[5].appendChild(followingUserCard);
+                        containers[6].appendChild(followingUserCard);
                     }
                 } else {
                     const userCard = await createUserCard(user.nickName, user._id, false, containers);
                     if (userCard instanceof Node) {
-                        containers[3].appendChild(userCard);
+                        containers[4].appendChild(userCard);
                     }
                 }
             }
@@ -206,7 +215,7 @@ const searchUsersDebounced = await debounce(async (searchTerm) => {
     } catch (error) {
         console.log("Erro ao obter dados", error);
     }
-}, 1200); // Delay de 800 milissegundos
+}, 1200); // Delay de 1200 milissegundos
 
 // Função para verificar se o usuário já está sendo seguido
 function isUserFollowing(currentUser, user) {
@@ -247,8 +256,8 @@ inputs[0].addEventListener('input', async () => {
     const searchTerm = inputs[0].value.trim();
     const container = containers;
     if (searchTerm.length === 0) {
-        containers[3].innerHTML = '';
-        containers[5].innerHTML = '';
+        containers[4].innerHTML = '';
+        containers[6].innerHTML = '';
         return;
     }
     searchUsersDebounced(searchTerm, container);
