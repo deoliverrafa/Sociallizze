@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             textNick[0].innerHTML = `@${dadosUser.nickName}`;
         }
 
-        // const image = await getUserImage(localUserId);
+        const image = await getUserImage(localUserId);
 
         if (image.type == "image/png") {
             const imageUrl = URL.createObjectURL(image);

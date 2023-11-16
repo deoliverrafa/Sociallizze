@@ -40,7 +40,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             textBirthDayData[0].innerHTML = dadosUser.birthDayData;
             textEmail[0].innerHTML = dadosUser.email;
             textNacionality[0].innerHTML = dadosUser.nacionality;
-
             // BIO INDEFINIDA //
             if (!dadosUser.bio) {
                 containerBio[1].style.display = 'none';
@@ -56,7 +55,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         // PUXA IMAGEM DO BANCO DE DADOS
-        // const image = await getUserImage(localUserId);
+        const image = await getUserImage(localUserId);
 
         // VERIFICA SE HÁ IMAGEM
         if (image.type == "image/png") {
