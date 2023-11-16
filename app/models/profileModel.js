@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (await verifyUserLogged() == true) {
         const dadosUser = await getUserData(localUserId, 'nickName');
 
-        console.log(dadosUser)
         if (dadosUser) {
             textNick[0].innerHTML = `@${dadosUser.nickName}`;
         }

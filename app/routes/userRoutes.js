@@ -137,8 +137,6 @@ router.get('/searchById', async (req, res) => {
           filteredResult[field] = userObject[field];
         }
       });
-
-      console.log('Dados filtrados:', filteredResult);
       return res.json(filteredResult);
     }
 

@@ -21,8 +21,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     loader.style.display = 'flex'; // Mostra o indicador de carregamento
 
     if (await verifyUserLogged() == true) {
-        const dadosUser = await getUserData(localUserId);
+        const dadosUser = await getUserData(localUserId, 'userName,nickName,phoneNumber,birthDayData,email,nacionality,bio,_id');
 
+        console.log(dadosUser);
         // ESCONDER BOTÕES DESNECESSÁRIOS ADICIONAR, REMOVER, BLOQUEAR
         if (localUserId == dadosUser._id) {
             buttons[0].style.display = 'none';
@@ -54,7 +55,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         // PUXA IMAGEM DO BANCO DE DADOS
-        const image = await getUserImage(localUserId);
+        // const image = await getUserImage(localUserId);
 
         // VERIFICA SE HÁ IMAGEM
         if (image.type == "image/png") {
