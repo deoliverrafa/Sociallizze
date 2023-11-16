@@ -2,7 +2,7 @@ import { containers, inputs } from "../../public/assets/js/variables";
 import { getUserImage, localUserId } from "./userFunctions";
 const logoLoading = document.querySelectorAll('.logo.rotate')
 
-containers[3].style.display = 'none';
+containers[3].style.display = 'flex';
 
 // Função para criar o card do usuário
 async function createUserCard(nickName, id, isFollowing, containers) {
@@ -168,6 +168,20 @@ function createButton(iconName, buttonText, buttonClass, id, tipo) {
     return newButton;
 }
 
+function startLoadingAnimation() {
+    logoLoading.forEach(logo => {
+        logo.style.animation = 'rotate .3s infinite linear';
+    });
+}
+
+// Função para parar a animação de loading
+function stopLoadingAnimation() {
+    logoLoading.forEach(logo => {
+        logo.style.animation = 'none';
+    });
+}
+
+
 const searchUsersDebounced = await debounce(async (searchTerm) => {
     try {
         if (searchTerm == 'null') {
@@ -175,7 +189,11 @@ const searchUsersDebounced = await debounce(async (searchTerm) => {
         }
         // ANIMAÇÃO PARA PESQUISAR USUÁRIOS
         containers[3].style.display = 'flex';
-        logoLoading[0].style.animation = 'rotate .3s infinite linear';
+        startLoadingAnimation();
+
+        // ... (restante do código para buscar usuários)
+
+        stopLoadingAnimation(); // Parar a animação após o término da busca
 
         const response = await fetch(`https://sociallizze-api.up.railway.app/api/getUser?nickName=${searchTerm}`, {
             method: 'GET',
@@ -191,10 +209,6 @@ const searchUsersDebounced = await debounce(async (searchTerm) => {
         containers[6].innerHTML = '';
 
         const currentUser = await getCurrentUser();
-        
-        // // ESCODE O LOADING DE USUARIOS
-        // containers[3].style.display = 'none';
-        // logoLoading[0].style.animation = 'none';
 
         for (const user of data) {
             if (user._id !== currentUser._id) {
