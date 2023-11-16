@@ -1,4 +1,6 @@
 // VARIAVEIS //
+const body = document.querySelector('body');
+const p = document.querySelector('p');
 const iconsClose = document.querySelectorAll('.icon-close');
 const icons = document.querySelectorAll('.icon');
 const modals = document.querySelectorAll('.modal');
@@ -9,6 +11,7 @@ const textError = document.querySelectorAll('.text-error');
 const inputs = document.querySelectorAll('.input');
 const checkboxs = document.querySelectorAll('.checkbox');
 const textsCheckbox = document.querySelectorAll('.text-checkbox');
+const texts = document.querySelectorAll('.text');
 const links = document.querySelectorAll('.link');
 const linksRegister = document.querySelectorAll('.linkRegister');
 const buttonsSelect = document.querySelectorAll('.buttonSelect');
@@ -144,4 +147,4 @@ let previousButton = ( (count) => {
 });
 
 // EXPORTANDO AS VARIAVEIS //
-export { icons, iconsClose, modals, leftBar, cards, containers, textError, showLoginMenu, showRegisterMenu, closeLoginMenu, closeRegisterMenu, textSuccess, inputs, checkboxs, links, linksRegister, buttonsSelect, buttons, textsCheckbox, previousButton, nextButton, buttonsSubmit, itens, logos, textNick, buttonLogOut, imageProfile, bios, fabs, headers, alts, cancels, saves, textName, dates, selects, textBirthDayData, textNacionality, textEmail, textNumber, textBio, edits };
+export { body, p, icons, iconsClose, modals, leftBar, cards, containers, textError, showLoginMenu, showRegisterMenu, closeLoginMenu, closeRegisterMenu, textSuccess, inputs, checkboxs, texts, links, linksRegister, buttonsSelect, buttons, textsCheckbox, previousButton, nextButton, buttonsSubmit, itens, logos, textNick, buttonLogOut, imageProfile, bios, fabs, headers, alts, cancels, saves, textName, dates, selects, textBirthDayData, textNacionality, textEmail, textNumber, textBio, edits };

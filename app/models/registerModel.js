@@ -102,11 +102,12 @@ if (dates[0]) {
 }
 
 // SELECIONAR NACIONALIDADE //
+let nationalitySelected = 'BR';
 let regexNumber = '';
 let regexFormat = '';
 let maxLength = '';
 selects[0].addEventListener('change', function () {
-    const nationalitySelected = this.value;
+    nationalitySelected = this.value;
 
     switch (nationalitySelected) {
         case 'BR':
