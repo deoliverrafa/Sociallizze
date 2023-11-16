@@ -11,12 +11,12 @@ header.header {
     
     @include display-flex(row, space-between, center);
 
-    position: absolute;
+    position: relative;
     top: 0;
     right: 0;
-    margin: 10px 15px;
+    // margin: 10px 0px 0px 30px;
     height: auto;
-    width: 98vw;
+    width: auto;
     z-index: 1;
 }
 
