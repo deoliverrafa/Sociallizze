@@ -17,15 +17,15 @@ document.addEventListener('DOMContentLoaded', async () => {
             textNick[0].innerHTML = `@${dadosUser.nickName}`;
         }
 
-        // const image = await getUserImage(localUserId);
+        const image = await getUserImage(localUserId);
 
-        // if (image.type == "image/png") {
-        //     const imageUrl = URL.createObjectURL(image);
-        //     imageProfile[0].src = imageUrl;
-        // } else {
-        //     imageProfile[0].src = 'public/assets/images/user/user.png'
-        // }
-        // containers[13].style.display = 'none';
-        // containers[14].style.display = 'flex';
+        if (image.type == "image/png") {
+            const imageUrl = URL.createObjectURL(image);
+            imageProfile[0].src = imageUrl;
+        } else {
+            imageProfile[0].src = 'public/assets/images/user/user.png'
+        }
+        containers[13].style.display = 'none';
+        containers[14].style.display = 'flex';
     }
 })
