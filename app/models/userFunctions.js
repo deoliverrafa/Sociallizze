@@ -38,27 +38,27 @@ async function logOut() {
     localStorage.setItem('userId', 'null')
 }
 
-async function getUserData(userId) {
-    return await fetch(`https://sociallizze-api.up.railway.app/api/searchById?id=${userId}`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    })
-        .then(response => {
-            if (!response) {
-                console.log("Erro ao pegar dados do usuário");
-                return null;
+async function getUserData(userId, fields) {
+    const url = `https://sociallizze-api.up.railway.app/api/searchById?id=${userId}&fields=${fields}`;
+
+    try {
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
             }
-            return response.json();
-        })
-        .then(data => {
-            return data;
-        })
-        .catch(error => {
-            console.log("Erro ao pegar userData", error);
-            return null;
         });
+
+        if (!response.ok) {
+            console.log("Erro ao pegar dados do usuário");
+            return null;
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.log("Erro ao pegar userData", error);
+        return null;
+    }
 }
 
 export { getUserData, getUserImage, localUserId, logOut, userLoggedIn, verifyUserLogged };

@@ -105,22 +105,50 @@ router.get('/login', async (req, res) => {
   }
 });
 
+// PESQUISA E RETORNA OS DADOS PEDIDO DE UM USUÁRIO
+// PESQUISA E RETORNA OS DADOS PEDIDO DE UM USUÁRIO
 router.get('/searchById', async (req, res) => {
   try {
-    await connection.connect()
+    await connection.connect();
 
-    const { id } = req.query
-    const primaryResult = await context.read({ _id: id })
-    const result = primaryResult[0]
+    const { id, fields } = req.query;
 
-    res.json(result)
+    const primaryResult = await context.read({ _id: id });
+    const result = primaryResult[0];
+
+    if (!result) {
+      return res.status(404).json({ error: 'Usuário não encontrado' });
+    }
+
+    // Verifica se o parâmetro 'fields' está presente e não está vazio
+    if (fields && fields.trim() !== '') {
+      // Converte o documento Mongoose para um objeto JavaScript comum
+      const userObject = result.toObject();
+
+      // Converte a string de campos em um array
+      const requestedFields = fields.split(',');
+
+      // Cria um objeto para armazenar somente os campos solicitados
+      const filteredResult = {};
+
+      // Itera sobre os campos solicitados e os adiciona ao objeto de resultado filtrado
+      requestedFields.forEach(field => {
+        if (userObject.hasOwnProperty(field)) {
+          filteredResult[field] = userObject[field];
+        }
+      });
+
+      console.log('Dados filtrados:', filteredResult);
+      return res.json(filteredResult);
+    }
+
+    res.json(result.toObject());
   } catch (error) {
-    res.status(500).json({ error: 'Erro ao buscar usuario' })
+    res.status(500).json({ error: 'Erro ao buscar usuário' });
   }
-})
+});
 
 // Rota para pegar imagem de perfil do usuário
-
 router.get('/getUserImage', async (req, res) => {
   try {
     await connection.connect();
@@ -198,19 +226,19 @@ router.put('/updateBio', async (req, res) => {
   const { bioData, localUserId } = req.body;
 
   try {
-      const updatedUser = await userSchema.findByIdAndUpdate(
-        localUserId,
-          { $set: { bio: bioData } }, // Novos dados a serem atualizados
-          { new: true } // Opção 'new' para retornar o documento atualizado
-      );
-      if (!updatedUser) {
-          return res.status(404).json({ error: 'Usuário não encontrado' });
-      }
+    const updatedUser = await userSchema.findByIdAndUpdate(
+      localUserId,
+      { $set: { bio: bioData } }, // Novos dados a serem atualizados
+      { new: true } // Opção 'new' para retornar o documento atualizado
+    );
+    if (!updatedUser) {
+      return res.status(404).json({ error: 'Usuário não encontrado' });
+    }
 
-      res.json(updatedUser); // Retorna o usuário atualizado
+    res.json(updatedUser); // Retorna o usuário atualizado
   } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Erro ao atualizar a bio do usuário' });
+    console.error(error);
+    res.status(500).json({ error: 'Erro ao atualizar a bio do usuário' });
   }
 });
 
