@@ -8,12 +8,23 @@ let theme;
 // FUNÇÃO - APLICAR TEMA //
 function applyTheme() {
     if (theme === 'dark') {
-        selects[0].value = 'Dark';
+        if(selects[0]) {
+            selects[0].value = 'Dark';
+        }
         body.style.background = '#0E2A56';
         document.querySelectorAll('.header').forEach(function(element) {
             element.style.background = '#101F34';
         });
         document.querySelectorAll('.card').forEach(function(element) {
+            element.style.background = '#101F34';
+        });
+        document.querySelectorAll('.top').forEach(function(element) {
+            element.style.background = '#101F34';
+        });
+        document.querySelectorAll('.main').forEach(function(element) {
+            element.style.background = '#101F34';
+        });
+        document.querySelectorAll('.bottom').forEach(function(element) {
             element.style.background = '#101F34';
         });
         document.querySelectorAll('.logo').forEach(function(element) {
@@ -49,34 +60,42 @@ function applyTheme() {
         document.querySelectorAll('.link-primary').forEach(function(element) {
             element.style.color = '#0076CC';
         });
+        document.querySelectorAll('.fab').forEach(function(element) {
+            element.style.background = '#0076CC';
+        });
     } else {
         body.style.background = '';
     }
 }
 
 // SELECIONA TEMA //
-selects[0].addEventListener('change', function () {
-    themeSelected = this.value;
+document.addEventListener('DOMContentLoaded', function () {
+    // SELECIONA TEMA //
+    if (selects[0]) {
+        selects[0].addEventListener('change', function () {
+            themeSelected = this.value;
 
-    switch (themeSelected) {
-        case 'Light':
-            localStorage.setItem('themeSelected', 'light');
-            theme = localStorage.getItem('themeSelected');
-            break;
-        case 'Dark':
-            localStorage.setItem('themeSelected', 'dark');
-            theme = localStorage.getItem('themeSelected');
-            break;
+            switch (themeSelected) {
+                case 'Light':
+                    localStorage.setItem('themeSelected', 'light');
+                    theme = localStorage.getItem('themeSelected');
+                    break;
+                case 'Dark':
+                    localStorage.setItem('themeSelected', 'dark');
+                    theme = localStorage.getItem('themeSelected');
+                    break;
+            }
+            // DEFINE O TEMA //
+            applyTheme();
+        });
     }
-    // DEFINE O TEMA //
+
+    // DEFINE TEMA PADRÃO //
+    theme = localStorage.getItem('themeSelected');
+    if (theme === null) {
+        theme = 'light';
+    }
+
+    // CARREGA O TEMA //
     applyTheme();
 });
-
-// DEFINE TEMA PADRÃO //
-theme = localStorage.getItem('themeSelected');
-if (theme === null) {
-    theme = 'light';
-}
-
-// CARREGA O TEMA //
-applyTheme();
