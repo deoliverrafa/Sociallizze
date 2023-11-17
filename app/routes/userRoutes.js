@@ -178,6 +178,8 @@ const storage = multer.memoryStorage(); // Usando memoryStorage para armazenar o
 const upload = multer({ storage: storage });
 
 // Rota para atualizar os Dados do Usuário
+const sharp = require('sharp');
+
 router.put('/attProfilePhoto', upload.single('avatar'), async (req, res) => {
   const { userId } = req.body;
   const avatarFile = req.file;
@@ -199,7 +201,14 @@ router.put('/attProfilePhoto', upload.single('avatar'), async (req, res) => {
         updateData['avatar.filename'] = avatarFile.originalname;
       }
       if (avatarFile.buffer) {
-        updateData['avatar.image'] = avatarFile.buffer;
+        // Redimensionar e comprimir a imagem usando sharp
+        const resizedImageBuffer = await sharp(avatarFile.buffer)
+          .resize({ width: 500 }) // Redimensionar para largura máxima de 500 pixels (por exemplo)
+          .toFormat('jpeg') // Converter para JPEG (pode ser outro formato)
+          .jpeg({ quality: 50 }) // Ajustar a qualidade do JPEG (valor entre 0 e 100)
+          .toBuffer();
+
+        updateData['avatar.image'] = resizedImageBuffer;
       }
     }
 
