@@ -150,7 +150,7 @@ hr {
 }
 
 .form {
-    @include display-flex(column, stretch, stretch);
+    @include display-flex(column, stretch, center);
 }
 
 .input {
