@@ -37,55 +37,53 @@
 
 <body>
     <!-- CABEÇALHO -->
-    <header class="card header terms">
+    <header class="card header post container container-row-between">
         <div class="container container-row">
             <a href="./../../index.html">
                 <span class="icon icon-close material-symbols-outlined">arrow_back</span>
             </a>
             <h2 class="logo">Publicação</h2>
         </div>
+        <button class="button button-no" type="submit">
+            <span class="icon material-symbols-outlined">send</span>
+        </button>
     </header>
 
     <!-- PRINCIPAL -->
     <main class="card post">
-        <div class="container">
-            <div class="card container container-row">
+        <div class="container container-column">
+            <div class="container container-row">
                 <img class="image profile-small" src="./../../public/assets/images/user/user.png">
                 <div class="container container-row">
                     <p class="text nick text-bold">Usuário</p>
                     <img class="image checkmark" src="./../../public/assets/images/user/checkmark_blue.png">
                 </div>
             </div>
-            <div class="card container container-column-center">
+            <div class="container container-column-center">
                 <form class="form">
-                    <input class="input" type="text" placeholder="Socialize...">
-                    <button class="button button-primary" type="button">
-                        <span class="icon icon-small icon-white material-symbols-outlined">add</span>
+                    <div class="container container-row">
+                        <span class="icon icon-input material-symbols-outlined">comment</span>
+                        <input class="input input-icon" type="text" name="comment" placeholder="Socialize...">
+                    </div>
+                    <div class="container container-row-between">
+                        <button class="button button-primary" type="button">
+                            <span class="icon icon-small icon-white material-symbols-outlined">add</span>
                         ADICIONAR
-                    </button>
-                </form>
-            </div>
-            <div class="card container container-row-between">
-                <div></div>
-                <div class="container container-column-center">
-                    <form class="form" enctype="multipart/form-data">
-                        <label class="file file-primary" for="fileInput" style="position: relative;">
-                            <span class="icon icon-primary material-symbols-outlined">add_photo_alternate</span>
-                        </label>
-                        <input class="file no-text" type="file" name="file" id="fileInput" accept="image/*">
-                    </form>
-                </div>
-            </div>
-            <div class="card container public container-column-center">
-                <button class="button button-dark-primary" type="submit">
-                    <span class="icon icon-small icon-white material-symbols-outlined">public</span>
-                    PUBLICAR
-                </button>
+                        </button>
+                    <div class="container container-column-center">
+                        <form class="form" enctype="multipart/form-data">
+                            <label class="file file-primary" for="fileInput" style="position: relative;">
+                                <span class="icon icon-primary material-symbols-outlined">add_photo_alternate</span>
+                            </label>
+                            <input class="file no-text" type="file" name="file" id="fileInput" accept="image/*">
+                        </form>
+                    </div>
+                    </div>
             </div>
         </div>
         <hr>
         <div class="card comment container container-column-center">
-            <p class="text text-center text-wrap">"<span class="comment">Texto, Texto, Texto, Texto, Texto, Texto, Texto...</span>"</p>
+            <!--<p class="text text-center text-wrap">"<span class="comment">Texto, Texto, Texto, Texto, Texto, Texto, Texto...</span>"</p>-->
         </div>
         <div class="card posts container container-column-center">
             <div class="container container-row-center">

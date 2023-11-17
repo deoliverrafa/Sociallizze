@@ -45,6 +45,9 @@ function applyTheme() {
         document.querySelectorAll('.icon').forEach(function(element) {
             element.style.color = '#FFFFFF';
         });
+        document.querySelectorAll('.icon-primary').forEach(function(element) {
+            element.style.color = '#0076CC';
+        });
         document.querySelectorAll('.icon-input').forEach(function(element) {
             element.style.background = '#0E2A56';
         });

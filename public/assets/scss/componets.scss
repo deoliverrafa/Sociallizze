@@ -315,6 +315,14 @@ hr {
             }
         }
     }
+    
+    &.button-no {
+        background: transparent;
+        box-shadow: none;
+        border: none;
+        
+        width: auto
+    }
 }
 
 .checkbox {
