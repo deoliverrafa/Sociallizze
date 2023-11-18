@@ -8,44 +8,26 @@ main.card.post {
         backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
         border: 1px solid rgba(10, 10, 10, 0.3);
+        cursor: pointer;
     
         margin: 5px;
-        @include size(7vh, 12vw);
-    }
-    
-    .post-video {
-        background: rgba(255, 255, 255, 0.2);
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-        border: 1px solid rgba(10, 10, 10, 0.3);
+        @include size(8vh, 15vw);
         
-        text-align: center;
+        &.post-full {
+            @include size(50vh, 90vw);
+        }
         
-        @include display-flex(column, center, center);
-        
-        position: relative;
-    
-        margin: 5px;
-        @include size(7vh, 12vw);
-        z-index: 0;
-        
-        
-        &:before {
-            content: '/25B6';
+        .remove {
+            background: $colorDanger;
+            color: $colorWhite;
+            border-radius: 50%;
+            cursor: pointer;
             
-            background: red;
-            color: $colorPrimary;
+            @include font-size(1.125rem);
             
             position: absolute;
-            
-            height: 10px;
-            width: 10px;
-            z-index: 1;
+            top: 0;
+            right: 0;
         }
-    }
-  
-    .card.user {
-        width: 100%;
     }
 }

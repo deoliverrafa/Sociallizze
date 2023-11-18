@@ -11,6 +11,10 @@
     text-decoration: none;
 
     margin: 0 10px;
+    
+    &.logo-small {
+        @include font-size(1.5rem);
+    }
 }
 
 .icon {
