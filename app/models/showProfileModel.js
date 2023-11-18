@@ -1,5 +1,5 @@
 // Lógica para aparecer dados do usuário no perfil extendido
-import { buttonLogOut, imageProfile, textBirthDayData, textEmail, textNacionality, textNick, textNumber, textName, itens, textBio, buttons } from "../../public/assets/js/variables";
+import { buttonLogOut, imageProfile, textBirthDayData, textEmail, textNacionality, textNick, textNumber, textName, itens, textBio, buttons, texts } from "../../public/assets/js/variables";
 import { getUserData, getUserImage, localUserId, logOut, verifyUserLogged } from "./userFunctions";
 
 const cardPost = document.querySelectorAll('.card.post');
@@ -21,9 +21,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     loader.style.display = 'flex'; // Mostra o indicador de carregamento
 
     if (await verifyUserLogged() == true) {
-        const dadosUser = await getUserData(localUserId, 'userName,nickName,phoneNumber,birthDayData,email,nacionality,bio,_id');
+        const dadosUser = await getUserData(localUserId, 'userName,nickName,phoneNumber,birthDayData,email,nacionality,bio,_id,Nfollowers,Nfollowing');
 
-        console.log(dadosUser);
         // ESCONDER BOTÕES DESNECESSÁRIOS ADICIONAR, REMOVER, BLOQUEAR
         if (localUserId == dadosUser._id) {
             buttons[0].style.display = 'none';
@@ -40,6 +39,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             textBirthDayData[0].innerHTML = dadosUser.birthDayData;
             textEmail[0].innerHTML = dadosUser.email;
             textNacionality[0].innerHTML = dadosUser.nacionality;
+            texts[5].innerHTML = dadosUser.Nfollowers;
+            texts[7].innerHTML = dadosUser.Nfollowing;
             // BIO INDEFINIDA //
             if (!dadosUser.bio) {
                 containerBio[1].style.display = 'none';
