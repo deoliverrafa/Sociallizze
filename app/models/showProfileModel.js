@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const image = await getUserImage(localUserId);
 
         // VERIFICA SE HÁ IMAGEM
-        if (image.type == "image/png") {
+        if (image.type == "image/png" || image.type == "image/jpeg") {
             const imageUrl = URL.createObjectURL(image);
             imageProfile[0].src = imageUrl;
         } else {

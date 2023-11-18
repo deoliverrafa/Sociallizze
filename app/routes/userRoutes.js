@@ -9,6 +9,7 @@ const connection = new getConnection()
 const bcrypt = require('bcrypt');
 const multer = require('multer')
 const validator = require('validator')
+const exif = require('exif').ExifImage
 
 // Rota para cadastrar usuário
 router.post('/cadastrar', async (req, res) => {
@@ -180,6 +181,7 @@ const upload = multer({ storage: storage });
 // Rota para atualizar os Dados do Usuário
 const sharp = require('sharp');
 
+// Atualiza a Imagem de perfil do usuário
 router.put('/attProfilePhoto', upload.single('avatar'), async (req, res) => {
   const { userId } = req.body;
   const avatarFile = req.file;
@@ -194,31 +196,34 @@ router.put('/attProfilePhoto', upload.single('avatar'), async (req, res) => {
     const updateData = {}; // Objeto para armazenar os campos que serão atualizados
 
     if (avatarFile) {
-      if (avatarFile.mimetype) {
-        updateData['avatar.contentType'] = avatarFile.mimetype;
-      }
-      if (avatarFile.originalname) {
-        updateData['avatar.filename'] = avatarFile.originalname;
-      }
-      if (avatarFile.buffer) {
-        // Redimensionar e comprimir a imagem usando sharp
-        const resizedImageBuffer = await sharp(avatarFile.buffer)
-          .resize({ width: 500 }) // Redimensionar para largura máxima de 500 pixels
-          .toFormat('jpeg') // Converter para JPEG (pode ser outro formato)
-          .jpeg({ quality: 50 }) // Ajustar a qualidade do JPEG (valor entre 0 e 100)
-          .toBuffer();
+      new exif({ image: avatarFile.buffer }, async function (error, exifData) {
+        if (error) {
+          console.log('Erro ao ler os metadados EXIF:', error);
+        } else {
+          const orientation = exifData.image.Orientation;
 
-        updateData['avatar.image'] = resizedImageBuffer;
-      }
+          // Redimensionar e corrigir a orientação da imagem usando sharp
+          const resizedImageBuffer = await sharp(avatarFile.buffer)
+            .rotate() // Corrigir a orientação da imagem
+            .resize({ width: 500 }) // Redimensionar para largura máxima de 500 pixels
+            .toFormat('jpeg') // Converter para JPEG (pode ser outro formato)
+            .jpeg({ quality: 50 }) // Ajustar a qualidade do JPEG (valor entre 0 e 100)
+            .toBuffer();
+
+          updateData['avatar.image'] = resizedImageBuffer;
+
+          const usuario = await context.update(userId, updateData);
+
+          if (!usuario) {
+            return res.status(404).json({ error: 'Usuário não encontrado.' });
+          }
+
+          return res.status(200).json({ message: 'Imagem de perfil atualizada com sucesso.', usuario });
+        }
+      });
+    } else {
+      return res.status(400).json({ error: 'Nenhuma imagem fornecida.' });
     }
-
-    const usuario = await context.update(userId, updateData);
-
-    if (!usuario) {
-      return res.status(404).json({ error: 'Usuário não encontrado.' });
-    }
-
-    return res.status(200).json({ message: 'Imagem de perfil atualizada com sucesso.', usuario });
 
   } catch (error) {
     console.log(error);
