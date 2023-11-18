@@ -43,123 +43,22 @@
     <header class="card header post container container-row-between">
         <div class="container container-row">
             <a href="./../../index.html">
-                <span class="icon icon-close material-symbols-outlined">arrow_back</span>
+                <span class="icon icon-close material-symbols-outlined">close</span>
             </a>
             <h2 class="logo">Publicação</h2>
         </div>
         <button class="button button-no" type="submit">
-            <p class="text text-bold text"></p>
+            <p class="text text- text-bold text-primary">COMPARTILHAR</p>
         </button>
     </header>
 
     <!-- PRINCIPAL -->
-    <main class="card post">
-        <div class="card container container-column">
-            <div class="container container-row">
-                <img class="image profile-small" src="./../../public/assets/images/user/user.png">
-                <div class="container container-row">
-                    <p class="text nick text-bold">Usuário</p>
-                    <img class="image checkmark" src="./../../public/assets/images/user/checkmark_blue.png">
-                </div>
-            </div>
-            <form class="form container container-column-center">
-                <div class="container container-row">
-                    <span class="icon icon-input material-symbols-outlined">comment</span>
-                    <input class="input input-icon" type="text" name="comment" placeholder="Socialize...">
-                </div>
-                <div class="container container-row">
-                    <button class="button button-primary" type="button">
-                        <span class="icon icon-small icon-white material-symbols-outlined">add</span>
-                        ADICIONAR
-                    </button>
-                    <div class="container container-column-center">
-                        <form class="form" enctype="multipart/form-data">
-                            <label class="file file-primary" for="fileInput" style="position: relative;">
-                                <span class="icon icon-primary material-symbols-outlined">add_photo_alternate</span>
-                            </label>
-                            <input class="file no-text" type="file" name="file" id="fileInput" accept="image/*">
-                        </form>
-                    </div>
-                </div>
-            </form>
+    <main class="card post container container-column-center">
+        <div class="container container-row">
+            <span class="icon icon-input material-symbols-outlined">title</span>
+            <input class="input input-icon" type="text" name="title" placeholder="Adicione um Título...">
         </div>
-        <hr>
-        <div class="card comment container container-column-center">
-            <!--<p class="text text-center text-wrap">"<span class="comment">Texto, Texto, Texto, Texto, Texto, Texto, Texto...</span>"</p>-->
-        </div>
-        <div class="card posts container container-column-center">
-            <div class="container container-row-center">
-                <img class="post" src="./../../public/assets/images/post.png">
-                <img class="post" src="./../../public/assets/images/post.png">
-                <img class="post" src="./../../public/assets/images/post.png">
-                <img class="post" src="./../../public/assets/images/post.png">
-                <img class="post" src="./../../public/assets/images/post.png">
-            </div>
-            <div class="container container-row-center">
-                <img class="post-video" src="./../../public/assets/images/post.png">
-                <img class="post" src="./../../public/assets/images/post.png">
-                <img class="post" src="./../../public/assets/images/post.png">
-                <img class="post" src="./../../public/assets/images/post.png">
-                <img class="post" src="./../../public/assets/images/post.png">
-            </div>
-        </div>
-        <div class="card users container container-row-center">
-            <div class="scroll container container-row">
-                <div class="container container-row">
-                    <img class="image profile-little" src="./../../public/assets/images/user/user.png">
-                    <div class="container container-row">
-                        <p class="text nick text-bold">Usuário</p>
-                        <img class="image checkmark" src="./../../public/assets/images/user/checkmark_blue.png">
-                    </div>
-                </div>
-                <div class="container container-row">
-                    <img class="image profile-little" src="./../../public/assets/images/user/user.png">
-                    <div class="container container-row">
-                        <p class="text nick text-bold">Usuário</p>
-                        <img class="image checkmark" src="./../../public/assets/images/user/checkmark_blue.png">
-                    </div>
-                </div>
-                <div class="container container-row">
-                    <img class="image profile-little" src="./../../public/assets/images/user/user.png">
-                    <div class="container container-row">
-                        <p class="text nick text-bold">Usuário</p>
-                        <img class="image checkmark" src="./../../public/assets/images/user/checkmark_blue.png">
-                    </div>
-                </div>
-                <div class="container container-row">
-                    <img class="image profile-little" src="./../../public/assets/images/user/user.png">
-                    <div class="container container-row">
-                        <p class="text nick text-bold">Usuário</p>
-                        <img class="image checkmark" src="./../../public/assets/images/user/checkmark_blue.png">
-                    </div>
-                </div>
-                <div class="container container-row">
-                    <img class="image profile-little" src="./../../public/assets/images/user/user.png">
-                    <div class="container container-row">
-                        <p class="text nick text-bold">Usuário</p>
-                        <img class="image checkmark" src="./../../public/assets/images/user/checkmark_blue.png">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card hastag container container-row-center">
-            <div class="scroll container container-row-center">
-                <p class="text hastag text-center text-bold text-primary">
-                    #hastag,
-                </p>
-                <p class="text hastag text-center text-bold text-primary">
-                    #hastag,
-                </p>
-                <p class="text hastag text-center text-bold text-primary">
-                    #hastag,
-                </p>
-                <p class="text hastag text-center text-bold text-primary">
-                    #hastag,
-                </p>
-                <p class="text hastag text-center text-bold text-primary">
-                    #hastag,
-                </p>
-            </div>
+        <textarea rows="20" cols="auto" class="textarea" type="text" name="title" placeholder="Adicione uma Descrição..."></textarea>
         </div>
     </main>
 
