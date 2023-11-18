@@ -203,7 +203,7 @@ router.put('/attProfilePhoto', upload.single('avatar'), async (req, res) => {
       if (avatarFile.buffer) {
         // Redimensionar e comprimir a imagem usando sharp
         const resizedImageBuffer = await sharp(avatarFile.buffer)
-          .resize({ width: 500 }) // Redimensionar para largura máxima de 500 pixels (por exemplo)
+          .resize({ width: 500 }) // Redimensionar para largura máxima de 500 pixels
           .toFormat('jpeg') // Converter para JPEG (pode ser outro formato)
           .jpeg({ quality: 50 }) // Ajustar a qualidade do JPEG (valor entre 0 e 100)
           .toBuffer();
@@ -256,12 +256,12 @@ router.get('/getUser', async (req, res) => {
   const { nickName } = req.query;
 
   try {
-    // Certifique-se de que 'nickName' não é undefined ou null
+    // Certificando de que 'nickName' não é undefined ou null
     if (!nickName) {
       return res.status(400).json({ error: 'Parâmetro nickName não fornecido' });
     }
 
-    // Use a função findUSersToFriends corrigida
+    // Use a função read para encontrar usuários semelhantes com a regex
     const response = await context.read({ nickName: { $regex: new RegExp(nickName, 'i') } });
 
     if (!response || response.length === 0) {
@@ -286,10 +286,21 @@ router.put('/follow', async (req, res) => {
     // Encontra o usuário atual no banco de dados
     const currentUser = await userSchema.findById(currentUserId);
 
-    console.log(currentUser.following)
+    if (!currentUser || !userIdToFollow) {
+      return res.status(404).json({error: "Usuário não encontrado no Banco de dados"});
+    }
+
+    if (currentUser.following.includes(userIdToFollow)) {
+      return res.status(404).json({error: "Você já está seguindo este usuário"});
+    }
+
+    // Incrementa em +1 o número de seguidores no usuário a ser seguido
+    await context.incrementFollowersCount(currentUserId, userIdToFollow);
+
     // Adiciona o ID do usuário a ser seguido ao array following
     currentUser.following.push(userIdToFollow);
-
+    
+    
     // Salva as alterações no banco de dados
     await currentUser.save();
 
@@ -326,6 +337,8 @@ router.put('/unfollow', async (req, res) => {
     await userSchema.findByIdAndUpdate(currentUserId, {
       $pull: { following: userIdToUnfollow },
     });
+
+    await context.decrementFollowersCount(currentUserId, userIdToUnfollow);
 
     res.status(200).json({ success: true, message: 'Usuário removido com sucesso' });
   } catch (error) {

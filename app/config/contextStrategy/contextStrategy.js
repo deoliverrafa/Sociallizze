@@ -24,6 +24,14 @@ class ContextStrategy extends Icrud {
     async send(senderId, recipientId, Message, expirationTime) {
         return await this.strategy.send(senderId, recipientId, Message, expirationTime);
     }
+
+    async incrementFollowersCount(currentUserId, userIdToFollow){
+        return await this.strategy.incrementFollowersCount(currentUserId, userIdToFollow);
+    }
+
+    async decrementFollowersCount(currentUserId, userIdToUnfollow){
+        return await this.strategy.decrementFollowersCount(currentUserId, userIdToUnfollow);
+    }
 }
 
 module.exports = ContextStrategy

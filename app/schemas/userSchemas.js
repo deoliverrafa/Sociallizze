@@ -57,22 +57,28 @@ const userSchema = mongoose.Schema({
     bio: {
         type: String,
         require: false,
+        default: '',
     },
 
     messages: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Message'
+        ref: 'Message',
     }],
 
     following: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
     }],
+    
+    Nfollowing: {
+        type: Number,
+        default: 0,
+    },
 
-    blockedUsers: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
-    }]
+    Nfollowers: {
+        type: Number,
+        default: 0,
+    }
 });
 
 const Usuario = mongoose.model('User', userSchema);

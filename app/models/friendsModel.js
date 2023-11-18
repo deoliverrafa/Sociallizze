@@ -190,16 +190,16 @@ const searchUsersDebounced = await debounce(async (searchTerm) => {
 
         const data = await response.json();
 
-        
+
         // Limpa os resultados anteriores antes de adicionar novos
         containers[4].innerHTML = '';
         containers[6].innerHTML = '';
-        
+
+        const currentUser = await getCurrentUser();
+
         // ESCONDE ANIMAÇÃO PARA PESQUISAR USUÁRIOS
         divLoading.style.display = 'none';
         logoLoading[0].style.animation = 'none';
-
-        const currentUser = await getCurrentUser();
 
         for (const user of data) {
             if (user._id !== currentUser._id) {
