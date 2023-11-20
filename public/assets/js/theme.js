@@ -154,3 +154,5 @@ document.addEventListener('DOMContentLoaded', function () {
     // CARREGA O TEMA //
     applyTheme();
 });
+
+export { theme };
