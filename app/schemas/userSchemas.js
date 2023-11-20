@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const userSchema = mongoose.Schema({
-    
+
     nickName: {
         type: String,
         required: true,
@@ -11,7 +11,7 @@ const userSchema = mongoose.Schema({
     userName: {
         type: String,
         required: true,
-        index:true,
+        index: true,
     },
 
     phoneNumber: {
@@ -69,7 +69,7 @@ const userSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
     }],
-    
+
     Nfollowing: {
         type: Number,
         default: 0,
@@ -78,7 +78,27 @@ const userSchema = mongoose.Schema({
     Nfollowers: {
         type: Number,
         default: 0,
-    }
+    },
+
+    showEmail: {
+        type: Boolean,
+        default: true,
+    },
+
+    showBirthDayData: {
+        type: Boolean,
+        default: true,
+    },
+
+    showNacionality: {
+        type: Boolean,
+        default: true,
+    },
+
+    showPhoneNumber: {
+        type: Boolean,
+        default: true,
+    },
 });
 
 const Usuario = mongoose.model('User', userSchema);
