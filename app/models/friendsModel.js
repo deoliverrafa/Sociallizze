@@ -41,17 +41,11 @@ async function createUserCard(nickName, id, isFollowing, containers) {
 
     const userName = document.createElement('p');
     userName.classList.add('text', 'nick', 'text-bold');
-    
+
     if (theme == 'dark') {
-        document.querySelectorAll('.text').forEach(function(element) {
-            element.style.color = '#FFFFFF';
-        });
-    } else {
-        document.querySelectorAll('.text').forEach(function(element) {
-            element.style.color = '';
-        });
+        userName.style.color = '#FFFFFF';
     }
-    
+
     userName.textContent = nickName;
     nameContainer.appendChild(userName);
 
