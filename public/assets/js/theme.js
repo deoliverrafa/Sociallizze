@@ -65,6 +65,9 @@ function applyTheme() {
         document.querySelectorAll('.text').forEach(function(element) {
             element.style.color = '#FFFFFF';
         });
+        document.querySelectorAll('.text-error').forEach(function(element) {
+            element.style.color = '#E05135';
+        });
     } else {
         body.style.background = '';
         document.querySelectorAll('.profile').forEach(function(element) {
@@ -118,6 +121,9 @@ function applyTheme() {
             element.style.background = '';
         });
         document.querySelectorAll('.text').forEach(function(element) {
+            element.style.color = '';
+        });
+        document.querySelectorAll('.text-error').forEach(function(element) {
             element.style.color = '';
         });
     }
