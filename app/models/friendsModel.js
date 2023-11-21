@@ -1,6 +1,7 @@
 import { containers, inputs } from "../../public/assets/js/variables";
 import { getUserImage, localUserId } from "./userFunctions";
 import { theme } from './../../public/assets/js/theme.js';
+
 const logoLoading = document.querySelectorAll('.logo.rotate')
 const divLoading = document.getElementById('loader')
 
