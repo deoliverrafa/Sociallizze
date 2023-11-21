@@ -107,7 +107,6 @@ router.get('/login', async (req, res) => {
 });
 
 // PESQUISA E RETORNA OS DADOS PEDIDO DE UM USUÁRIO
-// PESQUISA E RETORNA OS DADOS PEDIDO DE UM USUÁRIO
 router.get('/searchById', async (req, res) => {
   try {
     await connection.connect();
@@ -292,11 +291,11 @@ router.put('/follow', async (req, res) => {
     const currentUser = await userSchema.findById(currentUserId);
 
     if (!currentUser || !userIdToFollow) {
-      return res.status(404).json({error: "Usuário não encontrado no Banco de dados"});
+      return res.status(404).json({ error: "Usuário não encontrado no Banco de dados" });
     }
 
     if (currentUser.following.includes(userIdToFollow)) {
-      return res.status(404).json({error: "Você já está seguindo este usuário"});
+      return res.status(404).json({ error: "Você já está seguindo este usuário" });
     }
 
     // Incrementa em +1 o número de seguidores no usuário a ser seguido
@@ -304,8 +303,8 @@ router.put('/follow', async (req, res) => {
 
     // Adiciona o ID do usuário a ser seguido ao array following
     currentUser.following.push(userIdToFollow);
-    
-    
+
+
     // Salva as alterações no banco de dados
     await currentUser.save();
 
@@ -351,5 +350,15 @@ router.put('/unfollow', async (req, res) => {
     res.status(500).json({ success: false, message: 'Erro ao remover o usuário' });
   }
 });
+
+
+// ROTA PARA CONFIGURAR EXIBIÇÃO DE INFORMAÇÕES EM CONFIGURAÇÕES
+router.put('/modifySettings', async (req, res) => {
+
+  console.log(req.body);
+  const { nacionality, birthDayData, email, phoneNumber, localUserId } = req.body
+
+  await userSchema.findByIdAndUpdate(c)
+})
 
 module.exports = router;
