@@ -2,6 +2,7 @@
 import { buttonLogOut, imageProfile, textBirthDayData, textEmail, textNacionality, textNick, textNumber, textName, itens, textBio, buttons, texts, containers } from "../../public/assets/js/variables";
 import { getUserData, getUserImage, localUserId, logOut, verifyUserLogged } from "./userFunctions";
 
+console.log(containers);
 
 const cardPost = document.querySelectorAll('.card.post');
 const cardPhoto = document.querySelectorAll('.card.photo');
@@ -64,7 +65,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             }   
 
             if (!dadosUser.showBirthDayData && !dadosUser.showEmail && !dadosUser.showNacionality && !dadosUser.showPhoneNumber) {
-                containers[6].style.display = 'none';
+                containers[10].style.display = 'none';
             }
 
             // BIO INDEFINIDA //
