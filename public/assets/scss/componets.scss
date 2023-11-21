@@ -220,6 +220,8 @@ hr {
     @include display-flex(column, center, center);
 
     position: absolute;
+    top: 0;
+    left: 0;
 
     @include size(2rem, 2rem);
 
