@@ -1,6 +1,8 @@
 const CACHE_NAME = 'network-first-cache';
 
 self.addEventListener('install', (event) => {
+  console.log('Service Worker instalado');
+
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
       return cache.addAll([
@@ -9,6 +11,21 @@ self.addEventListener('install', (event) => {
         '/styles.css',
         '/app.js',
       ]);
+    })
+  );
+});
+
+self.addEventListener('activate', (event) => {
+  console.log('Service Worker ativado');
+  event.waitUntil(
+    caches.keys().then((cacheNames) => {
+      return Promise.all(
+        cacheNames.map((cacheName) => {
+          if (cacheName !== CACHE_NAME) {
+            return caches.delete(cacheName);
+          }
+        })
+      );
     })
   );
 });
