@@ -1,6 +1,7 @@
 // Lógica para aparecer dados do usuário no perfil extendido
-import { buttonLogOut, imageProfile, textBirthDayData, textEmail, textNacionality, textNick, textNumber, textName, itens, textBio, buttons, texts } from "../../public/assets/js/variables";
+import { buttonLogOut, imageProfile, textBirthDayData, textEmail, textNacionality, textNick, textNumber, textName, itens, textBio, buttons, texts, containers } from "../../public/assets/js/variables";
 import { getUserData, getUserImage, localUserId, logOut, verifyUserLogged } from "./userFunctions";
+
 
 const cardPost = document.querySelectorAll('.card.post');
 const cardPhoto = document.querySelectorAll('.card.photo');
@@ -21,7 +22,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     loader.style.display = 'flex'; // Mostra o indicador de carregamento
 
     if (await verifyUserLogged() == true) {
-        const dadosUser = await getUserData(localUserId, 'userName,nickName,phoneNumber,birthDayData,email,nacionality,bio,_id,Nfollowers,Nfollowing');
+        const dadosUser = await getUserData(localUserId, 'userName,nickName,phoneNumber,birthDayData,email,nacionality,bio,_id,Nfollowers,Nfollowing,showEmail,showBirthDayData,showNacionality,showPhoneNumber');
 
         // ESCONDER BOTÕES DESNECESSÁRIOS ADICIONAR, REMOVER, BLOQUEAR
         if (localUserId == dadosUser._id) {
@@ -30,17 +31,42 @@ document.addEventListener('DOMContentLoaded', async () => {
             buttons[2].style.display = 'none';
             buttons[3].style.display = 'none';
         }
-        
+
 
         if (dadosUser) {
             textName[0].innerHTML = dadosUser.userName;
             textNick[0].innerHTML = `@${dadosUser.nickName}`;
-            textNumber[0].innerHTML = dadosUser.phoneNumber;
-            textBirthDayData[0].innerHTML = dadosUser.birthDayData;
-            textEmail[0].innerHTML = dadosUser.email;
-            textNacionality[0].innerHTML = dadosUser.nacionality;
             texts[5].innerHTML = dadosUser.Nfollowers;
             texts[7].innerHTML = dadosUser.Nfollowing;
+
+            if (dadosUser.showEmail === true) {
+                textEmail[0].innerHTML = dadosUser.email;
+            } else {
+                containers[15].style.display = 'none'
+            }
+
+            if (dadosUser.showBirthDayData === true) {
+                textNumber[0].innerHTML = dadosUser.phoneNumber;
+            } else {
+                containers[13].style.display = 'none'
+            }
+
+            if (dadosUser.showNacionality === true) {
+                textNacionality[0].innerHTML = dadosUser.nacionality;
+            } else {
+                containers[12].style.display = 'none'
+            }
+
+            if (dadosUser.showPhoneNumber === true) {
+                textBirthDayData[0].innerHTML = dadosUser.birthDayData;
+            } else {
+                containers[14].style.display = 'none'
+            }   
+
+            if (!dadosUser.showBirthDayData && !dadosUser.showEmail && !dadosUser.showNacionality && !dadosUser.showPhoneNumber) {
+                containers[6].style.display = 'none';
+            }
+
             // BIO INDEFINIDA //
             if (!dadosUser.bio) {
                 containerBio[1].style.display = 'none';

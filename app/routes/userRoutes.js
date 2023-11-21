@@ -354,11 +354,35 @@ router.put('/unfollow', async (req, res) => {
 
 // ROTA PARA CONFIGURAR EXIBIÇÃO DE INFORMAÇÕES EM CONFIGURAÇÕES
 router.put('/modifySettings', async (req, res) => {
+  try {
+    const { nacionality, birthDayData, email, phoneNumber, localUserId } = req.body;
 
-  console.log(req.body);
-  const { nacionality, birthDayData, email, phoneNumber, localUserId } = req.body
+    // Atualiza campos de visibilidade
+    const updateData = {};
+    if (email !== undefined) {
+      updateData.showEmail = email === 'true'
+    };
+    if (birthDayData !== undefined) {
+      updateData.showBirthDayData = birthDayData === 'true'
+    };
+    if (nacionality !== undefined) {
+      updateData.showNacionality = nacionality === 'true'
+    };
+    if (phoneNumber !== undefined) {
+      updateData.showPhoneNumber = phoneNumber === 'true'
+    };
 
-  await userSchema.findByIdAndUpdate(c)
-})
+    // Atualiza o usuário com os campos de visibilidade modificados
+    const updatedUser = await userSchema.findByIdAndUpdate(localUserId, { $set: updateData }, { new: true });
+
+    if (!updatedUser) {
+      return res.status(404).json({ success: false, message: 'Usuário não encontrado.' });
+    }
+
+    return res.status(200).json({ success: true, message: 'Visibilidade atualizada com sucesso.', updatedUser });
+  } catch (error) {
+    return res.status(500).json({ success: false, error: `Erro ao atualizar visibilidade de dados --> ${error}` });
+  }
+});
 
 module.exports = router;

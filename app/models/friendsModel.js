@@ -5,7 +5,6 @@ const logoLoading = document.querySelectorAll('.logo.rotate')
 const divLoading = document.getElementById('loader')
 
 divLoading.style.display = 'none';
-console.log(containers);
 
 // Função para criar o card do usuário
 async function createUserCard(nickName, id, isFollowing, containers) {
