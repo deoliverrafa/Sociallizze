@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (await verifyUserLogged() == true) {
         const dadosUser = await getUserData(localUserId, 'userName,nickName,phoneNumber,birthDayData,email,nacionality,bio,_id,Nfollowers,Nfollowing,showEmail,showBirthDayData,showNacionality,showPhoneNumber');
-
+        
         // ESCONDER BOTÕES DESNECESSÁRIOS ADICIONAR, REMOVER, BLOQUEAR
         if (localUserId == dadosUser._id) {
             buttons[0].style.display = 'none';

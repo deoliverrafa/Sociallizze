@@ -5,17 +5,17 @@ let dadosUser;
 
 const logoLoading = document.querySelectorAll('.logo.rotate')
 const divLoading = document.getElementById('loader')
-const mainSettings = document.querySelectorAll('.settings');
+const cardPrincipal = document.querySelectorAll('.card');
 
+console.log(cardPrincipal);
 console.log(logoLoading);
 console.log(divLoading);
-console.log(mainSettings);
 
 document.addEventListener('DOMContentLoaded', async () => {
 
 
     // INICIA A LÓGICA DO INDICADOR DE CARREGAMENTO
-    mainSettings[0].style.display = 'none';
+    cardPrincipal[0].style.display = 'none';
     divLoading.style.display = 'flex';
     logoLoading[0].style.animation = 'rotate .3s infinite linear';
     loader.style.display = 'flex'; // Mostra o indicador de carregamento
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // FINALIZA A LÓGICA DO INDICADOR DE CARREGAMENTO
 
-        mainSettings[0].style.display = 'flex';
+        cardPrincipal[0].style.display = 'flex';
         divLoading.style.display = 'none';
         logoLoading[0].style.animation = 'none';
         loader.style.display = 'none'; // Mostra o indicador de carregamento
@@ -69,7 +69,7 @@ checkboxs[0].addEventListener('change', async () => {
 });
 
 checkboxs[1].addEventListener('change', async () => {
-    const birthDayData = checkboxs[1].value;
+    const birthDayData = checkboxs[1].checked;
 
     try {
         const response = await fetch('https://sociallizze-api.up.railway.app/api/modifySettings', {
@@ -92,7 +92,7 @@ checkboxs[1].addEventListener('change', async () => {
 })
 
 checkboxs[2].addEventListener('change', async () => {
-    const phoneNumber = checkboxs[2].value;
+    const phoneNumber = checkboxs[2].checked;
 
     try {
         const response = await fetch('https://sociallizze-api.up.railway.app/api/modifySettings', {
@@ -114,7 +114,7 @@ checkboxs[2].addEventListener('change', async () => {
     }
 })
 checkboxs[3].addEventListener('change', async () => {
-    const email = checkboxs[3].value;
+    const email = checkboxs[3].checked;
 
     try {
         const response = await fetch('https://sociallizze-api.up.railway.app/api/modifySettings', {
