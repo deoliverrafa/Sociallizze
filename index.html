@@ -53,18 +53,6 @@
 </head>
 
 <body>
-    <!-- PWA INSTALADOR -->
-    <script>
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/sw.js').then((registration) => {
-          console.log('Service Worker registrado com sucesso:', registration);
-        }).catch((error) => {
-          console.error('Erro ao registrar o Service Worker:', error);
-        });
-      }
-    </script>
-
-
     <!-- CABEÇALHO -->
     <header class="header">
         <a class="logo" href="index.html">
@@ -312,6 +300,19 @@
     <script type="module" src="./public/assets/js/theme.js"></script>
     <script type="module" src="./public/assets/js/nav.js"></script>
     <script type="module" src="./public/assets/js/variables.js"></script>
+    
+    <!-- INSTALADOR PWA -->
+    <script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/service-worker.js')
+      .then((registration) => {
+        console.log('Service Worker registrado com sucesso:', registration);
+      })
+      .catch((error) => {
+        console.error('Erro ao registrar o Service Worker:', error);
+      });
+  }
+    </script>
 </body>
 
 </html>
