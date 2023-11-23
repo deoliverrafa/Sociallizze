@@ -40,16 +40,18 @@ self.addEventListener('beforeinstallprompt', (event) => {
 });
 
 function showInstallMessage() {
-  const installMessage = document.createElement('div');
-  installMessage.id = 'install-message';
-  installMessage.textContent = 'Instale nosso aplicativo para uma melhor experiência!';
-  
-  const installButton = document.createElement('button');
-  installButton.textContent = 'Instalar';
-  installButton.addEventListener('click', installPWA);
+  if (deferredPrompt) {
+    const installMessage = document.createElement('div');
+    installMessage.id = 'install-message';
+    installMessage.textContent = 'Instale nosso aplicativo para uma melhor experiência!';
+    
+    const installButton = document.createElement('button');
+    installButton.textContent = 'Instalar';
+    installButton.addEventListener('click', installPWA);
 
-  document.body.appendChild(installMessage);
-  document.body.appendChild(installButton);
+    document.body.appendChild(installMessage);
+    document.body.appendChild(installButton);
+  }
 }
 
 function installPWA() {
