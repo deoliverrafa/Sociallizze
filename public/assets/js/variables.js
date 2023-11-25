@@ -18,6 +18,7 @@ const buttonsSelect = document.querySelectorAll('.buttonSelect');
 const buttons = document.querySelectorAll('.button');
 const buttonsSubmit = document.querySelectorAll('.buttonSubmit');
 const textSuccess = document.querySelectorAll('.text-success');
+const modalSuccess = document.querySelectorAll('.modal.success');
 const itens = document.querySelectorAll('.item');
 const logos = document.querySelectorAll('.logo');
 const textNick = document.querySelectorAll('.nick')
@@ -68,6 +69,14 @@ let closeRegisterMenu = ( () => {
     }, 300);
 });
 
+let showSuccessMessage = ((message) => {
+    modalSuccess[0].style.display = 'flex';
+    textSuccess[0].innerHTML = message;
+    setTimeout(() => {
+        modalSuccess[0].style.display = 'none';
+        window.location.reload();
+    }, 1500);
+})
 let nextButton = ( (count) => {
     if(count == 1) {
         buttonsSelect[1].style.display = 'flex';
@@ -147,4 +156,4 @@ let previousButton = ( (count) => {
 });
 
 // EXPORTANDO AS VARIAVEIS //
-export { body, p, icons, iconsClose, modals, leftBar, cards, containers, textError, showLoginMenu, showRegisterMenu, closeLoginMenu, closeRegisterMenu, textSuccess, inputs, checkboxs, texts, links, linksRegister, buttonsSelect, buttons, textsCheckbox, previousButton, nextButton, buttonsSubmit, itens, logos, textNick, buttonLogOut, imageProfile, bios, fabs, headers, alts, cancels, saves, textName, dates, selects, textBirthDayData, textNacionality, textEmail, textNumber, textBio, edits };
+export { body, p, icons, iconsClose, modals, leftBar, cards, containers, textError, showLoginMenu, showRegisterMenu, closeLoginMenu, closeRegisterMenu, textSuccess, inputs, checkboxs, texts, links, linksRegister, buttonsSelect, buttons, textsCheckbox, previousButton, nextButton, buttonsSubmit, itens, logos, textNick, buttonLogOut, imageProfile, bios, fabs, headers, alts, cancels, saves, textName, dates, selects, textBirthDayData, textNacionality, textEmail, textNumber, textBio, edits, modalSuccess, showSuccessMessage };

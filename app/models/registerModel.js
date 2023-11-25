@@ -1,4 +1,4 @@
-import { buttons, cards, closeLoginMenu, closeRegisterMenu, containers, dates, iconsClose, inputs, modals, selects, showLoginMenu, textError, textSuccess } from "../../public/assets/js/variables";
+import { buttons, cards, closeLoginMenu, closeRegisterMenu, containers, dates, iconsClose, inputs, logos, modals, selects, showLoginMenu, textError, textSuccess } from "../../public/assets/js/variables";
 
 const birthDayData = document.querySelector('.date')
 const nacionality = selects[0]
@@ -7,7 +7,7 @@ const userName = inputs[3]
 const phoneNumber = inputs[4]
 const email = inputs[5]
 const password = inputs[6]
-const url = `https://sociallizze-api.up.railway.app/api/cadastrar`
+const url = `http://localhost:3000/api/cadastrar`
 let id;
 
 const userLoggedIn = localStorage.getItem('userLoggedIn');
@@ -35,38 +35,40 @@ buttons[1].addEventListener('click', (event) => {
         type: "default",
     };
 
-    fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-    })
-        .then(response => {
-            if (!response.ok) {
-                console.error('Erro na solicitação: ' + response.status);
-                res.status(response.status).json({ error: 'Erro na solicitação' });
-            }
-            return response.json();
-        })
-        .then(data => {
-            // Processar os dados bem-sucedidos
-            if (data.error) {
-                containers[2].style.display = 'flex'
-                textError[1].innerHTML = data.error
-            } else {
-                id = data._id;
-                localStorage.setItem('userLoggedIn', 'true');
-                localStorage.setItem('userId', id)
-                closeRegisterMenu()
-                modals[3].style.display = 'flex';
-                textSuccess[0].innerHTML = 'Conta Registrada com sucesso!!!'
-                setTimeout(() => {
-                    window.location.href = 'index.html'
-                }, 1500);
-            }
+    console.log(nacionality.value);
 
-        })
+    // fetch(url, {
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify(data),
+    // })
+    //     .then(response => {
+    //         if (!response.ok) {
+    //             console.error('Erro na solicitação: ' + response.status);
+    //             res.status(response.status).json({ error: 'Erro na solicitação' });
+    //         }
+    //         return response.json();
+    //     })
+    //     .then(data => {
+    //         // Processar os dados bem-sucedidos
+    //         if (data.error) {
+    //             containers[2].style.display = 'flex'
+    //             textError[1].innerHTML = data.error
+    //         } else {
+    //             id = data._id;
+    //             localStorage.setItem('userLoggedIn', 'true');
+    //             localStorage.setItem('userId', id)
+    //             closeRegisterMenu()
+    //             modals[3].style.display = 'flex';
+    //             textSuccess[0].innerHTML = 'Conta Registrada com sucesso!!!'
+    //             setTimeout(() => {
+    //                 window.location.href = 'index.html'
+    //             }, 1500);
+    //         }
+
+    //     })
 })
 
 // ESCONDER MODAL DE MENSAGEM DE SUCESSO //
@@ -106,8 +108,12 @@ let nationalitySelected = 'BR';
 let regexNumber = '';
 let regexFormat = '';
 let maxLength = '';
+
 selects[0].addEventListener('change', function () {
     nationalitySelected = this.value;
+    
+    console.log("NacionalitySelected:", nationalitySelected)
+    console.log(nacionality.value);
 
     switch (nationalitySelected) {
         case 'BR':
