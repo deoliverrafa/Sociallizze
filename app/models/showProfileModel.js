@@ -3,7 +3,7 @@ import { buttonLogOut, imageProfile, textBirthDayData, textEmail, textNacionalit
 import { getUserData, getUserImage, localUserId, logOut, verifyUserLogged } from "./userFunctions";
 
 console.log(containers);
-
+console.log("Ola");
 const cardPost = document.querySelectorAll('.card.post');
 const cardPhoto = document.querySelectorAll('.card.photo');
 const cardVideo = document.querySelectorAll('.card.video');
@@ -43,29 +43,29 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (dadosUser.showEmail === true) {
                 textEmail[0].innerHTML = dadosUser.email;
             } else {
-                containers[15].style.display = 'none'
+                containers[16].style.display = 'none'
             }
 
             if (dadosUser.showBirthDayData === true) {
                 textNumber[0].innerHTML = dadosUser.phoneNumber;
             } else {
-                containers[13].style.display = 'none'
+                containers[14].style.display = 'none'
             }
 
             if (dadosUser.showNacionality === true) {
                 textNacionality[0].innerHTML = dadosUser.nacionality;
             } else {
-                containers[12].style.display = 'none'
+                containers[13].style.display = 'none'
             }
 
             if (dadosUser.showPhoneNumber === true) {
                 textBirthDayData[0].innerHTML = dadosUser.birthDayData;
             } else {
-                containers[14].style.display = 'none'
+                containers[15].style.display = 'none'
             }   
 
             if (!dadosUser.showBirthDayData && !dadosUser.showEmail && !dadosUser.showNacionality && !dadosUser.showPhoneNumber) {
-                containers[10].style.display = 'none';
+                containers[11].style.display = 'none';
             }
 
             // BIO INDEFINIDA //
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
 
         } else {
-            textNick[0].innerHTML = 'Usuario'
+            window.location.href = '../../index.html'
         }
 
         // PUXA IMAGEM DO BANCO DE DADOS
