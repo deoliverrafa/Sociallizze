@@ -235,7 +235,7 @@ links[1].addEventListener('click', async () => {
                 showSuccessMessage('Conta Excluida')
                 setLocalUserId('null');
                 setLocalUserLoggedIn('false');
-                window.location.href = 'index.html'
+                window.location.href = '../../index.html'
             }
 
         } catch (error) {

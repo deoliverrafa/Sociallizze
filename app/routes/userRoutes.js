@@ -18,7 +18,6 @@ router.post('/cadastrar', async (req, res) => {
 
     const { nickName, userName, phoneNumber, email, password, birthDayData, type, nacionality } = req.body;
 
-    console.log(req.body);
     if (!nickName || !userName || !phoneNumber || !email || !password || !nacionality) {
       return res.status(400).json({ error: 'Preencha tudo Corretamente' });
     }
@@ -461,8 +460,6 @@ router.delete('/delAccount', async (req, res) => {
 
     // DELETA O USUÁRIO ESPECÍFICO PASSADO
     const deletedUser = await userSchema.findOneAndDelete({_id:localUserId})
-
-    console.log(deletedUser);
 
     if (!deletedUser) {
       return res.status(401).json({message: 'Erro ao deletar usuário'})
