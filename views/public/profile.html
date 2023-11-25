@@ -57,14 +57,16 @@
             <div class="card container container-column-center">
                 <div class="container container-row">
                     <form class="form" id="avatarForm" enctype="multipart/form-data">
-                        <picture>
-                            <img class="image profile" src="./public/assets/images/user/user.png" alt="Descrição da imagem">
-                          </picture>
-                        <!-- <img class="image profile" src="./../../public/assets/images/user/user.png"> -->
-                        <label class="file file-dark-primary" for="avatarInput" style="float: left;">
+                        <div class="container container-row" style="position: relative;">
+                            <picture>
+                                <img class="image profile" src="./public/assets/images/user/user.png" alt="Descrição da imagem">
+                            </picture>
+                            <!-- <img class="image profile" src="./../../public/assets/images/user/user.png"> -->
+                            <label class="file file-dark-primary" for="avatarInput">
                             <span class="icon material-symbols-outlined">upload</span>
-                        </label>
-                        <input class="file no-text" type="file" name="avatar" id="avatarInput" accept="image/*">
+                            </label>
+                            <input class="file no-text" type="file" name="avatar" id="avatarInput" accept="image/*">
+                        </div>
                     </form>
                 </div>
                 <div class="container container-row">
@@ -100,12 +102,16 @@
                     <p class="text level">Indísponivel</p>
                 </div>
                 <div class="container container-column-center">
-                    <p class="text text-bold">Seguidores</p>
-                    <p class="text followers">1000</p>
+                    <a href="./followers.html">
+                        <p class="text text-bold">Seguidores</p>
+                        <p class="text followers">1000</p>
+                    </a>
                 </div>
                 <div class="container container-column-center">
-                    <p class="text text-bold">Seguindo</p>
-                    <p class="text following">100</p>
+                    <a href="./following.html">
+                        <p class="text text-bold">Seguindo</p>
+                        <p class="text following">100</p>
+                    </a>
                 </div>
             </div>
             <!-- INFORMAÇÕES -->
