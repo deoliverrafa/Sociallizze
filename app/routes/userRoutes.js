@@ -385,4 +385,26 @@ router.put('/modifySettings', async (req, res) => {
   }
 });
 
+router.get('/modifyPassword', async (req, res) => {
+  const { localUserId, password } = req.query;
+
+  const user = await context.read(localUserId)
+
+  // Compara a senha fornecida com a senha criptografada no banco de dados
+  bcrypt.compare(password, user.password, (err, passwordMatch) => {
+    if (err) {
+      return res.status(500).json({ error: 'Erro ao comparar senhas.' });
+    }
+
+    if (passwordMatch) {
+      // Senhas coincidem, o usuário está autenticado
+      return res.json(user);
+    } else {
+      // Senha incorreta
+      return res.status(401).json({ error: "E-mail ou senha incorretos" });
+    }
+  });
+
+});
+
 module.exports = router;

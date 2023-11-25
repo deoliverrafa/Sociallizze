@@ -1,15 +1,19 @@
-import { checkboxs } from '../../public/assets/js/variables'
+import { buttons, checkboxs, containers, inputs, links, textError } from '../../public/assets/js/variables'
 import { localUserId, verifyUserLogged, getUserData } from './userFunctions'
 
 let dadosUser;
+let passWord;
+let matchPassword;
 
 const logoLoading = document.querySelectorAll('.logo.rotate')
 const divLoading = document.getElementById('loader')
 const cardPrincipal = document.querySelectorAll('.card');
 
-console.log(cardPrincipal);
-console.log(logoLoading);
-console.log(divLoading);
+buttons[0].style.display = 'none';
+buttons[1].style.display = 'none';
+containers[5].style.display = 'none';
+containers[6].style.display = 'none';
+containers[7].style.display = 'none';
 
 document.addEventListener('DOMContentLoaded', async () => {
 
@@ -23,8 +27,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (await verifyUserLogged() == true) {
         dadosUser = await getUserData(localUserId, 'showEmail,showBirthDayData,showNacionality,showPhoneNumber');
-
-        console.log(dadosUser)
 
         checkboxs[0].checked = dadosUser.showNacionality;
         checkboxs[1].checked = dadosUser.showBirthDayData;
@@ -62,7 +64,8 @@ checkboxs[0].addEventListener('change', async () => {
             console.log('Erro', data.error);
         }
 
-        console.log(data);
+        // Tratamento de resposta bem sucedida
+        // console.log(data);
     } catch (error) {
         console.log('Erro na requisição:', error);
     }
@@ -85,7 +88,8 @@ checkboxs[1].addEventListener('change', async () => {
             console.log('Erro', data.error);
         }
 
-        console.log(data);
+        // Tratamento de resposta bem sucedida
+        // console.log(data);
     } catch (error) {
         console.log('Erro na requisição:', error);
     }
@@ -108,7 +112,8 @@ checkboxs[2].addEventListener('change', async () => {
             console.log('Erro', data.error);
         }
 
-        console.log(data);
+        // Tratamento de resposta bem sucedida
+        // console.log(data);
     } catch (error) {
         console.log('Erro na requisição:', error);
     }
@@ -130,8 +135,41 @@ checkboxs[3].addEventListener('change', async () => {
             console.log('Erro', data.error);
         }
 
-        console.log(data);
+        // Tratamento de resposta bem sucedida
+        // console.log(data);
     } catch (error) {
         console.log('Erro na requisição:', error);
     }
+})
+
+links[0].addEventListener('click', async () => {
+
+    containers[5].style.display = 'flex';
+    containers[6].style.display = 'flex';
+    buttons[0].style.display = 'flex';
+    buttons[1].style.display = 'none';
+
+    inputs[0].addEventListener('input', function () {
+        passWord = this.value;
+        console.log(passWord);
+    })
+
+    inputs[1].addEventListener('input', function () {
+        matchPassword = this.value;
+        console.log(matchPassword);
+    })
+
+    buttons[0].addEventListener('click', async () => {
+        console.log("Clickado");
+
+        
+    })
+})
+links[1].addEventListener('click', async () => {
+
+    containers[5].style.display = 'flex'
+    containers[6].style.display = 'none';
+
+    buttons[0].style.display = 'none';
+    buttons[1].style.display = 'flex';
 })
