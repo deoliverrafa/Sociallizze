@@ -357,20 +357,20 @@ router.put('/modifySettings', async (req, res) => {
   try {
     const { nacionality, birthDayData, email, phoneNumber, localUserId } = req.body;
 
-    // Atualiza campos de visibilidade
+    // Atualiza campos de visibilidade diretamente se os valores forem booleanos
     const updateData = {};
     if (email !== undefined) {
-      updateData.showEmail = email === 'true'
-    };
+      updateData.showEmail = email;
+    }
     if (birthDayData !== undefined) {
-      updateData.showBirthDayData = birthDayData === 'true'
-    };
+      updateData.showBirthDayData = birthDayData;
+    }
     if (nacionality !== undefined) {
-      updateData.showNacionality = nacionality === 'true'
-    };
+      updateData.showNacionality = nacionality;
+    }
     if (phoneNumber !== undefined) {
-      updateData.showPhoneNumber = phoneNumber === 'true'
-    };
+      updateData.showPhoneNumber = phoneNumber;
+    }
 
     // Atualiza o usuário com os campos de visibilidade modificados
     const updatedUser = await userSchema.findByIdAndUpdate(localUserId, { $set: updateData }, { new: true });
