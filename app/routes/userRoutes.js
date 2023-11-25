@@ -18,7 +18,8 @@ router.post('/cadastrar', async (req, res) => {
 
     const { nickName, userName, phoneNumber, email, password, birthDayData, type, nacionality } = req.body;
 
-    if (!nickName || !userName || !phoneNumber || !email || !password) {
+    console.log(req.body);
+    if (!nickName || !userName || !phoneNumber || !email || !password || !nacionality) {
       return res.status(400).json({ error: 'Preencha tudo Corretamente' });
     }
 
