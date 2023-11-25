@@ -59,7 +59,7 @@ checkboxs[0].addEventListener('change', async () => {
     const nacionality = checkboxs[0].checked; // Verifica se a checkbox está marcada ou não
 
     try {
-        const response = await fetch('http://localhost:3000/api/modifySettings', {
+        const response = await fetch('https://sociallizze-api.up.railway.app/api/modifySettings', {
             method: "PUT",
             headers: {
                 'Content-Type': 'application/json'
@@ -83,7 +83,7 @@ checkboxs[1].addEventListener('change', async () => {
     const birthDayData = checkboxs[1].checked;
 
     try {
-        const response = await fetch('http://localhost:3000/api/modifySettings', {
+        const response = await fetch('https://sociallizze-api.up.railway.app/api/modifySettings', {
             method: "PUT",
             headers: {
                 'Content-Type': 'application/json'
@@ -107,7 +107,7 @@ checkboxs[2].addEventListener('change', async () => {
     const phoneNumber = checkboxs[2].checked;
 
     try {
-        const response = await fetch('http://localhost:3000/api/modifySettings', {
+        const response = await fetch('https://sociallizze-api.up.railway.app/api/modifySettings', {
             method: "PUT",
             headers: {
                 'Content-Type': 'application/json'
@@ -130,7 +130,7 @@ checkboxs[3].addEventListener('change', async () => {
     const email = checkboxs[3].checked;
 
     try {
-        const response = await fetch('http://localhost:3000/api/modifySettings', {
+        const response = await fetch('https://sociallizze-api.up.railway.app/api/modifySettings', {
             method: "PUT",
             headers: {
                 'Content-Type': 'application/json'
@@ -174,7 +174,7 @@ links[0].addEventListener('click', async () => {
 
             const dataToSend = { password, localUserId, newPassword };
 
-            const response = await fetch('http://localhost:3000/api/modifyPassword', {
+            const response = await fetch('https://sociallizze-api.up.railway.app/api/modifyPassword', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
@@ -220,7 +220,7 @@ links[1].addEventListener('click', async () => {
         try {
             const dataToSend = { password, localUserId }
 
-            const response = await fetch('http://localhost:3000/api/delAccount', {
+            const response = await fetch('https://sociallizze-api.up.railway.app/api/delAccount', {
                 method: "DELETE",
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(dataToSend),
