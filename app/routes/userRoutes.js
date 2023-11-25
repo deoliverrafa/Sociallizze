@@ -385,6 +385,7 @@ router.put('/modifySettings', async (req, res) => {
   }
 });
 
+// ROTA PARA MODIFICAR A SENHA
 router.get('/modifyPassword', async (req, res) => {
   const { localUserId, password } = req.query;
 
