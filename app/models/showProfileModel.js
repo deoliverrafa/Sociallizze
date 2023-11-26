@@ -2,8 +2,6 @@
 import { buttonLogOut, imageProfile, textBirthDayData, textEmail, textNacionality, textNick, textNumber, textName, itens, textBio, buttons, texts, containers } from "../../public/assets/js/variables";
 import { getUserData, getUserImage, localUserId, logOut, verifyUserLogged } from "./userFunctions";
 
-console.log(containers);
-console.log("Ola");
 const cardPost = document.querySelectorAll('.card.post');
 const cardPhoto = document.querySelectorAll('.card.photo');
 const cardVideo = document.querySelectorAll('.card.video');
@@ -41,32 +39,33 @@ document.addEventListener('DOMContentLoaded', async () => {
             texts[5].innerHTML = dadosUser.Nfollowers;
             texts[7].innerHTML = dadosUser.Nfollowing;
 
+
             if (dadosUser.showEmail === true) {
                 textEmail[0].innerHTML = dadosUser.email;
             } else {
-                containers[16].style.display = 'none'
+                containers[18].style.display = 'none'
             }
 
             if (dadosUser.showPhoneNumber === true) {
                 textNumber[0].innerHTML = dadosUser.phoneNumber;
             } else {
-                containers[14].style.display = 'none'
+                containers[16].style.display = 'none'
             }
 
             if (dadosUser.showNacionality === true) {
                 textNacionality[0].innerHTML = dadosUser.nacionality;
             } else {
-                containers[13].style.display = 'none'
+                containers[15].style.display = 'none'
             }
 
             if (dadosUser.showBirthDayData === true) {
                 textBirthDayData[0].innerHTML = dadosUser.birthDayData;
             } else {
-                containers[15].style.display = 'none'
+                containers[17].style.display = 'none'
             }   
 
             if (!dadosUser.showBirthDayData && !dadosUser.showEmail && !dadosUser.showNacionality && !dadosUser.showPhoneNumber) {
-                containers[11].style.display = 'none';
+                containers[13].style.display = 'none';
             }
 
             // BIO INDEFINIDA //
