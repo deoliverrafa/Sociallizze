@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 containers[16].style.display = 'none'
             }
 
-            if (dadosUser.showBirthDayData === true) {
+            if (dadosUser.showPhoneNumber === true) {
                 textNumber[0].innerHTML = dadosUser.phoneNumber;
             } else {
                 containers[14].style.display = 'none'
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 containers[13].style.display = 'none'
             }
 
-            if (dadosUser.showPhoneNumber === true) {
+            if (dadosUser.showBirthDayData === true) {
                 textBirthDayData[0].innerHTML = dadosUser.birthDayData;
             } else {
                 containers[15].style.display = 'none'
