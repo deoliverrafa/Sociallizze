@@ -25,7 +25,7 @@ async function createUserCard(nickName, id, isFollowing, containers) {
 
     const image = await getUserImage(id);
 
-    if (image.type === "image/png") {
+    if (image.type == "image/png" || image.type == "image/jpeg") {
         userImage.src = URL.createObjectURL(image);
     } else {
         userImage.src = './../../public/assets/images/user/user.png';
@@ -163,8 +163,7 @@ function createButton(iconName, buttonText, buttonClass, id, tipo) {
                 });
 
                 if (response.ok) {
-                    // Atualize o botão ou faça outras ações necessárias
-                    console.log('Usuario removido com sucesso');
+                    // console.log('Usuario removido com sucesso');
                 } else {
                     console.error('Erro ao remover o usuário:', response.statusText);
                 }

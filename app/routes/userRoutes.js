@@ -266,7 +266,7 @@ router.get('/getUser', async (req, res) => {
     }
 
     // Use a função read para encontrar usuários semelhantes com a regex
-    const response = await context.read({ nickName: { $regex: new RegExp(nickName, 'i') } });
+    let response = await context.read({ nickName: { $regex: new RegExp(nickName, 'i') } });
 
     if (!response || response.length === 0) {
       return res.json({ message: 'Usuário não encontrado. Tente novamente.' });
@@ -279,7 +279,6 @@ router.get('/getUser', async (req, res) => {
   }
 });
 
-
 // ROTA PARA SEGUIR USUÁRIO
 router.put('/follow', async (req, res) => {
   try {
@@ -289,8 +288,9 @@ router.put('/follow', async (req, res) => {
 
     // Encontra o usuário atual no banco de dados
     const currentUser = await userSchema.findById(currentUserId);
+    const userToFollow = await userSchema.findById(userIdToFollow);
 
-    if (!currentUser || !userIdToFollow) {
+    if (!currentUser || !userIdToFollow || !userToFollow) {
       return res.status(404).json({ error: "Usuário não encontrado no Banco de dados" });
     }
 
@@ -303,10 +303,12 @@ router.put('/follow', async (req, res) => {
 
     // Adiciona o ID do usuário a ser seguido ao array following
     currentUser.following.push(userIdToFollow);
-
+    // Adiciona o ID do usuario que está seguindo no array followers
+    userToFollow.followers.push(currentUserId); // Adiciona o ID do usuário corrente no array followers do usuário que está sendo seguido
 
     // Salva as alterações no banco de dados
     await currentUser.save();
+    await userToFollow.save(); // Salva as alterações no usuário que está sendo seguido
 
     res.status(200).json({ message: 'Usuário seguido com sucesso!' });
   } catch (error) {
@@ -337,9 +339,20 @@ router.put('/unfollow', async (req, res) => {
   try {
     const { userIdToUnfollow, currentUserId } = req.body;
 
+    // Verifica se o usuário atual está seguindo o usuário a ser desseguido
+    const currentUser = await userSchema.findById(currentUserId);
+    if (!currentUser.following.includes(userIdToUnfollow)) {
+      return res.status(400).json({ success: false, message: 'Usuário não está sendo seguido' });
+    }
+
     // Lógica para remover o usuário do array 'following'
     await userSchema.findByIdAndUpdate(currentUserId, {
       $pull: { following: userIdToUnfollow },
+    });
+
+    // Lógica para remover usuário do array 'followers' de quem quer deixar de seguir
+    await userSchema.findByIdAndUpdate(userIdToUnfollow, {
+      $pull: { followers: currentUserId },
     });
 
     await context.decrementFollowersCount(currentUserId, userIdToUnfollow);
@@ -350,7 +363,6 @@ router.put('/unfollow', async (req, res) => {
     res.status(500).json({ success: false, message: 'Erro ao remover o usuário' });
   }
 });
-
 
 // ROTA PARA CONFIGURAR EXIBIÇÃO DE INFORMAÇÕES EM CONFIGURAÇÕES
 router.put('/modifySettings', async (req, res) => {
@@ -442,7 +454,7 @@ router.delete('/delAccount', async (req, res) => {
 
   console.log(req.body);
   await connection.connect();
-  
+
   try {
     // PUXA UM USUÁRIO NO BANCO DE DADOS
     const [user] = await context.read({ _id: localUserId });
@@ -459,16 +471,56 @@ router.delete('/delAccount', async (req, res) => {
     }
 
     // DELETA O USUÁRIO ESPECÍFICO PASSADO
-    const deletedUser = await userSchema.findOneAndDelete({_id:localUserId})
+    const deletedUser = await userSchema.findOneAndDelete({ _id: localUserId })
 
     if (!deletedUser) {
-      return res.status(401).json({message: 'Erro ao deletar usuário'})
+      return res.status(401).json({ message: 'Erro ao deletar usuário' })
     }
     // Retorna uma resposta de sucesso após a exclusão da conta
     return res.status(200).json({ message: 'Conta excluída com sucesso' });
   } catch (error) {
     console.log('Erro ao excluir conta:', error);
     return res.status(500).json({ error: 'Erro ao excluir a conta' });
+  }
+});
+
+router.get('/followers', async (req, res) => {
+  try {
+    const { id } = req.query;
+    console.log(req.query);
+    await connection.connect();
+    // Encontrar o usuário pelo ID
+    const user = await userSchema.findById(id).populate('followers', 'username nickName');
+    console.log(user);
+    if (!user) {
+      return res.status(404).json({ message: 'Usuário não encontrado' });
+    }
+
+    res.status(200).json({ followers: user.followers }); // Retorna seguidores do usuário encontrado
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Erro ao buscar seguidores' });
+  }
+});
+
+// Rota para obter as pessoas que o usuário está seguindo
+router.get('/following', async (req, res) => {
+  try {
+    const { id } = req.query;
+
+    await connection.connect();
+
+    // Encontrar o usuário pelo ID
+    const user = await userSchema.findById(id).populate('following', 'username nickName');
+
+    if (!user) {
+      return res.status(404).json({ message: 'Usuário não encontrado' });
+    }
+
+    res.status(200).json({ following: user.following }); // Retona usuário que está seguindo
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Erro ao buscar quem o usuário está seguindo' });
   }
 });
 

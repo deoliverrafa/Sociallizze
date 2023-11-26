@@ -70,6 +70,11 @@ const userSchema = mongoose.Schema({
         ref: 'User',
     }],
 
+    followers: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+    }],
+
     Nfollowing: {
         type: Number,
         default: 0,
