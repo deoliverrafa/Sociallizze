@@ -9,8 +9,6 @@ const logoLoading = document.querySelectorAll('.logo.rotate')
 const divLoading = document.getElementById('loader')
 const cardPrincipal = document.querySelectorAll('.card');
 
-console.log(containers);
-
 modalSuccess[0].style.display = 'none';
 buttons[0].style.display = 'none';
 buttons[1].style.display = 'none';

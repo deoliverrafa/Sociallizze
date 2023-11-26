@@ -6,7 +6,8 @@ module.exports = {
         profile: './profileController.js',
         friends: './friendsController.js',
         posts: './postsController.js',
-        settings: './settingsController.js'
+        settings: './settingsController.js',
+        follow: './followController.js',
     },
 
     output: {
