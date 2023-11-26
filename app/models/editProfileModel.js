@@ -25,7 +25,7 @@ avatarInput.addEventListener('change', async () => {
         formData.append('userId', userId);
 
         try {
-            const response = await fetch('http://localhost:3000/api/attProfilePhoto', {
+            const response = await fetch('https://sociallizze-api.up.railway.app/api/attProfilePhoto', {
                 method: 'PUT',
                 body: formData,
             });
@@ -67,7 +67,7 @@ inputs[0].addEventListener('input', () => {
 // CONFIRMAR ALTERAÇÂO DE BIO
 buttons[5].addEventListener('click', async () => {
     try {
-        const response = await fetch('http://localhost:3000/api/updateBio', {
+        const response = await fetch('https://sociallizze-api.up.railway.app/api/updateBio', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
