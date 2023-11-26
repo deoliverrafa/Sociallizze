@@ -1,0 +1,1 @@
+(()=>{var o={98:()=>{console.log("Ola")},123:(o,r,e)=>{const t=e(98);o.exports={followingModel:t}}},r={};!function e(t){var n=r[t];if(void 0!==n)return n.exports;var s=r[t]={exports:{}};return o[t](s,s.exports,e),s.exports}(123)})();

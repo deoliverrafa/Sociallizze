@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (await verifyUserLogged() == true) {
         const dadosUser = await getUserData(localUserId, 'userName,nickName,phoneNumber,birthDayData,email,nacionality,bio,_id,Nfollowers,Nfollowing,showEmail,showBirthDayData,showNacionality,showPhoneNumber');
         
-        console.log(dadosUser);
         // ESCONDER BOTÕES DESNECESSÁRIOS ADICIONAR, REMOVER, BLOQUEAR
         if (localUserId == dadosUser._id) {
             buttons[0].style.display = 'none';
@@ -39,19 +38,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             texts[5].innerHTML = dadosUser.Nfollowers;
             texts[7].innerHTML = dadosUser.Nfollowing;
 
-
-            if (dadosUser.showEmail === true) {
-                textEmail[0].innerHTML = dadosUser.email;
-            } else {
-                containers[18].style.display = 'none'
-            }
-
-            if (dadosUser.showPhoneNumber === true) {
-                textNumber[0].innerHTML = dadosUser.phoneNumber;
-            } else {
-                containers[16].style.display = 'none'
-            }
-
             if (dadosUser.showNacionality === true) {
                 textNacionality[0].innerHTML = dadosUser.nacionality;
             } else {
@@ -61,9 +47,22 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (dadosUser.showBirthDayData === true) {
                 textBirthDayData[0].innerHTML = dadosUser.birthDayData;
             } else {
-                containers[17].style.display = 'none'
+                containers[16].style.display = 'none'
             }   
 
+            if (dadosUser.showPhoneNumber === true) {
+                textNumber[0].innerHTML = dadosUser.phoneNumber;
+            } else {
+                containers[17].style.display = 'none'
+            }
+
+            if (dadosUser.showEmail === true) {
+                textEmail[0].innerHTML = dadosUser.email;
+            } else {
+                containers[18].style.display = 'none'
+            }
+
+            // CASO NÃO ESTIVER NADA PERMITIDO PARA MOSTRAR OCULTA-SE O CONTAINER PAI
             if (!dadosUser.showBirthDayData && !dadosUser.showEmail && !dadosUser.showNacionality && !dadosUser.showPhoneNumber) {
                 containers[13].style.display = 'none';
             }
