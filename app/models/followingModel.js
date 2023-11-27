@@ -9,6 +9,8 @@ const divLoading = document.getElementById('loader')
 logoLoading[0].style.animation = 'rotate .3s infinite linear';
 divLoading.style.display = 'flex'
 
+console.log(containers);
+
 // Função para criar o card do usuário
 async function createUserCard(nickName, id, isFollowing) {
 
