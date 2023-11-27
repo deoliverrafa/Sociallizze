@@ -26,8 +26,6 @@
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="627">
-    <!-- PWA SUPORTE -->
-    <link rel="manifest" href="manifest.json">
 
     <!-- TÍTULO -->
     <title>Sociallizze</title>
@@ -39,6 +37,9 @@
     <link rel="stylesheet" href="./public/vendor/normalize/normalize.css">
     <!-- IMPORTANDO O CSS MINIFY -->
     <link rel="stylesheet" href="./public/assets/css/styles.min.css">
+    <!-- IMPORTANDO O SWIPER -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
 </head>
 
 <body>
@@ -266,14 +267,8 @@
 
     <!-- BOTÃO DE FAB -->
     <div class="fab-container">
-        <a class="fab fab-text" href="./views/public/post.html">
-            <span class="icon material-symbols-outlined">text_fields</span>
-        </a>
-        <a class="fab fab-image" href="./views/public/post.html">
-            <span class="icon material-symbols-outlined">image</span>
-        </a>
-        <a class="fab fab-video" href="./views/public/post.html">
-            <span class="icon material-symbols-outlined">videocam</span>
+        <a class="fab fab-post" href="./views/public/post.html">
+            <span class="icon material-symbols-outlined">add_photo_alternate</span>
         </a>
         <a class="fab fab-close" href="#">
             <span class="icon material-symbols-outlined">close</span>
@@ -282,14 +277,94 @@
             <span class="icon material-symbols-outlined">add</span>
         </a>
     </div>
+    
+    <main class="principal">
+        <!-- POSTAGEM -->
+        <div class="card post container container-column">
+            <div class="container container-row-between">
+                <div class="container container-row">
+                    <img class="image profile-small" src="./../../public/assets/images/user/user.png">
+                    <div class="container container-column-center">
+                        <div class="container container-row">
+                            <p class="text nick text-bold">Usuário</p>
+                            <img class="image checkmark" src="./../../public/assets/images/user/checkmark_blue.png">
+                        </div>
+                    </div>
+                </div>
+                <div class="container container-row">
+                    <button class="button add button-primary" type="button">
+                        <span class="icon icon-white material-symbols-outlined">person_add</span>
+                        SEGUIR
+                    </button>
+                    <!--<button class="button check button-primary" type="button">
+                        <span class="icon icon-white material-symbols-outlined">person_check</span>
+                        SEGUINDO
+                    </button>
+                    <button class="button remove button-primary" type="button">
+                        <span class="icon icon-white material-symbols-outlined">person_remove</span>
+                        REMOVER
+                    </button>-->
+                </div>
+            </div>
+            <div class="swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img class="image image-full" src="./public/assets/images/post.png" alt="post">
+                    </div>
+                    <div class="swiper-slide">
+                        <img class="image image-full" src="./public/assets/images/user/user.png" alt="post">
+                    </div>
+                    <div class="swiper-slide">
+                        <img class="image image-full" src="./public/assets/images/post.png" alt="post">
+                    </div>
+                    <div class="swiper-slide">
+                        <img class="image image-full" src="./public/assets/images/user/user.png" alt="post">
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+            <div class="container container-column-center">
+                <p class="text title text-wrap text-bold">Título Título Titulo Titulo Título</p>
+                <p class="text comment text-wrap">Texto Texto Texto Texto Texto</p>
+            </div>
+            <div class="container container-row-between">
+                <div class="container container-row">
+                    <span class="icon like-add icon-primary material-symbols-outlined">
+                        heart_plus
+                    </span>
+                    <!--<span class="icon like-remove icon-primary material-symbols-outlined">
+                        heart_minus
+                    </span>
+                    <span class="icon like-added icon-primary material-symbols-outlined">
+                        heart_check
+                    </span>-->
+                </div>
+                <div class="container container-row">
+                    <span class="icon favorite-add icon-primary material-symbols-outlined">
+                        bookmark_add
+                    </span>
+                    <!--<span class="icon favorite-added icon-primary material-symbols-outlined">
+                        bookmark_added
+                    </span>
+                    <span class="icon favorite-remove icon-primary material-symbols-outlined">
+                        bookmark_remove
+                    </span>-->
+                </div>
+            </div>
+        </div>
+    </main>
 
+    <!-- IMPORTANDO O SWIPER -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <!-- IMPORTANDO OS SCRIPTS -->
     <script src="./public/assets/js/index.bundle.js" defer></script>
     <script type="module" src="./public/assets/js/fab.js"></script>
+    <script type="module" src="./public/assets/js/slider.js"></script>
     <script type="module" src="./public/assets/js/theme.js"></script>
     <script type="module" src="./public/assets/js/nav.js"></script>
     <script type="module" src="./public/assets/js/variables.js"></script>
-
 </body>
 
 </html>

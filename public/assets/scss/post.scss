@@ -31,3 +31,19 @@ main.card.post {
         }
     }
 }
+
+main.principal {
+    .card.post {
+        z-index: 0;
+        
+        .swiper {
+            height: 100%;
+            width: 100%;
+            
+            .swiper-slide {
+                height: auto;
+                width: 100%;
+            }
+        }
+    }
+}

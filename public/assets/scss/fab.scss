@@ -4,8 +4,8 @@
 div.fab-container {
     @include display-flex(column, center, center);
 
-    position: absolute;
-    bottom: clamp(6vh, 7vh, 8vh);
+    position: fixed;
+    bottom: clamp(4vh, 5vh, 6vh);
     right: clamp(6vw, 7vw, 8vw);
 
     padding: 5px;
@@ -39,11 +39,11 @@ div.fab-container {
         }
     }
     
-    .fab-text, .fab-image, .fab-video, .fab-close {
+    .fab-post, .fab-close {
         display: none;
     }
     
-    .fab-text, .fab-image, .fab-video {
+    .fab-post {
         animation: scale .3s ease-in-out forwards;
     }
 }
