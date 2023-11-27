@@ -281,13 +281,17 @@ hr {
 }
 
 .select {
+    transition: box-shadow 0.5s ease;
+    
+    color: black;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 10px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    // box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(10
     , 10, 10, 0.3);
+    caret-color: $colorPrimary;
     
     @include font-size(.875rem);
     font-family: $fontPrincipal;
@@ -301,6 +305,10 @@ hr {
         border-radius: 0 10px 10px 0;
        
         margin: 0;
+    }
+
+    .option{
+        color: black;
     }
 }
 

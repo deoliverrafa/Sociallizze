@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             imageProfile[0].src = imageUrl;
         } else {
             imageProfile[0].src = 'public/assets/images/user/user.png'
+            console.clear();
         }
         containers[13].style.display = 'none';
         containers[14].style.display = 'flex';

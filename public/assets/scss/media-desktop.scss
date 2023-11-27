@@ -112,4 +112,12 @@
       width: 80%;
     }
   }
+
+  main.principal{
+    @include display-flex(column, center,  center);
+    .card.post{
+      width: 60%;
+      height: auto;
+    }
+  }
 }

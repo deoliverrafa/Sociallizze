@@ -8,9 +8,6 @@ let theme;
 // FUNÇÃO - APLICAR TEMA //
 function applyTheme() {
     if (theme === 'dark') {
-        if(selects[0]) {
-            selects[0].value = 'Dark';
-        }
         body.style.background = '#000000';
         document.querySelectorAll('.profile').forEach(function(element) {
             element.style.background = '#000000';
@@ -42,6 +39,9 @@ function applyTheme() {
         });
         document.querySelectorAll('.select').forEach(function(element) {
             element.style.background = '#2C2C2C';
+            element.style.color = 'rgba(255,255,255,.5)';
+        });
+        document.querySelectorAll('.option').forEach(function(element) {
             element.style.color = '#FFFFFF';
         });
         document.querySelectorAll('.date').forEach(function(element) {

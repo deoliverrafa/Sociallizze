@@ -4,7 +4,7 @@
 div.fab-container {
     @include display-flex(column, center, center);
 
-    position: fixed;
+    position:fixed;
     bottom: clamp(4vh, 5vh, 6vh);
     right: clamp(6vw, 7vw, 8vw);
 

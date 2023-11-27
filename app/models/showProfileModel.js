@@ -91,6 +91,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         } else {
             // ATRIBUI IMAGEM DEFAULT
             imageProfile[0].src = '../../public/assets/images/user/user.png'
+            console.clear();
         }
 
         loader.style.display = 'none';

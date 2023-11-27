@@ -9,7 +9,7 @@ divLoading.style.display = 'none';
 
 // Função para criar o card do usuário
 async function createUserCard(nickName, id, isFollowing, containers) {
-    const containerIndex = isFollowing ? 6 : 4;
+    const containerIndex = 4;
 
     const novaDiv = document.createElement('div');
     novaDiv.classList.add('container', 'search-friends', 'container-column-center');
@@ -29,6 +29,7 @@ async function createUserCard(nickName, id, isFollowing, containers) {
         userImage.src = URL.createObjectURL(image);
     } else {
         userImage.src = './../../public/assets/images/user/user.png';
+        console.clear();
     }
     userDiv.appendChild(userImage);
 
@@ -198,7 +199,6 @@ const searchUsersDebounced = await debounce(async (searchTerm) => {
 
         // Limpa os resultados anteriores antes de adicionar novos
         containers[4].innerHTML = '';
-        containers[6].innerHTML = '';
 
         const currentUser = await getCurrentUser();
 

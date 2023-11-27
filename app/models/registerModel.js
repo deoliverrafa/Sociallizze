@@ -1,7 +1,9 @@
+import { theme } from "../../public/assets/js/theme";
 import { buttons, cards, closeLoginMenu, closeRegisterMenu, containers, dates, iconsClose, inputs, logos, modals, selects, showLoginMenu, textError, textSuccess } from "../../public/assets/js/variables";
 
-let nationalitySelected = 'BR';
+let nationalitySelected = 'BRAZIL';
 const birthDayData = document.querySelector('.date')
+
 const nickName = inputs[2]
 const userName = inputs[3]
 const phoneNumber = inputs[4]
@@ -106,16 +108,17 @@ let regexNumber = /(\d{2})(\d{5})(\d{4})/;
 let regexFormat = '($1) $2-$3';
 let maxLength = '13';
 
+
 selects[0].addEventListener('change', function () {
-    nationalitySelected = this.value ? this.value : 'BR';
+    nationalitySelected = this.value ? this.value : 'BRAZIL';
 
     switch (nationalitySelected) {
-        case 'BR':
+        case 'BRAZIL':
             regexNumber = /(\d{2})(\d{5})(\d{4})/;
             regexFormat = '($1) $2-$3';
             maxLength = '13';
             break;
-        case 'USA':
+        case 'UNITED STATES':
             regexNumber = /(\d{3})(\d{3})(\d{4})/;
             regexFormat = '($1) $2-$3';
             maxLength = '13';

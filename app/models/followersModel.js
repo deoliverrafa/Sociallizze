@@ -30,6 +30,7 @@ async function createUserCard(nickName, id, isFollowing) {
         userImage.src = URL.createObjectURL(image);
     } else {
         userImage.src = './../../public/assets/images/user/user.png';
+        console.clear();
     }
     userDiv.appendChild(userImage);
 
@@ -65,7 +66,7 @@ async function createUserCard(nickName, id, isFollowing) {
 
     buttonSeguir.addEventListener('mouseover', () => {
         if (isFollowing) {
-            const buttonRemover = createButton('person_remove', 'REMOVENDO...', 'remove', id, 'remover');
+            const buttonRemover = createButton('person_remove', 'REMOVER', 'remove', id, 'remover');
 
             buttonSeguir.replaceWith(buttonRemover);
 
@@ -90,7 +91,7 @@ async function createUserCard(nickName, id, isFollowing) {
                         // Atualize o botão ou faça outras ações necessárias
                         const buttonRemoved = createButton('person_remove', 'REMOVIDO', 'removed', id, 'removed');
 
-                        buttonRemover.replaceWith(buttonRemoved)
+                        buttonSeguir.replaceWith(buttonRemoved)
 
                         // Tratamento de Erro
                         // console.log('Usuário removido com sucesso');
@@ -117,6 +118,10 @@ function createButton(iconName, buttonText, buttonClass, id, tipo) {
     const span = document.createElement('span');
     span.classList.add('icon', 'material-symbols-outlined');
     span.textContent = iconName;
+
+    if (theme == 'dark') {
+        span.style.color = '#fff'
+    }
 
     newButton.appendChild(span);
     newButton.appendChild(document.createTextNode(buttonText));

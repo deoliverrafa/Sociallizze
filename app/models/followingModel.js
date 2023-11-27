@@ -9,7 +9,6 @@ const divLoading = document.getElementById('loader')
 logoLoading[0].style.animation = 'rotate .3s infinite linear';
 divLoading.style.display = 'flex'
 
-console.log(containers);
 
 // Função para criar o card do usuário
 async function createUserCard(nickName, id, isFollowing) {
@@ -32,6 +31,7 @@ async function createUserCard(nickName, id, isFollowing) {
         userImage.src = URL.createObjectURL(image);
     } else {
         userImage.src = './../../public/assets/images/user/user.png';
+        console.clear();
     }
     userDiv.appendChild(userImage);
 
@@ -67,7 +67,7 @@ async function createUserCard(nickName, id, isFollowing) {
 
     buttonSeguir.addEventListener('mouseover', () => {
         if (isFollowing) {
-            const buttonRemover = createButton('person_remove', 'REMOVER ?', 'remove', id, 'remover');
+            const buttonRemover = createButton('person_remove', 'REMOVER', 'remove', id, 'remover');
 
             buttonSeguir.replaceWith(buttonRemover);
 
