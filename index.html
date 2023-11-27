@@ -266,14 +266,8 @@
 
     <!-- BOTÃO DE FAB -->
     <div class="fab-container">
-        <a class="fab fab-text" href="./views/public/post.html">
-            <span class="icon material-symbols-outlined">text_fields</span>
-        </a>
-        <a class="fab fab-image" href="./views/public/post.html">
-            <span class="icon material-symbols-outlined">image</span>
-        </a>
-        <a class="fab fab-video" href="./views/public/post.html">
-            <span class="icon material-symbols-outlined">videocam</span>
+        <a class="fab fab-post" href="./views/public/post.html">
+            <span class="icon material-symbols-outlined">add_photo_alternate</span>
         </a>
         <a class="fab fab-close" href="#">
             <span class="icon material-symbols-outlined">close</span>
@@ -282,6 +276,37 @@
             <span class="icon material-symbols-outlined">add</span>
         </a>
     </div>
+    
+    <main class="principal">
+        <!-- POSTAGEM -->
+        <div class="card post container container-column">
+            <div class="container container-row-between">
+                <div class="container container-row">
+                    <img class="image profile-small" src="./../../public/assets/images/user/user.png">
+                    <div class="container container-column-center">
+                        <div class="container container-row">
+                            <p class="text nick text-bold">Usuário</p>
+                            <img class="image checkmark" src="./../../public/assets/images/user/checkmark_blue.png">
+                        </div>
+                    </div>
+                </div>
+                <div class="container container-row">
+                    <button class="button add button-primary" type="button">
+                        <span class="icon material-symbols-outlined">person_add</span>
+                        SEGUIR
+                    </button>
+                    <button class="button check button-primary" type="button">
+                        <span class="icon material-symbols-outlined">person_check</span>
+                        SEGUINDO
+                    </button>
+                    <button class="button remove button-primary" type="button">
+                        <span class="icon material-symbols-outlined">person_remove</span>
+                        REMOVER
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
 
     <!-- IMPORTANDO OS SCRIPTS -->
     <script src="./public/assets/js/index.bundle.js" defer></script>
@@ -289,7 +314,6 @@
     <script type="module" src="./public/assets/js/theme.js"></script>
     <script type="module" src="./public/assets/js/nav.js"></script>
     <script type="module" src="./public/assets/js/variables.js"></script>
-
 </body>
 
 </html>

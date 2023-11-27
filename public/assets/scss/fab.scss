@@ -39,11 +39,11 @@ div.fab-container {
         }
     }
     
-    .fab-text, .fab-image, .fab-video, .fab-close {
+    .fab-post .fab-close {
         display: none;
     }
     
-    .fab-text, .fab-image, .fab-video {
+    .fab-post {
         animation: scale .3s ease-in-out forwards;
     }
 }
