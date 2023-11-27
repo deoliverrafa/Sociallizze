@@ -39,6 +39,9 @@
     <link rel="stylesheet" href="./public/vendor/normalize/normalize.css">
     <!-- IMPORTANDO O CSS MINIFY -->
     <link rel="stylesheet" href="./public/assets/css/styles.min.css">
+    <!-- IMPORTANDO O SWIPER -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
 </head>
 
 <body>
@@ -295,43 +298,52 @@
                         <span class="icon material-symbols-outlined">person_add</span>
                         SEGUIR
                     </button>
-                    <button class="button check button-primary" type="button">
+                    <!--<button class="button check button-primary" type="button">
                         <span class="icon material-symbols-outlined">person_check</span>
                         SEGUINDO
                     </button>
                     <button class="button remove button-primary" type="button">
                         <span class="icon material-symbols-outlined">person_remove</span>
                         REMOVER
-                    </button>
+                    </button>-->
                 </div>
             </div>
             <div class="container container-column-center">
-                <div class="post post-full">
-                    <img class="image image-full" src="./public/assets/images/post.png" alt="post">
-                </div>
-                <div class="container container-row-center">
-                    <div class="scroll container container-row-between">
-                        <div class="post">
-                            <img class="image image-full" src="./public/assets/images/post.png" alt="post">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="post post-full">
+                                <img class="image image-full" src="./public/assets/images/post.png" alt="post1">
+                            </div>
                         </div>
-                        <div class="post">
-                            <img class="image image-full" src="./public/assets/images/post.png" alt="post">
+                        <div class="swiper-slide">
+                            <div class="post post-full">
+                                <img class="image image-full" src="./public/assets/images/post.png" alt="post2">
+                            </div>
                         </div>
-                        <div class="post">
-                            <img class="image image-full" src="./public/assets/images/post.png" alt="post">
+                        <div class="swiper-slide">
+                            <div class="post post-full">
+                                <img class="image image-full" src="./public/assets/images/post.png" alt="post3">
+                            </div>
                         </div>
-                        <div class="post">
-                            <img class="image image-full" src="./public/assets/images/post.png" alt="post">
+                        <div class="swiper-slide">
+                            <div class="post post-full">
+                                <img class="image image-full" src="./public/assets/images/post.png" alt="post4">
+                            </div>
                         </div>
                     </div>
+                    <div class="swiper-pagination"></div>
                 </div>
             </div>
         </div>
     </main>
 
+    <!-- IMPORTANDO O SWIPER -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <!-- IMPORTANDO OS SCRIPTS -->
     <script src="./public/assets/js/index.bundle.js" defer></script>
     <script type="module" src="./public/assets/js/fab.js"></script>
+    <script src="./public/assets/js/slider.js"></script>
     <script type="module" src="./public/assets/js/theme.js"></script>
     <script type="module" src="./public/assets/js/nav.js"></script>
     <script type="module" src="./public/assets/js/variables.js"></script>
