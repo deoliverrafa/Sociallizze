@@ -37,6 +37,12 @@ html {
     border-radius: 10px;
 }
 
+main.principal {
+    position: relative;
+    
+    z-index: 0;
+}
+
 .modal {
     animation: opacityModal .3s ease-in-out forwards;
     
