@@ -23,6 +23,7 @@ app.use(cors({
 
 app.use('/api', usuarioRoutes);
 app.use('/mensagem', messageRoutes)
+app.use('/post', messageRoutes)
 
 // Outras configurações e middleware...
 

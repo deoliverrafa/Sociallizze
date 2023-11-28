@@ -42,18 +42,22 @@ const textEmail = document.querySelectorAll('.text.email')
 
 // FUNÇÕES //
 let showLoginMenu = (() => {
+    body.style.overflowY = 'hidden';
     modals[0].style.display = 'flex';
     modals[0].style.animation = 'opacityModal .3s ease-in-out forwards';
     cards[0].style.animation = 'smoothUpCard .5s ease-in-out forwards';
 });
 
 let showRegisterMenu = ( () => {
+    body.style.overflowY = 'hidden';
     modals[1].style.display = 'flex';
     modals[1].style.animation = 'opacityModal .3s ease-in-out forwards';
     cards[1].style.animation = 'smoothUpCard .5s ease-in-out forwards';
+  
 });
 
 let closeLoginMenu = (() => {
+    body.style.overflowY = 'auto';
     cards[0].style.animation = 'closeSmoothUpCard .5s ease-in-out forwards';
     modals[0].style.animation = 'closeOpacityModal .3s ease-in-out forwards';
     setTimeout(() => {
@@ -62,6 +66,7 @@ let closeLoginMenu = (() => {
 })
 
 let closeRegisterMenu = ( () => {
+    body.style.overflowY = 'auto';
     modals[1].style.animation = 'closeOpacityModal .3s ease-in-out forwards';
     cards[1].style.animation = 'closeSmoothUpCard .5s ease-in-out forwards';
     setTimeout( () => {
