@@ -58,66 +58,30 @@
     }
   }
 
-  main.card.post {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
-
-    .container {
-      width: 60%;
-
-      .card.container {
-        width: 100%;
-
-        .form {
-          display: flex;
-          flex-direction: column;
-          flex-wrap: nowrap;
-          justify-content: center;
-          align-items: center;
-
-          width: 100%;
-
-          .input {
-            width: 95%;
-          }
-        }
-
-        .file {
-          @include size(3rem, 3rem);
-        }
-      }
-    }
-
-    .card.posts,
-    .card.comment {
-      display: flex;
-      flex-direction: column;
-      flex-wrap: nowrap;
-      justify-content: center;
-      align-items: center;
-
-      width: 60%;
-
-      .post,
-      .post-video {
-        @include display-flex(row, center, center);
-        @include size(10vw, 15vw);
-      }
-    }
-
-    .card.public {
-      width: 80%;
-    }
-  }
-
   main.principal{
     @include display-flex(column, center,  center);
     .card.post{
       width: 60%;
       height: auto;
+    }
+  }
+  
+  main.card.post {
+    @include display-flex(column, center, center);
+  
+    .post {
+      @include size(20vh, 15vw);
+      &.post-full {
+        @include size(70vh, 70vw);
+      }
+    }
+  
+    .input {
+      width: 85vw;
+    }
+  
+    .file {
+      @include size(3rem, 3rem);
     }
   }
 }
