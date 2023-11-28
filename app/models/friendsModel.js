@@ -75,7 +75,7 @@ async function createUserCard(nickName, id, isFollowing, containers) {
 
             buttonRemover.addEventListener('click', async () => {
                 try {
-                    const response = await fetch('https://sociallizze-api.up.railway.app/api/unfollow', {
+                    const response = await fetch('http://localhost:3000/api/unfollow', {
                         method: 'PUT',
                         headers: {
                             'Content-Type': 'application/json',
@@ -126,7 +126,7 @@ function createButton(iconName, buttonText, buttonClass, id, tipo) {
         if (tipo == 'seguir') {
             try {
                 // Faça uma solicitação para seguir o usuário
-                const response = await fetch('https://sociallizze-api.up.railway.app/api/follow', {
+                const response = await fetch('http://localhost:3000/api/follow', {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -152,7 +152,7 @@ function createButton(iconName, buttonText, buttonClass, id, tipo) {
 
         if (tipo == 'remover') {
             try {
-                const response = await fetch('https://sociallizze-api.up.railway.app/api/unfollow', {
+                const response = await fetch('http://localhost:3000/api/unfollow', {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -187,7 +187,7 @@ const searchUsersDebounced = await debounce(async (searchTerm) => {
         divLoading.style.display = 'flex';
         logoLoading[0].style.animation = 'rotate .3s infinite linear'
 
-        const response = await fetch(`https://sociallizze-api.up.railway.app/api/getUser?nickName=${searchTerm}`, {
+        const response = await fetch(`http://localhost:3000/api/getUser?nickName=${searchTerm}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -237,7 +237,7 @@ function isUserFollowing(currentUser, user) {
 async function getCurrentUser() {
     // FUNÇÃO IMPLEMENTADA PARA PEGAR DADOS DO USUÁRIO ATUAL
 
-    const response = await fetch(`https://sociallizze-api.up.railway.app/api/getCurrentUser?currentUserId=${localUserId}`, {
+    const response = await fetch(`http://localhost:3000/api/getCurrentUser?currentUserId=${localUserId}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

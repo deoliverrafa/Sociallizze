@@ -1,57 +1,84 @@
-const { textNick, inputs, cards, buttons, containers } = require("../../public/assets/js/variables");
-const { userLoggedIn, getUserData, getUserImage, localUserId } = require("./userFunctions");
+const { textNick, inputs, cards, buttons, containers, icons } = require("../../public/assets/js/variables");
 
-let textValue;
+let title;
+let desc;
+let selectedFiles = []; 
+const displayFiles = [];
+const posts = document.querySelectorAll('div.post');
+const divsImage = document.querySelectorAll('#image')
+const textarea = document.querySelectorAll('.textarea')
+const imageInput = document.getElementById('imageInput');
+const iconsRemove = document.querySelectorAll('.icon.remove')
 
-const imgProfile = document.querySelector('.image.profile-small')
 
-function createNewComment (comment) {
-    const novaDiv = document.createElement('div');
-    novaDiv.classList.add('card', 'comment', 'container-column-center');
-
-    const newComment = document.createElement('p');
-    newComment.classList.add('text', 'text-center', 'text-wrap');
-    
-    const newSpan = document.createElement('span');
-    newSpan.classList.add('comment')
-    newSpan.innerHTML = comment;
-
-    newComment.appendChild(newSpan);
-    novaDiv.appendChild(newComment);
-
-    cards[5].appendChild(novaDiv);
-}
-
-document.addEventListener('DOMContentLoaded', async () => {
-
-    if (userLoggedIn) {
-       
-        const dadosUser = await getUserData(localUserId);
-
-        if (dadosUser) {
-            textNick[0].innerHTML = dadosUser.nickName
-        }
-
-        const img = await getUserImage(localUserId);
-
-        if (img.type == 'image/png') {
-            imgProfile.src = URL.createObjectURL(img)
-        } else {
-            imgProfile.src = '../../public/assets/images/user/user.png'
-        }
-
-    }
-
-})
-
-// Input para pegar o que o usuário quer digitar
-inputs[0].addEventListener('input', () =>{
-    // Salva Valor digitado pelo usuário na variável global textValue
-    textValue = inputs[0].value;
+// ESCONDE DIVS DE IMAGENS NÃO NESCESSÁRIAS NO MOMENTO
+posts.forEach(element => {
+    element.style.display = 'none';
 });
 
-// Botão de Adicionar para adicionar um comentário a imagem
-buttons[0].addEventListener('click', () => {
-    inputs[0].value = ''
-    createNewComment(textValue);
+imageInput.addEventListener('change', function (event) {
+    selectedFiles = event.target.files;
+
+    for (let i = 0; i < selectedFiles.length && i < posts.length; i++) {
+        const file = selectedFiles[i];
+        const postDiv = posts[i];
+        const image = divsImage[i];
+
+        const imageUrl = URL.createObjectURL(file);
+
+        postDiv.style.display = 'flex';
+        image.src = imageUrl;
+
+
+        // Gera um identificador único para o arquivo (pode ser o nome do arquivo, um ID único, etc.)
+        const fileId = `file_${i}`;
+
+        // Adiciona o arquivo à lista de exibição usando o identificador exclusivo como chave
+        displayFiles[fileId] = file;
+    }
+});
+
+// Função para remover um arquivo do array de arquivos selecionados
+function removeFile(index, fileId) {
+    // Encontra o índice correspondente ao fileId no array displayFiles
+    const fileIndex = Object.keys(displayFiles).findIndex(key => key === fileId);
+
+    if (fileIndex !== -1) {
+        // Oculta a div correspondente ao ícone clicado
+        posts[index].style.display = 'none';
+
+        // Remove o arquivo correspondente da lista de exibição, mantendo os arquivos originais intactos
+        delete displayFiles[fileId];
+
+        // Atualiza a lista de arquivos selecionados com base nos arquivos restantes no objeto de exibição
+        selectedFiles = Object.values(displayFiles);
+
+        // Limpa a imagem exibida na div correspondente
+        divsImage[index].src = '';
+
+        // Verifica os arquivos restantes após a remoção
+        console.log('Arquivos restantes:', selectedFiles);
+    } else {
+        console.log('Arquivo não encontrado.');
+    }
+}
+
+iconsRemove.forEach((element, index) => {
+    const fileId = `file_${index}`;
+    element.addEventListener('click', () => {
+        removeFile(index,fileId);
+    });
+});
+
+// Input para pegar a descrição
+textarea[0].addEventListener('input', function () {
+    desc = this.value;
+    console.log(desc);
 })
+
+// Input para pegar o título da publicação
+inputs[0].addEventListener('input', function () {
+    // Salva Valor digitado pelo usuário na variável global title
+    title = this.value;
+    console.log(title);
+});

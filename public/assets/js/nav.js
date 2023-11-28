@@ -19,8 +19,8 @@ icons[0].addEventListener('click', () => {
         modals[2].style.animation = 'closeOpacityModal .3s ease-in-out forwards';
         setTimeout(() => {
             modals[2].style.display = 'none';
+            body.style.overflowY = 'auto';
         }, 300);
-        body.style.overflowY = 'auto';
     })
 });
 
@@ -30,8 +30,8 @@ iconsClose[0].addEventListener('click', () => {
     modals[2].style.animation = 'closeOpacityModal .3s ease-in-out forwards';
     setTimeout(() => {
         modals[2].style.display = 'none';
+        // LOCK DO SCROLL NA PÀGINA PRINCIPAL
+        body.style.overflowY = 'auto';
     }, 300);
 
-    // LOCK DO SCROLL NA PÀGINA PRINCIPAL
-    body.style.overflowY = 'auto';
 });
