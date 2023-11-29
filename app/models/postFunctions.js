@@ -13,7 +13,7 @@ async function createPost(displayFiles, title, desc, userId) {
     });
 
     try {
-        const response = await fetch('http://localhost:3000/postagem/create', {
+        const response = await fetch('https://sociallizze-api.up.railway.app/postagem/create', {
             method: 'POST',
             body: formData
         });
@@ -31,9 +31,9 @@ async function createPost(displayFiles, title, desc, userId) {
 
 async function getAllPosts(skip, limit) {
     try {
-        const response = await fetch(`http://localhost:3000/postagem/get?skip=${skip}&limit=${limit}`);
+        const response = await fetch(`https://sociallizze-api.up.railway.app/postagem/get?skip=${skip}&limit=${limit}`);
         const data = await response.json();
-        
+
         return data.posts;
     } catch (error) {
         console.error('Erro ao obter posts:', error);
@@ -41,5 +41,28 @@ async function getAllPosts(skip, limit) {
     }
 }
 
+async function getImageById(id) {
+    try {
+        const response = await fetch(`https://sociallizze-api.up.railway.app/postagem/getPostImages/${id}`);
+        const data = await response.json();
 
-export { createPost, getAllPosts };
+        if (response.ok) {
+            const images = data.images;
+
+            // Vamos supor que você queira exibir a primeira imagem encontrada
+            if (images && images.length > 0) {
+                const imageData = images[0].imageData;
+                const contentType = images[0].contentType;
+                const dataUrl = `data:${contentType};base64,${imageData}`;
+
+                return dataUrl;
+            }
+        } else {
+            console.error('Erro ao buscar imagem:', data.error || 'Erro desconhecido');
+        }
+    } catch (error) {
+        console.error('Erro ao pegar imagem', error);
+    }
+}
+
+export { createPost, getAllPosts, getImageById };

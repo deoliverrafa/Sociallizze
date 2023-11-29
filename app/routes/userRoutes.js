@@ -164,7 +164,6 @@ router.get('/getUserImage', async (req, res) => {
     }
 
     const contentType = user.avatar.contentType;
-
     res.set('Content-Type', contentType);
     res.send(user.avatar.image);
   } catch (error) {

@@ -18,12 +18,30 @@ const postSchema = mongoose.Schema({
         required: true,
     },
 
-    images: [{
+    image1: {
         image: Buffer,
         fileName: String,
         contentType: String,
-        required: false, 
-    }],
+ 
+    },
+    image2: {
+        image: Buffer,
+        fileName: String,
+        contentType: String,
+ 
+    },
+    image3: {
+        image: Buffer,
+        fileName: String,
+        contentType: String,
+ 
+    },
+    image4: {
+        image: Buffer,
+        fileName: String,
+        contentType: String,
+ 
+    },
 
     likes:{
         type: Number,

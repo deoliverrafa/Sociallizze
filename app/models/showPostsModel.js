@@ -3,26 +3,44 @@ const { getUserData, getUserImage } = require("./userFunctions");
 
 const principal = document.querySelectorAll('.principal')
 
+async function createBlobUrl(blob) {
+    const url = URL.createObjectURL(blob)
+    return url
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
     try {
-        const data = await getAllPosts(0, 0);
+        const postData = await getAllPosts(0, 0);
 
-        for (const element of data) {
-            const { nickName } = await getUserData(element.userId, 'nickName');
-            const img = await getUserImage(element.userId);
-            
-            let url;
+        console.log("Post Data", postData);
+        for (const post of postData) {
 
-            if (img.type === 'image/png' || img.type === 'image/jpeg') {
-                url = URL.createObjectURL(img);
+            const { nickName } = await getUserData(post.userId, 'nickName');
+
+            const userImage = await getUserImage(post.userId)
+
+            const urlImagemUsuario = URL.createObjectURL(userImage);
+
+            const imagesUrls = []; // Array para armazenar os URLs das imagens
+
+            // Itera por cada propriedade imageX no post
+            for (let i = 1; post[`image${i}`]; i++) {
+                const imageData = post[`image${i}`];
+                try {
+                    const imageUrl = await createBlobUrlFromBuffer(imageData.image.data, imageData.contentType);
+                    imagesUrls.push(imageUrl);
+                } catch (error) {
+                    console.log(`Erro ao gerar blob para image${i}`, error);
+                }
             }
 
+            console.log(imagesUrls);
             const newPostDiv = await createPostDiv(
-                url,
+                urlImagemUsuario,
                 nickName,
-                element.title,
-                element.desc,
-                element.images
+                post.title,
+                post.desc,
+                imagesUrls, // Passa o array de URLs das imagens
             );
 
             principal[0].appendChild(newPostDiv);
@@ -31,6 +49,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.error('Erro ao carregar os posts:', error);
     }
 });
+
+async function createBlobUrlFromBuffer(buffer, contentType) {
+    const blob = new Blob([buffer], { type: contentType });
+    const url = URL.createObjectURL(blob);
+    return url;
+}
 
 async function createPostDiv(userImageUrl, username, title, desc, imagesData) {
     // Criação do elemento principal div com a classe "card post container container-column"
@@ -85,33 +109,36 @@ async function createPostDiv(userImageUrl, username, title, desc, imagesData) {
     const swiperWrapperDiv = document.createElement('div');
     swiperWrapperDiv.classList.add('swiper-wrapper');
 
-    for (const imageData of imagesData) {
-        try {
-            console.log("Loop", imagesData[0].image);
+    if (imagesData) {
+        for (const imageData of imagesData) {
+            try {
+                console.log("Image data -->", imageData);
 
-            const blob = await arrayBufferToBlob(imagesData[0].image.data, 'image/jpeg');
+                const blob = await arrayBufferToBlob(imageData.image.data, imageData.contentType);
 
-            console.log(blob);
-            if (blob.type === 'image/jpeg' || blob.type === 'image/png') {
-                const imageUrl = URL.createObjectURL(blob);
+                const imageUrl = await createBlobUrl(blob);
 
-                const swiperSlideDiv = document.createElement('div');
-                swiperSlideDiv.classList.add('swiper-slide');
+                console.log("Imagem post", imageUrl);
 
-                const imgElement = document.createElement('img');
-                imgElement.classList.add('image', 'image-full');
-                imgElement.src = imageUrl;
-                imgElement.alt = 'post';
+                if (blob.type !== null) {
+                    const swiperSlideDiv = document.createElement('div');
+                    swiperSlideDiv.classList.add('swiper-slide');
 
-                swiperSlideDiv.appendChild(imgElement);
-                swiperWrapperDiv.appendChild(swiperSlideDiv);
+                    const imgElement = document.createElement('img');
+                    imgElement.classList.add('image', 'image-full');
+                    imgElement.src = imageUrl;
+                    imgElement.alt = 'post';
+
+                    swiperSlideDiv.appendChild(imgElement);
+                    swiperWrapperDiv.appendChild(swiperSlideDiv);
+                }
+            } catch (error) {
+                console.log("Erro ao gerar blob", error);
             }
-        } catch (error) {
-            console.log("Erro ao gerar blob", error);
         }
-    }
 
-    swiperDiv.appendChild(swiperWrapperDiv);
+        swiperDiv.appendChild(swiperWrapperDiv);
+    }
 
     // Criação dos elementos de paginação e botões do swiper
     const paginationDiv = document.createElement('div');
@@ -180,6 +207,7 @@ async function createPostDiv(userImageUrl, username, title, desc, imagesData) {
 // Função para converter dados de imagem em Blob
 async function arrayBufferToBlob(buffer, type) {
     return new Blob([buffer], { type: type });
+
 }
 
 function extractImageArrays(data) {

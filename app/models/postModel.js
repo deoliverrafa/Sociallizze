@@ -1,5 +1,5 @@
 const { inputs, buttons } = require("../../public/assets/js/variables");
-const { createPost } = require("./postFunctions");
+const { createPost, getPosts } = require("./postFunctions");
 const { localUserId } = require('./userFunctions')
 
 let title;

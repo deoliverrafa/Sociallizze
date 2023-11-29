@@ -13,14 +13,15 @@ const upload = multer({ storage: storage });
 // ROTA PARA CRIAR UMA NOVA POSTAGEM
 router.post('/create', upload.array('images', 4), async (req, res) => {
     try {
-        await connection.connect();
-
+        // Dados do corpo da requisição
         const { title, desc, userId } = req.body;
         const images = req.files;
 
+        await connection.connect()
+
         // Processando as imagens antes de salvar no banco de dados
         const processedImages = await Promise.all(
-            images.map(async (image) => {
+            images.map(async (image, index) => {
                 // Redimensionando e ajustando a qualidade da imagem usando o Sharp
                 const resizedImageBuffer = await sharp(image.buffer)
                     .resize({ width: 500 }) // Redimensionar para largura máxima de 500 pixels
@@ -32,18 +33,25 @@ router.post('/create', upload.array('images', 4), async (req, res) => {
                     image: resizedImageBuffer,
                     fileName: image.originalname,
                     contentType: image.mimetype,
+                    field: `image${index + 1}` // Nome do campo de imagem (image1, image2, ...)
                 };
             })
         );
 
-        // Criando um array de objetos para o modelo de postagem
-        const postImages = processedImages.map((processedImage) => ({
-            image: processedImage.image,
-            fileName: processedImage.fileName,
-            contentType: processedImage.contentType,
-        }));
+        // Criando um objeto com as imagens processadas
+        const imageObjects = {};
+        processedImages.forEach(processedImage => {
+            imageObjects[processedImage.field] = {
+                image: processedImage.image,
+                fileName: processedImage.fileName,
+                contentType: processedImage.contentType
+            };
+        });
 
-        const newPost = new postSchema({ title, desc, images: postImages, userId });
+        // Criando uma nova postagem com os campos de imagens correspondentes
+        const newPost = new postSchema({ title, desc, userId, ...imageObjects });
+
+        // Salvando a nova postagem no banco de dados
         await newPost.save();
 
         res.status(201).json({ message: 'Postagem criada com sucesso', post: newPost });
@@ -61,6 +69,29 @@ router.get('/get', async (req, res) => {
         res.status(200).json({ posts });
     } catch (error) {
         res.status(500).json({ message: 'Erro ao obter postagens', error: error.message });
+    }
+});
+
+router.get('/getPostImages/:postId', async (req, res) => {
+    try {
+        const { postId } = req.params;
+
+        const post = await postSchema.findById(postId);
+
+        if (!post || !post.images || post.images.length === 0) {
+            return res.status(404).json({ error: "Imagens da postagem não encontradas" });
+        }
+
+        const imagesData = post.images.map(image => ({
+            imageId: image._id,
+            contentType: image.contentType,
+            imageData: image.image.toString('base64') // Converte a imagem para base64 para envio na resposta
+        }));
+
+        res.status(200).json({ images: imagesData });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ error: "Erro na solicitação" });
     }
 });
 
