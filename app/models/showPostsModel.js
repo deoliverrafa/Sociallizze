@@ -1,18 +1,26 @@
+const { applyTheme } = require("../../public/assets/js/theme");
 const { getAllPosts } = require("./postFunctions");
 const { getUserData, getUserImage } = require("./userFunctions");
-
 const principal = document.querySelectorAll('.principal')
+
 
 async function createBlobUrl(blob) {
     const url = URL.createObjectURL(blob)
     return url
 }
+const logoLoading = document.querySelectorAll('.logo.rotate')
+const divLoading = document.querySelectorAll('#loader')
+
+divLoading[1].style.display = 'flex';
+logoLoading[1].style.animation = 'rotate .3s infinite linear'
 
 document.addEventListener('DOMContentLoaded', async () => {
     try {
         const postData = await getAllPosts(0, 0);
 
-        console.log("Post Data", postData);
+        // Carrega animação de loading
+        logoLoading[0].style.animation
+
         for (const post of postData) {
 
             const { nickName } = await getUserData(post.userId, 'nickName');
@@ -34,7 +42,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                 }
             }
 
-            console.log(imagesUrls);
             const newPostDiv = await createPostDiv(
                 urlImagemUsuario,
                 nickName,
@@ -43,7 +50,13 @@ document.addEventListener('DOMContentLoaded', async () => {
                 imagesUrls, // Passa o array de URLs das imagens
             );
 
+
+            // ESCONDE DIV LOADING
+            divLoading[1].style.display = 'none';
+            logoLoading[1].style.animation = 'none'
+
             principal[0].appendChild(newPostDiv);
+            applyTheme();
         }
     } catch (error) {
         console.error('Erro ao carregar os posts:', error);
@@ -112,13 +125,9 @@ async function createPostDiv(userImageUrl, username, title, desc, imagesData) {
     if (imagesData) {
         for (const imageData of imagesData) {
             try {
-                console.log("Image data -->", imageData);
-
                 const blob = await arrayBufferToBlob(imageData.image.data, imageData.contentType);
 
                 const imageUrl = await createBlobUrl(blob);
-
-                console.log("Imagem post", imageUrl);
 
                 if (blob.type !== null) {
                     const swiperSlideDiv = document.createElement('div');
@@ -163,11 +172,19 @@ async function createPostDiv(userImageUrl, username, title, desc, imagesData) {
     // Criação do título (p)
     const titlePara = document.createElement('p');
     titlePara.classList.add('text', 'title', 'text-wrap', 'text-bold');
+
+    if (localStorage.getItem('selectedTheme' == 'dark')) {
+        titlePara.style.color = '#FFFFFF'
+    }
     titlePara.textContent = title;
 
     // Criação do texto do post (p)
     const textPara = document.createElement('p');
     textPara.classList.add('text', 'comment', 'text-wrap');
+
+    if (localStorage.getItem('selectedTheme' == 'dark')) {
+        textPara.style.color = '#FFFFFF';
+    }
     textPara.textContent = desc;
 
     // Adiciona título e texto ao conteúdo do post
@@ -208,8 +225,4 @@ async function createPostDiv(userImageUrl, username, title, desc, imagesData) {
 async function arrayBufferToBlob(buffer, type) {
     return new Blob([buffer], { type: type });
 
-}
-
-function extractImageArrays(data) {
-    return data.map(item => item.images.map(image => image.image));
 }

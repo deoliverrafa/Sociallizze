@@ -68,6 +68,15 @@ function applyTheme() {
         document.querySelectorAll('.text-error').forEach(function(element) {
             element.style.color = '#E05135';
         });
+        document.querySelectorAll('.text.nick').forEach(function(element) {
+            element.style.color = '#FFFFFF';
+        });
+        document.querySelectorAll('.text.title').forEach(function(element) {
+            element.style.color = '#FFFFFF';
+        });
+        document.querySelectorAll('.text.comment').forEach(function(element) {
+            element.style.color = '#FFFFFF';
+        });
     } else {
         body.style.background = '';
         document.querySelectorAll('.profile').forEach(function(element) {
@@ -126,6 +135,15 @@ function applyTheme() {
         document.querySelectorAll('.text-error').forEach(function(element) {
             element.style.color = '';
         });
+        document.querySelectorAll('.text.nick').forEach(function(element) {
+            element.style.color = '';
+        });
+        document.querySelectorAll('.text.title').forEach(function(element) {
+            element.style.color = '';
+        });
+        document.querySelectorAll('.text.comment').forEach(function(element) {
+            element.style.color = '';
+        });
     }
 }
 
@@ -161,4 +179,4 @@ document.addEventListener('DOMContentLoaded', function () {
     applyTheme();
 });
 
-export { theme };
+export { theme, applyTheme };

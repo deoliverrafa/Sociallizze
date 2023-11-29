@@ -76,14 +76,12 @@ iconsRemove.forEach((element, index) => {
 // Input para pegar a descrição
 textarea[0].addEventListener('input', function () {
     desc = this.value;
-    console.log(desc);
 })
 
 // Input para pegar o título da publicação
 inputs[0].addEventListener('input', function () {
     // Salva Valor digitado pelo usuário na variável global title
     title = this.value;
-    console.log(title);
 });
 
 
