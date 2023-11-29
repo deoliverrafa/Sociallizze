@@ -1,9 +1,38 @@
-const { getPosts } = require("./postFunctions");
+const { getAllPosts } = require("./postFunctions");
 const { getUserData, getUserImage } = require("./userFunctions");
 
 const principal = document.querySelectorAll('.principal')
 
-function createPostDiv(userImageUrl, username, title, desc, images) {
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        const data = await getAllPosts(0, 0);
+
+        for (const element of data) {
+            const { nickName } = await getUserData(element.userId, 'nickName');
+            const img = await getUserImage(element.userId);
+            
+            let url;
+
+            if (img.type === 'image/png' || img.type === 'image/jpeg') {
+                url = URL.createObjectURL(img);
+            }
+
+            const newPostDiv = await createPostDiv(
+                url,
+                nickName,
+                element.title,
+                element.desc,
+                element.images
+            );
+
+            principal[0].appendChild(newPostDiv);
+        }
+    } catch (error) {
+        console.error('Erro ao carregar os posts:', error);
+    }
+});
+
+async function createPostDiv(userImageUrl, username, title, desc, imagesData) {
     // Criação do elemento principal div com a classe "card post container container-column"
     const postDiv = document.createElement('div');
     postDiv.classList.add('card', 'post', 'container', 'container-column');
@@ -56,18 +85,31 @@ function createPostDiv(userImageUrl, username, title, desc, images) {
     const swiperWrapperDiv = document.createElement('div');
     swiperWrapperDiv.classList.add('swiper-wrapper');
 
-    images.forEach(imageSrc => {
-        const swiperSlideDiv = document.createElement('div');
-        swiperSlideDiv.classList.add('swiper-slide');
+    for (const imageData of imagesData) {
+        try {
+            console.log("Loop", imagesData[0].image);
 
-        const imgElement = document.createElement('img');
-        imgElement.classList.add('image', 'image-full');
-        imgElement.src = imageSrc;
-        imgElement.alt = 'post';
+            const blob = await arrayBufferToBlob(imagesData[0].image.data, 'image/jpeg');
 
-        swiperSlideDiv.appendChild(imgElement);
-        swiperWrapperDiv.appendChild(swiperSlideDiv);
-    });
+            console.log(blob);
+            if (blob.type === 'image/jpeg' || blob.type === 'image/png') {
+                const imageUrl = URL.createObjectURL(blob);
+
+                const swiperSlideDiv = document.createElement('div');
+                swiperSlideDiv.classList.add('swiper-slide');
+
+                const imgElement = document.createElement('img');
+                imgElement.classList.add('image', 'image-full');
+                imgElement.src = imageUrl;
+                imgElement.alt = 'post';
+
+                swiperSlideDiv.appendChild(imgElement);
+                swiperWrapperDiv.appendChild(swiperSlideDiv);
+            }
+        } catch (error) {
+            console.log("Erro ao gerar blob", error);
+        }
+    }
 
     swiperDiv.appendChild(swiperWrapperDiv);
 
@@ -135,124 +177,10 @@ function createPostDiv(userImageUrl, username, title, desc, images) {
     return postDiv;
 }
 
-// / Função para criar os botões
-
-function createButton(iconName, buttonText, buttonClass, id, tipo) {
-    const newButton = document.createElement('button');
-    newButton.classList.add('button', buttonClass, 'button-primary');
-    const span = document.createElement('span');
-    span.classList.add('icon', 'material-symbols-outlined');
-    span.textContent = iconName;
-
-    newButton.appendChild(span);
-    newButton.appendChild(document.createTextNode(buttonText));
-
-    // Adiciona um evento de clique para cada botão, registrando o usuário e o tipo de botão
-    newButton.addEventListener('click', async () => {
-        if (tipo == 'seguir') {
-            try {
-                // Faça uma solicitação para seguir o usuário
-                const response = await fetch('http://localhost:3000/api/follow', {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        userIdToFollow: id,
-                        currentUserId: localStorage.getItem('userId'),
-                    }),
-                });
-
-                // Verifique se a solicitação foi bem-sucedida
-                if (response.ok) {
-                    const buttonSeguindo = createButton('person_check', 'SEGUINDO', 'check', id, 'seguindo');
-                    newButton.replaceWith(buttonSeguindo)
-                    return;
-                } else {
-                    console.error('Erro ao seguir o usuário:', response.statusText);
-                }
-            } catch (error) {
-                console.error('Erro ao seguir o usuário:', error);
-            }
-        };
-
-        if (tipo == 'remover') {
-            try {
-                const response = await fetch('http://localhost:3000/api/unfollow', {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        userIdToUnfollow: id,
-                        currentUserId: localStorage.getItem('userId'),
-                    }),
-                });
-
-                if (response.ok) {
-                    // console.log('Usuario removido com sucesso');
-                } else {
-                    console.error('Erro ao remover o usuário:', response.statusText);
-                }
-            } catch (error) {
-                console.log("Erro ao remover usuario", error);
-            }
-        }
-    });
-
-    return newButton;
-}
-
 // Função para converter dados de imagem em Blob
-function arrayBufferToBlob(buffer, type) {
+async function arrayBufferToBlob(buffer, type) {
     return new Blob([buffer], { type: type });
 }
-
-document.addEventListener('DOMContentLoaded', async () => {
-    const data = await getPosts(0, 0);
-
-    const imagesArrays = extractImageArrays(data);
-
-    data.forEach(async (element, index) => {
-        try {
-            const { nickName } = await getUserData(element.userId, 'nickName');
-
-            const img = await getUserImage(element.userId);
-
-            let url;
-            let images = [];
-
-            if (img.type === 'image/png' || img.type === 'image/jpeg') {
-                url = URL.createObjectURL(img);
-            }
-
-            // Convertendo os dados de imagem em blobs
-            imagesArrays[index].forEach(async imageData => {
-                try {
-                    const blob = arrayBufferToBlob(imageData.data, img.type);
-
-                    console.log(blob);
-                    const imageUrl = URL.createObjectURL(blob);
-                    images.push(imageUrl);
-                } catch (blobError) {
-                    console.error('Erro ao criar Blob:', blobError);
-                }
-            });
-
-            const newPostDiv = createPostDiv(
-                url,
-                nickName,
-                element.title,
-                element.desc,
-                images
-            );
-
-            principal[0].appendChild(newPostDiv);
-        } catch (error) {
-            console.error('Erro ao criar post:', error);
-        }
-    });
-});
 
 function extractImageArrays(data) {
     return data.map(item => item.images.map(image => image.image));

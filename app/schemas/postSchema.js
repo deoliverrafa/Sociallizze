@@ -21,7 +21,8 @@ const postSchema = mongoose.Schema({
     images: [{
         image: Buffer,
         fileName: String,
-        contentType: String, 
+        contentType: String,
+        required: false, 
     }],
 
     likes:{

@@ -29,7 +29,7 @@ async function createPost(displayFiles, title, desc, userId) {
     }
 }
 
-async function getPosts(skip, limit) {
+async function getAllPosts(skip, limit) {
     try {
         const response = await fetch(`http://localhost:3000/postagem/get?skip=${skip}&limit=${limit}`);
         const data = await response.json();
@@ -42,4 +42,4 @@ async function getPosts(skip, limit) {
 }
 
 
-export { createPost, getPosts };
+export { createPost, getAllPosts };
