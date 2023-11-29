@@ -1,8 +1,11 @@
-const { textNick, inputs, cards, buttons, containers, icons } = require("../../public/assets/js/variables");
+const { inputs, buttons } = require("../../public/assets/js/variables");
+const { createPost } = require("./postFunctions");
+const { localUserId } = require('./userFunctions')
 
 let title;
 let desc;
-let selectedFiles = []; 
+let selectedFiles = [];
+
 const displayFiles = [];
 const posts = document.querySelectorAll('div.post');
 const divsImage = document.querySelectorAll('#image')
@@ -66,7 +69,7 @@ function removeFile(index, fileId) {
 iconsRemove.forEach((element, index) => {
     const fileId = `file_${index}`;
     element.addEventListener('click', () => {
-        removeFile(index,fileId);
+        removeFile(index, fileId);
     });
 });
 
@@ -82,3 +85,10 @@ inputs[0].addEventListener('input', function () {
     title = this.value;
     console.log(title);
 });
+
+
+// BOTÃO PARA CONFIRMAR O ENVIO DA POSTAGEM
+buttons[0].addEventListener('click', async () => {
+    await createPost(displayFiles, title, desc, localUserId)
+    window.location.href = '../../index.html'
+})

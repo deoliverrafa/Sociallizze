@@ -5,6 +5,7 @@ const postSchema = mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
+        required: true
     },
 
     title: {
@@ -21,7 +22,6 @@ const postSchema = mongoose.Schema({
         image: Buffer,
         fileName: String,
         contentType: String, 
-        required: true,
     }],
 
     likes:{
@@ -35,6 +35,6 @@ const postSchema = mongoose.Schema({
     },
 });
 
-const Post = mongoose.model('Post', postSchema);
+const Post = mongoose.model('Postagens', postSchema);
 
 module.exports = Post;

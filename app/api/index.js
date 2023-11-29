@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const usuarioRoutes = require('../routes/userRoutes');
 const messageRoutes = require('../routes/messageRoutes')
+const postRoutes = require('../routes/postRoutes')
 const cors = require('cors')
 
 app.use(bodyParser.json());
@@ -22,8 +23,8 @@ app.use(cors({
 
 
 app.use('/api', usuarioRoutes);
-app.use('/mensagem', messageRoutes)
-app.use('/post', messageRoutes)
+app.use('/mensagem', messageRoutes);
+app.use('/postagem', postRoutes);
 
 // Outras configurações e middleware...
 

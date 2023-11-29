@@ -16,12 +16,12 @@ const userSchema = mongoose.Schema({
 
     phoneNumber: {
         type: String,
-        required: false, // Tornar este campo não obrigatório
+        required: false,
     },
 
     email: {
         type: String,
-        required: false, // Tornar este campo não obrigatório
+        required: false,
     },
 
     password: {
@@ -31,7 +31,7 @@ const userSchema = mongoose.Schema({
 
     nacionality: {
         type: String,
-        require: true,
+        required: true,
     },
 
     birthDayData: {
@@ -40,12 +40,12 @@ const userSchema = mongoose.Schema({
     insertAt: {
         type: Date,
         default: () => new Date(),
-        require: false,
+        required: false,
     },
 
     type: {
         type: String,
-        require: false,
+        required: false,
     },
 
     avatar: {
@@ -56,7 +56,7 @@ const userSchema = mongoose.Schema({
 
     bio: {
         type: String,
-        require: false,
+        required: false,
         default: '',
     },
 
