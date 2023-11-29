@@ -1,8 +1,13 @@
 const { applyTheme } = require("../../public/assets/js/theme");
 const { getAllPosts } = require("./postFunctions");
 const { getUserData, getUserImage } = require("./userFunctions");
-const principal = document.querySelectorAll('.principal')
+const posts = document.querySelectorAll('.posts');
 
+posts[0].style.display = 'flex';
+posts[0].style.flexDirection = 'column-reverse';
+posts[0].style.alignItems = 'center';
+posts[0].style.position = 'relative';
+posts[0].style.zIndex = '0';
 
 async function createBlobUrl(blob) {
     const url = URL.createObjectURL(blob)
@@ -55,7 +60,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             divLoading[1].style.display = 'none';
             logoLoading[1].style.animation = 'none'
 
-            principal[0].appendChild(newPostDiv);
+            posts[0].appendChild(newPostDiv);
             applyTheme();
         }
     } catch (error) {
@@ -70,9 +75,10 @@ async function createBlobUrlFromBuffer(buffer, contentType) {
 }
 
 async function createPostDiv(userImageUrl, username, title, desc, imagesData) {
-    // Criação do elemento principal div com a classe "card post container container-column"
+    // Criação do elemento posts div com a classe "card post container container-column"
     const postDiv = document.createElement('div');
     postDiv.classList.add('card', 'post', 'container', 'container-column');
+    postDiv.style.width = '90%';
 
     // Criação do cabeçalho do post (container container-row-between)
     const headerDiv = document.createElement('div');
@@ -85,7 +91,8 @@ async function createPostDiv(userImageUrl, username, title, desc, imagesData) {
     // Criação da imagem do perfil (img)
     const profileImg = document.createElement('img');
     profileImg.classList.add('image', 'profile-small');
-    profileImg.src = userImageUrl;
+    profileImg.src = userImageUrl ? userImageUrl : 'public/assets/images/user/user.png';
+
 
     // Criação do nome de usuário (p)
     const usernamePara = document.createElement('p');
@@ -192,6 +199,19 @@ async function createPostDiv(userImageUrl, username, title, desc, imagesData) {
     contentDiv.appendChild(textPara);
     postDiv.appendChild(contentDiv);
 
+    // CRIAR DIV LINHA HORIZONTAL //
+    const separationDiv = document.createElement('div');
+    separationDiv.classList.add('container', 'container-row-center');
+
+    // CRIAR LINHA HORIZONTAL //
+    const separationHR = document.createElement('hr');
+    separationHR.style.background = 'linear-gradient(90deg, rgba(13, 8, 96, 1) 0%,';
+    separationHR.style.border = 'none';
+    separationHR.style.borderRadius = '5px';
+    separationHR.style.width = '100%';
+
+    separationDiv.appendChild(separationHR);
+
     // Criação das seções de interação (container container-row-between)
     const interactionDiv = document.createElement('div');
     interactionDiv.classList.add('container', 'container-row-between');
@@ -215,9 +235,10 @@ async function createPostDiv(userImageUrl, username, title, desc, imagesData) {
     // Adiciona seções de interação ao post
     interactionDiv.appendChild(likeDiv);
     interactionDiv.appendChild(favoriteDiv);
+    postDiv.appendChild(separationDiv);
     postDiv.appendChild(interactionDiv);
 
-    // Retorna o elemento principal div
+    // Retorna o elemento posts div
     return postDiv;
 }
 

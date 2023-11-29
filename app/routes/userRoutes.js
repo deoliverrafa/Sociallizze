@@ -171,15 +171,13 @@ router.get('/getUserImage', async (req, res) => {
     return res.status(500).json({ error: "Erro na solicitação" });
   }
 });
-
 const storage = multer.memoryStorage(); // Usando memoryStorage para armazenar o arquivo como um buffer na memória
 
 const upload = multer({ storage: storage });
 
-// SHARP PARA ALTERAR A QUALIDADE DA FOTO DO USUÁRIO
+// Rota para atualizar os Dados do Usuário
 const sharp = require('sharp');
 
-// Atualiza a Imagem de perfil do usuário
 router.put('/attProfilePhoto', upload.single('avatar'), async (req, res) => {
   const { userId } = req.body;
   const avatarFile = req.file;
@@ -194,40 +192,38 @@ router.put('/attProfilePhoto', upload.single('avatar'), async (req, res) => {
     const updateData = {}; // Objeto para armazenar os campos que serão atualizados
 
     if (avatarFile) {
-      new exif({ image: avatarFile.buffer }, async function (error, exifData) {
-        if (error) {
-          console.log('Erro ao ler os metadados EXIF:', error);
-        } else {
-          const orientation = exifData.image.Orientation;
+      if (avatarFile.mimetype) {
+        updateData['avatar.contentType'] = avatarFile.mimetype;
+      }
+      if (avatarFile.originalname) {
+        updateData['avatar.filename'] = avatarFile.originalname;
+      }
+      if (avatarFile.buffer) {
+        // Redimensionar e comprimir a imagem usando sharp
+        const resizedImageBuffer = await sharp(avatarFile.buffer)
+          .resize({ width: 500 }) // Redimensionar para largura máxima de 500 pixels (por exemplo)
+          .toFormat('jpeg') // Converter para JPEG (pode ser outro formato)
+          .jpeg({ quality: 50 }) // Ajustar a qualidade do JPEG (valor entre 0 e 100)
+          .toBuffer();
 
-          // Redimensionar e corrigir a orientação da imagem usando sharp
-          const resizedImageBuffer = await sharp(avatarFile.buffer)
-            .rotate() // Corrigir a orientação da imagem
-            .resize({ width: 500 }) // Redimensionar para largura máxima de 500 pixels
-            .toFormat('jpeg') // Converter para JPEG (pode ser outro formato)
-            .jpeg({ quality: 50 }) // Ajustar a qualidade do JPEG (valor entre 0 e 100)
-            .toBuffer();
-
-          updateData['avatar.image'] = resizedImageBuffer;
-
-          const usuario = await context.update(userId, updateData);
-
-          if (!usuario) {
-            return res.status(404).json({ error: 'Usuário não encontrado.' });
-          }
-
-          return res.status(200).json({ message: 'Imagem de perfil atualizada com sucesso.', usuario });
-        }
-      });
-    } else {
-      return res.status(400).json({ error: 'Nenhuma imagem fornecida.' });
+        updateData['avatar.image'] = resizedImageBuffer;
+      }
     }
+
+    const usuario = await context.update(userId, updateData);
+
+    if (!usuario) {
+      return res.status(404).json({ error: 'Usuário não encontrado.' });
+    }
+
+    return res.status(200).json({ message: 'Imagem de perfil atualizada com sucesso.', usuario });
 
   } catch (error) {
     console.log(error);
     return res.status(500).json({ error: 'Erro na solicitação' });
   }
 });
+
 
 // ROTA PARA FAZER O UPDATE DA BIO
 router.put('/updateBio', async (req, res) => {
